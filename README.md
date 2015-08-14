@@ -38,74 +38,80 @@ Initialize `JNsolve`
 var JNsolve = require('JNsolve');
 ```
 
-#### `JNsolve#D`
+#### `JNsolve.D`
 
 Object with differents numerics methods to calculate the derivative of a function.
 
-##### `JNsolve#D#Nof(Function,Number,Array)`
+##### `JNsolve.D.Nof(Function,Number,Array)`
 Constructor that generates the numeric derivative of `Function`=> f(x) with a  `Number` => N given of divisions in an interval  `Array` => [a,b].
 
 ```js
 JNsolve.D.Nof(f,1000,[2,7])
 ```
 
-##### `JNsolve#D#Nof#f_x`
+##### `JNsolve.D.Nof.f_x`
 Instance method what is the derivative numerical of  `Function` with a   `Number` given of divisions in an interval   `Array`.
 
 ```js
 JNsolve.D.Nof(f,1000,[2,7]).f_x(3)
 ```
 is a aproximation to the derivative of f (df_dx) on 3 with the 1000 divisions in the interval [2,7]. Is available another method that calculate the numerical derivative calculating the dx_i in a optimazed way, dx_i=h/sqrt(1+dfdx^2) with h=(b-a)/N.
-##### `JNsolve#D_opt#Nof(Function,Number,Array)`
-##### `JNsolve#D_opt#Nof#f_x`
-
-##### `JNsolve#D#linear_interpolation(Array)`
+##### `JNsolve.D_opt.Nof(Function,Number,Array)`
+##### `JNsolve.D_opt.Nof.f_x`
+##### `JNsolve.D.linear_interpolation(Array)`
 Is a constructor that generates the numeric linear interpolation of data given in `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] in the interval [x_1,x_n].
 
 ```js
-JNsolve.D.linear_interpolation([[0,3.2],[1,4.6],[2,5.1],[4,6.9]])
+array_to_interpolate = [[0,3.2],[1,4.6],[2,5.1],[4,6.9]] ;
+JNsolve.D.linear_interpolation(array_to_fit)
 ```
-##### `JNsolve#D#linear_interpolation(Array)#function_interpolated`
+##### `JNsolve.D.linear_interpolation(Array).function_interpolated`
 Is a instance method what is the interpolated function of `Array` given.
 
 ```js
-JNsolve.D.linear_interpolation([[0,3.2],[1,4.6],[2,5.1],[4,6.9]]).function_interpolated(2.5)
+JNsolve.D.linear_interpolation(array_to_interpolate).function_interpolated(2.5)
 ```
 Is a aproximation interpolated to the `Array` = [[0,3.2],[1,4.6],[2,5.1],[4,6.9]].
 
-#### `JNsolve#nsolveqn(Function, Array[,Number,Object])`
+#### `JNsolve.nsolveqn(Function, Array[,Number,Object])`
 Is a method that calculate numerically the solution of `Function`=>f(x)=0 try in the interval (`Array`=>[a,b]) beginning  on `Number`=>x_0 (initial point).
 
 ```js
-JNsolve.nsolveqn(x+Math.cos(x),0.5,[0,1]) = 0.73952
+function f(x) {
+  return x+Math.cos(x) ;
+}
+JNsolve.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
 The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson_Higherorder. The rest of routines for every method are availables:
 
-#### `JNsolve#RegulaFalsi(Function,Array[,Object])`
-#### `JNsolve#bisection(Function, Array[,Object])`
-#### `JNsolve#fixedpoint(Function,Number[,Object])`
-#### `JNsolve#Newton_Raphson(Function,Array[, Number, Object])`
-#### `JNsolve#Newton_Raphson_Higherorder(Function,Array[, Number, Object])`
+#### `JNsolve.RegulaFalsi(Function,Array[,Object])`
+#### `JNsolve.bisection(Function, Array[,Object])`
+#### `JNsolve.fixedpoint(Function,Number[,Object])`
+#### `JNsolve.Newton_Raphson(Function,Array[, Number, Object])`
+#### `JNsolve.Newton_Raphson_Higherorder(Function,Array[, Number, Object])`
 
 in every case if x_0 is undefined, is taken from a random number  in interval `Array`=>[a,b]. All these methods return a object with properties Root, numSteps and method used.
 
-#### `JNsolve#findroot(Function, Array[,Number,Object])`
+#### `JNsolve.findroot(Function, Array[,Number,Object])`
 Is a method that calculate numerically the solution of `Function`=>f(x)=0 try in the interval (`Array`=>[a,b]) beginning  on `Number`=>x_0 (initial point).
 
 ```js
-JNsolve.findroot(x+Math.cos(x),0.5,[0,1]) = 0.73952
+JNsolve.findroot(f,0.5,[0,1]) = 0.73952
 ```
 The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. Here, findroot try find the root of function by all methods availables in the module.
 
 
-#### `JNsolve#bestfit(Array[,Array,Array,Object])`
+#### `JNsolve.bestfit(Array[,Array,Array,Object])`
 ![Plot Data with Best fit](./plot.jpeg)
 
 
 Caculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input, the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8). Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit.
 
 ```js
-JNsolve.bestfit([[0,1.1],[1,4.6],[2,1.9],[4,15]],[3.4, 4.8, 8, 11], [8,8.5,15,20]) =
+array_to_fit =[[0,1.1],[1,4.6],[2,1.9],[4,15]];
+array_of_x = [3.4, 4.8, 8, 11] ;
+array_of_y = [8,8.5,15,20];
+JNsolve.bestfit(array_to_fit,array_of_x,array_of_y ) =
 fit = { ans_ofY:
    [ [ 3.4, 10.503636363636366 ],
      [ 4.8, 21.457999999999984 ],
