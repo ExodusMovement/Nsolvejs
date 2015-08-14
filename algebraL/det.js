@@ -1,5 +1,5 @@
 'use strict' ;
-var matrix = require('./matrix'),
+var matrix = require('./Matriz'),
      Minor = require('./minor');
 
 /** @function

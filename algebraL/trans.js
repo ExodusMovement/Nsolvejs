@@ -1,6 +1,6 @@
 'use strict' ;
 var
-     matrix = require('./matrix');
+     matrix = require('./Matriz');
 /** @function
  * transposed of a matrix.
  * @param {Object} matrix

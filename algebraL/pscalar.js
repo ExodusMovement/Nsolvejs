@@ -1,5 +1,5 @@
 'use strict' ;
-var matrix = require('./matrix');
+var matrix = require('./Matriz');
 
 /** @function
  * multiply the matrix object for a scalar number.

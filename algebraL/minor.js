@@ -1,6 +1,6 @@
 'use strict' ;
 var  _ = require('lodash') ,
-matrix = require('./matrix'); 
+matrix = require('./Matriz'); 
 
 /** @function
  * The minor m,n of matrix.

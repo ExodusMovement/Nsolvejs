@@ -1,5 +1,5 @@
 'use strict' ;
-var  matrix = require('./matrix');
+var  matrix = require('./Matriz');
     /** @function
      * sum  the matrix object.
      * @param {Object} matrix {Object} matrix.
