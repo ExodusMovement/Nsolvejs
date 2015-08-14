@@ -139,7 +139,8 @@ fit = { ans_ofY:
      polynomial: { regression: [Object], error: 2.0329834635543396 },
      best: { name: 'polynomial', error: 2.0329834635543396, f: [Function] } } }
 ```
-
+#### `JNsolve.AL.matrix(Array)`
+Is a constructor of a object matrix 
 
 
 ##Contributing
