@@ -4,9 +4,6 @@ var _ = require('lodash'),
      Det = require('./det'),
      Product = require('./product'),
      Inv = require('./inverse');
-
-
-
 /** @function
  * Solve a system of linear equations written in matrix form as Ax=B.
  * Example :

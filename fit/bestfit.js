@@ -23,12 +23,10 @@ module.exports = function(_arrayFit, get_y, get_x,options ) {
    options.alpha = options.alpha || 0.8 ;
    var smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,arrayFit ;
    // The noise is elimanated from data.
-   console.log('noiseeliminate =',noiseeliminate);
    if(noiseeliminate){
      _arrayFit = noiseeliminatedata(_arrayFit,{method :smoothingmethod, alpha : alpha});
    }
    // The data are smoothed.
-   console.log('smoothing =',smoothing);
    if(smoothing){
      _arrayFit = smoothingdata(_arrayFit,{method :smoothingmethod, alpha : alpha});
    }
