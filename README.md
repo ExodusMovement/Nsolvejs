@@ -1,4 +1,6 @@
 # JNsolve
+
+[![Join the chat at https://gitter.im/4yopping/JNsolve](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/JNsolve?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/4yopping/JNsolve.svg?branch=master)](https://travis-ci.org/4yopping/JNsolve) [![Inline docs](http://inch-ci.org/github/4yopping/JNsolve.svg?branch=master)](http://inch-ci.org/github/4yopping/JNsolve)
 [![npm version](https://badge.fury.io/js/jnsolve.svg)](http://badge.fury.io/js/jnsolve)
 **[Join us on Slack](http://jnsolve.slack.com)**
