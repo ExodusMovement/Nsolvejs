@@ -36,7 +36,7 @@ module.exports.AL ={
   adj :require('./algebraL/adj'),
   det :require('./algebraL/det'),
   inv :require('./algebraL/inverse'),
-  matrix :require('./algebraL/Matrix'),
+  matrix :require('./algebraL/matrix'),
   minor :require('./algebraL/minor'),
   product :require('./algebraL/product'),
   pscalar :require('./algebraL/pscalar'),
