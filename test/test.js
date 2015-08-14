@@ -83,6 +83,9 @@ describe('JNsolve Module numeric values function test.', function () {
             it('The bestfit object define a function of the fit.', function () {
                   assert.equal( typeof fitted.fit.best.f , 'function'); // should returns true
             });
+            it('Matrix constructor instance a object', function () {
+                  assert.equal( new JNsolve.AL.matrix([3,2]) instanceof JNsolve.AL.matrix,true ); // should returns true
+            });
 });
 
 

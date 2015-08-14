@@ -9,7 +9,7 @@
   bestfit = require('./fit/bestfit'),
   Newton_Raphson_Higherorder = methodN.Newton_Raphson_Higherorder,
   findroot  = require('./lib/findroot') ;
-module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
+  module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
     if(!g){return ;}
     options = options || {npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Raphson' } ;
     options.presicion = options.presicion || 0.001 ;
@@ -42,5 +42,5 @@ module.exports.AL ={
   pscalar :require('./algebraL/pscalar'),
   solveLE :require('./algebraL/solveLE'),
   sum :require('./algebraL/sum'),
-  trans :require('./algebraL/sum')
+  trans :require('./algebraL/trans')
 };
