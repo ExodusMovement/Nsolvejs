@@ -1,6 +1,5 @@
 'use strict' ;
-var _ = require('lodash'),
-     matrix = require('./Matriz'),
+var  matrix = require('./Mat'),
      Det = require('./det'),
      Product = require('./product'),
      Inv = require('./inverse');

@@ -1,6 +1,5 @@
 'use strict' ;
-var matrix = require('./Matriz'),
-     Minor = require('./minor');
+var   Minor = require('./minor');
 
 /** @function
  * The determinat of matrix.
@@ -9,7 +8,7 @@ var matrix = require('./Matriz'),
  */
   var    Det = function (B){
        var det;
-       if( B instanceof  matrix && B.raw === B.column &&  B.raw >= 0 ){
+       if(  B.raw === B.column &&  B.raw >= 0 ){
          if(B.raw >2){
            var ii=B.column,i, arrayminor=[] ;
            det = 0 ;

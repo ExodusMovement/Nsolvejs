@@ -4,6 +4,8 @@ var JNsolve = require('../index');
 var test_array= [[0,40],[1,48],[3,56],[4,70]];
      var test_query = [3.4, 4.8, 8, 11] ;
      var test_y     = [75,83,99,105] ;
+     var array1 = [[1,4],[1,3]];
+     var array2 = [[2,4],[2,6]],A= new JNsolve.AL.matrix(array1),B= new JNsolve.AL.matrix(array2);
     function g(x) {
       return Math.cos(x)-x;
     }
@@ -83,8 +85,29 @@ describe('JNsolve Module numeric values function test.', function () {
             it('The bestfit object define a function of the fit.', function () {
                   assert.equal( typeof fitted.fit.best.f , 'function'); // should returns true
             });
-});
 
+            it('The adjunted matrix should be a matrix with (2,1) component equal to -1', function () {
+                  assert.equal( JNsolve.AL.matrix.adj(A)._(2,1) , -1); // should returns true
+            });
+
+          it('The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {
+                              assert.equal( JNsolve.AL.matrix.pow(A,2)._(2,2) , 13); // should returns true
+                        });
+
+it('The multiply of  matrix with itself should be a matrix with (1,2) component equal to 16 ', function () {assert.equal( JNsolve.AL.matrix.multiply(A,A)._(1,2), 16); // should returns true
+                                      });
+it('The multiply of  matrix with a scalar 3 should be a matrix with (2,1) component equal to 3', function () {assert.equal( JNsolve.AL.matrix.pscalar(3,A)._(2,1), 3); // should returns true
+
+});
+it('The sum of  matrix with itself should be a matrix with (2,2) component equal to 6', function () {assert.equal( JNsolve.AL.matrix.sum(A,A)._(2,2), 6);                                                  });
+
+it('The transposed of  matrix  should be a matrix with (1,2) component equal to 1', function () {assert.equal( JNsolve.AL.matrix.trans(A)._(1,2), 1);                                                  });
+
+it('The inverse of a matrix should be a matrix with (1,1) component equal to -3', function () {assert.equal( JNsolve.AL.matrix.inv(A)._(1,1), -3);                                                  });
+
+it('The product of inverse of a matrix with itself should be a matrix with (1,1) component equal to 1 ever', function () {assert.equal( JNsolve.AL.matrix.multiply(JNsolve.AL.matrix.inv(A),A)._(1,1), 1);                                                  });
+
+});
 
 describe('derivative numeric.', function () {
 

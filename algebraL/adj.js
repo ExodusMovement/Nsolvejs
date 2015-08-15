@@ -1,6 +1,5 @@
 'use strict' ;
-var  matrix = require('./Matriz'),
-     Det = require('./det'),
+var     Det = require('./det'),
      Minor = require('./minor'),
      Trans = require('./trans') ;
 
@@ -10,7 +9,7 @@ var  matrix = require('./Matriz'),
  * @return {Object} matrix
  */
      module.exports = function (B){
-       if(B instanceof  matrix && B.raw === B.column ){
+       if( B.raw == B.column ){
          var ii=B.raw,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
@@ -18,6 +17,7 @@ var  matrix = require('./Matriz'),
                array[i-1][k-1]=Math.pow(-1,i+k)*Det( Minor(i,k,B) );
            }
          }
-         return  Trans(new matrix(array));
+         var  matrix = require('./Mat');
+      return Trans(new matrix(array)) ;
        }
      } ;

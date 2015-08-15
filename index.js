@@ -1,7 +1,7 @@
   'use strict';
   var methodN =    require('./lib/methodN'),
   bestfit = require('./fit/bestfit'),
-    matrix  = require('./algebraL/Matriz'),
+    matrix  = require('./algebraL/Mat'),
     solveLE  = require('./algebraL/solveLE');
 
 

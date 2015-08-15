@@ -1,5 +1,5 @@
 'use strict' ;
-var  matrix = require('./Matriz'),
+var  matrix = require('./Mat'),
      Det = require('./det'),
      Pscalar = require('./pscalar'),
      Adj = require('./adj');
@@ -11,7 +11,7 @@ var  matrix = require('./Matriz'),
  */
      module.exports =function (B){
        var det,adj;
-       if( B instanceof  matrix && B.raw === B.column ){
+       if(  B.raw === B.column ){
          det = Det(B);
          adj = Adj(B);
          if (det !== 0) {

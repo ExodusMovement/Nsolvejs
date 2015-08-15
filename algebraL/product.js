@@ -1,13 +1,11 @@
 'use strict' ;
-var matrix = require('./Matriz');
-
 /** @function
  * multiply the matrix object.
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
  module.exports = function (A,B){
-       if(A instanceof matrix && B instanceof  matrix && A.column === B.raw){
+       if( A.column === B.raw){
          var ii=A.raw,jj=A.column,kk=B.column,array = [],i,j,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
@@ -18,6 +16,7 @@ var matrix = require('./Matriz');
              }
            }
          }
+         var matrix = require('./Mat');
          return  new matrix(array);
        }
      } ;

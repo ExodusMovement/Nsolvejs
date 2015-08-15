@@ -1,5 +1,5 @@
 'use strict' ;
-var matrix = require('./Matriz'),
+var matrix = require('./Mat'),
 _ = require('lodash'),
 product = require('./product');
 
@@ -10,15 +10,13 @@ product = require('./product');
  */
 module.exports= function (){
   var l = arguments.length , A = arguments[0],B;
-  if (A instanceof matrix) {
     for (var p = 1; p < l; p++){
       B = arguments[p];
-      if( B instanceof  matrix && A.column === B.raw){
+      if(  A.column === B.raw){
       A=product(A,B)  ;
       }else{
       return ;
       }
     }
     return A ;
-  }
 } ;
