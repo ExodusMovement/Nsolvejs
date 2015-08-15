@@ -18,14 +18,14 @@ var initialpoint =  0.5 ;
 console.log(
   'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
 );
-console.log('=> regulafalsi =', nsolve.regulafalsi(f,interval));
+console.log('=> regulafalsi =', nsolve.calculusN.regulafalsi(f,interval));
 //console.log('=> bisection =', nsolve.bisection(f,interval));
 
-console.log('=> fixedpoint =', nsolve.fixedpoint(f,initialpoint));
+console.log('=> fixedpoint =', nsolve.calculusN.fixedpoint(f,initialpoint));
 
-console.log('=> Newton_Raphson =', nsolve.Newton_Raphson(f,interval,9));
+console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
-console.log('=> Newton_Raphson_Higherorder =', nsolve.Newton_Raphson_Higherorder(f,interval));
+console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
 console.log('=> fit =', growth(test_array,test_query,test_y));
 
 

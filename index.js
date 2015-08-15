@@ -1,24 +1,8 @@
-'use strict' ;
- var D =         require('./lib/derivativeN'),
-  D_opt =         require('./lib/derivativeN'),
-  methodN =    require('./lib/methodN'),
-  regulafalsi =  methodN.regulafalsi,
-  fixedpoint =   require('./lib/fixedpoint'),
-  bisection =    methodN.bisection,
-  Newton_Raphson = methodN.Newton_Raphson,
+  'use strict';
+  var methodN =    require('./lib/methodN'),
   bestfit = require('./fit/bestfit'),
-  Newton_Raphson_Higherorder = methodN.Newton_Raphson_Higherorder,
-  findroot  = require('./lib/findroot')  ,
-    adj =require('./algebraL/adj'),
-    det =require('./algebraL/det'),
-    inv =require('./algebraL/inverse'),
-    matrix = require('./algebraL/Matriz'),
-    minor = require('./algebraL/minor'),
-    product  = require('./algebraL/product'),
-    pscalar  = require('./algebraL/pscalar'),
-    solveLE  = require('./algebraL/solveLE'),
-    sum = require('./algebraL/sum'),
-    trans = require('./algebraL/trans');
+    matrix  = require('./algebraL/Matriz'),
+    solveLE  = require('./algebraL/solveLE');
 
 
   module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
@@ -35,24 +19,16 @@
 module.exports.fit = {best : bestfit} ;
 
 module.exports.calculusN = {
-  Newton_Raphson : Newton_Raphson,
-  bisection : bisection,
-  fixedpoint : fixedpoint,
-  regulafalsi : regulafalsi ,
-  Newton_Raphson_Higherorder : Newton_Raphson_Higherorder,
-  findroot : findroot,
-  D : D,
-  D_opt : D_opt
+  Newton_Raphson :methodN.Newton_Raphson,
+  bisection : methodN.bisection,
+  fixedpoint : methodN.fixedpoint,
+  regulafalsi : methodN.regulafalsi ,
+  Newton_Raphson_Higherorder :methodN.Newton_Raphson_Higherorder,
+  findroot : require('./lib/findroot'),
+  D : require('./lib/derivativeN'),
+  D_opt : require('./lib/derivativeNopt'),
 };
 module.exports.AL ={
-  adj :adj,
-  det :det,
-  inv :  inv ,
   matrix :matrix ,
-  minor :minor,
-  product :product,
-  pscalar :pscalar ,
-  solveLE :solveLE,
-  sum :sum,
-  trans :trans
+  solveLE : solveLE
 };

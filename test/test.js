@@ -83,15 +83,6 @@ describe('JNsolve Module numeric values function test.', function () {
             it('The bestfit object define a function of the fit.', function () {
                   assert.equal( typeof fitted.fit.best.f , 'function'); // should returns true
             });
-            it('Matrix constructor instance a object', function () {
-                  assert.equal( new JNsolve.AL.matrix([3,2]) instanceof JNsolve.AL.matrix,true ); // should returns true
-
-            });
-
-            it('Inverse method calculate the inverse a matrix', function () {
-                  assert.equal(  JNsolve.AL.inv(new JNsolve.AL.matrix([[3,2],[1,2]]) ).array instanceof Array,true ); // should returns true
-
-            });
 });
 
 
