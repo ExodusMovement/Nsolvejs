@@ -18,7 +18,7 @@ $ npm install jnsolve
 
 ## Features
 
-
+- **JNsolve linear algebra**
 - **JNsolve bestfit**
 - **JNsolve regulafalsi**
 - **JNsolve fixedpoint**
