@@ -144,7 +144,7 @@ fit = { ans_ofY:
 ```
 ### `Linear Algebra`
 #### `JNsolve.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number return a undefined object. The instance properties raw, column and array which are the number of raw and column, the array is the array self passed to constructor. The instance methods are _,x,plus, pow, and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects and finally the last methods add the object matrix plus the matrix parameters passed to he method. The matrix constructor have the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, and pow that calculate the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication and power, the parameters of each one are obviously. 
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number return a undefined object. The instance properties raw, column and array which are the number of raw and column, the array is the array self passed to constructor. The instance methods are _,x,plus, pow, and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects and finally the last methods add the object matrix plus the matrix parameters passed to he method. The matrix constructor have the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, and pow that calculate the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('JNsolve').matrix;
@@ -154,12 +154,17 @@ mat.row == 3; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]
 mat._(1,1) === 0  ; // True
-mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] 
-mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] 
-mat.scalar(0) // [[0,0],[0,0]]
-mat.pow(2); // [[1.1,5.1],[4.6,22.3]]
+mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained 
+mat.x(mat).x(mat) // etc
+mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained 
+mat.plus(mat).plus(mat).plus(mat) // etc
+mat.scalar(0) // [[0,0],[0,0]] or chained
+mat.scalar(0).scalar(4)  // etc 
+mat.pow(2); // [[1.1,5.1],[4.6,22.3]] //
+mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
-Matrix.adj(mat) // [[4.6,-1.1],[-1,0]]
+Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] and chainded
+Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
 Matrix.det(mat) // -1.1
 Matrix.inv(mat) // [[-4.2,1],[0.9,0]]
 Matrix.minor(1,1,mat) // [[4.6]]
