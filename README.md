@@ -30,13 +30,15 @@ $ npm install jnsolve
 
 ## API
 
-#### `JNsolve`
+### `JNsolve`
 
 Initialize `JNsolve`
 
 ```js
 var JNsolve = require('JNsolve');
 ```
+### `Numerical analysis`
+
 
 #### `JNsolve.calculusN.D`
 
@@ -100,6 +102,7 @@ JNsolve.calculusN.findroot(f,0.5,[0,1]) = 0.73952
 ```
 The `Object`is default options and are { npoints_DNumeric : 1000, precision : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. Here, findroot try find the root of function by all methods availables in the module.
 
+### `Data Fitting`
 
 #### `JNsolve.fit.best(Array[,Array,Array,Object])`
 ![Plot Data with Best fit](./plot.jpeg)
