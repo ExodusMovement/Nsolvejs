@@ -177,9 +177,17 @@ Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat.trans
 Solve the linear equation system:
 
 a_11x_1+a_12 x_2+...a_1n x_n = b_1
-.							 .	
-.							 .
-.							 .	
+
+
+.						                 	 .	
+
+
+.					                		 .
+
+
+.					                 		 .	
+
+
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
 
 to do that is necessary pass the array [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
