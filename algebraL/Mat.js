@@ -1,7 +1,8 @@
 'use strict' ;
 var x = require('./multi');
 var plus = require('./sum');
-var scalar = require('./pscalar');
+var scalar = require('./pscalar'),
+pow = require('./pow'); 
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -28,6 +29,9 @@ var matrix =  function (array){
       this.scalar = function (alpha) {
         return scalar(alpha,this);
       };
+      this.pow = function (n) {
+        return pow(this,n );
+      };
     }
 };
 matrix.adj =require('./adj');
@@ -38,7 +42,7 @@ matrix.pscalar  =  scalar ;
 matrix.sum = plus ;
 matrix.trans = require('./trans');
 matrix.multiply  = x ;
-matrix.pow = require('./pow');
+matrix.pow = pow;
 matrix.dkronecker = require('./dkronecker');
 
 module.exports = matrix ;

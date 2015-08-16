@@ -1,7 +1,5 @@
 'use strict' ;
-var matrix = require('./Mat'),
-_ = require('lodash'),
-product = require('./product');
+var product = require('./product');
 
 /** @function
  * multiply the matrix object.
