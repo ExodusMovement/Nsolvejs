@@ -139,8 +139,48 @@ fit = { ans_ofY:
      polynomial: { regression: [Object], error: 2.0329834635543396 },
      best: { name: 'polynomial', error: 2.0329834635543396, f: [Function] } } }
 ```
+### `Linear Algebra`
 #### `JNsolve.AL.matrix(Array)`
-Is a constructor of a object matrix 
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number return a undefined object. The instance properties raw, column and array which are the number of raw and column, the array is the array self passed to constructor. The instance methods are _,x,plus, pow, and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects and finally the last methods add the object matrix plus the matrix parameters passed to he method. The matrix constructor have the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, and pow that calculate the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication and power, the parameters of each one are obviously. 
+
+```js
+var Matrix = require('JNsolve').matrix;
+var matrix =[[0,1.1],[1,4.6]];
+var mat = Matrix(matrix);
+mat.row == 3; // True
+mat.column == 2 // True
+mat.array ; // [[0,1.1],[1,4.6]]
+mat._(1,1) === 0  ; // True
+mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] 
+mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] 
+mat.scalar(0) // [[0,0],[0,0]]
+mat.pow(2); // [[1.1,5.1],[4.6,22.3]]
+Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
+Matrix.adj(mat) // [[4.6,-1.1],[-1,0]]
+Matrix.det(mat) // -1.1
+Matrix.inv(mat) // [[-4.2,1],[0.9,0]]
+Matrix.minor(1,1,mat) // [[4.6]]
+Matrix.pscalar(2,mat) // [[0,2.2],[2,9.2]] 
+Matrix.sum(mat,mat,mat,mat,mat) // [[0,5.5],[5,23]] 
+Matrix.multiply(mat,mat,mat,mat) // [[24.5,108.2],[107.5,518.8]]
+Matrix.trans(mat) // [[0,1],[1.1,4.6]]
+```
+#### `JNsolve.AL.solveLE(Array,Array)`
+Solve the linear equation system:
+
+a_11x_1+a_12 x_2+...a_1n x_n = b_1
+.							 .	
+.							 .
+.							 .	
+a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
+
+to do that is necessary pass the array [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
+```js
+var AL = require('JNsolve').AL;
+var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
+var result = [5,6,0];
+solveLE(mat,result) ; //[6.36,0.68,0.7,]
+```
 
 
 ##Contributing
