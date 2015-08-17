@@ -181,9 +181,9 @@ var Vector = require('JNsolve').vector;
 var vector =[0,1.1,5];
 var V = Vector(vector);
 V.sum(V); // [0,2.2,10] equivalent Vector.sum(V,V)
-V.pscalar(2) ; //[0,2.2,10]  equivalent Vector,pscalar(2,V)
-V.dot(V) // 26.21  equivalent Vector.dot(V.V)
-V.cross(V) // [0,0,0] equivalent Vector.cross(V,V)
+V.pscalar(2) ; //[0,2.2,10]  equivalent Vector.pscalar(2,V)
+V.dot(V); // 26.21  equivalent Vector.dot(V.V)
+V.cross(V); // [0,0,0] equivalent Vector.cross(V,V)
 ```
 
 #### `JNsolve.AL.solveLE(Array,Array)`
