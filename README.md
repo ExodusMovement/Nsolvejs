@@ -173,6 +173,19 @@ Matrix.sum(mat,mat,mat,mat,mat) // [[0,5.5],[5,23]]
 Matrix.multiply(mat,mat,mat,mat) // [[24.5,108.2],[107.5,518.8]]
 Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat,trans()
 ```
+
+#### `JNsolve.AL.vector(Array)`
+Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as 3x1 matrix, because of has all the methods and properties of matrix in matrix property.
+```js
+var Vector = require('JNsolve').vector;
+var vector =[0,1.1,5];
+var V = Vector(vector);
+V.sum(V); // [0,2.2,10] equivalent Vector.sum(V,V)
+V.pscalar(2) ; //[0,2.2,10]  equivalent Vector,pscalar(2,V)
+V.dot(V) // 26.21  equivalent Vector.dot(V.V)
+V.cross(V) // [0,0,0] equivalent Vector.cross(V,V)
+```
+
 #### `JNsolve.AL.solveLE(Array,Array)`
 Solve the linear equation system:
 
