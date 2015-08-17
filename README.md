@@ -144,7 +144,7 @@ fit = { ans_ofY:
 ```
 ### `Linear Algebra`
 #### `JNsolve.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _,x,plus, pow, adj, inv, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer) and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, and pow that calculates the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication and power, the parameters of each one are obviously and it is a matrix object. Every method return a matrix object such way that can be chained another methods.
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer) and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, and pow that calculates the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication and power, the parameters of each one are obviously and it is a matrix object. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('JNsolve').matrix;
@@ -154,12 +154,12 @@ mat.row == 3; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]
 mat._(1,1) === 0  ; // True
-mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained 
+mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
-mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained 
+mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
 mat.scalar(0) // [[0,0],[0,0]] or chained
-mat.scalar(0).scalar(4)  // etc 
+mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] //
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
@@ -169,7 +169,7 @@ Matrix.det(mat) // -1.1   equivalent mat.det
 Matrix.inv(mat) // [[-4.2,1],[0.9,0]]  equivalent mat.inv()
 Matrix.minor(1,1,mat) // [[4.6]]  equivalent mat.minor(1,1)
 Matrix.pscalar(2,mat) // [[0,2.2],[2,9.2]]   equivalent mat.scalar(2)
-Matrix.sum(mat,mat,mat,mat,mat) // [[0,5.5],[5,23]] 
+Matrix.sum(mat,mat,mat,mat,mat) // [[0,5.5],[5,23]]
 Matrix.multiply(mat,mat,mat,mat) // [[24.5,108.2],[107.5,518.8]]
 Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat,trans()
 ```
@@ -192,13 +192,13 @@ Solve the linear equation system:
 a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
 
-.						                 	 .	
+.						                 	 .
 
 
 .					                		 .
 
 
-.					                 		 .	
+.					                 		 .
 
 
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
