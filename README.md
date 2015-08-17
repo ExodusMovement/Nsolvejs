@@ -80,7 +80,7 @@ Is a method that calculate numerically the solution of `Function`=>f(x)=0 try in
 
 ```js
 function f(x) {
-  return x+Math.cos(x) ;
+  return x-Math.cos(x) ;
 }
 JNsolve.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
