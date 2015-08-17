@@ -1,20 +1,22 @@
 'use strict';
 var assert = require('assert');
 var JNsolve = require('../index');
-var test_array= [[0,40],[1,48],[3,56],[4,70]];
-     var test_query = [3.4, 4.8, 8, 11] ;
-     var test_y     = [75,83,99,105] ;
-    function g(x) {
-      return Math.cos(x)-x;
-    }
-    var f = g ;
+var test_array = [[0,40],[1,48],[3,56],[4,70]],
+    test_query = [3.4, 4.8, 8, 11],
+    test_y     = [75,83,99,105],
     // Interval and initial point to use in the numerical modules.
-    var initialpoint =  0.5 ;
-    var interval =  [-3,5] ;
+    initialpoint =  0.5,
+    interval =  [-3,5],
+    fsolution = 0.73;
+
+var f = function f (x) {
+    return Math.cos(x)-x;
+}
+
 // Defining a suite of tests
 var fitted = JNsolve.bestfit(test_array,test_query,test_y,{smoothing : false, noiseeliminate : false });
 Number.prototype.truncate = function (n) {
-  return Math.floor(this*Math.pow(10,n))/Math.pow(10,n);
+    return Math.floor(this*Math.pow(10,n))/Math.pow(10,n);
 } ;
 
 describe('JNsolve Module numeric values function test.', function () {
@@ -22,29 +24,29 @@ describe('JNsolve Module numeric values function test.', function () {
     assert.equal(typeof JNsolve, 'object'); // should returns true
   });
 
-  it('Found the correct solution to cos(x)-x=0 is 0.73 using the regulafalsi method.', function () {
-    assert.equal(JNsolve.regulafalsi(f,interval).Root.truncate(2), 0.73); // should returns true
+  it('Found the correct solution to cos(x)-x=0 is  using the regulafalsi method.', function () {
+    assert.equal(JNsolve.regulafalsi(f,interval).Root.truncate(2), fsolution); // should returns true
   });
 
-    it('Found the correct solution to cos(x)-x=0 is 0.73 using the fixedpoint method.', function () {
-      assert.equal(JNsolve.fixedpoint(f,initialpoint).Root.truncate(2), 0.73); // should returns true
+    it('Found the correct solution to cos(x)-x=0 is fsolution using the fixedpoint method.', function () {
+      assert.equal(JNsolve.fixedpoint(f,initialpoint).Root.truncate(2), fsolution); // should returns true
     });
 
-    it('Found the correct solution to cos(x)-x=0 is 0.73 using the bisection method.', function () {
-        assert.equal(JNsolve.bisection(f,interval).Root.truncate(2), 0.73); // should returns true
+    it('Found the correct solution to cos(x)-x=0 is fsolution using the bisection method.', function () {
+        assert.equal(JNsolve.bisection(f,interval).Root.truncate(2), fsolution); // should returns true
     });
 
 
-    it('Found the correct solution to cos(x)-x=0 is 0.73  using the Newton_Raphson method.', function () {
-          assert.equal(JNsolve.Newton_Raphson(f,interval,initialpoint).Root.truncate(2), 0.73); // should returns true
+    it('Found the correct solution to cos(x)-x=0 is fsolution  using the Newton_Raphson method.', function () {
+          assert.equal(JNsolve.Newton_Raphson(f,interval,initialpoint).Root.truncate(2), fsolution); // should returns true
     });
 
-      it('Found the correct solution to cos(x)-x=0 is 0.73 using the Newton_Raphson-Higher Order method.', function () {
-            assert.equal(JNsolve.Newton_Raphson_Higherorder(f,interval,initialpoint).Root.truncate(2), 0.73); // should returns true
+      it('Found the correct solution to cos(x)-x=0 is fsolution using the Newton_Raphson-Higher Order method.', function () {
+            assert.equal(JNsolve.Newton_Raphson_Higherorder(f,interval,initialpoint).Root.truncate(2), fsolution); // should returns true
       });
 
-      it('Found the correct solution to cos(x)-x=0 is 0.73  using the findroot module.', function () {
-            assert.equal(JNsolve.findroot(f,interval,initialpoint).Root.truncate(2), 0.73); // should returns true
+      it('Found the correct solution to cos(x)-x=0 is fsolution  using the findroot module.', function () {
+            assert.equal(JNsolve.findroot(f,interval,initialpoint).Root.truncate(2), fsolution); // should returns true
       });
 
       it('The method using the findroot module is Newton_Raphson_Higherorder.', function () {
@@ -131,7 +133,7 @@ describe('derivative numeric.', function () {
 
 describe('Negative cases.', function () {
 
-  it('If interval does not contain the solution to cos(x)-x=0 is 0.73 using the regulafalsi method return nothing.', function () {
+  it('If interval does not contain the solution to cos(x)-x=0 is fsolution using the regulafalsi method return nothing.', function () {
     assert.equal(JNsolve.regulafalsi(f,[2,3]), undefined); // should returns true
   });
 
@@ -141,16 +143,16 @@ describe('Negative cases.', function () {
       },8).Root, undefined); // should returns true
     });
 
-    it('If interval does not contain the solution to cos(x)-x=0 is 0.73 using the bisection method return undefined.', function () {
+    it('If interval does not contain the solution to cos(x)-x=0 is fsolution using the bisection method return undefined.', function () {
         assert.equal(JNsolve.bisection(f,[1,2]), undefined); // should returns true
     });
 
 
-    it('If the initial point is  far away interval that contain the solution to cos(x)-x=0 is 0.73  using the Newton_Raphson method do not converge.', function () {
+    it('If the initial point is  far away interval that contain the solution to cos(x)-x=0 is fsolution  using the Newton_Raphson method do not converge.', function () {
           assert.equal(JNsolve.Newton_Raphson(f,[-3,1],7).Root, undefined); // should returns true
     });
 
-      it('If interval does not contain the solution to cos(x)-x=0 is 0.73 using the Newton_Raphson-Higher Order method the solution is not found.', function () {
+      it('If interval does not contain the solution to cos(x)-x=0 is fsolution using the Newton_Raphson-Higher Order method the solution is not found.', function () {
             assert.equal(JNsolve.Newton_Raphson_Higherorder(f,[3,10],initialpoint).Root, undefined); // should returns true
       });
 
