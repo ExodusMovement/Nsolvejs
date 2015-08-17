@@ -1,7 +1,7 @@
 {
   "name": "jnsolve",
-  "version": "0.0.2",
-  "description": "Solve equations using numerical methods ",
+  "version": "0.0.5",
+  "description": "Solve equations using numerical methods, linear álgebra of matrices and solve  linear equation system ",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/test",
@@ -17,7 +17,11 @@
     "method",
     "numeric",
     "numerical",
-    "numerically"
+    "numerically",
+    "linear",
+    "system",
+    "equations",
+    "algebra"	
   ],
   "author": "Jesús Edel Cereceres",
   "license": "MIT",
@@ -27,7 +31,6 @@
   "homepage": "https://github.com/4yopping/jnsolve#readme",
   "dependencies": {
     "lodash": "^3.10.1",
-    "mocha": "^2.2.5",
     "numbers": "^0.6.0",
     "regression": "^1.2.1",
     "underscore": "^1.8.3"

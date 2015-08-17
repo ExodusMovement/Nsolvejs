@@ -3,7 +3,7 @@ var findroot = require('../lib/findroot'), length_get_x ,array_x=[],arrayX = [];
 
 /**@function
  * This function solve the equation h(x)=y_i. The y_i are given into get_x.
- * @param {function} h, {Array} get_x, {Array} interval.
+ * @param {function} h, {Array} get_x.
  * @return {Array} values of "x".
  */
 module.exports = function (h, get_x, interval ) {
