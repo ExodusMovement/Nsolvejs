@@ -9,7 +9,7 @@ var test_array= [[0,40],[1,48],[3,56],[4,70]];
      var test_query = [3.4, 4.8, 8, 11] ;
      var test_y     = [75,83,99,105] ;
      var array1 = [[1,4],[1,3]];
-     var array2 = [[2,4],[2,6]],A= new nsolve.AL.matrix(array1),B= new nsolve.AL.matrix(array2);
+     var array2 = [[2,4],[2,6]],A= new nsolve.AL.matrix(array1),B= new nsolve.AL.matrix(array2),V1= new nsolve.AL.vector([1,2,3]),V2= new nsolve.AL.vector([0,-1,1]);
 function g(x) {
   return  Math.cos(x)-x;
 }
@@ -31,23 +31,25 @@ console.log(
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
 //console.log('=> fit =', growth(test_array,test_query,test_y));
-console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
+//console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 
-console.log('=> pow =',nsolve.AL.matrix.pow(A,2).array );
+//console.log('=> pow =',nsolve.AL.matrix.pow(A,2).array );
 
-console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
+//console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 
-console.log('=> product =', product(A,A).array );
+//console.log('=> product =', product(A,A).array );
 
-console.log('=> pscalar =',nsolve.AL.matrix.pscalar(3,A).array );
+//console.log('=> pscalar =',nsolve.AL.matrix.pscalar(3,A).array );
 
-console.log('=> sum =',nsolve.AL.matrix.sum(A,A).array );
+//console.log('=> sum =',nsolve.AL.matrix.sum(A,A).array );
 
-console.log('=> trans =',nsolve.AL.matrix.trans(A).array );
+//console.log('=> trans =',nsolve.AL.matrix.trans(A).array );
 
-console.log('=> inv =',nsolve.AL.matrix.inv(A).array );
+//console.log('=> inv =',nsolve.AL.matrix.inv(A).array );
 
-console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
+//console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
+
+console.log('=> scalar =',V1.pscalar(0).array );
 
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 

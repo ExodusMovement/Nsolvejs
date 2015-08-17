@@ -45,8 +45,6 @@
     return crossp(this,A) ;
   };
    };
-
-
 // Define the class method dotp.
 vector.dotp= dotp;
 // DEfine the class method sum.
@@ -59,7 +57,7 @@ vector.sum = function (A,B) {
   return new vector(_array) ;
 };
 // DEfine the product by a scalar class method.
-vector.scalarp = function (a,B) {
+vector.pscalar = function (a,B) {
   var   __array = pscalar(a,B.matrix).array ;
     var _array = [];
     for (var i = 0; i < 3; i++) {

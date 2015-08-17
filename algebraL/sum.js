@@ -18,8 +18,6 @@ var sum =  function (A,B){
        return new Y(array)  ;
        }
 } ;
-
-
        module.exports= function (x){
          var l = arguments.length , A=x,B,p;
            for ( p = 1; p < l; p++){

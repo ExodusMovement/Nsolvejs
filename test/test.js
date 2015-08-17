@@ -5,7 +5,7 @@ var test_array= [[0,40],[1,48],[3,56],[4,70]];
      var test_query = [3.4, 4.8, 8, 11] ;
      var test_y     = [75,83,99,105] ;
      var array1 = [[1,4],[1,3]];
-     var array2 = [[2,4],[2,6]],A= new JNsolve.AL.matrix(array1),B= new JNsolve.AL.matrix(array2);
+     var array2 = [[2,4],[2,6]],A= new JNsolve.AL.matrix(array1),B= new JNsolve.AL.matrix(array2),vector1=new JNsolve.AL.vector([3,2,1]),vector2 =new JNsolve.AL.vector([0,-1,1]) ;
     function g(x) {
       return Math.cos(x)-x;
     }
@@ -106,6 +106,15 @@ it('The transposed of  matrix  should be a matrix with (1,2) component equal to 
 it('The inverse of a matrix should be a matrix with (1,1) component equal to -3', function () {assert.equal( JNsolve.AL.matrix.inv(A)._(1,1), -3);                                                  });
 
 it('The product of inverse of a matrix with itself should be a matrix with (1,1) component equal to 1 ever', function () {assert.equal( JNsolve.AL.matrix.multiply(JNsolve.AL.matrix.inv(A),A)._(1,1), 1);                                                  });
+
+it('The dot product vector_1 =[3,2,1] with vector_2 =[0,-1,1] is -1 ', function () {assert.equal( vector1.dot(vector2), -1);                                                  });
+
+it('The cross product vector_1 =[3,2,1] with vector_2 =[0,-1,1] is [3,-3,-3] ', function () {assert.equal( vector1.cross(vector2).array[2][0], -3);                                                  });
+
+it('The scalar product vector_1 =[3,2,1] with scalar 0 is [0,0,0] ', function () {assert.equal( vector1.pscalar(0).array[1][0], 0);                                                  });
+
+it('The sum of vector_1 =[3,2,1] and  vector_2 =[0,-1,1] is [3,1,2] ', function () {assert.equal( vector1.sum(vector2).array[0][0], 3);                                                  });
+
 
 });
 
