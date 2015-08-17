@@ -6,8 +6,8 @@ var product = require('./product');
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-module.exports= function (){
-  var l = arguments.length , A = arguments[0],B;
+module.exports= function (x){
+  var l = arguments.length , A =x,B;
     for (var p = 1; p < l; p++){
       B = arguments[p];
       if(  A.column === B.raw){

@@ -2,7 +2,8 @@
   var methodN =    require('./lib/methodN'),
   bestfit = require('./fit/bestfit'),
     matrix  = require('./algebraL/Mat'),
-    solveLE  = require('./algebraL/solveLE');
+    solveLE  = require('./algebraL/solveLE'),
+    vector  = require('./algebraL/vector');
 
 
   module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
@@ -30,5 +31,6 @@ module.exports.calculusN = {
 };
 module.exports.AL ={
   matrix :matrix ,
-  solveLE : solveLE
+  solveLE : solveLE,
+  vector : vector
 };

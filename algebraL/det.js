@@ -17,9 +17,9 @@ var   Minor = require('./minor');
            det += Math.pow(-1,1+i)*Det(arrayminor[i-1])*B._(1,i) ;
            }
          }else{
-           if (B.raw ===2) {
+           if (B.raw ==2) {
              det = B._(1,1)*B._(2,2)-B._(1,2)*B._(2,1);
-           } else {
+           } else if (B.raw == 1 ){
            det = B._(1,1) ;
            }
          }
