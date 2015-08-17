@@ -7,7 +7,8 @@ adj =require('./adj'),
 det =require('./det'),
 inv =require('./inverse'),
 minor = require('./minor'),
-trans = require('./trans');
+trans = require('./trans'),
+map = require('./map');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -52,6 +53,9 @@ var matrix =  function (array){
       this.minor = function (i,j) {
         return minor(i,j,this );
       };
+      this.map = function (cb) {
+        return map(cb,this);
+      };
     }
 };
 matrix.adj =adj;
@@ -63,6 +67,7 @@ matrix.sum = plus ;
 matrix.trans = trans;
 matrix.multiply  = x ;
 matrix.pow = pow;
+matrix.map = map;
 matrix.dkronecker = require('./dkronecker');
 
 module.exports = matrix ;

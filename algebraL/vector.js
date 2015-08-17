@@ -4,6 +4,7 @@
   var sum = require('./sum');
   var crossp = require('./crossp');
   var dotp = require('./dotp');
+  var map = require('./map');
   /** @constructor
    * Constructor of a vector.
    * @param {Array} of way [x_1,x_2,x_3] only three dimension are supported.
@@ -30,6 +31,15 @@
   // Define the product by a scalar method.
   this.pscalar = function (a) {
     var   __array = pscalar(a,this.matrix).array ;
+      var _array = [];
+      for (var i = 0; i < 3; i++) {
+        _array[i] = __array[i][0];
+      }
+      return new vector(_array) ;
+  };
+  // Define the map over the vector.
+  this.map = function (cb) {
+    var   __array = map(cb,this.matrix).array ;
       var _array = [];
       for (var i = 0; i < 3; i++) {
         _array[i] = __array[i][0];

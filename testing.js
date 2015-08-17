@@ -1,27 +1,35 @@
 'use strict';
 var growth = require('./fit/bestfit'),
- nsolve = require('./index'),
- findroot = require('./lib/findroot'),
- product = require('./algebraL/product');
+    nsolve = require('./index'),
+    findroot = require('./lib/findroot'),
+    map = require('./algebraL/map'),
+    product = require('./algebraL/product');
 
 
 var test_array= [[0,40],[1,48],[3,56],[4,70]];
      var test_query = [3.4, 4.8, 8, 11] ;
      var test_y     = [75,83,99,105] ;
-     var array1 = [[1,4],[1,3]];
-     var array2 = [[2,4],[2,6]],A= new nsolve.AL.matrix(array1),B= new nsolve.AL.matrix(array2),V1= new nsolve.AL.vector([1,2,3]),V2= new nsolve.AL.vector([0,-1,1]);
-function g(x) {
-  return  Math.cos(x)-x;
+
+     var array1 = [[0.8,0.5],
+                   [0.2,0.5]];
+
+     var array2 = [[0.66],
+                   [0.34]],
+     A= new nsolve.AL.matrix(array1),
+     B= new nsolve.AL.matrix(array2),
+     V1= new nsolve.AL.vector([1,2,3]),
+     V2= new nsolve.AL.vector([0,-1,1]);
+function f(x) {
+  return   Math.cos(x)-x;
 }
 
-var f = g ;
 var initialpoint =  0.5 ;
     var interval =  [-3,5] ;
 
 
-console.log(
-  'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
-);
+//console.log(
+  //'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
+//);
 //console.log('=> regulafalsi =', nsolve.calculusN.regulafalsi(f,interval));
 //console.log('=> bisection =', nsolve.bisection(f,interval));
 
@@ -49,7 +57,7 @@ console.log(
 
 //console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
 
-console.log('=> scalar =',V1.pscalar(0).array );
+console.log('=> pow =',V1.map(f));
 
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 
