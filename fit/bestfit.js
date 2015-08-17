@@ -3,7 +3,7 @@ var  f = require('./fitFunction'),
      betterfit = require('./betterfit'),
      smoothingdata = require('./smoothingdata'),
      noiseeliminatedata = require('./noise_eliminator'),
-     getx = require('./getx'), gety = require('./gety'),fit={},array_y= [] ,array_x=[],interval;
+     getx = require('./getx'), gety = require('./gety'),fit={},array_y= [],_fit ,array_x=[],interval;
 
 /** @function
  * This function calculate the best fit to a Array given and make
@@ -12,8 +12,9 @@ var  f = require('./fitFunction'),
  * @param {Array} arrayFit, {Array} get_y,  {Array} get_x
  * @return {Object} fit
  */
-module.exports = function(_arrayFit, get_y, get_x,options ) {
+module.exports = function(_arrayFit, get_y, get_x,options,callback ) {
     if(!_arrayFit){return ;}
+    if(typeof options ==='function'){callback = options ; options = undefined;}
    options = options ||
    {smoothing : true, noiseeliminate : true,
      smoothingmethod :'exponential',alpha : 0.8 } ;
@@ -48,7 +49,7 @@ module.exports = function(_arrayFit, get_y, get_x,options ) {
    }
   // Obtain the values "x" using get_x.
    array_x = getx(fit.best.f,get_x, interval) ;
-   return {ans_ofY         : array_y,
+   _fit ={ans_ofY         : array_y,
            ans_ofX         : array_x,
            fitUsed         : fit.best.name ,
            fitEquationUsed : fit[fit.best.name].regression.string,
@@ -57,4 +58,6 @@ module.exports = function(_arrayFit, get_y, get_x,options ) {
            fitWithError    : fit.best.error,
            fit             : fit
          };
+   callback(_fit);
+   return _fit ;
 } ;

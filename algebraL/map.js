@@ -1,7 +1,7 @@
 'use strict' ;
 /** @function
- * multiply the matrix object for a scalar number.
- * @param {Number} scalar {Object} matrix.
+ * Mapping the matrix object with a function given.
+ * @param {Function} map {Object} matrix.
  * @return {Object} matrix
  */
 module.exports = function  (map,B){

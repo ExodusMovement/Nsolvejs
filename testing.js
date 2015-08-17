@@ -38,7 +38,9 @@ var initialpoint =  0.5 ;
 //console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
-//console.log('=> fit =', growth(test_array,test_query,test_y));
+console.log('=> fit =', growth(test_array,test_query,test_y,function(fit) {
+  console.log('Hola este es el mejor fit',fit.fitUsed);
+})  );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 
 //console.log('=> pow =',nsolve.AL.matrix.pow(A,2).array );
@@ -57,7 +59,7 @@ var initialpoint =  0.5 ;
 
 //console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
 
-console.log('=> pow =',V1.map(f));
+//console.log('=> pow =',V1.map(f));
 
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 
