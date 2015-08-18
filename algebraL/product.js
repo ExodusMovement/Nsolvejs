@@ -16,7 +16,7 @@
              }
            }
          }
-         var matrix = require('./Mat');
-         return  new matrix(array);
+         var Matrix = require('./Mat');
+         return  new Matrix(array);
        }
      } ;

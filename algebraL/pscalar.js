@@ -15,7 +15,7 @@
                array[i-1][k-1]=alpha*B._(i,k);
            }
          }
-         var matrix = require('./Mat');
-         return  new matrix(array);
+         var Matrix = require('./Mat');
+         return  new Matrix(array);
        }
      } ;

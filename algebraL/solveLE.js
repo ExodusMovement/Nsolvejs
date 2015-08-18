@@ -1,8 +1,8 @@
 'use strict' ;
-var  matrix = require('./Mat'),
-     Det = require('./det'),
-     Product = require('./product'),
-     Inv = require('./inverse');
+var  Matrix = require('./Mat'),
+     det = require('./det'),
+     product = require('./product'),
+     inv = require('./inverse');
 /** @function
  * Solve a system of linear equations written in matrix form as Ax=B.
  * Example :
@@ -12,18 +12,18 @@ var  matrix = require('./Mat'),
  * @return {Object} matrix
  */
      module.exports = function (M,R){
-       var A = new matrix(M);
+       var A = new Matrix(M);
        if (A) {
-         var det = Det(A);
-         if (det !== 0) {
+         var dett = det(A);
+         if (dett !== 0) {
            var length = R.length ,
            _B=[];
            for (var i = 0; i < length; i++) {
            _B[i]= [R[i]];
            }
-           var B = new matrix(_B) ;
-           var _R= Product(Inv(A),B);
-           return _R
+           var B = new Matrix(_B) ;
+           var _R= product(inv(A),B);
+           return _R ;
          }
        }
      };

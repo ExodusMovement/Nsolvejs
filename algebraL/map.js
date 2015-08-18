@@ -10,10 +10,10 @@ module.exports = function  (map,B){
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){
-               array[i-1][k-1]=map(B._(i,k));
+               array[i-1][k-1]=map(B._(i,k))/5 ;
            }
          }
-         var matrix = require('./Mat');
-         return  new matrix(array);
+         var Matrix = require('./Mat');
+         return  new Matrix(array);
        }
 } ;

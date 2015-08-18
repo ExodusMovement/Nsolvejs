@@ -59,7 +59,7 @@ var matrix =  function (array){
             return map(cb,this);
           };
         }
-    };
+    }
 };
 matrix.adj =adj;
 matrix.det =det;

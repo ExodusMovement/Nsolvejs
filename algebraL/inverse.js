@@ -1,8 +1,7 @@
 'use strict' ;
-var  matrix = require('./Mat'),
-     Det = require('./det'),
-     Pscalar = require('./pscalar'),
-     Adj = require('./adj');
+var  det = require('./det'),
+     pscalar = require('./pscalar'),
+     adj = require('./adj');
 
 /** @function
  * The inverse matrix.
@@ -10,12 +9,12 @@ var  matrix = require('./Mat'),
  * @return {Object} matrix
  */
      module.exports =function (B){
-       var det,adj;
+       var dett,adjj;
        if(  B.raw === B.column ){
-         det = Det(B);
-         adj = Adj(B);
-         if (det !== 0) {
-         return Pscalar(1/det,adj);
+         dett = det(B);
+         adjj= adj(B);
+         if (dett !== 0) {
+         return pscalar(1/dett,adjj);
          }
        }
      };

@@ -14,7 +14,7 @@ module.exports =  function (m,n,B){
                array[i-1].splice(n-1,1);
          }
          array.splice(m-1,1);
-         var matrix = require('./Mat');
-         return  new matrix(array);
+         var Matrix = require('./Mat');
+         return  new Matrix(array);
        }
      };

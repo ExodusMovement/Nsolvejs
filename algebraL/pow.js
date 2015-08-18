@@ -1,5 +1,5 @@
 'use strict' ;
-var matrix = require('./Mat'),
+var Matrix = require('./Mat'),
     dkronecker = require('./dkronecker'),
 product = require('./product');
 
@@ -17,11 +17,11 @@ module.exports =function (A,n){
       array[i][j]=dkronecker(i,j);
       }
     }
-    if (n==0) {
-      return new matrix(array);
-    } else if(n ==1) {
+    if (n===0) {
+      return new Matrix(array);
+    } else if(n ===1) {
       return A ;
-    }else if (n ==2){
+    }else if (n ===2){
       return product(A,A);
     }else{
       B= product(A,A);
@@ -29,6 +29,6 @@ module.exports =function (A,n){
       B=product(B,A);
       }
     }
-  return B
+  return B;
   }
 } ;
