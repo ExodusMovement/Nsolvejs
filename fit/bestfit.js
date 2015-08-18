@@ -12,7 +12,7 @@ var  f = require('./fitFunction'),
  * @param {Array} arrayFit, {Array} get_y,  {Array} get_x
  * @return {Object} fit
  */
-module.exports = function(_arrayFit, get_y, get_x,options,callback ) {
+module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     if(!_arrayFit){return ;}
     if(typeof options ==='function'){callback = options ; options = undefined;}
    options = options ||
@@ -49,7 +49,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback ) {
    }
   // Obtain the values "x" using get_x.
    array_x = getx(fit.best.f,get_x, interval) ;
-   _fit ={ans_ofY         : array_y,
+   _fit ={ ans_ofY         : array_y,
            ans_ofX         : array_x,
            fitUsed         : fit.best.name ,
            fitEquationUsed : fit[fit.best.name].regression.string,
@@ -58,6 +58,9 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback ) {
            fitWithError    : fit.best.error,
            fit             : fit
          };
-   callback(_fit);
+
+   if (callback) {
+    callback(_fit);
+   }
    return _fit ;
 } ;

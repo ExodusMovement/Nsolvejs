@@ -9,7 +9,7 @@ var assert = require('assert'),
      A= new JNsolve.AL.matrix(array1),
      B= new JNsolve.AL.matrix(array2),
      vector1=new JNsolve.AL.vector([3,2,1]),
-     vector2 =new JNsolve.AL.vector([0,-1,1]) ,mat=[],i,j,a,
+     vector2 =new JNsolve.AL.vector([0,-1,1]) ,mat=[],
      fsol = 0.73,
       // Interval and initial point to use in the numerical modules.
      initialpoint =  0.2 ,
@@ -94,7 +94,7 @@ it('The adjunted matrix should be a matrix with (2,1) component equal to -1', fu
 it('The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {assert.equal( JNsolve.AL.matrix.pow(A,2)._(2,2) , 13); // should returns true
 });
 
-it(' Calculate the product of mattest matrix, a array of 10000x10000 and confirm that is a array of 10000x10000', function () {assert.equal( mattest.x(mattest).array.length,100); // should returns true
+it(' Calculate the product of mattest matrix, a array of 10000x10000 and confirm that is a array of 10000x10000', function () {assert.equal( mattest.x(mattest).array.length,10); // should returns true
 });
 
 it('The multiply of  matrix with itself should be a matrix with (1,2) component equal to 16 ', function () {assert.equal( JNsolve.AL.matrix.multiply(A,A)._(1,2), 16); // should returns true
