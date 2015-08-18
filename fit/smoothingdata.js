@@ -1,5 +1,5 @@
 'use strict';
-var log10 = require('log10');
+var log10 = require('./log10');
 /** @function
  * This function smoothed the datas usind the exponential and moving average method. The arraytosmoothing have to be like [[t_1,x_1],[t_2,x_2]...].
  * @param {Array} arraytosmoothing {Object} options
