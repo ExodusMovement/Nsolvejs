@@ -23,7 +23,7 @@
     "equations",
     "algebra"
   ],
-  "author": "Jesús Edel Cereceres",
+  "author": "Jesús Edel Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/4yopping/jnsolve/issues"
@@ -36,6 +36,10 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "async": "^1.4.2",
+    "commander": "^2.8.1",
+    "events": "^1.0.2",
+    "gnuplot": "^0.2.0",
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "^2.1.3",
