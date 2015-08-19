@@ -8,7 +8,7 @@ var findroot = require('../lib/findroot'), length_get_x ,array_x=[],arrayX = [];
  */
 
 module.exports = function (h, get_x, interval ) {
-  var i, options =  {npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000  };
+  var i, options =  {npoints_DNumeric : 100000, presicion : 0.1 , nstepsmax : 100000  };
   length_get_x = get_x.length ;
   function g(i) {
    return function (x) {

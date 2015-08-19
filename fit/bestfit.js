@@ -16,10 +16,10 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     if(!_arrayFit){return ;}
     if(typeof options ==='function'){callback = options ; options = undefined;}
    options = options ||
-   {smoothing : true, noiseeliminate : true,
+   {smoothing : false, noiseeliminate : false,
      smoothingmethod :'exponential',alpha : 0.8 } ;
-    if(options.smoothing === undefined){options.smoothing = true ;}
-    if(options.noiseeliminate === undefined){options.noiseeliminate = true;}
+    if(options.smoothing === undefined){options.smoothing = false ;}
+    if(options.noiseeliminate === undefined){options.noiseeliminate = false;}
    options.smoothingmethod = options.smoothingmethod || 'exponential' ;
    options.alpha = options.alpha || 0.8 ;
    var smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,arrayFit ;
