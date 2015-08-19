@@ -6,9 +6,10 @@ var growth = require('./fit/bestfit'),
     product = require('./algebraL/product');
 
 
-var test_array= [[0,40],[1,48],[3,56],[4,70]];
-     var test_query = [3.4, 4.8, 8, 11] ;
-     var test_y     = [75,83,99,105] ;
+var test_array= [[0,80],[1,60],[3,190],[4,70],[5,90],[6,150],[7,95],[8,105],
+[9,120],[10,150],[12,140],[16,165],[17,180],[20,240],[30,245],[31,500]];
+     var test_query = [8.4, 14.8, 28, 41] ;
+     var test_y     = [800,910,1120,1500] ;
 
      var array1 = [[0.8,0.5],
                    [0.2,0.5]];
@@ -38,9 +39,10 @@ var initialpoint =  0.5 ;
 //console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
-console.log('=> fit =', growth(test_array,test_query,test_y,function(fit) {
+console.log('=> fit =', growth(test_array,test_query,test_y, {smoothing : false, noiseeliminate : false,
+   smoothingmethod :'exponential',alpha : 0.5 },function(fit) {
   console.log('Hola este es el mejor fit',fit.fitUsed);
-})  );
+}));
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 
 //console.log('=> pow =',nsolve.AL.matrix.pow(A,2).array );

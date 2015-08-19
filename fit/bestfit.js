@@ -49,8 +49,9 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    }
   // Obtain the values "x" using get_x.
    array_x = getx(fit.best.f,get_x, interval) ;
-   _fit ={ ans_ofY         : array_y,
-           ans_ofX         : array_x,
+   _fit ={ ans_ofY         : array_y    ,
+           ans_ofX         : array_x     ,
+           fitOptions      : options    ,
            fitUsed         : fit.best.name ,
            fitEquationUsed : fit[fit.best.name].regression.string,
            fitParamsUsed   : fit[fit.best.name].regression.equation,
