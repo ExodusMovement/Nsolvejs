@@ -2,10 +2,10 @@
 var fs = require('fs'),
 async = require('async');
 
-var writeFile = function (path,array,callback) {
+var writeFile = function (path,array) {
   fs.writeFileSync(path,'\n');
-  async.each(array,function (item) {
-  fs.appendFile(path,item[0].toString()+' '+item[1]+'\n');
-},callback);
+  array.forEach(function (item) {
+  fs.appendFileSync(path,item[0].toString()+' '+item[1]+'\n');
+});
 };
 module.exports = writeFile;

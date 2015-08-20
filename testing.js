@@ -33,8 +33,10 @@ var growth = require('./fit/bestfit'),
      alpha = commander.alpha || alpha ;
      var options_fit = {smoothing : smoothing, noiseeliminate : noiseeliminate,smoothingmethod :smoothingmethod ,alpha : alpha },
      fit = growth(test_array,test_query,test_y, options_fit) ;
+
      writedata(path,test_array);
-      writedata(path_smt,fit.fitPointsUsed,function(err,data) {
+      writedata(path_smt,fit.fitPointsUsed);
+
         gnuplot()
         .set('term png')
         .set('output ' +fileplot)
@@ -45,10 +47,10 @@ var growth = require('./fit/bestfit'),
         .set('xrange ['+test_array[0][0]+':'+1.1*test_array[test_array.length-1][0]+'] ')
         .set('yrange ['+test_array[0][1]+':'+1.1*test_array[test_array.length-1][1]+'] ')
         .set('zeroaxis')
-        .plot('"./plot.dat" u 1:2 pt 8 t "Data",'+'"./plot_smt.dat" u 1:2 pt 5 t "Data-smt",'+function_plot(fit.fitUsed,fit.fitParamsUsed)+' t "Bestfit"')
+        .plot('"./plot.dat" u 1:2 pt 8 t "Data",'+'"./plot_smt.dat" u 1:2 pt 5 t "Data-smt",'+function_plot(fit.fitUsed,fit.fitParamsUsed)+' t "Bestfit='+function_plot(fit.fitUsed,fit.fitParamsUsed)+'"')
         .set(' output')
         .end();
-      })
+
 //console.log(
   //'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
 //);
