@@ -47,8 +47,10 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    } else {
      interval = [a<0 ? 0.01 : a,b+5*(b-a)];
    }
+   var initial = b ; 
   // Obtain the values "x" using get_x.
-   array_x = getx(fit.best.f,get_x, interval) ;
+   array_x = getx(fit.best.f,get_x, interval,initial) ;
+   // Build the fit object to return.
    _fit ={ ans_ofY         : array_y    ,
            ans_ofX         : array_x     ,
            fitOptions      : options    ,
