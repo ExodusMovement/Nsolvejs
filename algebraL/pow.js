@@ -1,6 +1,6 @@
 'use strict' ;
 var Matrix = require('./Mat'),
-    dkronecker = require('./dkronecker'),
+    dkronecker = require('../utils/dkronecker'),
 product = require('./product');
 
 /** @function

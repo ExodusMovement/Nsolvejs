@@ -10,9 +10,9 @@ var growth = require('./fit/bestfit'),
     path_smt  = __dirname + '/plot_smt.dat',
     initialpoint =  0.5 ,
     interval =  [-3,5] ,
-    test_array= [[0,23],[1,45],[3,52],[4,62],[5,62],[6,76],[7,71],[8,99]],
-    test_query = [3.4, 4.8, 8, 11] ,
-    test_y     = [100,110,120,150] ,
+    test_array= [[0,4],[1,5],[3,6],[4,8],[5,9],[6,10],[7,10],[8,9]],
+    test_query = [3.4, 4.8, 8.6, 9] ,
+    test_y     = [5,10,23,20] ,
     array1 = [[0.8,0.5],
               [0.2,0.5]],
     array2 = [[0.66],
@@ -41,11 +41,11 @@ var growth = require('./fit/bestfit'),
         .set('term png')
         .set('output ' +fileplot)
         .set('title "Plotdata"')
-        .set('xlabel "Tiempo"')
-        .set('ylabel "Medicion"')
+        .set('xlabel "Time"')
+        .set('ylabel "Medition"')
         .set('key left Left reverse spacing 6')
         .set('xrange ['+test_array[0][0]+':'+1.1*test_array[test_array.length-1][0]+'] ')
-        .set('yrange ['+test_array[0][1]+':'+1.1*test_array[test_array.length-1][1]+'] ')
+        .set('yrange ['+test_array[0][1]+':'+1.5*test_array[test_array.length-1][1]+'] ')
         .set('zeroaxis')
         .plot('"./plot.dat" u 1:2 pt 8 t "Data",'+'"./plot_smt.dat" u 1:2 pt 5 t "Data-smt",'+function_plot(fit.fitUsed,fit.fitParamsUsed)+' t "Bestfit='+function_plot(fit.fitUsed,fit.fitParamsUsed)+'"')
         .set(' output')

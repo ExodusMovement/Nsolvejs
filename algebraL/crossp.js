@@ -1,5 +1,5 @@
 'use strict';
-    var levicivita = require('./levi_civita');
+    var levicivita = require('../utils/levi_civita');
 
 module.exports = function (A,B) {
     var Vector= require('./vector');
