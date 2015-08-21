@@ -1,6 +1,6 @@
 {
   "name": "jnsolve",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Solve equations using numerical methods, linear álgebra of matrices and solve  linear equation system ",
   "main": "index.js",
   "scripts": {
@@ -43,6 +43,7 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.11.2",
     "gulp-mocha": "^2.1.3",
+    "gulp-plato": "^1.0.2",
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
     "plotly": "^1.0.2",

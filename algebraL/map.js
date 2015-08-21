@@ -10,7 +10,7 @@ module.exports = function  (map,B){
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){
-               array[i-1][k-1]=map(B._(i,k),i,k)/5 ;
+               array[i-1][k-1]=map(B._(i,k),i,k) ;
            }
          }
          var Matrix = require('./Mat');
