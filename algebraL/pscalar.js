@@ -1,6 +1,4 @@
 'use strict' ;
-
-
 /** @function
  * multiply the matrix object for a scalar number.
  * @param {Number} scalar {Object} matrix.

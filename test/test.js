@@ -56,12 +56,12 @@ assert.equal(JNsolve.calculusN.findroot(f,interval,initialpoint).Root.truncate(2
 it('The method using the findroot module is Newton_Raphson_Higherorder.', function () {assert.equal(JNsolve.calculusN.findroot(f,interval,initialpoint).method, 'Newton_Raphson_Higherorder' ); // should returns true
       });
 
-it('The best fit should be the logarithmic.', function () {
+it('The best fit should be the exponential.', function () {
 assert.equal(fitted.fit.best.name, 'exponential'); // should returns true
       });
 
 it('The best fit error should be.', function () {
-assert.equal(fitted.fit.best.error.truncate(2), 2.39); // should returns true
+assert.equal(fitted.fit.best.error.truncate(2),2.39); // should returns true
         });
 
 it('The best fit should define the function fitted', function () {

@@ -17,11 +17,14 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     if(typeof options ==='function'){callback = options ; options = undefined;}
    options = options ||
    {smoothing : false, noiseeliminate : false,
-     smoothingmethod :'exponential',alpha : 0.8 } ;
+     smoothingmethod :'exponential',alpha : 0.8,
+   fits_name:['linear','exponential','logarithmic','power','polynomial','inverse']} ;
     if(options.smoothing === undefined){options.smoothing = false ;}
     if(options.noiseeliminate === undefined){options.noiseeliminate = false;}
    options.smoothingmethod = options.smoothingmethod || 'exponential' ;
    options.alpha = options.alpha || 0.8 ;
+   options.fits_name = options.fits_name ||['linear','exponential','logarithmic','power','polynomial','inverse','sqrt'];
+   var fits_name = options.fits_name ;
    var smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,arrayFit ;
    // The noise is elimanated from data.
    if(noiseeliminate){
@@ -35,7 +38,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    var  a = arrayFit[0][0] ,b =arrayFit[arrayFit.length-1][0] ;
    get_x = get_x || [] ;
    // Find the best fit.
-   fit = betterfit(arrayFit) ;
+   fit = betterfit(arrayFit,fits_name) ;
    function h(x) {
      return  f(x,fit.best.name,fit[fit.best.name].regression.equation);
    }
@@ -47,7 +50,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    } else {
      interval = [a<0 ? 0.01 : a,b+5*(b-a)];
    }
-   var initial = b ; 
+   var initial = b+a ;
   // Obtain the values "x" using get_x.
    array_x = getx(fit.best.f,get_x, interval,initial) ;
    // Build the fit object to return.
