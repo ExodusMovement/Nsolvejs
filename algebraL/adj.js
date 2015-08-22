@@ -2,7 +2,6 @@
 var     det = require('./det'),
      minor = require('./minor'),
      trans = require('./trans') ;
-
 /** @function
  * The adjunted matrix.
  * @param  {Object} matrix

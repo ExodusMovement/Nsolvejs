@@ -1,6 +1,10 @@
 'use strict';
     var levicivita = require('../utils/levi_civita');
-
+    /** @function
+     * croos Product beetwen vectors.
+     * @param {Object} vector {Object} vector.
+     * @return {Object} vector
+     */
 module.exports = function (A,B) {
     var Vector= require('./vector');
     var i,j,k,array=[];

@@ -1,7 +1,11 @@
 'use strict';
 var Matrix= require('../algebraL/Mat'),
 dkronecker = require('../utils/dkronecker');
-
+/** @function
+ * Builder of Unit matrix.
+ * @param {Number} the length of matrix.
+ * @return {Object} matrix
+ */
 
 module.exports = function (n) {
   var array = [];
