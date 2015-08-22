@@ -1,8 +1,4 @@
 'use strict';
-<<<<<<< HEAD
-
-=======
->>>>>>> dcfd44fb7a0fee39637c9bbbae232cf75099691c
 var   growth = require('./fit/bestfit'),
       nsolve = require('./index'),
       gnuplot= require('gnuplot'),
@@ -17,14 +13,10 @@ var   growth = require('./fit/bestfit'),
       path_ansY = __dirname + '/plots/plot_ansy.dat',
       initialpoint =  0.5 ,
       interval =  [-3,5] ,
-      test_array= [[0,41],[24,100]],
-      test_query = [12] ,
-      test_y     = [100,110,120,150] ,
+      test_array= [[0,41],[4,60],[8,70],[18,80]],
+      test_query = [] ,
+      test_y     = [] ,
       array1 = [[0.8,0.5],
-<<<<<<< HEAD
-=======
-
->>>>>>> dcfd44fb7a0fee39637c9bbbae232cf75099691c
               [0.2,0.5]],
               array2 = [[0.66],
               [0.34]],
@@ -63,8 +55,6 @@ var   growth = require('./fit/bestfit'),
       .set('grid')
      .set('ylabel "Size"')
      .set('key left Left reverse spacing 6 font ",11"')
-  //   .set('xrange ['+test_array[0][0]+':'+1.1*test_query[test_query.length-1]+'] ')
-    // .set('yrange ['+test_array[0][1]+':'+1.1*test_y[test_y.length-1]+'] ')
      .set('zeroaxis')
      .set('autoscale')
      .plot(
@@ -72,10 +62,6 @@ var   growth = require('./fit/bestfit'),
      )
      .set(' output')
      .end();
-<<<<<<< HEAD
-
-=======
->>>>>>> dcfd44fb7a0fee39637c9bbbae232cf75099691c
 //console.log(
   //'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
 //);
