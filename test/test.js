@@ -57,11 +57,11 @@ it('The method using the findroot module is Newton_Raphson_Higherorder.', functi
       });
 
 it('The best fit should be the exponential.', function () {
-assert.equal(fitted.fit.best.name, 'exponential'); // should returns true
+assert.equal(fitted.fit.best.name, 'inverse'); // should returns true
       });
 
 it('The best fit error should be.', function () {
-assert.equal(fitted.fit.best.error.truncate(2),2.39); // should returns true
+assert.equal(fitted.fit.best.error.truncate(2),2.31); // should returns true
         });
 
 it('The best fit should define the function fitted', function () {
@@ -76,11 +76,11 @@ it('The ans_ofY should be a array.', function () {              assert.equal(Arr
                   });
 
 it('The best fit used should be the exponential', function () {
-assert.equal(fitted.fitUsed,'exponential'); // should returns true
+assert.equal(fitted.fitUsed,'inverse'); // should returns true
           });
 
 it('The best fit equation should be y = 40.55e^(0.13x)', function () {
-  assert.equal( fitted.fitEquationUsed, 'y = 40.55e^(0.13x)'); // should returns true
+  assert.equal( fitted.fitEquationUsed, 'y = -394.16x + 9.68'); // should returns true
             });
 
 it('The bestfit object define a function of the fit.', function () {
