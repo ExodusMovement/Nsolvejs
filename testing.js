@@ -1,21 +1,5 @@
 'use strict';
-<<<<<<< HEAD
-var growth = require('./fit/bestfit'),
-    nsolve = require('./index'),
-    gnuplot= require('gnuplot'),
-    function_plot= require('./fit/fitFunction_to_gnuplot'),
-    commander = require('commander'),
-    writedata = require('./utils/writedata'),
-    fileplot  = ' "plotdata.png"',
-    path      = __dirname + '/plot.dat',
-    path_smt  = __dirname + '/plot_smt.dat',
-    initialpoint =  0.5 ,
-    interval =  [-3,5] ,
-    test_array= [[0,4],[1,5],[3,6],[4,8],[5,9],[6,10],[7,10],[8,9]],
-    test_query = [3.4, 4.8, 8.6, 9] ,
-    test_y     = [5,10,23,20] ,
-    array1 = [[0.8,0.5],
-=======
+
 var   growth = require('./fit/bestfit'),
       nsolve = require('./index'),
       gnuplot= require('gnuplot'),
@@ -33,7 +17,6 @@ var   growth = require('./fit/bestfit'),
       test_query = [11, 15, 18, 25] ,
       test_y     = [100,110,120,150] ,
       array1 = [[0.8,0.5],
->>>>>>> 4807e9b0c8acf7edaba39cda5dc3f077bbd8529b
               [0.2,0.5]],
               array2 = [[0.66],
               [0.34]],
@@ -57,23 +40,6 @@ var   growth = require('./fit/bestfit'),
      fit = growth(test_array,test_query,test_y, options_fit) ;
 
      writedata(path,test_array);
-<<<<<<< HEAD
-      writedata(path_smt,fit.fitPointsUsed);
-
-        gnuplot()
-        .set('term png')
-        .set('output ' +fileplot)
-        .set('title "Plotdata"')
-        .set('xlabel "Time"')
-        .set('ylabel "Medition"')
-        .set('key left Left reverse spacing 6')
-        .set('xrange ['+test_array[0][0]+':'+1.1*test_array[test_array.length-1][0]+'] ')
-        .set('yrange ['+test_array[0][1]+':'+1.5*test_array[test_array.length-1][1]+'] ')
-        .set('zeroaxis')
-        .plot('"./plot.dat" u 1:2 pt 8 t "Data",'+'"./plot_smt.dat" u 1:2 pt 5 t "Data-smt",'+function_plot(fit.fitUsed,fit.fitParamsUsed)+' t "Bestfit='+function_plot(fit.fitUsed,fit.fitParamsUsed)+'"')
-        .set(' output')
-        .end();
-=======
      writedata(path_smt,fit.fitPointsUsed);
       writedata(path_ansX,fit.ans_ofX);
       writedata(path_ansY,fit.ans_ofY);
@@ -93,7 +59,6 @@ var   growth = require('./fit/bestfit'),
      )
      .set(' output')
      .end();
->>>>>>> 4807e9b0c8acf7edaba39cda5dc3f077bbd8529b
 
 //console.log(
   //'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'

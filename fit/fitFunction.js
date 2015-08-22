@@ -23,7 +23,7 @@ module.exports = function (x,nameF,equationFit) {
               return equationFit[0]* Math.pow(x , equationFit[1]) ;
             } ,
         polynomial: function (x) {
-        return equationFit[0] + equationFit[1] * x + equationFit[2] * x * x;
+        return equationFit[0] + equationFit[1] * x + equationFit[2] * x * x, equationFit[3] * x * x*x+ equationFit[4] * x * x*x*x;
       }
 
     };
