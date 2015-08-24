@@ -16,8 +16,12 @@ var   growth = require('./fit/bestfit'),
       test_array= [[0,41],[4,60],[8,70],[18,80]],
       test_query = [] ,
       test_y     = [] ,
-      array1 = [[0.8,0.5],
-              [0.2,0.5]],
+      array1 = [[1,   0,  0,   0,   0,   0],
+                [0.5 ,0,  0.5, 0 ,  0,   0 ],
+                [0 ,  0.5,0,   0.5 ,0,   0 ],
+                [0   ,0,  0.5, 0 ,  0.5, 0 ],
+                [0   ,0,  0,   0.5 ,0,   0.5 ],
+                [0   ,0,  0,   0 ,  0,   1 ]],
               array2 = [[0.66],
               [0.34]],
      A= new nsolve.AL.matrix(array1),
@@ -36,7 +40,7 @@ var   growth = require('./fit/bestfit'),
      .parse(process.argv);
      alpha = commander.alpha || alpha ;
      if (alpha > 1) {
-       alpha = alpha/ Math.pow(10,Math.floor( log10(alpha) )+1 );
+       alpha = alpha/ Math.pow(3,Math.floor( log10(alpha) )+1 );
      }
      var options_fit = {smoothing : smoothing, noiseeliminate : noiseeliminate,
        smoothingmethod :smoothingmethod ,alpha : alpha, fits_name: fit_methods },
@@ -76,7 +80,7 @@ var   growth = require('./fit/bestfit'),
 console.log('=> fit =', fit );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 
-//console.log('=> pow =',nsolve.AL.matrix.pow(A,2).array );
+console.log('=> pow =',nsolve.AL.matrix.pow(A,1000).truncate(2).array );
 
 //console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 

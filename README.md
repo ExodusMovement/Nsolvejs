@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/4yopping/JNsolve](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/JNsolve?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/4yopping/JNsolve.svg?branch=master)](https://travis-ci.org/4yopping/JNsolve) [![Inline docs](http://inch-ci.org/github/4yopping/JNsolve.svg?branch=master)](http://inch-ci.org/github/4yopping/JNsolve)
 [![npm version](https://badge.fury.io/js/jnsolve.svg)](http://badge.fury.io/js/jnsolve)
-
+[![Stories in Ready](https://badge.waffle.io/4yopping/JNsolve.svg?label=ready&title=Ready)](http://waffle.io/4yopping/JNsolve)
 ## Introduction
 
 Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
@@ -144,7 +144,7 @@ fit = { ans_ofY:
 ```
 ### `Linear Algebra`
 #### `JNsolve.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer) and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('JNsolve').matrix;
@@ -158,6 +158,7 @@ mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
+mat.truncate(0); //[[0,1],[1,4]]
 mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
@@ -184,7 +185,7 @@ Matrix.create(2,3,map_create)
 
 
 #### `JNsolve.AL.vector(Array)`
-Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as 3x1 matrix, because of has all the methods and properties of matrix in matrix property.
+Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
 var Vector = require('JNsolve').vector;
 var vector =[0,1.1,5];
@@ -238,7 +239,7 @@ utils.summation
 // Function of j,n,cb that calculate the summation from j until n
 // of cb function with i counter as only argument.
 ```
-
+[![Throughput Graph](https://graphs.waffle.io/4yopping/JNsolve/throughput.svg)](https://waffle.io/4yopping/JNsolve/metrics)
 ##Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail: cereceres@ciencias.unam.mx.
