@@ -1,8 +1,7 @@
 'use strict';
 var regression = require('regression'),
              _ = require('lodash'),
-             f = require('./fitFunction'),
- fits_name, i ,j,fit={},x ,array_Cloned , length ,
+             f = require('./fitFunction'), i ,j,fit={},x ,array_Cloned , length ,
  error = 0, best_fit='', best_fit_error,
  length_namefit;
 /** @function

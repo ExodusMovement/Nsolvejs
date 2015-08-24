@@ -1,6 +1,6 @@
 {
   "name": "jnsolve",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Solve equations using numerical methods, linear álgebra of matrices and solve  linear equation system ",
   "main": "index.js",
   "scripts": {

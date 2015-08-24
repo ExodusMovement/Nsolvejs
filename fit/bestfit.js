@@ -18,7 +18,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    options = options ||
    {smoothing : false, noiseeliminate : false,
      smoothingmethod :'exponential',alpha : 0.8,
-   fits_name:['linear','exponential','logarithmic','power','polynomial','inverse']} ;
+   fits_name:['linear','exponential','logarithmic','power','polynomial','inverse','sqrt']} ;
     if(options.smoothing === undefined){options.smoothing = false ;}
     if(options.noiseeliminate === undefined){options.noiseeliminate = false;}
    options.smoothingmethod = options.smoothingmethod || 'exponential' ;

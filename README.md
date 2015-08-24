@@ -65,7 +65,7 @@ Is a constructor that generates the numeric linear interpolation of data given i
 
 ```js
 array_to_interpolate = [[0,3.2],[1,4.6],[2,5.1],[4,6.9]] ;
-JNsolve.calculusN.D.linear_interpolation(array_to_fit)
+JNsolve.calculusN.D.linear_interpolation(array_to_interpolate)
 ```
 ##### `JNsolve.calculusN.D.linear_interpolation(Array).function_interpolated`
 Is a instance method what is the interpolated function of `Array` given.
@@ -165,7 +165,7 @@ mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
-Matrix.det(mat) // -1.1   equivalent mat.det
+Matrix.det(mat) // -1.1   equivalent mat.det()
 Matrix.inv(mat) // [[-4.2,1],[0.9,0]]  equivalent mat.inv()
 Matrix.minor(1,1,mat) // [[4.6]]  equivalent mat.minor(1,1)
 Matrix.pscalar(2,mat) // [[0,2.2],[2,9.2]]   equivalent mat.scalar(2)
@@ -217,7 +217,7 @@ solveLE(mat,result) ; //[6.36,0.68,0.7,]
 
 ##Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style.
-Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail.
+Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail: cereceres@ciencias.unam.mx.
 
 ##Licence
 The MIT License (MIT)
