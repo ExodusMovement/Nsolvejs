@@ -9,7 +9,8 @@ inv =require('./inverse'),
 minor = require('./minor'),
 trans = require('./trans'),
 matrix_nxm = require('./matrix_nxm'),
-map = require('./map');
+map = require('./map'),
+truncate = require('../utils/truncate');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -58,6 +59,12 @@ var matrix =  function (array){
           };
           this.map = function (cb) {
             return map(cb,this);
+          };
+          this.truncate = function (n) {
+            var _truncate = function (item) {
+              return truncate(item,n);
+            };
+            return map(_truncate,this);
           };
         }
     }
