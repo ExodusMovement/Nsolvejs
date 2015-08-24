@@ -34,3 +34,5 @@ module.exports.AL ={
   solveLE : solveLE,
   vector : vector
 };
+
+module.exports.utils = require('./utils/utils');

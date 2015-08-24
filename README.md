@@ -182,6 +182,7 @@ Matrix.create(2,3,map_create)
 //     [1,3,5]]
 ```
 
+
 #### `JNsolve.AL.vector(Array)`
 Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as 3x1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
@@ -193,7 +194,7 @@ V.pscalar(2) ; //[0,2.2,10]  equivalent Vector.pscalar(2,V)
 V.dot(V); // 26.21  equivalent Vector.dot(V.V)
 V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this  
             // operation is only defined for three dimension vectors.
-// How create a vector of n dimension.            
+// How create a vector of n dimension.
 function mapping(n) {return n*n-4;}
 V.create(4,mapping) // [-3,0,5,12]
 ```
@@ -224,6 +225,19 @@ var result = [5,6,0];
 solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
 
+
+#### `JNsolve.utils`
+Some utils function to use:
+
+```js
+var utils = require('JNsolve').utils;
+utils.dkronecker  // Function delta of Kronecker.
+utils.levi_civita // Array 3x3x3 as Levi-Civita tensor.
+utils.log10       // Function Log of base 10.
+utils.summation
+// Function of j,n,cb that calculate the summation from j until n
+// of cb function with i counter as only argument. 
+```
 
 ##Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style.

@@ -21,7 +21,10 @@
     "linear",
     "system",
     "equations",
-    "algebra"
+    "algebra",
+    "vector",
+    "math",
+    "mathematic"
   ],
   "author": "Jesús Edel Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
