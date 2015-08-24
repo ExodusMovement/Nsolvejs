@@ -8,6 +8,7 @@ det =require('./det'),
 inv =require('./inverse'),
 minor = require('./minor'),
 trans = require('./trans'),
+matrix_nxm = require('./matrix_nxm'),
 map = require('./map');
     /** @constructor
      * Constructor of a matrix.
@@ -71,6 +72,7 @@ matrix.trans = trans;
 matrix.multiply  = x ;
 matrix.pow = pow;
 matrix.map = map;
+matrix.create = matrix_nxm;
 matrix.dkronecker = require('../utils/dkronecker');
 
 module.exports = matrix ;

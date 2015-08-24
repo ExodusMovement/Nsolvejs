@@ -108,7 +108,7 @@ The `Object`is default options and are { npoints_DNumeric : 1000, precision : 0.
 ![Plot Data with Best fit](./plots/plotdata.png)
 
 
-Calculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input, the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name to use, the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a*sqrt(x)+b) and power (ax^b). The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
+Calculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input, the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name to use, the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b). The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
 
 ```js
 array_to_fit =[[0,1.1],[1,4.6],[2,1.9],[4,15]];
@@ -160,7 +160,7 @@ mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
 mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
-mat.pow(2); // [[1.1,5.1],[4.6,22.3]] //
+mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
@@ -175,7 +175,13 @@ Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat.trans()
 //Exemple of mapping:
 mapping = function(item,i,j){return item/(j-i+1)} ;
 Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
+//How create a matrix of nxm.
+map_create = function (i,j) { return i*j-1 ;}
+Matrix.create(2,3,map_create)
+//    [[0,1,2],
+//     [1,3,5]]
 ```
+
 
 #### `JNsolve.AL.vector(Array)`
 Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as 3x1 matrix, because of has all the methods and properties of matrix in matrix property.
@@ -186,8 +192,13 @@ var V = Vector(vector);
 V.sum(V); // [0,2.2,10] equivalent Vector.sum(V,V)
 V.pscalar(2) ; //[0,2.2,10]  equivalent Vector.pscalar(2,V)
 V.dot(V); // 26.21  equivalent Vector.dot(V.V)
-V.cross(V); // [0,0,0] equivalent Vector.cross(V,V)
+V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this  
+            // operation is only defined for three dimension vectors.
+// How create a vector of n dimension.
+function mapping(n) {return n*n-4;}
+V.create(4,mapping) // [-3,0,5,12]
 ```
+
 
 #### `JNsolve.AL.solveLE(Array,Array)`
 Solve the linear equation system:
@@ -214,6 +225,19 @@ var result = [5,6,0];
 solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
 
+
+#### `JNsolve.utils`
+Some utils function to use:
+
+```js
+var utils = require('JNsolve').utils;
+utils.dkronecker  // Function delta of Kronecker.
+utils.levi_civita // Array 3x3x3 as Levi-Civita tensor.
+utils.log10       // Function Log of base 10.
+utils.summation
+// Function of j,n,cb that calculate the summation from j until n
+// of cb function with i counter as only argument. 
+```
 
 ##Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style.
