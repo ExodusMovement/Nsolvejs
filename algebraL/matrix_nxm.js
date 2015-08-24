@@ -14,4 +14,4 @@ module.exports = function (n,m,map) {
       }
   }
  return new Matrix(array);
-}
+};

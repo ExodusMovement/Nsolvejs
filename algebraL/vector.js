@@ -6,10 +6,10 @@
   var dotp = require('./dotp');
   var map = require('./map');
   /** @constructor
-   * Constructor of a vector.
-   * @param {Array} of way [x_1,x_2,x_3] only three dimension are supported.
+   * Constructor of a Vector.
+   * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.
    */
-  var vector = function (array) {
+  var Vector = function (array) {
   var _array = [];
   for (var i = 0; i < 3; i++) {
     _array[i] = [array[i]];
@@ -26,7 +26,7 @@
     for (var i = 0; i < 3; i++) {
       _array[i] = __array[i][0];
     }
-    return new vector(_array) ;
+    return new Vector(_array) ;
   };
   // Define the product by a scalar method.
   this.pscalar = function (a) {
@@ -35,16 +35,16 @@
       for (var i = 0; i < 3; i++) {
         _array[i] = __array[i][0];
       }
-      return new vector(_array) ;
+      return new Vector(_array) ;
   };
-  // Define the map over the vector.
+  // Define the map over the Vector.
   this.map = function (cb) {
     var   __array = map(cb,this.matrix).array ;
       var _array = [];
       for (var i = 0; i < 3; i++) {
         _array[i] = __array[i][0];
       }
-      return new vector(_array) ;
+      return new Vector(_array) ;
   };
   // Define the dot product method.
   this.dot = function (A) {
@@ -56,25 +56,32 @@
   };
    };
 // Define the class method dotp.
-vector.dotp= dotp;
+Vector.dotp= dotp;
 // DEfine the class method sum.
-vector.sum = function (A,B) {
+Vector.sum = function (A,B) {
   var __array = sum(B.matrix,A.matrix).array;
   var _array = [];
   for (var i = 0; i < 3; i++) {
     _array[i] = __array[i][0];
   }
-  return new vector(_array) ;
+  return new Vector(_array) ;
 };
 // DEfine the product by a scalar class method.
-vector.pscalar = function (a,B) {
+Vector.pscalar = function (a,B) {
   var   __array = pscalar(a,B.matrix).array ;
     var _array = [];
     for (var i = 0; i < 3; i++) {
       _array[i] = __array[i][0];
     }
-    return new vector(_array) ;
+    return new Vector(_array) ;
 };
 // Define the cross producto class method.
-vector.crossp = crossp;
-module.exports = vector;
+Vector.crossp = crossp;
+Vector.create_n = function (n,map) {
+  var i,array=[];
+  for ( i = 0; i < n; i++) {
+    array[i] = map(i);
+  }
+  return new Vector(array) ;
+};
+module.exports = Vector;

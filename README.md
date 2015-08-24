@@ -160,7 +160,7 @@ mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
 mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
-mat.pow(2); // [[1.1,5.1],[4.6,22.3]] //
+mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
@@ -175,6 +175,11 @@ Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat.trans()
 //Exemple of mapping:
 mapping = function(item,i,j){return item/(j-i+1)} ;
 Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
+//How create a matrix of nxm.
+map_create = function (i,j) { return i*j-1 ;}
+Matrix.create(2,3,map_create)
+//    [[0,1,2],
+//     [1,3,5]]
 ```
 
 #### `JNsolve.AL.vector(Array)`
@@ -186,8 +191,13 @@ var V = Vector(vector);
 V.sum(V); // [0,2.2,10] equivalent Vector.sum(V,V)
 V.pscalar(2) ; //[0,2.2,10]  equivalent Vector.pscalar(2,V)
 V.dot(V); // 26.21  equivalent Vector.dot(V.V)
-V.cross(V); // [0,0,0] equivalent Vector.cross(V,V)
+V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this  
+            // operation is only defined for three dimension vectors.
+// How create a vector of n dimension.            
+function mapping(n) {return n*n-4;}
+V.create(4,mapping) // [-3,0,5,12]
 ```
+
 
 #### `JNsolve.AL.solveLE(Array,Array)`
 Solve the linear equation system:
