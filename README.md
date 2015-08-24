@@ -184,7 +184,7 @@ Matrix.create(2,3,map_create)
 
 
 #### `JNsolve.AL.vector(Array)`
-Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as 3x1 matrix, because of has all the methods and properties of matrix in matrix property.
+Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
 var Vector = require('JNsolve').vector;
 var vector =[0,1.1,5];
