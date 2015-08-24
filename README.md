@@ -3,7 +3,7 @@
 [![Join the chat at https://gitter.im/4yopping/JNsolve](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/JNsolve?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/4yopping/JNsolve.svg?branch=master)](https://travis-ci.org/4yopping/JNsolve) [![Inline docs](http://inch-ci.org/github/4yopping/JNsolve.svg?branch=master)](http://inch-ci.org/github/4yopping/JNsolve)
 [![npm version](https://badge.fury.io/js/jnsolve.svg)](http://badge.fury.io/js/jnsolve)
-
+[![Stories in Ready](https://badge.waffle.io/4yopping/JNsolve.svg?label=ready&title=Ready)](http://waffle.io/4yopping/JNsolve)
 ## Introduction
 
 Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
@@ -238,7 +238,7 @@ utils.summation
 // Function of j,n,cb that calculate the summation from j until n
 // of cb function with i counter as only argument. 
 ```
-
+[![Throughput Graph](https://graphs.waffle.io/4yopping/JNsolve/throughput.svg)](https://waffle.io/4yopping/JNsolve/metrics)
 ##Contributing
 In lieu of a formal style guide, take care to maintain the existing coding style.
 Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail: cereceres@ciencias.unam.mx.
