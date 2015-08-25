@@ -1,7 +1,7 @@
 # Nsolvejs
 
-[![Join the chat at https://gitter.im/4yopping/Nsolvejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/Nsolvejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master)](http://inch-ci.org/github/4yopping/Nsolvejs)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/Nsolvejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master&style=shields)](http://inch-ci.org/github/4yopping/Nsolvejs)
 [![npm version](https://badge.fury.io/js/Nsolvejs.svg)](http://badge.fury.io/js/Nsolvejs)
 [![Stories in Ready](https://badge.waffle.io/4yopping/Nsolvejs.svg?label=ready&title=Ready)](http://waffle.io/4yopping/Nsolvejs)
 [![NPM](https://nodei.co/npm/Nsolvejs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/Nsolvejs/)
