@@ -85,7 +85,7 @@ function f(x) {
 }
 JNsolve.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
-The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson_Higherorder. The rest of routines for every method are availables:
+The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson. The rest of routines for every method are availables:
 
 #### `JNsolve.calculusN.RegulaFalsi(Function,Array[,Object])`
 #### `JNsolve.calculusN.bisection(Function, Array[,Object])`
