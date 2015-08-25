@@ -80,6 +80,5 @@ matrix.multiply  = x ;
 matrix.pow = pow;
 matrix.map = map;
 matrix.create = matrix_nxm;
-matrix.dkronecker = require('../utils/dkronecker');
 
 module.exports = matrix ;

@@ -39,10 +39,10 @@
   };
   // Define the map over the Vector.
   this.map = function (cb) {
-    var   __array = map(cb,this.matrix).array ;
+    var   __array = this.matrix.array ;
       var _array = [];
       for (var i = 0; i < 3; i++) {
-        _array[i] = __array[i][0];
+        _array[i] = cb(__array[i][0],i);
       }
       return new Vector(_array) ;
   };
@@ -84,4 +84,14 @@ Vector.create_n = function (n,map) {
   }
   return new Vector(array) ;
 };
+
+//Define the mapping class method.
+Vector.map = function (cb,B) {
+  var   __array = B.matrix.array ;
+    var _array = [];
+    for (var i = 0; i < 3; i++) {
+      _array[i] = cb(__array[i][0],i);
+    }
+    return new Vector(_array) ;
+  };
 module.exports = Vector;

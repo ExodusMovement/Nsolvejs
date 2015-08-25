@@ -6,4 +6,4 @@ module.exports = {
   log10       : require('./stepfunction'),
   summation   : require('./summation'),
   writedata   : require('./writedata')
-}
+};

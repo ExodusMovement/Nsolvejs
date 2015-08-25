@@ -17,10 +17,10 @@ var   growth = require('./fit/bestfit'),
       test_query = [] ,
       test_y     = [] ,
       array1 = [[1,   0,  0,   0,   0,   0],
-                [0.5 ,0,  0.5, 0 ,  0,   0 ],
-                [0 ,  0.5,0,   0.5 ,0,   0 ],
-                [0   ,0,  0.5, 0 ,  0.5, 0 ],
-                [0   ,0,  0,   0.5 ,0,   0.5 ],
+                [0.8 ,0,  0.2, 0 ,  0,   0 ],
+                [0 ,  0.2,0,   0.8 ,0,   0 ],
+                [0   ,0,  0.2, 0 ,  0.8, 0 ],
+                [0   ,0,  0,   0.8 ,0,   0.2 ],
                 [0   ,0,  0,   0 ,  0,   1 ]],
               array2 = [[0.66],
               [0.34]],
@@ -40,7 +40,7 @@ var   growth = require('./fit/bestfit'),
      .parse(process.argv);
      alpha = commander.alpha || alpha ;
      if (alpha > 1) {
-       alpha = alpha/ Math.pow(3,Math.floor( log10(alpha) )+1 );
+       alpha = alpha/ Math.pow(100,Math.floor( log10(alpha) )+1 );
      }
      var options_fit = {smoothing : smoothing, noiseeliminate : noiseeliminate,
        smoothingmethod :smoothingmethod ,alpha : alpha, fits_name: fit_methods },
@@ -77,10 +77,10 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
-console.log('=> fit =', fit );
+//console.log('=> fit =', fit );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 
-console.log('=> pow =',nsolve.AL.matrix.pow(A,1000).truncate(2).array );
+//console.log('=> pow =',nsolve.AL.matrix.pow(A,2).truncate(2).array );
 
 //console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 
@@ -96,7 +96,7 @@ console.log('=> pow =',nsolve.AL.matrix.pow(A,1000).truncate(2).array );
 
 //console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
 
-//console.log('=> pow =',V1.map(f));
+console.log('=> mapping =',V1.map(f));
 
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 
