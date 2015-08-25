@@ -158,7 +158,7 @@ mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
-mat.truncate(0); //[[0,1],[1,4]]
+mat.truncate(0); //[[0,1],[1,4]] 
 mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
