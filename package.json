@@ -1,7 +1,7 @@
 {
-  "name": "jnsolve",
-  "version": "0.0.9",
-  "description": "Solve equations using numerical methods, linear álgebra of matrices and solve  linear equation system ",
+  "name": "nsolvejs",
+  "version": "0.0.1",
+  "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./test/test",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4yopping/jnsolve.git"
+    "url": "git+https://github.com/4yopping/nsolvejs.git"
   },
   "keywords": [
     "Solve",
@@ -29,9 +29,9 @@
   "author": "Jesús Edel Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/4yopping/jnsolve/issues"
+    "url": "https://github.com/4yopping/nsolvejs/issues"
   },
-  "homepage": "https://github.com/4yopping/jnsolve#readme",
+  "homepage": "https://github.com/4yopping/nsolvejs#readme",
   "dependencies": {
     "lodash": "^3.10.1",
     "numbers": "^0.6.0",
