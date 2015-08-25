@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/4yopping/JNsolve.svg?branch=master)](https://travis-ci.org/4yopping/JNsolve) [![Inline docs](http://inch-ci.org/github/4yopping/JNsolve.svg?branch=master)](http://inch-ci.org/github/4yopping/JNsolve)
 [![npm version](https://badge.fury.io/js/jnsolve.svg)](http://badge.fury.io/js/jnsolve)
 [![Stories in Ready](https://badge.waffle.io/4yopping/JNsolve.svg?label=ready&title=Ready)](http://waffle.io/4yopping/JNsolve)
+[![NPM](https://nodei.co/npm/jnsolve.png?downloads=true&downloadRank=true)](https://nodei.co/npm/jnsolve/)
 ## Introduction
 
 Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
@@ -84,7 +85,7 @@ function f(x) {
 }
 JNsolve.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
-The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson_Higherorder. The rest of routines for every method are availables:
+The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson. The rest of routines for every method are availables:
 
 #### `JNsolve.calculusN.RegulaFalsi(Function,Array[,Object])`
 #### `JNsolve.calculusN.bisection(Function, Array[,Object])`
@@ -108,7 +109,7 @@ The `Object`is default options and are { npoints_DNumeric : 1000, precision : 0.
 ![Plot Data with Best fit](./plots/plotdata.png)
 
 
-Calculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input, the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name to use, the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b). The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
+Calculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input, the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name to use: the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b), if not specified take all function availables. The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
 
 ```js
 array_to_fit =[[0,1.1],[1,4.6],[2,1.9],[4,15]];
@@ -185,7 +186,7 @@ Matrix.create(2,3,map_create)
 
 
 #### `JNsolve.AL.vector(Array)`
-Constructor of a vector object with instance property array that is the array self passed as parameter and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
+Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixs of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
 var Vector = require('JNsolve').vector;
 var vector =[0,1.1,5];
@@ -197,7 +198,10 @@ V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this
             // operation is only defined for three dimension vectors.
 // How create a vector of n dimension.
 function mapping(n) {return n*n-4;}
-V.create(4,mapping) // [-3,0,5,12]
+Vector.create(4,mapping) // [-3,0,5,12]
+// mapping a vector
+function mapp(item,n) {return n*item;}
+V.map(mapp);// [0,2.2,15] equivalent Vector.map(mapp,V)
 ```
 
 
