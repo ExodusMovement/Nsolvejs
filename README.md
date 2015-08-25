@@ -85,7 +85,7 @@ function f(x) {
 }
 JNsolve.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
-The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson_Higherorder. The rest of routines for every method are availables:
+The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson. The rest of routines for every method are availables:
 
 #### `JNsolve.calculusN.RegulaFalsi(Function,Array[,Object])`
 #### `JNsolve.calculusN.bisection(Function, Array[,Object])`
@@ -198,7 +198,10 @@ V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this
             // operation is only defined for three dimension vectors.
 // How create a vector of n dimension.
 function mapping(n) {return n*n-4;}
-V.create(4,mapping) // [-3,0,5,12]
+Vector.create(4,mapping) // [-3,0,5,12]
+// mapping a vector
+function mapp(item,n) {return n*item;}
+V.map(mapp);// [0,2.2,15] equivalent Vector.map(mapp,V)
 ```
 
 
