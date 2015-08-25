@@ -198,7 +198,10 @@ V.cross(V); // [0,0,0] equivalent Vector.cross(V,V),remember this
             // operation is only defined for three dimension vectors.
 // How create a vector of n dimension.
 function mapping(n) {return n*n-4;}
-V.create(4,mapping) // [-3,0,5,12]
+Vector.create(4,mapping) // [-3,0,5,12]
+// mapping a vector
+function mapp(item,n) {return n*item;}
+V.map(mapp);// [0,2.2,15] equivalent Vector.map(mapp,V)
 ```
 
 
