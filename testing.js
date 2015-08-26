@@ -79,8 +79,14 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
 console.log('=> fit =', fit );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
+var start = new Date().getTime() ;
 
 console.log('=> pow =',nsolve.AL.matrix.pow(A,1000).truncate(2).array );
+
+var end = new Date().getTime() ;
+var time = end - start;
+console.log('Execution time: ' + time/1000);
+
 
 //console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 
