@@ -9,6 +9,7 @@ var  det = require('./det'),
  * @return {Object} matrix
  */
      module.exports =function (B){
+       if (!B) { return ;}
        var dett,adjj;
        if(  B.raw === B.column ){
          dett = det(B);

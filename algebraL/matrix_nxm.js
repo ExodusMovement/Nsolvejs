@@ -6,6 +6,7 @@ var Matrix= require('../algebraL/Mat');
  * @return {Object} vector
  */
 module.exports = function (n,m,map) {
+  if (!n || !m || !map) { return ;}
   var array = [],i,j;
   for ( i = 0; i <n ; i++) {
       array[i]=[];

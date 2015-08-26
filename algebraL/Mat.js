@@ -16,6 +16,7 @@ truncate = require('../utils/truncate');
      * @param {Array}
      */
 var matrix =  function (array){
+      if (!array) { return ;}
       var length = array.length,i  ;
       var test = Boolean(length);
       if(test && array[0] instanceof Array){

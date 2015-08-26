@@ -9,6 +9,7 @@ product = require('./product');
  * @return {Object} matrix
  */
 module.exports =function (A,n){
+  if (!A) { return ;}
   if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.raw) {
     var array = [],B;
     for (var i = 0; i < A.column; i++) {
@@ -17,7 +18,7 @@ module.exports =function (A,n){
       array[i][j]=dkronecker(i,j);
       }
     }
-    if (n===0) {
+    if (n===0 || !n) {
       return new Matrix(array);
     } else if(n ===1) {
       return A ;

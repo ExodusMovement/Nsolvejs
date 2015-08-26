@@ -5,6 +5,7 @@
  * @return {Object} matrix
  */
  module.exports = function (A,B){
+       if (!A || !B) { return ;}
        if( A.column === B.raw){
          var ii=A.raw,jj=A.column,kk=B.column,array = [],i,j,k ;
          for (i=1 ;i<=ii;i++){

@@ -8,6 +8,7 @@ var     det = require('./det'),
  * @return {Object} matrix
  */
      module.exports = function (B){
+       if (!B) { return ;}
        var  Matrix = require('./Mat');
        if (B.raw > 1) {
          if( B.raw === B.column ){

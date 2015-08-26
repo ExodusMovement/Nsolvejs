@@ -1,11 +1,20 @@
   'use strict';
-  var methodN =    require('./lib/methodN'),
-  bestfit = require('./fit/bestfit'),
+  /**@module
+   * nsolvejs module, with all the properties defined into the proyect.
+   */
+    var methodN =    require('./lib/methodN'),
+    bestfit = require('./fit/bestfit'),
     matrix  = require('./algebraL/Mat'),
     solveLE  = require('./algebraL/solveLE'),
     vector  = require('./algebraL/vector');
 
 
+     /**@function
+      * The function that solve the equation g(x)=0 beginning in initialpoint into a interval using the options given.
+      * @param {Function} g {array} interval {number} initialpoint
+      * {Object} options
+      * @return {object} with the solution found.
+      */
   module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
     if(!g){return ;}
     options = options || {npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Raphson' } ;

@@ -3,6 +3,7 @@ var  f = require('./fitFunction'),
      betterfit = require('./betterfit'),
      smoothingdata = require('./smoothingdata'),
      noiseeliminatedata = require('./noise_eliminator'),
+     _ = require('underscore'),
      getx = require('./getx'), gety = require('./gety'),fit={},array_y= [],_fit ,array_x=[],interval;
 
 /** @function
@@ -14,16 +15,20 @@ var  f = require('./fitFunction'),
  */
 module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     if(!_arrayFit){return ;}
+    if(get_x.length === undefined ){options = get_x ; get_x = undefined;}
+    if(get_y.length === undefined ){ options = get_y ; get_y = undefined;}
     if(typeof options ==='function'){callback = options ; options = undefined;}
    options = options ||
    {smoothing : false, noiseeliminate : false,
-     smoothingmethod :'exponential',alpha : 0.8,
-   fits_name:['linear','exponential','logarithmic','power','polynomial','inverse','sqrt']} ;
+    smoothingmethod :'exponential',alpha : 0.8,
+    fits_name:['linear','exponential','logarithmic','power','polynomial','inverse','sqrt']} ;
     if(options.smoothing === undefined){options.smoothing = false ;}
     if(options.noiseeliminate === undefined){options.noiseeliminate = false;}
    options.smoothingmethod = options.smoothingmethod || 'exponential' ;
    options.alpha = options.alpha || 0.8 ;
    options.fits_name = options.fits_name ||['linear','exponential','logarithmic','power','polynomial','inverse','sqrt'];
+   get_x = get_x || [] ;
+   get_y = get_y || [] ;
    var fits_name = options.fits_name ;
    var smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,arrayFit ;
    // The noise is elimanated from data.
@@ -34,9 +39,9 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
    if(smoothing){
      _arrayFit = smoothingdata(_arrayFit,{method :smoothingmethod, alpha : alpha});
    }
-   arrayFit = _arrayFit ;
+   arrayFit = _.clone(_arrayFit,true) ;
    var  a = arrayFit[0][0] ,b =arrayFit[arrayFit.length-1][0] ;
-   get_x = get_x || [] ;
+
    // Find the best fit.
    fit = betterfit(arrayFit,fits_name) ;
    function h(x) {

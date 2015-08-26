@@ -5,6 +5,7 @@
  * @return {Object} matrix
  */
 module.exports = function  (map,B){
+       if (!map || !B) { return ;}
        if(typeof map === 'function'  ){
          var ii=B.raw,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){

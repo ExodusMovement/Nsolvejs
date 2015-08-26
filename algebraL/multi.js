@@ -7,6 +7,7 @@ var product = require('./product');
  * @return {Object} matrix
  */
 module.exports= function (x){
+  if (!x) { return ;}
   var l = arguments.length , A =x,B;
     for (var p = 1; p < l; p++){
       B = arguments[p];
