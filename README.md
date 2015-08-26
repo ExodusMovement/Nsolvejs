@@ -7,7 +7,7 @@
 [![NPM](https://nodei.co/npm/nsolvejs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/nsolvejs/)
 ## Introduction
 
-Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
+(Before JNsolve)Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
 
 
 ## Installation
