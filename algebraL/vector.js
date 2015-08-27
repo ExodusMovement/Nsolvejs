@@ -66,7 +66,7 @@ Vector.sum = function (A,B) {
   }
   return new Vector(_array) ;
 };
-// DEfine the product by a scalar class method.
+// Define the product by a scalar class method.
 Vector.pscalar = function (a,B) {
   var   __array = pscalar(a,B.matrix).array ;
     var _array = [];
