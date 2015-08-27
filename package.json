@@ -28,7 +28,7 @@
     "mathematics",
     "calculus"
   ],
-  "author": "Jesús Edel Cereceres <cereceres@ciencias.unam.mx>",
+  "author": "Jesús Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/4yopping/nsolvejs/issues"
@@ -51,7 +51,6 @@
     "gulp-plato": "^1.0.2",
     "jshint-stylish": "^2.0.1",
     "mocha": "^2.2.5",
-    "plotly": "^1.0.2",
     "prompt": "^0.2.14",
     "yargs": "^3.21.0"
   }
