@@ -8,6 +8,7 @@ dkronecker = require('../utils/dkronecker');
  */
 
 module.exports = function (n) {
+  if (!n) { return ;}
   var array = [];
   for (var i = 0; i <n ; i++) {
       array[i]=[];
@@ -16,4 +17,4 @@ module.exports = function (n) {
       }
   }
  return new Matrix(array);
-}
+};

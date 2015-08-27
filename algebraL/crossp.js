@@ -6,6 +6,7 @@
      * @return {Object} vector
      */
 module.exports = function (A,B) {
+    if (!A && !B) { return ;}
     var Vector= require('./vector');
     var i,j,k,array=[];
     for ( i = 0; i<3; i++){

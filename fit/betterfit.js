@@ -17,7 +17,7 @@ module.exports= function(array_tofit,fits_name) {
   best_fit       = fits_name[0];
   best_fit_error = 0 ;
   var l ,m, pivot;
-  // Calculate the regression to every method available.
+  /** Calculate the regression to every method available.*/
   for ( i = 0 ; i < length_namefit ; i++){
     if (fits_name[i]==='inverse'){
       l = array_tofit.length ;
@@ -39,7 +39,7 @@ module.exports= function(array_tofit,fits_name) {
       fit[fits_name[i]] = {regression : regression(fits_name[i],array_Cloned)}  ;
     }
     error = 0 ;
-// Calculate the error and find the best fit minimizing  error.
+/** Calculate the error and find the best fit minimizing  error.*/
     for ( j = 0 ; j < length ; j++){
         x     = array_tofit[j][0] ;
         error = error +
@@ -51,7 +51,7 @@ module.exports= function(array_tofit,fits_name) {
     if(best_fit_error === 0){ best_fit_error = error ;}
     if(error < best_fit_error){ best_fit = fits_name[i]; best_fit_error = error; }
   }
-  // Define the best fit found.
+  /** Define the best fit found.*/
 fit.best = { name :best_fit,
              error: best_fit_error,
              f : function (x) {

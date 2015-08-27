@@ -12,6 +12,7 @@ var  Matrix = require('./Mat'),
  * @return {Object} matrix
  */
      module.exports = function (M,R){
+       if (!M || !R) { return ;}
        var A = new Matrix(M);
        if (A) {
          var dett = det(A);

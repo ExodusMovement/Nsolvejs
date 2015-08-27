@@ -7,6 +7,7 @@ var   minor = require('./minor');
  * @return {Number} determinant.
  */
   var    det = function (B){
+    if (!B) { return ;}
        var det;
        if(  B.raw === B.column &&  B.raw >= 0 ){
          if(B.raw >2){

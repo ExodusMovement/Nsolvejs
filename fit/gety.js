@@ -5,6 +5,7 @@
  * @return {Array} values of "x".
  */
 module.exports = function (f,get_y) {
+  if (!f) {return ;}
    get_y = get_y || [] ; var  array_y=[],j,
    length_query = get_y.length ;
   // Calculate the values of "y" using get_y.

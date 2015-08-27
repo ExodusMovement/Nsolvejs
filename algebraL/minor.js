@@ -7,6 +7,7 @@ var  _ = require('lodash') ;
  * @return {Object} matrix
  */
 module.exports =  function (m,n,B){
+       if (!m || !m || !B) { return ;}
        if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.raw && 0<n && n <= B.column ){
          var ii=B.raw,array,i ;
          array = _.clone(B.array,true);

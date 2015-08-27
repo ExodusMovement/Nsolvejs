@@ -4,8 +4,7 @@ var gulp  = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
       mocha = require('gulp-mocha'),
-     gulp = require('gulp'),
-     plato = require('gulp-plato');
+     gulp = require('gulp');
 
     // Lint
     gulp.task('lint', function () {
@@ -21,17 +20,3 @@ var gulp  = require('gulp'),
     gulp.task( 'test', function () {
    return gulp.src('./test/test.js',{read: false}).pipe(mocha({reporter: 'nyan'}));
   });
-// plato
-gulp.task('plato', function () {
-    return gulp.src(['**/*.js', '!./node_modules/**'])
-        .pipe(plato('report', {
-            jshint: {
-                options: {
-                    strict: true
-                }
-            },
-            complexity: {
-                trycatch: true
-            }
-        }));
-});

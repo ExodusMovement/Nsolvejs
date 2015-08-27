@@ -10,6 +10,7 @@
    * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.
    */
   var Vector = function (array) {
+  if (!array) { return ;}
   var _array = [];
   for (var i = 0; i < 3; i++) {
     _array[i] = [array[i]];

@@ -6,6 +6,7 @@
      */
 
 var sum =  function (A,B){
+     if (!A || !B) { return ;}
      var Y = require('./Mat');
        if( A.column === B.column && A.raw === B.raw ){
          var ii=A.raw,kk=B.column,array = [],i,k ;

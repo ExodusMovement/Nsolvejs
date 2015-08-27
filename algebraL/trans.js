@@ -5,6 +5,7 @@
  * @return {Object} matrix
  */
       module.exports =  function (B){
+        if (!B) { return ;}
          var ii=B.column,kk=B.raw,array = [],i,k ;
          for (i=1 ;i <= ii;i++){
            array[i-1]=[];
