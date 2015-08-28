@@ -40,7 +40,7 @@ var   growth = require('./fit/bestfit'),
      .parse(process.argv);
      alpha = commander.alpha || alpha ;
      if (alpha > 1) {
-       alpha = alpha/ Math.pow(100,Math.floor( log10(alpha) )+1 );
+       alpha = alpha/ Math.pow(10,Math.floor( log10(alpha) )+1 );
      }
      var options_fit = {smoothing : smoothing, noiseeliminate : noiseeliminate,
        smoothingmethod :smoothingmethod ,alpha : alpha, fits_name: fit_methods },
@@ -81,7 +81,7 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 var start = new Date().getTime() ;
 
-//console.log('=> pow =',nsolve.AL.matrix.pow(A,2).truncate(2).array );
+console.log('=> pow =',nsolve.AL.matrix.pow(A,100).truncate(4).array );
 
 var end = new Date().getTime() ;
 var time = end - start;
@@ -102,7 +102,7 @@ console.log('Execution time: ' + time/1000);
 
 //console.log('=> comprobacion_inv =',product(nsolve.AL.matrix.inv(A),A).array );
 
-console.log('=> mapping =',V1.map(f));
+//console.log('=> mapping =',V1.map(f));
 
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 

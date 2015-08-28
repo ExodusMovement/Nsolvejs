@@ -10,7 +10,8 @@ minor = require('./minor'),
 trans = require('./trans'),
 matrix_nxm = require('./matrix_nxm'),
 map = require('./map'),
-truncate = require('../utils/truncate');
+truncate = require('../utils/truncate'),
+forEach = require('./foreach');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -67,6 +68,9 @@ var matrix =  function (array){
             };
             return map(_truncate,this);
           };
+          this.forEach = function (map) {
+            forEach(map,this);
+          };
         }
     }
 };
@@ -80,6 +84,7 @@ matrix.trans = trans;
 matrix.multiply  = x ;
 matrix.pow = pow;
 matrix.map = map;
+matrix.forEach = forEach;
 matrix.create = matrix_nxm;
 
 module.exports = matrix ;

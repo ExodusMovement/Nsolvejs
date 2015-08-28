@@ -25,9 +25,9 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,
     arrayFit=[],a,b ;
     /** Is used the fit if is passed */
-    if (_arrayFit instanceof Fit) {
-      fit = _arrayFit;
-      arrayFit = _.clone(fit.fitPointsUsed,true) ;
+    if (!(_arrayFit instanceof Array)) {
+      fit = _arrayFit.fit;
+      arrayFit = _.clone(_arrayFit.fitPointsUsed,true) ;
       a = arrayFit[0][0] ;b =arrayFit[arrayFit.length-1][0];
     }else {
     /** If not, the fit is calculated
