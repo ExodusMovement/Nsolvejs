@@ -1,5 +1,5 @@
 'use strict' ;
-var Matrix = require('./Mat'),
+var
     dkronecker = require('../utils/dkronecker'),
 product = require('./product');
 
@@ -9,6 +9,7 @@ product = require('./product');
  * @return {Object} matrix
  */
 module.exports =function (A,n){
+  var Matrix = require('./Mat');
   if (!A) { return ;}
   if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.raw) {
     var array = [],B;

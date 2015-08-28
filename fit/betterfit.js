@@ -49,7 +49,10 @@ module.exports= function(array_tofit,fits_name) {
     error = Math.sqrt(error/length) ;
     fit[fits_name[i]].error = error ;
     if(best_fit_error === 0){ best_fit_error = error ;}
-    if(error < best_fit_error){ best_fit = fits_name[i]; best_fit_error = error; }
+    if(error < best_fit_error){
+      best_fit = fits_name[i];
+      best_fit_error = error;
+    }
   }
   /** Define the best fit found.*/
 fit.best = { name :best_fit,

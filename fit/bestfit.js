@@ -22,8 +22,8 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     get_x = get_x || [] ;
     get_y = get_y || [] ;
     var fits_name = options.fits_name ,
-    smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,
-    arrayFit=[],a,b ;
+        smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,
+        arrayFit=[],a,b ;
     /** Is used the fit if is passed */
     if (!(_arrayFit instanceof Array)) {
       fit = _arrayFit.fit;
@@ -37,6 +37,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
       for ( j = 0; j < l; j++) {
         arrayFit[j] = [_arrayFit[j][0],_arrayFit[j][1]] ;
       }
+      if (l ===0) { arrayFit.push([0,0]); }
       a = arrayFit[0][0] ;b =arrayFit[l-1][0] ;
       if(noiseeliminate){
         arrayFit = noiseeliminatedata(arrayFit,{method :smoothingmethod, alpha : alpha});
@@ -71,7 +72,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
            fitParamsUsed   : fit[fit.best.name].regression.equation,
            fitPointsUsed   : arrayFit,
            fitWithError    : fit.best.error,
-           fit              : fit
+           fit             : fit
          };
           /** The callback function*/
    if (callback) {

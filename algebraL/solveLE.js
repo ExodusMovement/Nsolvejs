@@ -1,5 +1,5 @@
 'use strict' ;
-var  Matrix = require('./Mat'),
+var  
      det = require('./det'),
      product = require('./product'),
      inv = require('./inverse');
@@ -12,6 +12,7 @@ var  Matrix = require('./Mat'),
  * @return {Object} matrix
  */
      module.exports = function (M,R){
+       var Matrix= require('../algebraL/Mat');
        if (!M || !R) { return ;}
        var A = new Matrix(M);
        if (A) {

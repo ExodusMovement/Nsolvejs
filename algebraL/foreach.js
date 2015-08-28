@@ -1,7 +1,7 @@
 'use strict' ;
 /** @function
- * Function iterating over elements of  matrix object with params the item and indexs
- * @param {Function} map.
+ * Function iterating over elements of  matrix object with params the item and indexs.
+ * @param {Function} map whose params are the item and matrix's indexs.
  */
 module.exports = function  (map,B){
        if (!B || !map ) { return ;}
@@ -10,7 +10,7 @@ module.exports = function  (map,B){
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){
-               array[i-1][k-1]=map(B._(i,k),i,k) ;
+            map(B._(i,k),i,k) ;
            }
          }
        }
