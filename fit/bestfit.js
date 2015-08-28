@@ -37,7 +37,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
       for ( j = 0; j < l; j++) {
         arrayFit[j] = [_arrayFit[j][0],_arrayFit[j][1]] ;
       }
-      if (l ===0) { arrayFit.push([0,0]); }
+      if (l ===1) { arrayFit.unshift([0,0]); }
       a = arrayFit[0][0] ;b =arrayFit[l-1][0] ;
       if(noiseeliminate){
         arrayFit = noiseeliminatedata(arrayFit,{method :smoothingmethod, alpha : alpha});

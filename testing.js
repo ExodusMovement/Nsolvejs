@@ -14,7 +14,7 @@ var   growth = require('./fit/bestfit'),
       path_ansY = __dirname + '/plots/plot_ansy.dat',
       initialpoint =  0.5 ,
       interval =  [-3,5] ,
-      test_array= [[0,41],[4,60],[8,70],[18,80]],
+      test_array= [[1,41]],
       test_query = [] ,
       test_y     = [] ,
       array1 = [[1,   0,  0,   0,   0,   0],
@@ -67,7 +67,6 @@ var   growth = require('./fit/bestfit'),
      )
      .set(' output')
      .end();
-     console.log(regression('linear',[1,4]))
 //console.log(
   //'Solve the equation x⁵-16x⁴+2x³-20x²+6x-7-1.6 e^(-4x²) = 0 with initial point random selected  in an interval [-100,100] with a number maximum of steps of 1000 and 1000 partitions on the calculus of numerical derivative.'
 //);
@@ -79,7 +78,7 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
-//console.log('=> fit =', fit );
+console.log('=> fit =', fit );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 var start = new Date().getTime() ;
 
