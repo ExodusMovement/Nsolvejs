@@ -23,8 +23,13 @@ module.exports = function (x,nameF,equationFit) {
             } ,
         polynomial: function (x) {
         return  (-equationFit[1] +Math.sqrt(equationFit[1]*equationFit[1]-4*(equationFit[0] - x)*equationFit[2]))/(2*equationFit[2]) ;
-      }
-
+        },
+        inverse: function (x) {
+          return equationFit[0]/  x + equationFit[1] ;
+        },
+        sqrt: function (x) {
+          return Math.pow((x- equationFit[1])/equationFit[0],2 );
+        }
     };
 return Fname[nameF](x) ;
 };

@@ -14,9 +14,9 @@ var   growth = require('./fit/bestfit'),
       path_ansY = __dirname + '/plots/plot_ansy.dat',
       initialpoint =  0.5 ,
       interval =  [-3,5] ,
-      test_array= [[1,41]],
-      test_query = [] ,
-      test_y     = [] ,
+      test_array= [[0,40],[1,48],[3,56],[4,70]],
+      test_query = [3.4, 4.8, 8, 11] ,
+      test_y     = [75,83,99,105] ,
       array1 = [[1,   0,  0,   0,   0,   0],
                 [0.8 ,0,  0.2, 0 ,  0,   0 ],
                 [0 ,  0.2,0,   0.8 ,0,   0 ],
@@ -31,13 +31,13 @@ var   growth = require('./fit/bestfit'),
      V2= new nsolve.AL.vector([0,-1,1]),
      alpha , smoothing = true, noiseeliminate = false,
      smoothingmethod  ='exponential',
-      fit_methods = ['sqrt'];
+     fit_methods = ['sqrt','inverse'];
 
      function f(x) {
        return   Math.cos(x)-x;
      }
      commander
-     .option('-a, --alpha [n]', 'Value of alpha', parseFloat, 0.2)
+     .option('-a, --alpha [n]', 'Value of alpha', parseFloat)
      .parse(process.argv);
      alpha = commander.alpha || alpha ;
      if (alpha > 1) {

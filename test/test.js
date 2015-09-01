@@ -69,10 +69,13 @@ assert.equal(typeof fitted.fit.best.f, 'function'); // should returns true
 
 it('The ans_ofX should be a array.', function () {assert.equal(Array.isArray(fitted.ans_ofX),true); // should returns true
               });
+it('The first result of ans_ofX should be 8.71 .', function () {              assert.equal(fitted.ans_ofX[0][0].truncate(2),4.42); // should returns true
+                                                  });
 
 it('The ans_ofY should be a array.', function () {              assert.equal(Array.isArray(fitted.ans_ofY),true); // should returns true
                   });
-
+it('The first result of ans_ofY should be 61.03 .', function () {              assert.equal(fitted.ans_ofY[0][1].truncate(2),62.72); // should returns true
+                                    });
 it('The best fit used should be the exponential', function () {
 assert.equal(fitted.fitUsed,'inverse'); // should returns true
           });

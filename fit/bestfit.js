@@ -1,5 +1,6 @@
 'use strict';
 var  f              = require('./fitFunction'),
+     finv =         require('./fitFunctionInv'),
      betterfit      = require('./betterfit'),
      smoothingdata  = require('./smoothingdata'),
      noiseeliminatedata = require('./noise_eliminator'),
@@ -8,7 +9,7 @@ var  f              = require('./fitFunction'),
      gety               = require('./gety'),
      Fit                = require('./Fit'),
      setparams          = require('./setparams_bestfit'),
-     fit={},array_y= [],_fit ,array_x=[],interval;
+     fit={},array_y= [],_fit ,array_x=[],_setparams;
 /** @function
  * This function calculate the best fit to a Array given and make
  * a calculus of second argument with get_y and first argument with
@@ -18,12 +19,12 @@ var  f              = require('./fitFunction'),
  */
 module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     if(!_arrayFit){return ;}
-    setparams(get_y, get_x,options,callback);
-    get_x = get_x || [] ;
-    get_y = get_y || [] ;
+    _setparams = setparams(get_y, get_x,options,callback);
+    get_x  = _setparams.get_x; get_y= _setparams.get_y ;
+    options = _setparams.options; callback = _setparams.callback ;
     var fits_name = options.fits_name ,
         smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,
-        arrayFit=[],a,b ;
+        arrayFit=[],a,b ,using = options.using;
     /** Is used the fit if is passed */
     if (!(_arrayFit instanceof Array)) {
       fit = _arrayFit.fit;
@@ -35,7 +36,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     */
       var l = _arrayFit.length,j;
       for ( j = 0; j < l; j++) {
-        arrayFit[j] = [_arrayFit[j][0],_arrayFit[j][1]] ;
+        arrayFit[j] = [ _arrayFit[j][ using[0] ], _arrayFit[j][ using[1] ] ] ;
       }
       if (l ===1) { arrayFit.unshift([0,0]); }
       a = arrayFit[0][0] ;b =arrayFit[l-1][0] ;
@@ -52,19 +53,16 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     function h(x) {
      return  f(x,fit.best.name,fit[fit.best.name].regression.equation);
     }
-   /** Calculate the values of "y" using get_y. */
+    /** Calculate the values of "y" using get_y. */
     array_y = gety(h, get_y);
-   /** Choices the best  interval to solve the equation fit(x)=get_x.*/
-    if( fit.best.name !== 'logarithmic'){
-      interval = [a-6*(b-a),b+6*(b-a)];
-    } else {
-     interval = [a<0 ? 0.01 : a,b+5*(b-a)];
+    /**Define the inverse function*/
+    function hinv(x) {
+     return  finv(x,fit.best.name,fit[fit.best.name].regression.equation);
     }
-   var initial = b+a ;
-  /** Obtain the values "x" using get_x.*/
-   array_x = getx(fit.best.f,get_x, interval,initial) ;
-   /** Build the fit object to return.*/
-   _fit ={ ans_ofY         : array_y    ,
+    /** Obtain the values "x" using get_x.*/
+    array_x = getx(hinv,get_x) ;
+    /** Build the fit object to return.*/
+    _fit ={ ans_ofY        : array_y    ,
            ans_ofX         : array_x     ,
            fitOptions      : options    ,
            fitUsed         : fit.best.name ,
@@ -73,11 +71,11 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
            fitPointsUsed   : arrayFit,
            fitWithError    : fit.best.error,
            fit             : fit
-         };
+    };
           /** The callback function*/
-   if (callback) {
+    if (callback) {
     callback(_fit);
-   }
-   var fit_ =  new Fit(_fit);
-   return fit_ ;
+    }
+    var fit_ =  new Fit(_fit);
+    return fit_ ;
 } ;
