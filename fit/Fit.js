@@ -21,5 +21,6 @@
               this.fitParamsUsed   = _fit.fitParamsUsed;
               this.fitPointsUsed   = _fit.fitPointsUsed;
               this.fitWithError    = _fit.fitWithError ;
+              this.fitFunction     = _fit.fitFunction ;
               this.fit   = _fit.fit;
             };

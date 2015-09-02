@@ -4,7 +4,7 @@
  * @param {Number} variable x, {String} nameF, {Array} equationFit.
  * @return {Function}.
  */
-module.exports = function (x,nameF,equationFit) {
+module.exports = function (nameF,equationFit) {
     var Fname =  {
         linear: function (x) {
           return  equationFit[0] * x + equationFit[1] ;
@@ -32,5 +32,5 @@ module.exports = function (x,nameF,equationFit) {
      }
 
     };
-return Fname[nameF](x) ;
+        return Fname[nameF];
 };

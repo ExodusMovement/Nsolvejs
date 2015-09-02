@@ -43,8 +43,8 @@ module.exports= function(array_tofit,fits_name) {
     for ( j = 0 ; j < length ; j++){
         x     = array_tofit[j][0] ;
         error = error +
-        ( array_tofit[j][1]  - f(x,fits_name[i],fit[fits_name[i]].regression.equation)  )*
-        ( array_tofit[j][1]  - f(x,fits_name[i],fit[fits_name[i]].regression.equation)  );
+        ( array_tofit[j][1]  - f(fits_name[i],fit[fits_name[i]].regression.equation)(x)  )*
+        ( array_tofit[j][1]  - f(fits_name[i],fit[fits_name[i]].regression.equation)(x)  );
     }
     error = Math.sqrt(error/length) ;
     fit[fits_name[i]].error = error ;

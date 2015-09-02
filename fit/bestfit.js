@@ -1,6 +1,6 @@
 'use strict';
 var  f              = require('./fitFunction'),
-     finv =         require('./fitFunctionInv'),
+     finv = require('./fitFunctionInv'),
      betterfit      = require('./betterfit'),
      smoothingdata  = require('./smoothingdata'),
      noiseeliminatedata = require('./noise_eliminator'),
@@ -51,13 +51,13 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
       fit = betterfit(arrayFit,fits_name) ;
     }
     function h(x) {
-     return  f(x,fit.best.name,fit[fit.best.name].regression.equation);
+     return  f(fit.best.name,fit[fit.best.name].regression.equation)(x);
     }
     /** Calculate the values of "y" using get_y. */
     array_y = gety(h, get_y);
     /**Define the inverse function*/
     function hinv(x) {
-     return  finv(x,fit.best.name,fit[fit.best.name].regression.equation);
+     return  finv(fit.best.name,fit[fit.best.name].regression.equation)(x);
     }
     /** Obtain the values "x" using get_x.*/
     array_x = getx(hinv,get_x) ;
@@ -70,6 +70,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
            fitParamsUsed   : fit[fit.best.name].regression.equation,
            fitPointsUsed   : arrayFit,
            fitWithError    : fit.best.error,
+           fitFunction    : fit.best.f,
            fit             : fit
     };
           /** The callback function*/
