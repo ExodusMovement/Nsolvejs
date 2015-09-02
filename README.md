@@ -109,39 +109,40 @@ The `Object`is default options and are { npoints_DNumeric : 1000, precision : 0.
 ![Plot Data with Best fit](./plots/plotdata.png)
 
 
-Calculate the best fit using the first `Array`= [[x_1,y_2],[x_2,y_3],...[x_n,y_n]] argument as data input (if the fit is already calculated before you can pass it instead), the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name to use: the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b), if not specified take all function availables. The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
+Calculate the best fit using the first `Array`= [[x_1,y_1,z_1...],[x_2,y_2,z_2...],...[x_n,y_n,z_n,...]] argument as data input (if the fit is already calculated before you can pass it instead), the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name (the fits function) to use: the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b), if not specified take all function availables, using (array) property specified wich column of data in Array is taken to do the fist. The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
 
 ```js
-array_to_fit =[[0,1.1],[1,4.6],[2,1.9],[4,15]];
+array_to_fit =[[0,4,40],[1,-2,48],[3,9,56],[4,120,70]];
 array_of_x = [3.4, 4.8, 8, 11] ;
-array_of_y = [8,8.5,15,20];
-Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y ) =
-fit = { ans_ofY:
-   [ [ 3.4, 10.503636363636366 ],
-     [ 4.8, 21.457999999999984 ],
-     [ 8, 62.92272727272717 ],
-     [ 11, 122.55181818181795 ] ],
-  ans_ofX:
-   [ [ 2.9665881626844426, 8 ],
-     [ 3.0592101464091335, 8.5 ],
-     [ 4.043974243768653, 15 ],
-     [ 4.641597409834032, 20 ] ],
-  fitUsed: 'polynomial',
-  fitEquationUsed: 'y = 1.12x^2 + -1.33x + 2.11',
-  fitParamsUsed: [ 2.1118181818181747, -1.3259090909090778, 1.1159090909090879 ],
-  fitPointsUsed:
-   [ [ 0, 2.1118181818181747 ],
-     [ 1, 1.9018181818181847 ],
-     [ 2, 3.9236363636363705 ],
-     [ 4, 14.662727272727269 ] ],
-  fitWithError: 2.0329834635543396,
-  fit:
-   { linear: { regression: [Object], error: 2.8540621486399553 },
-     exponential: { regression: [Object], error: 2.094639809897245 },
-     logarithmic: { regression: [Object], error: NaN },
-     power: { regression: [Object], error: NaN },
-     polynomial: { regression: [Object], error: 2.0329834635543396 },
-     best: { name: 'polynomial', error: 2.0329834635543396, f: [Function] } } }
+array_of_y = [75,83,99,105];
+Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
+ fit = { ans_ofY: 
+   [ [ 3.4, 61.41945099444754 ],
+     [ 4.8, 77.93133160533434 ],
+     [ 8, 202.14957607090903 ],
+     [ 11, -408.9420392173956 ] ],
+  ans_ofX: 
+   [ [ 4.596464057224314, 75 ],
+     [ 5.118019106548409, 83 ],
+     [ 5.908254029766733, 99 ],
+     [ 6.142502239149309, 105 ] ],
+  fitOptions: 
+   { smoothing: true,
+     noiseeliminate: false,
+     smoothingmethod: 'exponential',
+     alpha: 0.9,
+     fits_name: [ 'sqrt', 'inverse' ],
+     using: [ 0, 2 ] },
+  fitUsed: 'inverse',
+  fitEquationUsed: 'y = -405.84/(x - 10.01)',
+  fitParamsUsed: [ -405.8350227553108, -10.007597693961792 ],
+  fitPointsUsed: [ [ 0, 40 ], [ 1, 47.2 ], [ 3, 55.12 ], [ 4, 68.512 ] ],
+  fitWithError: 2.05844894339866,
+  fit: 
+   { sqrt: { regression: [Object], error: 3.4369281428656664 },
+     inverse: { regression: [Object], error: 2.05844894339866 },
+     best: { name: 'inverse', error: 2.05844894339866, f: [Function] } } }
+
 ```
 ### `Linear Algebra`
 #### `Nsolvejs.AL.matrix(Array)`
