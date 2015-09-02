@@ -57,8 +57,6 @@ module.exports= function(array_tofit,fits_name) {
   /** Define the best fit found.*/
 fit.best = { name :best_fit,
              error: best_fit_error,
-             f : function (x) {
-               return f(x,best_fit,fit[best_fit].regression.equation) ;
-             }};
+             f : f(best_fit,fit[best_fit].regression.equation) };
 return fit ;
 };
