@@ -63,7 +63,7 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
     array_x = getx(hinv,get_x) ;
     /** Build the fit object to return.*/
     _fit ={ ans_ofY        : array_y    ,
-           ans_ofX         : array_x     ,
+           ans_ofX         : array_x    ,
            fitOptions      : options    ,
            fitUsed         : fit.best.name ,
            fitEquationUsed : fit[fit.best.name].regression.string,
