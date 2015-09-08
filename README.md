@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master&style=shields)](http://inch-ci.org/github/4yopping/Nsolvejs)
 [![npm version](https://badge.fury.io/js/nsolvejs.svg)](http://badge.fury.io/js/nsolvejs)
 [![Stories in Ready](https://badge.waffle.io/4yopping/Nsolvejs.svg?label=ready&title=Ready)](http://waffle.io/4yopping/Nsolvejs)
-[![NPM](https://nodei.co/npm/nsolvejs.png?mini=true)](https://nodei.co/npm/nsolvejs/)
 ## Introduction
 
 (Before JNsolve)Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
