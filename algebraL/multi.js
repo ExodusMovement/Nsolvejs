@@ -6,16 +6,25 @@ var product = require('./product');
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-module.exports= function (x){
-  if (!x) { return ;}
-  var l = arguments.length , A =x,B;
+function multi (array){
+  var l = array.length, A =array[0],B;
     for (var p = 1; p < l; p++){
-      B = arguments[p];
+      B = array[p];
       if(  A.column === B.raw){
       A=product(A,B)  ;
       }else{
       return ;
       }
-    }
     return A ;
-} ;
+}}
+module.exports = function () {
+  var cb = arguments[arguments.length-1];
+  if (typeof cb === 'function') {
+    arguments.pop();
+    setTimeout(function () {
+      cb(multi (arguments));
+    });
+  } else {
+    return multi (arguments) ;
+  }
+};

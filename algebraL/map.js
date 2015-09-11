@@ -4,7 +4,7 @@
  * @param {Function} map {Object} matrix.
  * @return {Object} matrix
  */
-module.exports = function  (map,B){
+function  mapp(map,B){
        if (!map || !B) { return ;}
        if(typeof map === 'function'  ){
          var ii=B.raw,kk=B.column,array = [],i,k ;
@@ -17,4 +17,13 @@ module.exports = function  (map,B){
          var Matrix = require('./Mat');
          return  new Matrix(array);
        }
-} ;
+}
+module.exports = function (map,B,cb){
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(mapp(map,B));
+    });
+  } else {
+    return mapp(map,B) ;
+  }
+};

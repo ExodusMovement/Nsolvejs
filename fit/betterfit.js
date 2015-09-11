@@ -9,7 +9,7 @@ var regression = require('regression'),
  * @param {Array} array_tofit
  * @return {Object} Best fit
  */
-module.exports= function(array_tofit,fits_name) {
+function better(array_tofit,fits_name) {
   fits_name = fits_name ||['linear','exponential','logarithmic','power','polynomial','inverse','sqrt'];
   length_namefit = fits_name.length ;
   array_Cloned   = _.clone(array_tofit,true) ;
@@ -59,4 +59,14 @@ fit.best = { name :best_fit,
              error: best_fit_error,
              f : f(best_fit,fit[best_fit].regression.equation) };
 return fit ;
+}
+
+module.exports = function (array_tofit,fits_name,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(better(array_tofit,fits_name));
+    });
+  } else {
+    return better(array_tofit,fits_name) ;
+  }
 };

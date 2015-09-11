@@ -7,7 +7,7 @@ dkronecker = require('../utils/dkronecker');
  * @return {Object} matrix
  */
 
-module.exports = function (n) {
+ function ident(n) {
   var  Matrix= require('../algebraL/Mat');
   if (!n) { return ;}
   var array = [];
@@ -18,4 +18,14 @@ module.exports = function (n) {
       }
   }
  return new Matrix(array);
+}
+
+module.exports = function (n,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(ident(n));
+    });
+  } else {
+    return ident(n) ;
+  }
 };

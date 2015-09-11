@@ -19,11 +19,24 @@ var sum =  function (A,B){
        return new Y(array)  ;
        }
 } ;
-       module.exports= function (x){
-         var l = arguments.length , A=x,B,p;
+      function addd(array){
+         var l = array.length , A=array[0],B,p;
            for ( p = 1; p < l; p++){
-             B = arguments[p];
-             A=sum(A,B)  ;
+             B = array[p];
+             A=sum(A,B) ;
            }
-         return A ;
-       } ;
+        return A ;
+       }
+
+
+       module.exports = function () {
+         var cb = arguments[arguments.length-1];
+         if ( typeof cb === 'function') {
+           arguments.pop();
+           setTimeout(function () {
+             cb(addd(arguments));
+           });
+         } else {
+           return addd(arguments) ;
+         }
+       };

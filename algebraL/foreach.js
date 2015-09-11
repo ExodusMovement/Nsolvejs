@@ -3,7 +3,7 @@
  * Function iterating over elements of  matrix object with params the item and indexs.
  * @param {Function} map whose params are the item and matrix's indexs.
  */
-module.exports = function  (map,B){
+function  foreach(map,B){
        if (!B || !map ) { return ;}
        if(typeof map === 'function'  ){
          var ii=B.raw,kk=B.column,array = [],i,k ;
@@ -14,4 +14,13 @@ module.exports = function  (map,B){
            }
          }
        }
-} ;
+}
+module.exports =function (map,B,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(foreach(map,B));
+    });
+  } else {
+    return foreach(map,B) ;
+  }
+};

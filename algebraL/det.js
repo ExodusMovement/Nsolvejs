@@ -27,4 +27,12 @@ var   minor = require('./minor');
          return  det;
        }
      };
-module.exports = det ;
+module.exports = function (B,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(det(B));
+    });
+  } else {
+    return det(B) ;
+  }
+};

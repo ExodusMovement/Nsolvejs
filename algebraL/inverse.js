@@ -8,7 +8,7 @@ var  det = require('./det'),
  * @param  {Object} matrix
  * @return {Object} matrix
  */
-     module.exports =function (B){
+function inverse(B){
        if (!B) { return ;}
        var dett,adjj;
        if(  B.raw === B.column ){
@@ -17,5 +17,15 @@ var  det = require('./det'),
          if (dett !== 0) {
          return pscalar(1/dett,adjj);
          }
+       }
+     }
+
+     module.exports = function (B,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(inverse(B));
+         });
+       } else {
+         return inverse(B) ;
        }
      };

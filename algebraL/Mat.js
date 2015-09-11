@@ -44,32 +44,32 @@ var matrix =  function (array){
           this.trans =  function (){
             return trans(this);
           };
-          this.x = function (A) {
-            return x(this,A);
+          this.x = function (A,cb) {
+            return x(this,A,cb);
           };
-          this.plus = function (A) {
-            return plus(this,A);
+          this.plus = function (A,cb) {
+            return plus(this,A,cb);
           };
-          this.scalar = function (alpha) {
-            return scalar(alpha,this);
+          this.scalar = function (alpha,cb) {
+            return scalar(alpha,this,cb);
           };
-          this.pow = function (n) {
-            return pow(this,n );
+          this.pow = function (n,cb) {
+            return pow(this,n ,cb);
           };
-          this.minor = function (i,j) {
-            return minor(i,j,this );
+          this.minor = function (i,j,cb) {
+            return minor(i,j,this,cb);
           };
-          this.map = function (cb) {
-            return map(cb,this);
+          this.map = function (cb,_cb) {
+            return map(cb,this,_cb);
           };
-          this.truncate = function (n) {
+          this.truncate = function (n,cb) {
             var _truncate = function (item) {
               return truncate(item,n);
             };
-            return map(_truncate,this);
+            return map(_truncate,this,cb);
           };
-          this.forEach = function (map) {
-            forEach(map,this);
+          this.forEach = function (map,cb) {
+            forEach(map,this,cb);
           };
         }
     }

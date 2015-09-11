@@ -4,7 +4,6 @@
   var sum = require('./sum');
   var crossp = require('./crossp');
   var dotp = require('./dotp');
-  var map = require('./map');
   /** @constructor
    * Constructor of a Vector.
    * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.

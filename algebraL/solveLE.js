@@ -1,5 +1,5 @@
 'use strict' ;
-var  
+var
      det = require('./det'),
      product = require('./product'),
      inv = require('./inverse');
@@ -11,7 +11,7 @@ var
  * @param {Array} A  {Array} B
  * @return {Object} matrix
  */
-     module.exports = function (M,R){
+function solve(M,R){
        var Matrix= require('../algebraL/Mat');
        if (!M || !R) { return ;}
        var A = new Matrix(M);
@@ -27,5 +27,14 @@ var
            var _R= product(inv(A),B);
            return _R ;
          }
+       }
+     }
+     module.exports = function (M,R,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(solve(M,R));
+         });
+       } else {
+         return solve(M,R) ;
        }
      };

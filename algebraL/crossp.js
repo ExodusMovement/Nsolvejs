@@ -5,7 +5,7 @@
      * @param {Object} vector {Object} vector.
      * @return {Object} vector
      */
-module.exports = function (A,B) {
+ function crossp(A,B) {
     if (!A && !B) { return ;}
     var Vector= require('./vector');
     var i,j,k,array=[];
@@ -18,4 +18,14 @@ module.exports = function (A,B) {
       }
     }
     return new Vector(array);
+}
+module.exports = function (A,B,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(crossp(A,B));
+    });
+  } else {
+    return crossp(A,B) ;
+  }
+
 };

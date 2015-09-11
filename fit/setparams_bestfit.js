@@ -1,10 +1,9 @@
 'use strict';
-module.exports = function (get_y, get_x,options,callback) {
+module.exports = function (get_y, get_x,options) {
   if(get_x && get_x.length === undefined ){options = get_x ; get_x = undefined;}
   if(get_y && get_y.length === undefined ){
     options = get_y ; get_y = undefined;
   }
-  if(typeof options ==='function'){callback = options ; options = undefined;}
   if(!options){
     options ={
       using : [0,1],
@@ -23,6 +22,6 @@ module.exports = function (get_y, get_x,options,callback) {
   if( !get_y){ get_y = [];}
  return {get_x : get_x,
           get_y : get_y,
-        options : options,
-      callback : callback};
+        options : options
+      };
 };

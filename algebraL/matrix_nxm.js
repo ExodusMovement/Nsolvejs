@@ -4,7 +4,7 @@
  * @param {Number} n {Number} m {Function} mapping .
  * @return {Object} vector
  */
-module.exports = function (n,m,map) {
+ function nxm(n,m,map) {
   var Matrix= require('../algebraL/Mat');
   if (!n || !m || !map) { return ;}
   var array = [],i,j;
@@ -15,4 +15,14 @@ module.exports = function (n,m,map) {
       }
   }
  return new Matrix(array);
+}
+
+module.exports = function (n,m,map,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb( nxm(n,m,map) );
+    });
+  } else {
+    return  nxm(n,m,map)  ;
+  }
 };

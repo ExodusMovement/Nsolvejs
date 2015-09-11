@@ -7,7 +7,8 @@ var     det = require('./det'),
  * @param  {Object} matrix
  * @return {Object} matrix
  */
-     module.exports = function (B){
+function adj(B){
+
        if (!B) { return ;}
        var  Matrix = require('./Mat');
        if (B.raw > 1) {
@@ -23,4 +24,13 @@ var     det = require('./det'),
          }
        }
        return new Matrix([[1]]);
-     } ;
+     }
+   module.exports = function (B,cb) {
+     if (cb && typeof cb === 'function') {
+       setTimeout(function () {
+         cb(adj(B));
+       });
+     } else {
+       return adj(B) ;
+     }
+   };

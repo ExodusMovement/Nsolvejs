@@ -4,7 +4,7 @@
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
- module.exports = function (A,B){
+function product(A,B){
        if (!A || !B) { return ;}
        if( A.column === B.raw){
          var ii=A.raw,jj=A.column,kk=B.column,array = [],i,j,k ;
@@ -20,4 +20,15 @@
          var Matrix = require('./Mat');
          return  new Matrix(array);
        }
-     } ;
+     }
+
+
+     module.exports = function (A,B,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(product(A,B));
+         });
+       } else {
+         return product(A,B);
+       }
+     };

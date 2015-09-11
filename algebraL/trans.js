@@ -4,7 +4,7 @@
  * @param {Object} matrix
  * @return {Object} matrix
  */
-      module.exports =  function (B){
+function trans(B){
         if (!B) { return ;}
          var ii=B.column,kk=B.raw,array = [],i,k ;
          for (i=1 ;i <= ii;i++){
@@ -15,4 +15,13 @@
          }
           var Matrix = require('./Mat');
          return  new Matrix(array) ;
-     } ;
+     }
+     module.exports = function (B,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(trans(B));
+         });
+       } else {
+         return trans(B) ;
+       }
+     };

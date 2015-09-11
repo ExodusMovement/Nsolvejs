@@ -8,7 +8,7 @@ product = require('./product');
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-module.exports =function (A,n){
+function pow(A,n){
   var Matrix = require('./Mat');
   if (!A) { return ;}
   if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.raw) {
@@ -33,4 +33,14 @@ module.exports =function (A,n){
     }
   return B;
   }
-} ;
+}
+
+module.exports = function (A,n,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+      cb(pow(A,n));
+    });
+  } else {
+    return pow(A,n) ;
+  }
+};

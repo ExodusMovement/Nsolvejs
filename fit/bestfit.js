@@ -17,11 +17,11 @@ var  f              = require('./fitFunction'),
  * @param {Array} arrayFit, {Array} get_y,  {Array} get_x
  * @return {Object} fit
  */
-module.exports = function(_arrayFit, get_y, get_x,options,callback) {
+ function bestfit(_arrayFit, get_y, get_x,options) {
     if(!_arrayFit){return ;}
-    _setparams = setparams(get_y, get_x,options,callback);
+    _setparams = setparams(get_y, get_x,options);
     get_x  = _setparams.get_x; get_y= _setparams.get_y ;
-    options = _setparams.options; callback = _setparams.callback ;
+    options = _setparams.options;
     var fits_name = options.fits_name ,
         smoothing = options.smoothing, alpha = options.alpha, smoothingmethod = options.smoothingmethod,noiseeliminate= options.noiseeliminate,
         arrayFit=[],a,b ,using = options.using;
@@ -74,9 +74,17 @@ module.exports = function(_arrayFit, get_y, get_x,options,callback) {
            fit             : fit
     };
           /** The callback function*/
-    if (callback) {
-    callback(_fit);
-    }
     var fit_ =  new Fit(_fit);
     return fit_ ;
-} ;
+}
+
+
+module.exports = function (_arrayFit, get_y, get_x,options,cb) {
+  if (cb && typeof cb === 'function') {
+    setTimeout(function () {
+        cb(bestfit(_arrayFit, get_y, get_x,options));
+    });
+  } else {
+        return bestfit(_arrayFit, get_y, get_x,options);
+  }
+};

@@ -6,7 +6,7 @@ var  _ = require('lodash') ;
  * @param {Number} m  {Number} n  {Object} matrix
  * @return {Object} matrix
  */
-module.exports =  function (m,n,B){
+function minor(m,n,B){
        if (!m || !m || !B) { return ;}
        if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.raw && 0<n && n <= B.column ){
          var ii=B.raw,array,i ;
@@ -17,5 +17,15 @@ module.exports =  function (m,n,B){
          array.splice(m-1,1);
          var Matrix = require('./Mat');
          return  new Matrix(array);
+       }
+     }
+
+     module.exports = function (m,n,B,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(minor(m,n,B));
+         });
+       } else {
+         return minor(m,n,B) ;
        }
      };

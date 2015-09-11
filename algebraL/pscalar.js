@@ -4,7 +4,7 @@
  * @param {Number} scalar {Object} matrix.
  * @return {Object} matrix
  */
-     module.exports = function  (alpha,B){
+function  pscalar(alpha,B){
        if (!B) { return ;}
        if (typeof alpha === 'undefined') {alpha = 1;}
        if(typeof alpha === 'number'  ){
@@ -18,4 +18,14 @@
          var Matrix = require('./Mat');
          return  new Matrix(array);
        }
-     } ;
+     }
+
+     module.exports = function (alpha,B,cb) {
+       if (cb && typeof cb === 'function') {
+         setTimeout(function () {
+           cb(pscalar(alpha,B));
+         });
+       } else {
+         return pscalar(alpha,B) ;
+       }
+     };
