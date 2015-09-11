@@ -10,7 +10,7 @@
 }
 module.exports = function (A,B,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb(dot(A,B));
     });
   } else {

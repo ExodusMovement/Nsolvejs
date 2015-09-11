@@ -19,7 +19,7 @@
 
 module.exports = function (n,m,map,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb( nxm(n,m,map) );
     });
   } else {

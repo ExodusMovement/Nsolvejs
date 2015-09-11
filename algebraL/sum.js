@@ -33,7 +33,7 @@ var sum =  function (A,B){
          var cb = arguments[arguments.length-1];
          if ( typeof cb === 'function') {
            arguments.pop();
-           setTimeout(function () {
+           setImmediate(function () {
              cb(addd(arguments));
            });
          } else {

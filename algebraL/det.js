@@ -29,7 +29,7 @@ var   minor = require('./minor');
      };
 module.exports = function (B,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb(det(B));
     });
   } else {

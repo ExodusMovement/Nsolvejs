@@ -25,7 +25,7 @@ function product(A,B){
 
      module.exports = function (A,B,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+         setImmediate(function () {
            cb(product(A,B));
          });
        } else {

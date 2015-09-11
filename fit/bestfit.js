@@ -4,6 +4,8 @@ var  f              = require('./fitFunction'),
      betterfit      = require('./betterfit'),
      smoothingdata  = require('./smoothingdata'),
      noiseeliminatedata = require('./noise_eliminator'),
+     fn =               require('./fitf(x)'),
+     fninv =               require('./fitfinv(x)'),
      _                  = require('underscore'),
      getx               = require('./getx'),
      gety               = require('./gety'),
@@ -66,7 +68,8 @@ var  f              = require('./fitFunction'),
            ans_ofX         : array_x    ,
            fitOptions      : options    ,
            fitUsed         : fit.best.name ,
-           fitEquationUsed : fit[fit.best.name].regression.string,
+           fit_f :      eval(fn(fit.best.name,fit[fit.best.name].regression.equation)),
+           fit_finv :      eval(fninv(fit.best.name,fit[fit.best.name].regression.equation)),
            fitParamsUsed   : fit[fit.best.name].regression.equation,
            fitPointsUsed   : arrayFit,
            fitWithError    : fit.best.error,
@@ -81,7 +84,7 @@ var  f              = require('./fitFunction'),
 
 module.exports = function (_arrayFit, get_y, get_x,options,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
         cb(bestfit(_arrayFit, get_y, get_x,options));
     });
   } else {

@@ -18,7 +18,7 @@ function trans(B){
      }
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+         setImmediate(function () {
            cb(trans(B));
          });
        } else {

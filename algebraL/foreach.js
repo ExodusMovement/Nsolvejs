@@ -17,7 +17,7 @@ function  foreach(map,B){
 }
 module.exports =function (map,B,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb(foreach(map,B));
     });
   } else {

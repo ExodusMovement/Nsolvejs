@@ -21,7 +21,7 @@ module.exports = function () {
   var cb = arguments[arguments.length-1];
   if (typeof cb === 'function') {
     arguments.pop();
-    setTimeout(function () {
+    setImmediate(function () {
       cb(multi (arguments));
     });
   } else {

@@ -9,7 +9,7 @@ function sum(j,n,map) {
 
 module.exports = function (j,n,map,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+     setImmediate(function () {
       cb(sum(j,n,map));
     });
   } else {

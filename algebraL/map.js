@@ -20,7 +20,7 @@ function  mapp(map,B){
 }
 module.exports = function (map,B,cb){
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb(mapp(map,B));
     });
   } else {

@@ -22,7 +22,7 @@ function inverse(B){
 
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+         setImmediate(function () {
            cb(inverse(B));
          });
        } else {

@@ -22,7 +22,7 @@ function  pscalar(alpha,B){
 
      module.exports = function (alpha,B,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+        setImmediate(function () {
            cb(pscalar(alpha,B));
          });
        } else {

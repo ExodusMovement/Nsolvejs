@@ -31,7 +31,7 @@ function solve(M,R){
      }
      module.exports = function (M,R,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+         setImmediate(function () {
            cb(solve(M,R));
          });
        } else {

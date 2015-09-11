@@ -22,7 +22,7 @@ dkronecker = require('../utils/dkronecker');
 
 module.exports = function (n,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+    setImmediate(function () {
       cb(ident(n));
     });
   } else {

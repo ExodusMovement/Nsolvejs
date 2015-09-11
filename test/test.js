@@ -80,10 +80,6 @@ it('The best fit used should be the exponential', function () {
 assert.equal(fitted.fitUsed,'inverse'); // should returns true
           });
 
-it('The best fit equation should be y = 40.55e^(0.13x)', function () {
-  assert.equal( fitted.fitEquationUsed, 'y = -394.16x + 9.68'); // should returns true
-            });
-
 it('The bestfit object define a function of the fit.', function () {
 assert.equal( typeof fitted.fit.best.f , 'function'); // should returns true
             });

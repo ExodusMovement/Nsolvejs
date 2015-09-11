@@ -22,7 +22,7 @@ function minor(m,n,B){
 
      module.exports = function (m,n,B,cb) {
        if (cb && typeof cb === 'function') {
-         setTimeout(function () {
+         setImmediate(function () {
            cb(minor(m,n,B));
          });
        } else {

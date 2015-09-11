@@ -37,7 +37,7 @@ function pow(A,n){
 
 module.exports = function (A,n,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
+  setImmediate(function () {
       cb(pow(A,n));
     });
   } else {

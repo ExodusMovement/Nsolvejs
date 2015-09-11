@@ -78,17 +78,13 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> Newton_Raphson =', nsolve.calculusN.Newton_Raphson(f,interval,9));
 
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
-//console.log('=> fit =', fit );
+console.log('=> fit =', fit.fit_finv );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 var start = new Date().getTime() ;
-console.log('aqui');
-
-(function () {
-  setTimeout(function() {
-    console.log('=> pow =',nsolve.AL.matrix.pow(A,1999).truncate(4).array );
-  });
-  console.log('dentro');
-})();
+console.log('aqui antes');
+    console.log('=> pow=',nsolve.AL.matrix.pow(A,2,function () {
+      console.log('potencia=');
+    }) );
 console.log('despues');
 
 var end = new Date().getTime() ;
@@ -96,13 +92,16 @@ var time = end - start;
 console.log('Execution time: ' + time/1000);
 
 
-
-
 //console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 
 //console.log('=> product =', product(A,A).array );
 
 //console.log('=> pscalar =',nsolve.AL.matrix.pscalar(3,A).array );
+var l = 1
+for (var i = 0; i < 1000000; i++) {
+l += i*i;
+}
+console.log('mucho despues');
 
 //console.log('=> sum =',nsolve.AL.matrix.sum(A,A).array );
 

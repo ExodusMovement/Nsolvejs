@@ -27,7 +27,7 @@ function adj(B){
      }
    module.exports = function (B,cb) {
      if (cb && typeof cb === 'function') {
-       setTimeout(function () {
+       setImmediate(function () {
          cb(adj(B));
        });
      } else {
