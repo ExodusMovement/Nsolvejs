@@ -80,7 +80,7 @@ var  f              = require('./fitFunction'),
     var fit_ =  new Fit(_fit);
     return fit_ ;
 }
-
+/**Here we wrapper the function to maje a non-blocking*/
 
 module.exports = function (_arrayFit, get_y, get_x,options,cb) {
   if (cb && typeof cb === 'function') {
