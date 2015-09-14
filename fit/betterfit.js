@@ -60,6 +60,7 @@ fit.best = { name :best_fit,
              f : f(best_fit,fit[best_fit].regression.equation) };
 return fit ;
 }
+/**Here we wrapper the function to maje a non-blocking*/
 
 module.exports = function (array_tofit,fits_name,cb) {
   if (cb && typeof cb === 'function') {
