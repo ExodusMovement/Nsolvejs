@@ -82,10 +82,14 @@ console.log('=> fit =', fit.fit_finv );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 var start = new Date().getTime() ;
 console.log('aqui antes');
-    console.log('=> pow=',nsolve.AL.matrix.pow(A,2,function () {
-      console.log('potencia=');
-    }) );
+nsolve.AL.matrix.pow(A,2000,function () {
+      console.log('potencia1=');
+    });
 console.log('despues');
+nsolve.AL.matrix.pow(A,4,function () {
+      console.log('potencia2=');
+    });
+
 
 var end = new Date().getTime() ;
 var time = end - start;

@@ -1,42 +1,42 @@
 'use strict';
-var numbers = require('numbers');
-var _ = require('underscore');
+var _     = require('underscore'),
+fn        = require('./fitf(x)'),
+betterfit = require('./betterfit');
 /** @function
  * This function elimanate the noise of  a set of datas given. The arraynoisy have to be like [[t_1,x_1],[t_2,x_2]...].
- * @param {Array} arraynoisy.
+ * @param {Array} arraynoisy {object} fit.
  * @return {Array} arrayflattened.
  */
-module.exports = function(arraynoisy) {
-var array = [],length = arraynoisy.length,i, mean, sigma,limit,arrayflattened,error,n=1,j=1;
-array[j]=[];
-arrayflattened =_.clone(arraynoisy,true) ;
-for ( i = 0; i < length; i++) {
-  array[j][i] = arraynoisy[i][1] ;
-}
-// Calculate the Central tendency values.
-mean = numbers.statistic.mean(array[j]);
-sigma = numbers.statistic.standardDev(array[j]);
-// Dispersion limit
-limit = 3.5*sigma ;
-//Loop to filter noisy data.
-while(n !== 0 ){
-  i=0 ;
-  while ( arrayflattened[i] ) {
-    error = Math.abs(arrayflattened[i][1]-mean);
-    if( error >= limit ){
-      arrayflattened.splice(i,0) ;
-      n++;i-- ;
-    }
-    i++;
-  }
-  n--; j++ ; length = arrayflattened.length ;
-  array[j]=[];
-  for ( i = 0; i < length; i++) {
-    array[j][i] = arrayflattened[i][1] ;
-  }
-  mean = numbers.statistic.mean(array[j]);
-  sigma = numbers.statistic.standardDev(array[j]);
+var flatted= function(arraynoisy,_fit) {
+  var fit = _.clone(_fit,true);
+  var sigma =fit.best.error, fits_name = fit.fitOptions.fits_name,
+  l = arraynoisy.length,
+  f = eval(fn(fit.best.name,fit[fit.best.name].regression.equation));
+  var i,limit,arrayflattened,error,x,n=1;
+  arrayflattened =_.clone(arraynoisy,true) ;
+  // Dispersion limit
   limit = 3.5*sigma ;
-}
-return arrayflattened ;
+  //Loop to filter noisy data.
+  while(n !== 0 ){
+    i=0 ;
+    while ( arrayflattened[i] ) {
+      x = arrayflattened[i][0];
+      error = Math.abs(arrayflattened[i][1]-f(x));
+      if( error >= limit ){
+        arrayflattened.splice(i,0) ;
+        n++;i-- ;
+      }
+      i++;
+    }
+    n--;
+    fit = betterfit(arrayflattened,fits_name);
+    f = eval(fn(fit.best.name,fit[fit.best.name].regression.equation));
+    sigma  = fit.best.error;
+    limit = 3.5*sigma ;
+  }
+  if(l !== arrayflattened.length){
+    arrayflattened =_.clone(flatted(arrayflattened,fit),true) ;
+  }
+  return arrayflattened ;
 } ;
+module.exports = flatted;

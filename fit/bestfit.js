@@ -29,11 +29,12 @@ var  f              = require('./fitFunction'),
         arrayFit=[],a,b ,using = options.using;
     /** Is used the fit if is passed */
     if (!(_arrayFit instanceof Array)) {
-      fit = _arrayFit.fit;
+      fit = _.clone(_arrayFit.fit,true);
       arrayFit = _.clone(_arrayFit.fitPointsUsed,true) ;
       a = arrayFit[0][0] ;b =arrayFit[arrayFit.length-1][0];
     }else {
-    /** If not, the fit is calculated
+    /**
+    *   If not, the fit is calculated
     *   The noise is elimanated from data.
     */
       var l = _arrayFit.length,j;
@@ -43,7 +44,7 @@ var  f              = require('./fitFunction'),
       if (l ===1) { arrayFit.unshift([0,0]); }
       a = arrayFit[0][0] ;b =arrayFit[l-1][0] ;
       if(noiseeliminate){
-        arrayFit = noiseeliminatedata(arrayFit,{method :smoothingmethod, alpha : alpha});
+        arrayFit = noiseeliminatedata(arrayFit);
       }
       /** The data are smoothed. */
       if(smoothing){
