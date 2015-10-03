@@ -8,10 +8,10 @@
   var Matrix= require('../algebraL/Mat');
   if (!n || !m || !map) { return ;}
   var array = [],i,j;
-  for ( i = 0; i <n ; i++) {
-      array[i]=[];
-      for ( j = 0; j <m ; j++) {
-          array[i][j]=map(i,j);
+  for ( i = 1; i <=n ; i++) {
+      array[i-1]=[];
+      for ( j = 1; j <=m ; j++) {
+          array[i-1][j-1]=map(i,j);
       }
   }
  return new Matrix(array);

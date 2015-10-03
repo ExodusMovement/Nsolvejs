@@ -2,6 +2,7 @@
 var
     dkronecker = require('../utils/dkronecker'),
 product = require('./product');
+var async = require('simple-asyncify');
 
 /** @function
  * multiply the matrix object.
@@ -34,12 +35,11 @@ function pow(A,n){
   return B;
   }
 }
+var pow_async=async(pow);
 
 module.exports = function (A,n,cb) {
   if (cb && typeof cb === 'function') {
-  setTimeout(function () {
-      cb(pow(A,n));
-    });
+  pow_async(A,n,cb);
   } else {
     return pow(A,n) ;
   }

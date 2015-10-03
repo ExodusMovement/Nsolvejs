@@ -35,9 +35,11 @@
   },
   "homepage": "https://github.com/4yopping/nsolvejs#readme",
   "dependencies": {
+    "async": "^1.4.2",
     "lodash": "^3.10.1",
     "numbers": "^0.6.0",
     "regression": "^1.2.1",
+    "simple-asyncify": "^1.0.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
