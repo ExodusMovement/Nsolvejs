@@ -1,6 +1,6 @@
 {
   "name": "nsolvejs",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
   "main": "index.js",
   "scripts": {

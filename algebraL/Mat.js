@@ -86,5 +86,13 @@ matrix.pow = pow;
 matrix.map = map;
 matrix.forEach = forEach;
 matrix.create = matrix_nxm;
+matrix.diagonal = function (n,m) {
+  return matrix.create(n,m,function (i,j) {
+    if (i===j) {
+      return 1;
+    }
+    return 0;
+  });
+};
 
 module.exports = matrix ;
