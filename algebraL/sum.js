@@ -28,15 +28,16 @@ var sum =  function (A,B){
         return A ;
        }
 
-
        module.exports = function () {
+         var arg= Array.prototype.slice.call(arguments);
          var cb = arguments[arguments.length-1];
-         if ( typeof cb === 'function') {
-           arguments.pop();
+         if (typeof cb === 'function') {
+           console.log( arg instanceof Array );
+           arg.pop();
            setImmediate(function () {
-             cb(addd(arguments));
+             cb(addd (arg));
            });
          } else {
-           return addd(arguments) ;
+           return addd (arguments) ;
          }
        };

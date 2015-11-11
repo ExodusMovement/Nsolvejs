@@ -18,11 +18,13 @@ function multi (array){
     return A ;
 }}
 module.exports = function () {
+  var arg= Array.prototype.slice.call(arguments);
   var cb = arguments[arguments.length-1];
   if (typeof cb === 'function') {
-    arguments.pop();
+    console.log( arg instanceof Array );
+    arg.pop();
     setImmediate(function () {
-      cb(multi (arguments));
+      cb(multi (arg));
     });
   } else {
     return multi (arguments) ;
