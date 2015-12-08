@@ -1,8 +1,12 @@
 {
   "node": true,
+  "asi" : true,
   "curly": true,
   "eqeqeq": true,
+  "esnext": true,
   "eqnull": true,
+  "asi": true,
+  "predef": [],
   "globalstrict": true,
   "indent": 2,
   "latedef": true,
@@ -23,6 +27,6 @@
   },
   "maxparams": 5,
   "maxdepth": 3,
-  "maxstatements": 100,
-  "maxcomplexity": 10
+  "maxstatements": 10,
+  "maxcomplexity": 7
 }
