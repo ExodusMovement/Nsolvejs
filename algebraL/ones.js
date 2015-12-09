@@ -13,12 +13,12 @@ var builder = require('./matrix_nxm');
  })
 }
 
-module.exports = function (n,cb) {
+module.exports = function (n,m,cb) {
   if (cb && typeof cb === 'function') {
     setImmediate(function () {
-      cb(ones(n));
+      cb(ones(n,m));
     });
   } else {
-    return ones(n) ;
+    return ones(n,m) ;
   }
 };

@@ -16,7 +16,7 @@ var identM= require('./identM');
 var zeros = require('./zeros');
 var ones = require('./ones');
 var _x =  require('./multiDirect');
-var _pow = require('./powDirect'),
+var _pow = require('./powDirect');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -69,6 +69,9 @@ var matrix =  function (array){
           };
           this.pow = function (n,cb) {
             return pow(this,n ,cb);
+          };
+          this._pow = function (n,cb) {
+            return _pow(this,n ,cb);
           };
           this.minor = function (i,j,cb) {
             return minor(i,j,this,cb);

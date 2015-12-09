@@ -20,12 +20,12 @@ dkronecker = require('../utils/dkronecker');
  return new Matrix(array);
 }
 
-module.exports = function (n,cb) {
+module.exports = function (n,m,cb) {
   if (cb && typeof cb === 'function') {
     setImmediate(function () {
-      cb(ident(n));
+      cb(ident(n,m));
     });
   } else {
-    return ident(n) ;
+    return ident(n,m) ;
   }
 };
