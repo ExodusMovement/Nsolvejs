@@ -6,6 +6,8 @@
  */
 function trans(B){
         if (!B) { return ;}
+        var Matrix = require('./Mat');
+        if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
          var ii=B.column,kk=B.raw,array = [],i,k ;
          for (i=1 ;i <= ii;i++){
            array[i-1]=[];
@@ -13,14 +15,18 @@ function trans(B){
                array[i-1][k-1]=B._(k,i);
            }
          }
-          var Matrix = require('./Mat');
          return  new Matrix(array) ;
      }
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(trans(B));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,trans(B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
          return trans(B) ;
        }

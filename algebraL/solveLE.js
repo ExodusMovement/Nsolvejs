@@ -25,15 +25,20 @@ function solve(M,R){
            }
            var B = new Matrix(_B) ;
            var _R= product(inv(A),B);
-           return _R ;
+           return _R.trans().array[0] ;
          }
        }
      }
      module.exports = function (M,R,cb) {
        if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(solve(M,R));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,solve(M,R)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
          return solve(M,R) ;
        }

@@ -6,6 +6,9 @@
  */
 function product(A,B){
        if (!A || !B) { return ;}
+       var  Matrix = require('./Mat');
+       if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        if( A.column === B.raw){
          var ii=A.raw,jj=A.column,kk=B.column,array = [],i,j,k ;
          for (i=1 ;i<=ii;i++){
@@ -17,18 +20,21 @@ function product(A,B){
              }
            }
          }
-         var Matrix = require('./Mat');
          return  new Matrix(array);
        }
      }
 
-
      module.exports = function (A,B,cb) {
        if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(product(A,B));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,product(A,B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
-         return product(A,B);
+         return product(A,B) ;
        }
      };

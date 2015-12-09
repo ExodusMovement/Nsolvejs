@@ -8,9 +8,9 @@ var     det = require('./det'),
  * @return {Object} matrix
  */
 function adj(B){
-
        if (!B) { return ;}
        var  Matrix = require('./Mat');
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        if (B.raw > 1) {
          if( B.raw === B.column ){
            var ii=B.raw,kk=B.column,array = [],i,k ;
@@ -27,9 +27,14 @@ function adj(B){
      }
    module.exports = function (B,cb) {
      if (cb && typeof cb === 'function') {
-       setImmediate(function () {
-         cb(adj(B));
-       });
+       return new Promise(function(full,rej){
+         try {
+           full(cb(null,adj(B)))
+         } catch (e) {
+           rej(cb(e))
+         }
+       }
+    )
      } else {
        return adj(B) ;
      }

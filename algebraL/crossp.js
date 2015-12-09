@@ -8,6 +8,8 @@
  function crossp(A,B) {
     if (!A && !B) { return ;}
     var Vector= require('./vector');
+    if (!(A instanceof Vector) && Array.isArray(A)) {A = Vector(A)}
+    if (!(B instanceof Vector) && Array.isArray(B)) {B = Vector(B)}
     var i,j,k,array=[];
     for ( i = 0; i<3; i++){
       array[i]=0;
@@ -21,11 +23,15 @@
 }
 module.exports = function (A,B,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(crossp(A,B));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,crossp(A,B)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
     return crossp(A,B) ;
   }
-
 };

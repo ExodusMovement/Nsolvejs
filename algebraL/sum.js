@@ -7,7 +7,9 @@
 
 var sum =  function (A,B){
      if (!A || !B) { return ;}
-     var Y = require('./Mat');
+     var Matrix = require('./Mat');
+     if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
+     if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
        if( A.column === B.column && A.raw === B.raw ){
          var ii=A.raw,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
@@ -16,7 +18,7 @@ var sum =  function (A,B){
                array[i-1][k-1]=A._(i,k)+B._(i,k);
            }
          }
-       return new Y(array)  ;
+       return new Matrix(array)  ;
        }
 } ;
       function addd(array){
@@ -28,16 +30,21 @@ var sum =  function (A,B){
         return A ;
        }
 
+
        module.exports = function () {
          var arg= Array.prototype.slice.call(arguments);
          var cb = arguments[arguments.length-1];
-         if (typeof cb === 'function') {
-           console.log( arg instanceof Array );
+         if (cb && typeof cb === 'function') {
            arg.pop();
-           setImmediate(function () {
-             cb(addd (arg));
-           });
+           return new Promise(function(full,rej){
+             try {
+               full(cb(null,addd(arg)))
+             } catch (e) {
+               rej(cb(e))
+             }
+           }
+        )
          } else {
-           return addd (arguments) ;
+           return addd(arg) ;
          }
        };

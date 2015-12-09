@@ -17,6 +17,7 @@ forEach = require('./foreach');
      * @param {Array}
      */
 var matrix =  function (array){
+      if(!(this instanceof matrix)){return new matrix(array)}
       if (!array) { return ;}
       var length = array.length,i  ;
       var test = Boolean(length);
@@ -45,9 +46,14 @@ var matrix =  function (array){
             return trans(this);
           };
           this.x = function (A,cb) {
+            if (A instanceof Number) {
+              return this.scalar(A,cb)
+            }
+            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return x(this,A,cb);
           };
           this.plus = function (A,cb) {
+            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return plus(this,A,cb);
           };
           this.scalar = function (alpha,cb) {
