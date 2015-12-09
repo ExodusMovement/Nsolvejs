@@ -6,7 +6,7 @@
  */
 function trans(B){
         if (!B) { return ;}
-         var ii=B.column,kk=B.raw,array = [],i,k ;
+         var ii=B.column,kk=B.row,array = [],i,k ;
          for (i=1 ;i <= ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){

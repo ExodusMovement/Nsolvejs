@@ -11,7 +11,7 @@ var  det = require('./det'),
 function inverse(B){
        if (!B) { return ;}
        var dett,adjj;
-       if(  B.raw === B.column ){
+       if(  B.row === B.column ){
          dett = det(B);
          adjj= adj(B);
          if (dett !== 0) {

@@ -8,8 +8,8 @@
 var sum =  function (A,B){
      if (!A || !B) { return ;}
      var Y = require('./Mat');
-       if( A.column === B.column && A.raw === B.raw ){
-         var ii=A.raw,kk=B.column,array = [],i,k ;
+       if( A.column === B.column && A.row === B.row ){
+         var ii=A.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){
@@ -28,15 +28,16 @@ var sum =  function (A,B){
         return A ;
        }
 
-
        module.exports = function () {
+         var arg= Array.prototype.slice.call(arguments);
          var cb = arguments[arguments.length-1];
-         if ( typeof cb === 'function') {
-           arguments.pop();
+         if (typeof cb === 'function') {
+           console.log( arg instanceof Array );
+           arg.pop();
            setImmediate(function () {
-             cb(addd(arguments));
+             cb(addd (arg));
            });
          } else {
-           return addd(arguments) ;
+           return addd (arguments) ;
          }
        };

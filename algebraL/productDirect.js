@@ -6,15 +6,12 @@
  */
 function product(A,B){
        if (!A || !B) { return ;}
-       if( A.column === B.row){
-         var ii=A.row,jj=A.column,kk=B.column,array = [],i,j,k ;
+       if( A.column === B.column && A.row === B.row ){
+         var ii=A.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){
-             array[i-1][k-1]=0 ;
-             for (j=1 ;j<=jj;j++){
-               array[i-1][k-1]+= A._(i,j)*B._(j,k);
-             }
+               array[i-1][k-1]= A._(i,k)*B._(i,k);
            }
          }
          var Matrix = require('./Mat');

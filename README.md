@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master&style=shields)](http://inch-ci.org/github/4yopping/Nsolvejs)
 [![npm version](https://badge.fury.io/js/nsolvejs.svg)](http://badge.fury.io/js/nsolvejs)
 [![Stories in Ready](https://badge.waffle.io/4yopping/Nsolvejs.svg?label=ready&title=Ready)](http://waffle.io/4yopping/Nsolvejs)
+![Dependencies](https://david-dm.org/4yopping/Nsolvejs.svg)
+
 ## Introduction
 
 (Before JNsolve)Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
@@ -115,17 +117,17 @@ array_to_fit =[[0,4,40],[1,-2,48],[3,9,56],[4,120,70]];
 array_of_x = [3.4, 4.8, 8, 11] ;
 array_of_y = [75,83,99,105];
 Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
- fit = { ans_ofY: 
+ fit = { ans_ofY:
    [ [ 3.4, 61.41945099444754 ],
      [ 4.8, 77.93133160533434 ],
      [ 8, 202.14957607090903 ],
      [ 11, -408.9420392173956 ] ],
-  ans_ofX: 
+  ans_ofX:
    [ [ 4.596464057224314, 75 ],
      [ 5.118019106548409, 83 ],
      [ 5.908254029766733, 99 ],
      [ 6.142502239149309, 105 ] ],
-  fitOptions: 
+  fitOptions:
    { smoothing: true,
      noiseeliminate: false,
      smoothingmethod: 'exponential',
@@ -137,7 +139,7 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
   fitParamsUsed: [ -405.8350227553108, -10.007597693961792 ],
   fitPointsUsed: [ [ 0, 40 ], [ 1, 47.2 ], [ 3, 55.12 ], [ 4, 68.512 ] ],
   fitWithError: 2.05844894339866,
-  fit: 
+  fit:
    { sqrt: { regression: [Object], error: 3.4369281428656664 },
      inverse: { regression: [Object], error: 2.05844894339866 },
      best: { name: 'inverse', error: 2.05844894339866, f: [Function] } } }
@@ -145,16 +147,25 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
 ```
 ### `Linear Algebra`
 #### `Nsolvejs.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone row do not have the same column number returns a undefined object. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('Nsolvejs').matrix;
 var matrix =[[0,1.1],[1,4.6]];
 var mat = Matrix(matrix);
-mat.row == 3; // True
+mat.row == 2; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]
 mat._(1,1) === 0  ; // True
+mat._(1) // return a Matrix formed by the first row (1x2 matrix)
+mat._(2) // return a Matrix formed by the second row (1x2 matrix)
+mat._(undefined,1) // return a Matrix formed by the second column (2x1 matrix) etc
+mat._x(mat)
+// calculate the direct product
+//   [
+//      [ 0x0  ,  1.1 x 1.1 ]
+//      [ 1x1  ,  4.6 x 4.6 ]
+//              ]
 mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
@@ -164,6 +175,12 @@ mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
+mat._pow(3)
+// calculate the pow product
+//   [
+//      [ 0^3  ,  1.1^3 ]
+//      [ 1^3  ,  4.6^3 ]
+//              ]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]

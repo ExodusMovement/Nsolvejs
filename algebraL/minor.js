@@ -8,8 +8,8 @@ var  _ = require('lodash') ;
  */
 function minor(m,n,B){
        if (!m || !m || !B) { return ;}
-       if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.raw && 0<n && n <= B.column ){
-         var ii=B.raw,array,i ;
+       if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.row && 0<n && n <= B.column ){
+         var ii=B.row,array,i ;
          array = _.clone(B.array,true);
          for (i=1 ;i<=ii;i++){
                array[i-1].splice(n-1,1);

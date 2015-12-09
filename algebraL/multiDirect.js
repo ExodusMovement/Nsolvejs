@@ -1,5 +1,5 @@
 'use strict' ;
-var product = require('./product');
+var product = require('./productDirect');
 
 /** @function
  * multiply the matrix object.

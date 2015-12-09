@@ -14,7 +14,7 @@ var   growth = require('./fit/bestfit'),
       path_ansY = __dirname + '/plots/plot_ansy.dat',
       initialpoint =  0.5 ,
       interval =  [-3,5] ,
-      test_array= [[0,40],[1,48],[3,56],[4,70]],
+      test_array= [[0,40],[1,48],[3,56],[4,70],[6,94],[10,106]],
       test_query = [3.4, 4.8, 8, 11] ,
       test_y     = [75,83,99,105] ,
       array1 = [[1,   0,  0,   0,   0,   0],
@@ -31,8 +31,7 @@ var   growth = require('./fit/bestfit'),
      V2= new nsolve.AL.vector([0,-1,1]),
      alpha , smoothing = true, noiseeliminate = false,
      smoothingmethod  ='exponential',
-     fit_methods = ['sqrt','inverse'];
-
+     fit_methods = ['sqrt'];
      function f(x) {
        return   Math.cos(x)-x;
      }
@@ -49,9 +48,8 @@ var   growth = require('./fit/bestfit'),
 
      writedata(path,test_array);
      writedata(path_smt,fit.fitPointsUsed);
-      writedata(path_ansX,fit.ans_ofX);
-      writedata(path_ansY,fit.ans_ofY);
-
+     writedata(path_ansX,fit.ans_ofX);
+     writedata(path_ansY,fit.ans_ofY);
      gnuplot()
      .set('term png')
      .set('output ' +fileplot)
@@ -63,7 +61,10 @@ var   growth = require('./fit/bestfit'),
      .set('zeroaxis')
      .set('autoscale')
      .plot(
-       '"./plots/plot.dat" ps 2 pt 3 t "Data",'+'"./plots/plot_smt.dat" ps 1 pt 5 t "Data-smt",'+function_plot(fit.fitUsed,fit.fitParamsUsed)+'  t "Bestfit='+function_plot(fit.fitUsed,fit.fitParamsUsed)+'","./plots/plot_ansy.dat"  ps 2 pt 7 lc rgb "blue" t "ans-ofY",'+'"./plots/plot_ansx.dat" ps 2 pt 13 lc rgb "black" t "ans-ofX"'
+       '"./plots/plot.dat" ps 2 pt 3 t "Data",'+'"./plots/plot_smt.dat" ps 1 pt 5 t "Data-smt",'+
+       function_plot(fit.fitUsed,fit.fitParamsUsed)+'  t "Bestfit='+
+       function_plot(fit.fitUsed,fit.fitParamsUsed)+'","./plots/plot_ansy.dat"  ps 2 pt 7 lc rgb "blue" t "ans-ofY",'+
+       '"./plots/plot_ansx.dat" ps 2 pt 13 lc rgb "black" t "ans-ofX"'
      )
      .set(' output')
      .end();
@@ -81,21 +82,12 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> fit =', fit.fit_finv );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
 var start = new Date().getTime() ;
-console.log('aqui antes');
 nsolve.AL.matrix.pow(A,20000,function () {
-      console.log('potencia1=');
     });
-console.log('despues');
-
-
 var start = new Date().getTime() ;
-console.log('aqui antes1');
+
 nsolve.AL.matrix.pow(A,2,function () {
-      console.log('potencia2=');
     });
-console.log('despues2');
-
-
 var end = new Date().getTime() ;
 var time = end - start;
 console.log('Execution time: ' + time/1000);

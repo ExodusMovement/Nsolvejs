@@ -1,7 +1,7 @@
 'use strict' ;
 var
     dkronecker = require('../utils/dkronecker'),
-product = require('./product');
+product = require('./productDirect');
 var async = require('simple-asyncify');
 
 /** @function
