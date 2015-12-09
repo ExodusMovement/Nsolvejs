@@ -240,7 +240,7 @@ a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
 
-to do that is necessary pass the array [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
+to do that is necessary pass the matrix [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
 ```js
 var AL = require('Nsolvejs').AL;
 var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
@@ -260,6 +260,8 @@ utils.log10       // Function Log of base 10.
 utils.summation
 // Function of j,n,cb that calculate the summation from j until n
 // of cb function with i counter as only argument.
+utils.stepfunction // The mathematical step function 
+utils.truncate //  truncate(1.3546785984,4) === 1.3546
 ```
 [![Throughput Graph](https://graphs.waffle.io/4yopping/Nsolvejs/throughput.svg)](https://waffle.io/4yopping/Nsolvejs/metrics)
 
