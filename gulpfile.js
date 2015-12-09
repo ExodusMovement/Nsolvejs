@@ -3,9 +3,7 @@
 var gulp  = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
-      mocha = require('gulp-mocha'),
-     gulp = require('gulp');
-
+      mocha = require('gulp-mocha')
     // Lint
     gulp.task('lint', function () {
     return gulp.src(['**/*.js', '!./node_modules/**'])
