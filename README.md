@@ -117,17 +117,17 @@ array_to_fit =[[0,4,40],[1,-2,48],[3,9,56],[4,120,70]];
 array_of_x = [3.4, 4.8, 8, 11] ;
 array_of_y = [75,83,99,105];
 Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
- fit = { ans_ofY: 
+ fit = { ans_ofY:
    [ [ 3.4, 61.41945099444754 ],
      [ 4.8, 77.93133160533434 ],
      [ 8, 202.14957607090903 ],
      [ 11, -408.9420392173956 ] ],
-  ans_ofX: 
+  ans_ofX:
    [ [ 4.596464057224314, 75 ],
      [ 5.118019106548409, 83 ],
      [ 5.908254029766733, 99 ],
      [ 6.142502239149309, 105 ] ],
-  fitOptions: 
+  fitOptions:
    { smoothing: true,
      noiseeliminate: false,
      smoothingmethod: 'exponential',
@@ -139,7 +139,7 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
   fitParamsUsed: [ -405.8350227553108, -10.007597693961792 ],
   fitPointsUsed: [ [ 0, 40 ], [ 1, 47.2 ], [ 3, 55.12 ], [ 4, 68.512 ] ],
   fitWithError: 2.05844894339866,
-  fit: 
+  fit:
    { sqrt: { regression: [Object], error: 3.4369281428656664 },
      inverse: { regression: [Object], error: 2.05844894339866 },
      best: { name: 'inverse', error: 2.05844894339866, f: [Function] } } }
@@ -179,7 +179,8 @@ Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat.trans()
 //Exemple of mapping:
 mapping = function(item,i,j){return item/(j-i+1)} ;
 Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
-mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the elemnt and indexs.  
+mat.map(Math.sqrt) //  return a matrix with the Square root over every element
+mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the element and indexes.  
 //How create a matrix of nxm.
 map_create = function (i,j) { return i*j-1 ;}
 Matrix.create(2,3,map_create)
@@ -189,7 +190,7 @@ Matrix.create(2,3,map_create)
 
 
 #### `Nsolvejs.AL.vector(Array)`
-Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixs of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
+Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixes of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
 var Vector = require('Nsolvejs').vector;
 var vector =[0,1.1,5];

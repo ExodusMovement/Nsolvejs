@@ -5,7 +5,7 @@ function correlationMatrix() {
   data =  data.map(function (item,i,j) {
     return item - media._(j,1)
   })
-  return data.trans().x(data).x(1/(this.ndata-1))
+  return data.trans().x(data).x(1/(this.ndata-1)).map(Math.sqrt)
 }
 
 
