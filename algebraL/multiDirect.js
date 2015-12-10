@@ -1,5 +1,5 @@
 'use strict' ;
-var product = require('./product');
+var product = require('./productDirect');
 
 /** @function
  * multiply the matrix object.
@@ -17,22 +17,15 @@ function multi (array){
       }
     return A ;
 }}
-
-
 module.exports = function () {
   var arg= Array.prototype.slice.call(arguments);
   var cb = arguments[arguments.length-1];
   if (typeof cb === 'function') {
     arg.pop();
-    return new Promise(function(full,rej){
-      try {
-        full(cb(null,multi(arg)))
-      } catch (e) {
-        rej(cb(e))
-      }
-    }
- )
+    setImmediate(function () {
+      cb(multi (arg));
+    });
   } else {
-    return multi(arg) ;
+    return multi (arguments) ;
   }
 };

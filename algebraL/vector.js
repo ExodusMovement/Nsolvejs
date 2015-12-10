@@ -11,12 +11,13 @@
   var Vector = function (array) {
     if(!(this instanceof Vector)){return new Vector(array)}
   if (!array) { return ;}
+  this.dim = array.length
   var _array = [];
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < this.dim; i++) {
     _array[i] = [array[i]];
   }
   this._array = array ;
-  // Vector are behave as 3x1 matrix
+  // Vector are behave as this.dimx1 matrix
   this.matrix =  new matrix(_array);
   this.array = this.matrix.array ;
   // Define the sum method.
@@ -24,7 +25,7 @@
     var __array =
      sum(this.matrix,A.matrix).array;
     var _array = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < this.dim; i++) {
       _array[i] = __array[i][0];
     }
     return new Vector(_array) ;
@@ -33,7 +34,7 @@
   this.pscalar = function (a) {
     var   __array = pscalar(a,this.matrix).array ;
       var _array = [];
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < this.dim; i++) {
         _array[i] = __array[i][0];
       }
       return new Vector(_array) ;
@@ -42,18 +43,21 @@
   this.map = function (cb) {
     var   __array = this.matrix.array ;
       var _array = [];
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < this.dim; i++) {
         _array[i] = cb(__array[i][0],i);
       }
       return new Vector(_array) ;
   };
   // Define the dot product method.
   this.dot = function (A) {
-    return dotp(A,this) ;
+        return dotp(A,this) ;
+
   };
   // Define the cross product method
   this.cross = function (A) {
+        if (A.dim ===3) {
     return crossp(this,A) ;
+  }
   };
    };
 // Define the class method dotp.
@@ -62,7 +66,7 @@ Vector.dotp= dotp;
 Vector.sum = function (A,B) {
   var __array = sum(B.matrix,A.matrix).array;
   var _array = [];
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < this.dim; i++) {
     _array[i] = __array[i][0];
   }
   return new Vector(_array) ;
@@ -71,7 +75,7 @@ Vector.sum = function (A,B) {
 Vector.pscalar = function (a,B) {
   var   __array = pscalar(a,B.matrix).array ;
     var _array = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < this.dim; i++) {
       _array[i] = __array[i][0];
     }
     return new Vector(_array) ;
@@ -90,7 +94,7 @@ Vector.create_n = function (n,map) {
 Vector.map = function (cb,B) {
   var   __array = B.matrix.array ;
     var _array = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < this.dim; i++) {
       _array[i] = cb(__array[i][0],i);
     }
     return new Vector(_array) ;

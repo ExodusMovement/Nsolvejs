@@ -147,16 +147,25 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
 ```
 ### `Linear Algebra`
 #### `Nsolvejs.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone raw do not have the same column number returns a undefined object. The instance properties are raw, column,array and det which are the number of raw and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone row do not have the same column number returns a undefined object. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('Nsolvejs').matrix;
 var matrix =[[0,1.1],[1,4.6]];
 var mat = Matrix(matrix);
-mat.row == 3; // True
+mat.row == 2; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]
 mat._(1,1) === 0  ; // True
+mat._(1) // return a Matrix formed by the first row (1x2 matrix)
+mat._(2) // return a Matrix formed by the second row (1x2 matrix)
+mat._(undefined,1) // return a Matrix formed by the second column (2x1 matrix) etc
+mat._x(mat)
+// calculate the direct product
+//   [
+//      [ 0x0  ,  1.1 x 1.1 ]
+//      [ 1x1  ,  4.6 x 4.6 ]
+//              ]
 mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
@@ -166,6 +175,12 @@ mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
+mat._pow(3)
+// calculate the pow product
+//   [
+//      [ 0^3  ,  1.1^3 ]
+//      [ 1^3  ,  4.6^3 ]
+//              ]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
@@ -226,7 +241,7 @@ a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
 
-to do that is necessary pass the array [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
+to do that is necessary pass the matrix [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
 ```js
 var AL = require('Nsolvejs').AL;
 var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
@@ -246,6 +261,8 @@ utils.log10       // Function Log of base 10.
 utils.summation
 // Function of j,n,cb that calculate the summation from j until n
 // of cb function with i counter as only argument.
+utils.stepfunction // The mathematical step function 
+utils.truncate //  truncate(1.3546785984,4) === 1.3546
 ```
 [![Throughput Graph](https://graphs.waffle.io/4yopping/Nsolvejs/throughput.svg)](https://waffle.io/4yopping/Nsolvejs/metrics)
 

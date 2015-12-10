@@ -15,7 +15,7 @@ function inverse(B){
        var Matrix = require('./Mat');
        if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        var dett,adjj;
-       if(  B.raw === B.column ){
+       if(  B.row === B.column ){
          dett = det(B);
          adjj= adj(B);
          if (dett !== 0) {

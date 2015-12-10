@@ -11,8 +11,12 @@ trans = require('./trans'),
 matrix_nxm = require('./matrix_nxm'),
 map = require('./map'),
 truncate = require('../utils/truncate'),
-forEach = require('./foreach'),
-diagonal = require('./diagonal');
+forEach = require('./foreach');
+var identM= require('./identM');
+var zeros = require('./zeros');
+var ones = require('./ones');
+var _x =  require('./multiDirect');
+var _pow = require('./powDirect');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -29,9 +33,15 @@ var matrix =  function (array){
         }
         if (test) {
           this._ = function (i,j) {
-          return array[i-1][j-1];
+            if (i !== undefined && j !== undefined) {
+              return array[i-1][j-1];
+            } else   if (i !== undefined && j === undefined)  {
+              return (new matrix(array[i-1])).trans() ;
+            }else   if (i === undefined && j !== undefined)  {
+              return this.trans()._(j).trans() ;
+            }
           };
-          this.raw =length ;
+          this.row =length ;
           this.column = first_lenght ;
           this.array = array;
           this.adj =  function (){
@@ -56,6 +66,9 @@ var matrix =  function (array){
             if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return x(this,A,cb);
           };
+          this._x = function (A,cb) {
+            return _x(this,A,cb);
+          };
           this.plus = function (A,cb) {
             if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return plus(this,A,cb);
@@ -65,6 +78,9 @@ var matrix =  function (array){
           };
           this.pow = function (n,cb) {
             return pow(this,n ,cb);
+          };
+          this._pow = function (n,cb) {
+            return _pow(this,n ,cb);
           };
           this.minor = function (i,j,cb) {
             return minor(i,j,this,cb);
@@ -93,17 +109,15 @@ matrix.pscalar  =  scalar ;
 matrix.sum = plus ;
 matrix.trans = trans;
 matrix.multiply  = x ;
+matrix.multiplyDirect  = _x
 matrix.pow = pow;
+matrix._pow = _pow;
 matrix.map = map;
 matrix.forEach = forEach;
 matrix.create = matrix_nxm;
-matrix.diagonal = function (n,m) {
-  return matrix.create(n,m,function (i,j) {
-    if (i===j) {
-      return 1;
-    }
-    return 0;
-  });
-};
+matrix.diagonal = identM;
+matrix.zeros = zeros
+matrix.ones = ones
+
 
 module.exports = matrix ;

@@ -103,9 +103,31 @@ describe('JNsolve Module numeric values function test.', function () {
     assert.equal(typeof fitted.fit.best.f, 'function'); // should returns true
   });
 
+<<<<<<< HEAD
   it('The adjunted matrix should be a matrix with (2,1) component equal to -1', function () {
     assert.equal(JNsolve.AL.matrix.adj(A)._(2, 1), -1); // should returns true
   });
+=======
+it('The adjunted matrix should be a matrix with (2,1) component equal to -1', function () {
+                  assert.equal( JNsolve.AL.matrix.adj(A)._(2,1) , -1); // should returns true
+            });
+it('The matrix method ones generates a matrix with only ones', function () {
+      assert.equal( JNsolve.AL.matrix.ones(6,8)._(6,8) , 1); // should returns true
+});
+it('The matrix method zeros generates a matrix with only zeros', function () {
+      assert.equal( JNsolve.AL.matrix.zeros(15,18)._(3,11) , 0); // should returns true
+});
+it('The product direct of A with itself has 1,2 component equal 1 ', function () {
+      assert.equal( A._x(A)._(1,2) , 16); // should returns true
+});
+it('The pow direct of A to seven power has 2,2 component equal 0 ', function () {
+      assert.equal( A._pow(7)._(2,2) , Math.pow(3,7)); // should returns true
+});
+
+
+
+
+>>>>>>> 7b0be087aa3eb6b9a2db2ab7c6ff857d46cdc7e8
 
   it('The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {
     assert.equal(JNsolve.AL.matrix.pow(A, 2)._(2, 2), 13); // should returns true
