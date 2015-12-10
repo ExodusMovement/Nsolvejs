@@ -11,7 +11,8 @@ trans = require('./trans'),
 matrix_nxm = require('./matrix_nxm'),
 map = require('./map'),
 truncate = require('../utils/truncate'),
-forEach = require('./foreach');
+forEach = require('./foreach'),
+diagonal = require('./diagonal');
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -36,6 +37,9 @@ var matrix =  function (array){
           this.adj =  function (){
               return adj(this);
           } ;
+          this.diagonal =  function (){
+              return diagonal(this);
+          } ;
           this.inv =  function (){
               return inv(this) ;
           };
@@ -46,7 +50,7 @@ var matrix =  function (array){
             return trans(this);
           };
           this.x = function (A,cb) {
-            if (A instanceof Number) {
+            if (typeof A === 'number') {
               return this.scalar(A,cb)
             }
             if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
@@ -80,7 +84,8 @@ var matrix =  function (array){
         }
     }
 };
-matrix.adj =adj;
+matrix.diagonal =diagonal
+matrix.adj =adj
 matrix.det =det;
 matrix.inv =inv;
 matrix.minor = minor;

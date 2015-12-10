@@ -155,9 +155,12 @@ describe('JNsolve Module numeric values function test.', function () {
   });
 
   it('The solution of system 2x+2y = 1  2x+y = 4  is y = -3 and x = 3.5', function () {
-    var sol = JNsolve.AL.solveLE([[2,2],[2,1]],[1,4])
-    assert.equal(sol[0],3.5);
-    assert.equal(sol[1],-3);
+    var sol = JNsolve.AL.solveLE([
+      [2, 2],
+      [2, 1]
+    ], [1, 4])
+    assert.equal(sol[0], 3.5);
+    assert.equal(sol[1], -3);
   });
 
 

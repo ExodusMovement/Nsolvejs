@@ -61,13 +61,17 @@ fit.best = { name :best_fit,
 return fit ;
 }
 /**Here we wrapper the function to maje a non-blocking*/
-
 module.exports = function (array_tofit,fits_name,cb) {
   if (cb && typeof cb === 'function') {
-    setTimeout(function () {
-      cb(better(array_tofit,fits_name));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(better(array_tofit,fits_name)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
-    return better(array_tofit,fits_name) ;
+    return better(array_tofit,fits_name)
   }
 };

@@ -69,8 +69,8 @@ var  f              = require('./fitFunction'),
            ans_ofX         : array_x    ,
            fitOptions      : options    ,
            fitUsed         : fit.best.name ,
-           fit_f :      eval(fn(fit.best.name,fit[fit.best.name].regression.equation)),
-           fit_finv :      eval(fninv(fit.best.name,fit[fit.best.name].regression.equation)),
+           fit_f :          eval(fn(fit.best.name,fit[fit.best.name].regression.equation)),
+           fit_finv :       eval(fninv(fit.best.name,fit[fit.best.name].regression.equation)),
            fitParamsUsed   : fit[fit.best.name].regression.equation,
            fitPointsUsed   : arrayFit,
            fitWithError    : fit.best.error,
@@ -82,13 +82,17 @@ var  f              = require('./fitFunction'),
     return fit_ ;
 }
 /**Here we wrapper the function to maje a non-blocking*/
-
 module.exports = function (_arrayFit, get_y, get_x,options,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-        cb(bestfit(_arrayFit, get_y, get_x,options));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(bestfit(_arrayFit, get_y, get_x,options)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
-        return bestfit(_arrayFit, get_y, get_x,options);
+    return bestfit(_arrayFit, get_y, get_x,options);
   }
 };
