@@ -10,8 +10,8 @@ var sum =  function (A,B){
      var Matrix = require('./Mat');
      if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
      if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
-       if( A.column === B.column && A.raw === B.raw ){
-         var ii=A.raw,kk=B.column,array = [],i,k ;
+       if( A.column === B.column && A.row === B.row ){
+         var ii=A.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){

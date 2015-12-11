@@ -9,8 +9,8 @@ function product(A,B){
        var  Matrix = require('./Mat');
        if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
        if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
-       if( A.column === B.raw){
-         var ii=A.raw,jj=A.column,kk=B.column,array = [],i,j,k ;
+       if( A.column === B.row){
+         var ii=A.row,jj=A.column,kk=B.column,array = [],i,j,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
            for (k=1 ;k<=kk;k++){

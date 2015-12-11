@@ -12,7 +12,7 @@ function pow(A,n){
   var Matrix = require('./Mat');
   if (!A) { return ;}
   if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
-  if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.raw) {
+  if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.row) {
     var array = [],B;
     for (var i = 0; i < A.column; i++) {
       array[i]=[];

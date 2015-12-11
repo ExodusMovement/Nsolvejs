@@ -11,9 +11,9 @@ function adj(B){
        if (!B) { return ;}
        var  Matrix = require('./Mat');
        if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
-       if (B.raw > 1) {
-         if( B.raw === B.column ){
-           var ii=B.raw,kk=B.column,array = [],i,k ;
+       if (B.row > 1) {
+         if( B.row === B.column ){
+           var ii=B.row,kk=B.column,array = [],i,k ;
            for (i=1 ;i<=ii;i++){
              array[i-1]=[];
              for (k=1 ;k<=kk;k++){

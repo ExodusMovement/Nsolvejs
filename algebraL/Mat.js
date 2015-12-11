@@ -17,6 +17,7 @@ var zeros = require('./zeros');
 var ones = require('./ones');
 var _x =  require('./multiDirect');
 var _pow = require('./powDirect');
+var diagonal = require('./diagonal')
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}

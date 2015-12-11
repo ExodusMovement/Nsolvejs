@@ -181,6 +181,9 @@ mat._pow(3)
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
 //              ]
+Matrix.zeros(2,2) //[[0,0],[0,0]]
+Matrix.ones(2,2) //[[1,1],[1,1]]
+mat.diagonal() // [[0],[4.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
@@ -250,20 +253,36 @@ solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
 
 
-#### `Nsolvejs.utils`
-Some utils function to use:
+#### `Nsolvejs.Stats`
+Here is exposed the statistical methods:
 
 ```js
-var utils = require('Nsolvejs').utils;
-utils.dkronecker  // Function delta of Kronecker.
-utils.levi_civita // Array 3x3x3 as Levi-Civita tensor.
-utils.log10       // Function Log of base 10.
-utils.summation
-// Function of j,n,cb that calculate the summation from j until n
-// of cb function with i counter as only argument.
-utils.stepfunction // The mathematical step function 
-utils.truncate //  truncate(1.3546785984,4) === 1.3546
+var data = [
+  [3,4,5,2,1,5,6],
+  [1,4,0,4,1,5,6],
+  [6,4,5,2,1,5,1],
+  [3,4,5,5,0,5,4],
+  [4,4,5,2,1,5,12],
+  [0,4,0,9,1,5,3],
+  [6,4,3,2,0,5,6]
+]
+var stats = new JNsolve.Stats(data) ;
+stats.media() // return the matrix with array :
+// [
+// [ 3.2857142857142856 ],
+// [ 4 ],
+// [ 3.2857142857142856 ],
+// [ 3.714285714285714 ],
+// [ 0.7142857142857142 ],
+// [ 5 ],
+// [ 5.428571428571428 ]
+// ]
+
+stats.std() // return the correlation matrix of datas
+stats.covariance() //  returns the covariance matrix of datas
 ```
+
+
 [![Throughput Graph](https://graphs.waffle.io/4yopping/Nsolvejs/throughput.svg)](https://waffle.io/4yopping/Nsolvejs/metrics)
 
 
