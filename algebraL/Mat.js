@@ -18,6 +18,10 @@ var ones = require('./ones');
 var _x =  require('./multiDirect');
 var _pow = require('./powDirect');
 var diagonal = require('./diagonal')
+var concatDown = require('./concatDown')
+var concatLeft = require('./concatLeft')
+var concatRight = require('./concatRight')
+var concatUp = require('./concatUp')
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -59,6 +63,18 @@ var matrix =  function (array){
           };
           this.trans =  function (){
             return trans(this);
+          };
+          this.concatRight =  function (A,cb){
+            return concatRight(this,A,cb);
+          };
+          this.concatLeft =  function (A,cb){
+            return concatLeft(this,A,cb);
+          };
+          this.concatDown =  function (A,cb){
+            return concatDown(this,A,cb);
+          };
+          this.concatUp =  function (A,cb){
+            return concatUp(this,A,cb);
           };
           this.x = function (A,cb) {
             if (typeof A === 'number') {
@@ -119,6 +135,9 @@ matrix.create = matrix_nxm;
 matrix.diagonal = identM;
 matrix.zeros = zeros
 matrix.ones = ones
-
+matrix.concatDown = concatDown
+matrix.concatLeft = concatLeft
+matrix.concatRight = concatRight
+matrix.concatUp = concatUp
 
 module.exports = matrix ;

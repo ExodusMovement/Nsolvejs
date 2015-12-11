@@ -278,8 +278,8 @@ stats.media() // return the matrix with array :
 // [ 5.428571428571428 ]
 // ]
 
-stats.std() // return the correlation matrix of datas
-stats.covariance() //  returns the covariance matrix of datas
+stats.std() // return the correlation matrix of data
+stats.covariance() //  returns the covariance matrix of data
 ```
 
 
