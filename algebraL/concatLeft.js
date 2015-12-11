@@ -1,6 +1,6 @@
 'use strict' ;
 /** @function
- * right concat of a matrix.
+ * left concat of a matrix.
  * @param {Object} matrix
  * @return {Object} matrix
  */
