@@ -16,13 +16,17 @@
   }
  return new Matrix(array);
 }
-
 module.exports = function (n,m,map,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb( nxm(n,m,map) );
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,nxm(n,m,map)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
-    return  nxm(n,m,map)  ;
+    return nxm(n,m,map) ;
   }
-};
+}
