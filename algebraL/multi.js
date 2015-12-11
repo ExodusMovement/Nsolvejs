@@ -17,15 +17,22 @@ function multi (array){
       }
     return A ;
 }}
+
+
 module.exports = function () {
   var arg= Array.prototype.slice.call(arguments);
   var cb = arguments[arguments.length-1];
   if (typeof cb === 'function') {
     arg.pop();
-    setImmediate(function () {
-      cb(multi (arg));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,multi(arg)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
-    return multi (arguments) ;
+    return multi(arg) ;
   }
 };

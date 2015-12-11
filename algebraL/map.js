@@ -6,6 +6,8 @@
  */
 function  mapp(map,B){
        if (!map || !B) { return ;}
+       var Matrix = require('./Mat');
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        if(typeof map === 'function'  ){
          var ii=B.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
@@ -18,11 +20,16 @@ function  mapp(map,B){
          return  new Matrix(array);
        }
 }
-module.exports = function (map,B,cb){
+module.exports = function (map,B,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(mapp(map,B));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,mapp(map,B)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
     return mapp(map,B) ;
   }

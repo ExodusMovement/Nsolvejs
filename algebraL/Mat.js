@@ -17,11 +17,17 @@ var zeros = require('./zeros');
 var ones = require('./ones');
 var _x =  require('./multiDirect');
 var _pow = require('./powDirect');
+var diagonal = require('./diagonal')
+var concatDown = require('./concatDown')
+var concatLeft = require('./concatLeft')
+var concatRight = require('./concatRight')
+var concatUp = require('./concatUp')
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
      */
 var matrix =  function (array){
+      if(!(this instanceof matrix)){return new matrix(array)}
       if (!array) { return ;}
       var length = array.length,i  ;
       var test = Boolean(length);
@@ -46,6 +52,9 @@ var matrix =  function (array){
           this.adj =  function (){
               return adj(this);
           } ;
+          this.diagonal =  function (){
+              return diagonal(this);
+          } ;
           this.inv =  function (){
               return inv(this) ;
           };
@@ -55,13 +64,30 @@ var matrix =  function (array){
           this.trans =  function (){
             return trans(this);
           };
+          this.concatRight =  function (A,cb){
+            return concatRight(this,A,cb);
+          };
+          this.concatLeft =  function (A,cb){
+            return concatLeft(this,A,cb);
+          };
+          this.concatDown =  function (A,cb){
+            return concatDown(this,A,cb);
+          };
+          this.concatUp =  function (A,cb){
+            return concatUp(this,A,cb);
+          };
           this.x = function (A,cb) {
+            if (typeof A === 'number') {
+              return this.scalar(A,cb)
+            }
+            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return x(this,A,cb);
           };
           this._x = function (A,cb) {
             return _x(this,A,cb);
           };
           this.plus = function (A,cb) {
+            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
             return plus(this,A,cb);
           };
           this.scalar = function (alpha,cb) {
@@ -91,7 +117,8 @@ var matrix =  function (array){
         }
     }
 };
-matrix.adj =adj;
+matrix.diagonal =diagonal
+matrix.adj =adj
 matrix.det =det;
 matrix.inv =inv;
 matrix.minor = minor;
@@ -108,6 +135,9 @@ matrix.create = matrix_nxm;
 matrix.diagonal = identM;
 matrix.zeros = zeros
 matrix.ones = ones
-
+matrix.concatDown = concatDown
+matrix.concatLeft = concatLeft
+matrix.concatRight = concatRight
+matrix.concatUp = concatUp
 
 module.exports = matrix ;

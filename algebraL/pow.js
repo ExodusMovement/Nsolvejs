@@ -1,8 +1,7 @@
 'use strict' ;
 var
     dkronecker = require('../utils/dkronecker'),
-product = require('./product');
-var async = require('simple-asyncify');
+    product = require('./product');
 
 /** @function
  * multiply the matrix object.
@@ -12,6 +11,7 @@ var async = require('simple-asyncify');
 function pow(A,n){
   var Matrix = require('./Mat');
   if (!A) { return ;}
+  if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
   if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.row) {
     var array = [],B;
     for (var i = 0; i < A.column; i++) {
@@ -35,11 +35,16 @@ function pow(A,n){
   return B;
   }
 }
-var pow_async=async(pow);
-
 module.exports = function (A,n,cb) {
   if (cb && typeof cb === 'function') {
-  pow_async(A,n,cb);
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,pow(A,n)))
+      } catch (e) {
+        rej(cb(e))
+      }
+    }
+ )
   } else {
     return pow(A,n) ;
   }

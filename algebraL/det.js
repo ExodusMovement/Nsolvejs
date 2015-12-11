@@ -8,6 +8,8 @@ var   minor = require('./minor');
  */
   var    det = function (B){
     if (!B) { return ;}
+    var Matrix = require('./Mat');
+    if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        var det;
        if(  B.row === B.column &&  B.row >= 0 ){
          if(B.row >2){
@@ -27,12 +29,17 @@ var   minor = require('./minor');
          return  det;
        }
      };
-module.exports = function (B,cb) {
-  if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(det(B));
-    });
-  } else {
-    return det(B) ;
-  }
-};
+     module.exports = function (B,cb) {
+       if (cb && typeof cb === 'function') {
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,det(B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
+       } else {
+         return det(B) ;
+       }
+     };

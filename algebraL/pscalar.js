@@ -6,6 +6,8 @@
  */
 function  pscalar(alpha,B){
        if (!B) { return ;}
+       var Matrix = require('./Mat');
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        if (typeof alpha === 'undefined') {alpha = 1;}
        if(typeof alpha === 'number'  ){
          var ii=B.row,kk=B.column,array = [],i,k ;
@@ -15,16 +17,20 @@ function  pscalar(alpha,B){
                array[i-1][k-1]=alpha*B._(i,k);
            }
          }
-         var Matrix = require('./Mat');
          return  new Matrix(array);
        }
      }
 
      module.exports = function (alpha,B,cb) {
        if (cb && typeof cb === 'function') {
-        setImmediate(function () {
-           cb(pscalar(alpha,B));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,pscalar(alpha,B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
          return pscalar(alpha,B) ;
        }

@@ -3,6 +3,8 @@ var  det = require('./det'),
      pscalar = require('./pscalar'),
      adj = require('./adj');
 
+
+
 /** @function
  * The inverse matrix.
  * @param  {Object} matrix
@@ -10,6 +12,8 @@ var  det = require('./det'),
  */
 function inverse(B){
        if (!B) { return ;}
+       var Matrix = require('./Mat');
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        var dett,adjj;
        if(  B.row === B.column ){
          dett = det(B);
@@ -19,12 +23,16 @@ function inverse(B){
          }
        }
      }
-
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(inverse(B));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,inverse(B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
          return inverse(B) ;
        }

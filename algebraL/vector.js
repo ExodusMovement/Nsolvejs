@@ -9,7 +9,7 @@
    * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.
    */
   var Vector = function (array) {
-
+    if(!(this instanceof Vector)){return new Vector(array)}
   if (!array) { return ;}
   this.dim = array.length
   var _array = [];

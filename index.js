@@ -2,11 +2,12 @@
   /**@module
    * nsolvejs module, with all the properties defined into the proyect.
    */
-    var methodN =    require('./lib/methodN'),
+    var methodN = require('./lib/methodN'),
     bestfit = require('./fit/bestfit'),
     matrix  = require('./algebraL/Mat'),
     solveLE  = require('./algebraL/solveLE'),
-    vector  = require('./algebraL/vector');
+    vector  = require('./algebraL/vector'),
+    stats =  require('./stats/stats')
 
 
      /**@function
@@ -15,7 +16,7 @@
       * {Object} options
       * @return {object} with the solution found.
       */
-  module.exports.nsolveqn  =  function (g,interval,initialpoint,options) {
+  var nsolveqn  =  function (g,interval,initialpoint,options) {
     if(!g){return ;}
     options = options || {npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Raphson' } ;
     options.presicion = options.presicion || 0.001 ;
@@ -26,9 +27,9 @@
         var method = options.method ;
         return  methodN[method](g,interval,initialpoint,options);
 };
-module.exports.fit = {best : bestfit} ;
+nsolveqn.fit = {best : bestfit} ;
 
-module.exports.calculusN = {
+nsolveqn.calculusN = {
   Newton_Raphson :methodN.Newton_Raphson,
   bisection : methodN.bisection,
   fixedpoint : methodN.fixedpoint,
@@ -38,10 +39,14 @@ module.exports.calculusN = {
   D : require('./lib/derivativeN'),
   D_opt : require('./lib/derivativeNopt'),
 };
-module.exports.AL ={
+nsolveqn.AL ={
   matrix :matrix ,
   solveLE : solveLE,
   vector : vector
 };
 
-module.exports.utils = require('./utils/utils');
+nsolveqn.Stats = stats
+
+nsolveqn.utils = require('./utils/utils');
+
+module.exports = nsolveqn

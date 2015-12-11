@@ -180,7 +180,39 @@ mat._pow(3)
 //   [
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
-//              ]
+//  ]
+mat._concatRight(mat)
+// concat right
+//   [
+//      [ 0  ,  1.1 , 0  ,  1.1]
+//      [ 1  ,  4.6 , 1  ,  4.6]
+//   ]
+mat._concatLeft(mat)
+// concat Left
+//   [
+//      [ 0  ,  1.1, 0  ,  1.1  ]
+//      [ 1  ,  4.6, 1  ,  4.6  ]
+//   ]
+mat._concatDown(mat)
+// concat Down
+//   [
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//   ]
+mat._concatUp(mat)
+// concat Up
+// concat Down
+//   [
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//   ]             ]
+Matrix.zeros(2,2) //[[0,0],[0,0]]
+Matrix.ones(2,2) //[[1,1],[1,1]]
+mat.diagonal() // [[0],[4.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
@@ -194,7 +226,8 @@ Matrix.trans(mat) // [[0,1],[1.1,4.6]]  equivalent mat.trans()
 //Exemple of mapping:
 mapping = function(item,i,j){return item/(j-i+1)} ;
 Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
-mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the elemnt and indexs.  
+mat.map(Math.sqrt) //  return a matrix with the Square root over every element
+mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the element and indexes.  
 //How create a matrix of nxm.
 map_create = function (i,j) { return i*j-1 ;}
 Matrix.create(2,3,map_create)
@@ -204,7 +237,7 @@ Matrix.create(2,3,map_create)
 
 
 #### `Nsolvejs.AL.vector(Array)`
-Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixs of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
+Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixes of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
 ```js
 var Vector = require('Nsolvejs').vector;
 var vector =[0,1.1,5];
@@ -240,7 +273,7 @@ a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
 
-to do that is necessary pass the array [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
+to do that is necessary pass the matrix [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
 ```js
 var AL = require('Nsolvejs').AL;
 var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
@@ -249,18 +282,36 @@ solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
 
 
-#### `Nsolvejs.utils`
-Some utils function to use:
+#### `Nsolvejs.Stats`
+Here is exposed the statistical methods:
 
 ```js
-var utils = require('Nsolvejs').utils;
-utils.dkronecker  // Function delta of Kronecker.
-utils.levi_civita // Array 3x3x3 as Levi-Civita tensor.
-utils.log10       // Function Log of base 10.
-utils.summation
-// Function of j,n,cb that calculate the summation from j until n
-// of cb function with i counter as only argument.
+var data = [
+  [3,4,5,2,1,5,6],
+  [1,4,0,4,1,5,6],
+  [6,4,5,2,1,5,1],
+  [3,4,5,5,0,5,4],
+  [4,4,5,2,1,5,12],
+  [0,4,0,9,1,5,3],
+  [6,4,3,2,0,5,6]
+]
+var stats = new JNsolve.Stats(data) ;
+stats.media() // return the matrix with array :
+// [
+// [ 3.2857142857142856 ],
+// [ 4 ],
+// [ 3.2857142857142856 ],
+// [ 3.714285714285714 ],
+// [ 0.7142857142857142 ],
+// [ 5 ],
+// [ 5.428571428571428 ]
+// ]
+
+stats.std() // return the correlation matrix of data
+stats.covariance() //  returns the covariance matrix of data
 ```
+
+
 [![Throughput Graph](https://graphs.waffle.io/4yopping/Nsolvejs/throughput.svg)](https://waffle.io/4yopping/Nsolvejs/metrics)
 
 

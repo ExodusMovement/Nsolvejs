@@ -1,12 +1,13 @@
 'use strict' ;
 var  _ = require('lodash') ;
-
 /** @function
  * The minor m,n of matrix.
  * @param {Number} m  {Number} n  {Object} matrix
  * @return {Object} matrix
  */
 function minor(m,n,B){
+      var Matrix = require('./Mat');
+       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
        if (!m || !m || !B) { return ;}
        if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.row && 0<n && n <= B.column ){
          var ii=B.row,array,i ;
@@ -15,16 +16,20 @@ function minor(m,n,B){
                array[i-1].splice(n-1,1);
          }
          array.splice(m-1,1);
-         var Matrix = require('./Mat');
          return  new Matrix(array);
        }
      }
 
      module.exports = function (m,n,B,cb) {
        if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(minor(m,n,B));
-         });
+         return new Promise(function(full,rej){
+           try {
+             full(cb(null,minor(m,n,B)))
+           } catch (e) {
+             rej(cb(e))
+           }
+         }
+      )
        } else {
          return minor(m,n,B) ;
        }
