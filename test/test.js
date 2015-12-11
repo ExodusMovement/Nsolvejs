@@ -168,6 +168,20 @@ describe('JNsolve Module numeric values function test.', function () {
     assert.equal(vector1.sum(vector2).array[0][0], 3);
   });
 
+
+  it('The right concat of matrix  has 4 column', function () {
+    assert.equal(A.concatRight(A).column, 4);
+  });
+  it('The Left concat of matrix  has 4 column', function () {
+    assert.equal(A.concatLeft(A)._(2,4), 3);
+  });
+  it('The Up concat of matrix  has 4 column', function () {
+    assert.equal(A.concatUp(A).row, 4);
+  });
+  it('The right concat of matrix  has 4 column', function () {
+    assert.equal(A.concatDown(A)._(4,1), 1);
+  });
+
   it('The solution of system 2x+2y = 1  2x+y = 4  is y = -3 and x = 3.5', function () {
     var sol = JNsolve.AL.solveLE([
       [2, 2],
