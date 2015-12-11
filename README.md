@@ -180,7 +180,36 @@ mat._pow(3)
 //   [
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
-//              ]
+//  ]
+mat._concatRight(mat)
+// concat right
+//   [
+//      [ 0  ,  1.1 , 0  ,  1.1]
+//      [ 1  ,  4.6 , 1  ,  4.6]
+//   ]
+mat._concatLeft(mat)
+// concat Left
+//   [
+//      [ 0  ,  1.1, 0  ,  1.1  ]
+//      [ 1  ,  4.6, 1  ,  4.6  ]
+//   ]
+mat._concatDown(mat)
+// concat Down
+//   [
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//   ]
+mat._concatUp(mat)
+// concat Up
+// concat Down
+//   [
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//      [ 0  ,  1.1 ]
+//      [ 1  ,  4.6 ]
+//   ]             ]
 Matrix.zeros(2,2) //[[0,0],[0,0]]
 Matrix.ones(2,2) //[[1,1],[1,1]]
 mat.diagonal() // [[0],[4.6]]
