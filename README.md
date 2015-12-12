@@ -172,12 +172,6 @@ mat.diagonal()
 //      [ 0 ]
 //      [ 4.6]
 //    ]
-mat.diagonal()
-// return the diagonal  like a nx1 matrix :
-//   [
-//      [ 0 ]
-//      [ 4.6]
-//    ]
 mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
