@@ -37,8 +37,3 @@ function apply(A,B){
          return apply(A,B);
        }
      };
-
-console.log(module.exports([[34]],[[function () {
-  console.log('hola');
-  return 5
-}]]));
