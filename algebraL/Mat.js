@@ -22,6 +22,8 @@ var concatDown = require('./concatDown')
 var concatLeft = require('./concatLeft')
 var concatRight = require('./concatRight')
 var concatUp = require('./concatUp')
+var apply = require('./apply')
+
     /** @constructor
      * Constructor of a matrix.
      * @param {Array}
@@ -96,6 +98,9 @@ var matrix =  function (array){
           this.pow = function (n,cb) {
             return pow(this,n ,cb);
           };
+          this.apply = function (A,cb) {
+            return apply(this, A,cb);
+          };
           this._pow = function (n,cb) {
             return _pow(this,n ,cb);
           };
@@ -119,6 +124,7 @@ var matrix =  function (array){
 };
 matrix.diagonal =diagonal
 matrix.adj =adj
+matrix.apply =apply
 matrix.det =det;
 matrix.inv =inv;
 matrix.minor = minor;
