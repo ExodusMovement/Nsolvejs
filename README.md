@@ -165,7 +165,19 @@ mat._x(mat)
 //   [
 //      [ 0x0  ,  1.1 x 1.1 ]
 //      [ 1x1  ,  4.6 x 4.6 ]
-//              ]
+//   
+mat.diagonal()
+// return the diagonal  like a nx1 matrix :
+//   [
+//      [ 0 ]
+//      [ 4.6]
+//    ]
+mat.diagonal()
+// return the diagonal  like a nx1 matrix :
+//   [
+//      [ 0 ]
+//      [ 4.6]
+//    ]
 mat.x(mat,mat); // [[5,24.5],[22.3,107.5]] or chained
 mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
@@ -181,19 +193,19 @@ mat._pow(3)
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
 //  ]
-mat._concatRight(mat)
+mat.concatRight(mat)
 // concat right
 //   [
 //      [ 0  ,  1.1 , 0  ,  1.1]
 //      [ 1  ,  4.6 , 1  ,  4.6]
 //   ]
-mat._concatLeft(mat)
+mat.concatLeft(mat)
 // concat Left
 //   [
 //      [ 0  ,  1.1, 0  ,  1.1  ]
 //      [ 1  ,  4.6, 1  ,  4.6  ]
 //   ]
-mat._concatDown(mat)
+mat.concatDown(mat)
 // concat Down
 //   [
 //      [ 0  ,  1.1 ]
@@ -201,17 +213,41 @@ mat._concatDown(mat)
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
 //   ]
-mat._concatUp(mat)
+mat.concatUp(mat)
 // concat Up
 //   [
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
-//   ]             ]
+//   ]   
+f1 = function (x) { return x/2 ;}
+f2 = function (x) { return x/2 ;}
+var matrix1 =[[f1, f2]];
+var mat1 = Matrix(matrix2);
+f3 = function (x) { return 2 ;}
+f4 = function (x) { return 3 ;}
+var matrix2 =[[f3, f4]];
+var mat2 = Matrix(matrix2);
+var matrix3 =[[1, 2]];
+var mat3 = Matrix(matrix2);
+mat1.apply(mat3) 
+// Left apply 
+//   [
+//      [ f1(1)  ,  f2(2) ]
+//   ] 
+mat1.apply(mat2) 
+// Left apply 
+//   [
+//      [ f1( f3() )  ,  f2( f4() ) ]
+//   ] 
+mat3.apply(mat1) 
+// Right apply 
+//   [
+//      [ 1*f1()  ,  2*f2() ]
+//   ] 
 Matrix.zeros(2,2) //[[0,0],[0,0]]
 Matrix.ones(2,2) //[[1,1],[1,1]]
-mat.diagonal() // [[0],[4.6]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
 Matrix.adj(mat) // [[4.6,-1.1],[-1,0]] equivalent mat.adj()
 Matrix.adj(mat).scalar(2) // [[9.2,-2.2],[-2,0]]
