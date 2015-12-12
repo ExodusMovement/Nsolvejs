@@ -22,9 +22,14 @@ dkronecker = require('../utils/dkronecker');
 
 module.exports = function (n,m,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(ident(n,m));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,ident(n,m)))
+      } catch (e) {
+        rej(null,cb(e))
+      }
+    }
+ )
   } else {
     return ident(n,m) ;
   }

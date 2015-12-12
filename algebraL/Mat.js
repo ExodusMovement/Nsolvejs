@@ -28,29 +28,37 @@ var apply = require('./apply')
      * Constructor of a matrix.
      * @param {Array}
      */
-var matrix =  function (array){
+     function countColumn(array) {
+       var res = []
+       for (var i = 0; i < array.length; i++) {
+         res.push(array[i].length)
+       }
+       return res
+     }
+var matrix =  function (array,row,column){
       if(!(this instanceof matrix)){return new matrix(array)}
       if (!array) { return ;}
-      var length = array.length,i  ;
-      var test = Boolean(length);
-      if(test && array[0] instanceof Array){
-        var first_lenght = array[0].length;
-        for (i=0 ;i<length;i++){
-          if(array[i].length !== first_lenght){ test = false;}
-        }
+      array = Array.isArray(array) ? array : [[array]]
+      var length = array.length ;
+      var test = Boolean(length)
         if (test) {
           this._ = function (i,j) {
             if (i !== undefined && j !== undefined) {
-              return array[i-1][j-1];
+              return this.array[(i-1)%this._row][(j-1)%this.array[i%this.array.length].length];
             } else   if (i !== undefined && j === undefined)  {
-              return (new matrix(array[i-1])).trans() ;
+              return (new matrix(array[(i-1)%this.row])).trans() ;
             }else   if (i === undefined && j !== undefined)  {
               return this.trans()._(j).trans() ;
             }
           };
-          this.row =length ;
-          this.column = first_lenght ;
+          this.getColumn = function (i) {
+          return this._column[(i-1)%this._column.length]
+          }
           this.array = array;
+          this._row = length
+          this.row =  row || length ;
+          this.column = column  || countColumn(this.array) ;
+          this._column = Array.isArray(this.column) ? this.column : [this.column]
           this.adj =  function (){
               return adj(this);
           } ;
@@ -82,14 +90,14 @@ var matrix =  function (array){
             if (typeof A === 'number') {
               return this.scalar(A,cb)
             }
-            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
+            if (!(A instanceof matrix)) {A = matrix(A)}
             return x(this,A,cb);
           };
           this._x = function (A,cb) {
             return _x(this,A,cb);
           };
           this.plus = function (A,cb) {
-            if (!(A instanceof matrix) && Array.isArray(A)) {A = matrix(A)}
+            if (!(A instanceof matrix)) {A = matrix(A)}
             return plus(this,A,cb);
           };
           this.scalar = function (alpha,cb) {
@@ -121,7 +129,6 @@ var matrix =  function (array){
           };
         }
     }
-};
 matrix.diagonal =diagonal
 matrix.adj =adj
 matrix.apply =apply

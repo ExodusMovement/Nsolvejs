@@ -13,15 +13,13 @@ var  det = require('./det'),
 function inverse(B){
        if (!B) { return ;}
        var Matrix = require('./Mat');
-       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
+       if (!(B instanceof Matrix)) {B =new  Matrix(B)}
        var dett,adjj;
-       if(  B.row === B.column ){
          dett = det(B);
          adjj= adj(B);
          if (dett !== 0) {
          return pscalar(1/dett,adjj);
          }
-       }
      }
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {

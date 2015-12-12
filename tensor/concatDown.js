@@ -7,8 +7,8 @@
 function concat(A,B){
         if (!B || !A) { return ;}
         var Matrix = require('./Mat');
-        if (!(B instanceof Matrix) && Array.isArray(B)) {B =new  Matrix(B)}
-        if (!(A instanceof Matrix) && Array.isArray(A)) {A =new  Matrix(A)}
+        if (!(B instanceof Matrix)) {B =new  Matrix(B)}
+        if (!(A instanceof Matrix)) {A =new  Matrix(A)}
          var array = A.array.concat(B.array)
          return  new Matrix(array) ;
      }

@@ -7,12 +7,13 @@
 function  pscalar(alpha,B){
        if (!B) { return ;}
        var Matrix = require('./Mat');
-       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
+       if (!(B instanceof Matrix)) {B = Matrix(B)}
        if (typeof alpha === 'undefined') {alpha = 1;}
        if(typeof alpha === 'number'  ){
-         var ii=B.row,kk=B.column,array = [],i,k ;
+         var ii=B.row,kk,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
+           kk = B.getColumn(i)
            for (k=1 ;k<=kk;k++){
                array[i-1][k-1]=alpha*B._(i,k);
            }

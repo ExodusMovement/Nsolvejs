@@ -1,5 +1,5 @@
 'use strict';
-var Matrix = require('./Mat');
+
 
 /** @function
  * Dot Product beetwen vectors.
@@ -8,8 +8,9 @@ var Matrix = require('./Mat');
  */
  function dot(A,B) {
   if (!A && !B) { return ;}
-  if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
-  if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
+  var Vector = require('./vector');
+  if (!(A instanceof Vector)) {A = new Vector(A)}
+  if (!(B instanceof Vector)) {B =new  Vector(B)}
   return  A.matrix.trans().x(B.matrix).array[0][0];
 }
 module.exports = function (A,B,cb) {

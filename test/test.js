@@ -170,7 +170,7 @@ describe('JNsolve Module numeric values function test.', function () {
 
 
   it('The right concat of matrix  has 4 column', function () {
-    assert.equal(A.concatRight(A).column, 4);
+    assert.equal(A.concatRight(A).column[0], 4);
   });
   it('The Left concat of matrix  has 4 column', function () {
     assert.equal(A.concatLeft(A)._(2,4), 3);

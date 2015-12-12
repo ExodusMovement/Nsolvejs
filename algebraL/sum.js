@@ -8,18 +8,19 @@
 var sum =  function (A,B){
      if (!A || !B) { return ;}
      var Matrix = require('./Mat');
-     if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
-     if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
-       if( A.column === B.column && A.row === B.row ){
-         var ii=A.row,kk=B.column,array = [],i,k ;
+     if (!(B instanceof Matrix)) {B =new Matrix(B)}
+     if (!(A instanceof Matrix)) {A =new Matrix(A)}
+
+         var ii=A.row,array = [],i,k,kk ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
+           kk = B.getColumn(i)
            for (k=1 ;k<=kk;k++){
                array[i-1][k-1]=A._(i,k)+B._(i,k);
            }
          }
        return new Matrix(array)  ;
-       }
+
 } ;
       function addd(array){
          var l = array.length , A=array[0],B,p;

@@ -11,12 +11,12 @@ var
 function pow(A,n){
   var Matrix = require('./Mat');
   if (!A) { return ;}
-  if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
-  if ( typeof n === 'number' && Math.floor(n) === n &&   A.column === A.row) {
+  if (!(A instanceof Matrix)) {A = new Matrix(A)}
+  if ( typeof n === 'number' && Math.floor(n) === n ) {
     var array = [],B;
     for (var i = 0; i < A.column; i++) {
       array[i]=[];
-      for (var j = 0; j < A.column; j++) {
+      for (var j = 0; j < A.getColumn(i+1); j++) {
       array[i][j]=dkronecker(i,j);
       }
     }

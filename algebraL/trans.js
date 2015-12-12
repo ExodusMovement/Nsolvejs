@@ -6,17 +6,19 @@
  */
 function trans(B){
         if (!B) { return ;}
-        var Matrix = require('./Mat');
-        if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
-         var ii=B.column,kk=B.row,array = [],i,k ;
+        //var Matrix = require('./Mat');
+        //if (!(B instanceof Matrix)) {B = new Matrix(B)}
+         var ii=B.getColumn(1),kk=B.row,array = [],i,k ;
          for (i=1 ;i <= ii;i++){
            array[i-1]=[];
-           for (k=1 ;k<=kk;k++){
+           for (k=1 ;k<= kk;k++){
                array[i-1][k-1]=B._(k,i);
            }
          }
+         var Matrix = require('./Mat');
          return  new Matrix(array) ;
-     }
+
+   }
      module.exports = function (B,cb) {
        if (cb && typeof cb === 'function') {
          return new Promise(function(full,rej){

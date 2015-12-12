@@ -14,10 +14,18 @@ var builder = require('./matrix_nxm');
 }
 
 module.exports = function (n,m,cb) {
+  var arg= Array.prototype.slice.call(arguments);
+  var cb = arguments[arguments.length-1];
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(zeros(n,m));
-    });
+    arg.pop();
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,zeros(n,m)))
+      } catch (e) {
+        rej(null,cb(e))
+      }
+    }
+ )
   } else {
     return zeros(n,m) ;
   }

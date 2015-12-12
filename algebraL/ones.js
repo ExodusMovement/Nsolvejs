@@ -12,12 +12,16 @@ var builder = require('./matrix_nxm');
  	return 1;
  })
 }
-
 module.exports = function (n,m,cb) {
   if (cb && typeof cb === 'function') {
-    setImmediate(function () {
-      cb(ones(n,m));
-    });
+    return new Promise(function(full,rej){
+      try {
+        full(cb(null,ones(n,m)))
+      } catch (e) {
+        rej(null,cb(e))
+      }
+    }
+ )
   } else {
     return ones(n,m) ;
   }

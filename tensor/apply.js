@@ -8,8 +8,8 @@
 function apply(A,B){
        if (!A || !B) { return ;}
        var  Matrix = require('./Mat');
-       if (!(A instanceof Matrix) && Array.isArray(A)) {A = new Matrix(A)}
-       if (!(B instanceof Matrix) && Array.isArray(B)) {B = new Matrix(B)}
+       if (!(A instanceof Matrix)) {A = new Matrix(A)}
+       if (!(B instanceof Matrix)) {B = new Matrix(B)}
        if( A.column === B.column && A.row === B.row ){
          var ii=A.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){

@@ -9,16 +9,12 @@ var product = require('./productDirect');
 function multi (array){
   var  Matrix = require('./Mat');
   var l = array.length, A =array[0],B;
-  if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
+  if (!(A instanceof Matrix)) {A = Matrix(A)}
     for (var p = 1; p < l; p++){
-      B = array[p];      
-      if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
-      if(  A.column === B.row){
-      A=product(A,B)  ;
-      }else{
-      return ;
-      }
-    return A ;
+      B = array[p];
+      if (!(B instanceof Matrix)) {B = Matrix(B)}
+      return       A=product(A,B)  ;
+
 }}
 module.exports = function () {
   var arg= Array.prototype.slice.call(arguments);

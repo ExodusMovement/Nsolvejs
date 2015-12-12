@@ -7,9 +7,9 @@ var  _ = require('lodash') ;
  */
 function minor(m,n,B){
       var Matrix = require('./Mat');
-       if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
+       if (!(B instanceof Matrix)) {B = Matrix(B)}
        if (!m || !m || !B) { return ;}
-       if(typeof m === 'number' && typeof n === 'number'&&  0<m && m <= B.row && 0<n && n <= B.column ){
+       if(typeof m === 'number' && typeof n === 'number'&&  0<m && 0<n ){
          var ii=B.row,array,i ;
          array = _.clone(B.array,true);
          for (i=1 ;i<=ii;i++){
