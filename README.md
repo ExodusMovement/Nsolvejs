@@ -203,7 +203,6 @@ mat._concatDown(mat)
 //   ]
 mat._concatUp(mat)
 // concat Up
-// concat Down
 //   [
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
