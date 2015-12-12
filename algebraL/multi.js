@@ -7,9 +7,12 @@ var product = require('./product');
  * @return {Object} matrix
  */
 function multi (array){
+  var  Matrix = require('./Mat');
   var l = array.length, A =array[0],B;
+  if (!(A instanceof Matrix) && Array.isArray(A)) {A = Matrix(A)}
     for (var p = 1; p < l; p++){
       B = array[p];
+      if (!(B instanceof Matrix) && Array.isArray(B)) {B = Matrix(B)}
       if(  A.column === B.row){
       A=product(A,B)  ;
       }else{
@@ -28,7 +31,7 @@ module.exports = function () {
       try {
         full(cb(null,multi(arg)))
       } catch (e) {
-        rej(cb(e))
+        rej(null,cb(e))
       }
     }
  )

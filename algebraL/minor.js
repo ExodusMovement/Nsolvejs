@@ -26,7 +26,7 @@ function minor(m,n,B){
            try {
              full(cb(null,minor(m,n,B)))
            } catch (e) {
-             rej(cb(e))
+             rej(null,cb(e))
            }
          }
       )

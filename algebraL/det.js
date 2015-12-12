@@ -35,7 +35,7 @@ var   minor = require('./minor');
            try {
              full(cb(null,det(B)))
            } catch (e) {
-             rej(cb(e))
+             rej(null,cb(e))
            }
          }
       )

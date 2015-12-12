@@ -1,38 +1,30 @@
 'use strict';
+var symmetricTensor  =require('./symmetric');
+var aSymmetricTensor  =require('./symmetric');
 /** @function
  * Builder of a tensor
  * @param {Number} n {Number} m {Function} mapping .
  * @return {Object} vector
  */
- function create(a,b,c,d,e) {
-   n = arguments.length
-   console.log(a,b,c,d,e.n);
+ function create() {
+   var arg,symmetric
+   if (arguments[arguments.length-1] instanceof Boolean) {
+     symmetric = arguments[arguments.length-1]
+     arg = Array.prototype.slice.call(arguments,0,arguments.length-1)
+   }else{
+     symmetric  = true
+     arg = arguments
+   }
+   if (!(this instanceof create)) {return new create(arg)}
+   if (symmetric) {
+     symmetricTensor.call(this,arg)
+   }else {
+     aSymmetricTensor.call(this,arg)
+   }
 }
+module.exports = create
 
-module.exports = function () {
-	let l = arguments.length
-	console.log('arguments=',arguments);
-	if (typeof arguments[l-1] === 'function') {
-		let cb = arguments[l-1]
-		var arg = Array.prototype.slice.call(arguments,0,l-1)
-		console.log('arg ==',arg,'cb=',cb);
-		return new Promise(function(full,rej){
-			try {
-				full(cb(null,create(arg)))
-			} catch (e) {
-				rej(cb(e))
-			}
-		}
- )
-	} else {
-		return create(arguments)
-	}
-}
-
-
-console.log(Object.keys(Array.prototype));
-
-
-module.exports(1,2,4,5,'string',function () {
-
-})
+var tensor = module.exports(2,4)
+console.log('create=',tensor);
+console.log('create=',tensor.setData.length);
+console.log('create=',tensor._(1,2));

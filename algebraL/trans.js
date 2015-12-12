@@ -23,7 +23,7 @@ function trans(B){
            try {
              full(cb(null,trans(B)))
            } catch (e) {
-             rej(cb(e))
+             rej(null,cb(e))
            }
          }
       )

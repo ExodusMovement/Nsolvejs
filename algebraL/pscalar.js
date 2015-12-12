@@ -27,7 +27,7 @@ function  pscalar(alpha,B){
            try {
              full(cb(null,pscalar(alpha,B)))
            } catch (e) {
-             rej(cb(e))
+             rej(null,cb(e))
            }
          }
       )

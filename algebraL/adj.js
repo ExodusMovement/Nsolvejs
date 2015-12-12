@@ -31,7 +31,7 @@ function adj(B){
          try {
            full(cb(null,adj(B)))
          } catch (e) {
-           rej(cb(e))
+           rej(null,cb(e))
          }
        }
     )

@@ -29,7 +29,7 @@ function inverse(B){
            try {
              full(cb(null,inverse(B)))
            } catch (e) {
-             rej(cb(e))
+             rej(null,cb(e))
            }
          }
       )
