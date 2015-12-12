@@ -47,7 +47,7 @@ module.exports = function (arg) {
    });
   this._ = function functionName() {
     if (arguments.length !== this.index ){return }
-    return this.data[product(this.facDimArray,undefined,undefined,arguments)]
+    return this.data[product(this.facDimArray,undefined,undefined,arguments)%this._fac]
   }
   if (Array.isArray(arg[arg.length-1]) ){
     this.setData = arg[arg.length-1]

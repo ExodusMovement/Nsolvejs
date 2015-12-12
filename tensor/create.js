@@ -23,8 +23,3 @@ var aSymmetricTensor  =require('./symmetric');
    }
 }
 module.exports = create
-
-var tensor = module.exports(2,4)
-console.log('create=',tensor);
-console.log('create=',tensor.setData.length);
-console.log('create=',tensor._(1,2));

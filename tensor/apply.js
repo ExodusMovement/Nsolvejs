@@ -14,7 +14,6 @@ function apply(A,B){
          var ii=A.row,kk=B.column,array = [],i,k ;
          for (i=1 ;i<=ii;i++){
            array[i-1]=[];
-           for (k=1 ;k<=kk;k++){
              a = (typeof B._(i,k) === 'function') ? B._(i,k)() : B._(i,k) ;
              if (typeof A._(i,k) === 'function') {
                 array[i-1][k-1]= A._(i,k)(a);
