@@ -41,7 +41,7 @@ var sum =  function (A,B){
              try {
                full(cb(null,addd(arg)))
              } catch (e) {
-               rej(null,cb(e))
+               rej(cb( e,null ) )
              }
            }
         )

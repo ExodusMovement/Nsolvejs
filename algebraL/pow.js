@@ -41,7 +41,7 @@ module.exports = function (A,n,cb) {
       try {
         full(cb(null,pow(A,n)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )

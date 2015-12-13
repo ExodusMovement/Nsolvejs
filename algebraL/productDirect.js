@@ -26,7 +26,7 @@ function product(A,B){
            try {
              full(cb(null,product(A,B)))
            } catch (e) {
-             rej(null,cb(e))
+             rej(cb( e,null ) )
            }
          }
       )

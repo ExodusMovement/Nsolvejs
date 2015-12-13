@@ -13,24 +13,24 @@ var det = function ( B ) {
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	var det;
+	var _det;
 	if ( B.row >= 0 ) {
 		if ( B.row > 2 ) {
 			var ii = B.getColumn( 1 ),
 				i, arrayminor = [];
-			det = 0;
+			_det = 0;
 			for ( i = 1; i <= ii; i++ ) {
 				arrayminor[ i - 1 ] = minor( 1, i, B );
-				det += Math.pow( -1, 1 + i ) * det( arrayminor[ i - 1 ] ) * B._( 1, i );
+				_det += Math.pow( -1, 1 + i ) * det( arrayminor[ i - 1 ] ) * B._( 1, i );
 			}
 		} else {
 			if ( B.row === 2 ) {
-				det = B._( 1, 1 ) * B._( 2, 2 ) - B._( 1, 2 ) * B._( 2, 1 );
+				_det = B._( 1, 1 ) * B._( 2, 2 ) - B._( 1, 2 ) * B._( 2, 1 );
 			} else if ( B.row === 1 ) {
-				det = B._( 1, 1 );
+				_det = B._( 1, 1 );
 			}
 		}
-		return det;
+		return _det;
 	}
 
 };

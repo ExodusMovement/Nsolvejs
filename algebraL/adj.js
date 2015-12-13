@@ -39,7 +39,7 @@ module.exports = function ( B, cb ) {
 			try {
 				full( cb( null, adj( B ) ) )
 			} catch ( e ) {
-				rej( null, cb( e ) )
+				rej(cb( e,null ) )
 			}
 		} )
 	} else {

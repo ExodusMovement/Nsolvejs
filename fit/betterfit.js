@@ -67,7 +67,7 @@ module.exports = function (array_tofit,fits_name,cb) {
       try {
         full(cb(better(array_tofit,fits_name)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )

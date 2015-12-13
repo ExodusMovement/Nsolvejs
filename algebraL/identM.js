@@ -26,7 +26,7 @@ module.exports = function (n,m,cb) {
       try {
         full(cb(null,ident(n,m)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )

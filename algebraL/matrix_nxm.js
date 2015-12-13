@@ -22,7 +22,7 @@ module.exports = function (n,m,map,cb) {
       try {
         full(cb(null,nxm(n,m,map)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )

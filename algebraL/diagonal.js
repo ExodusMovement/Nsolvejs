@@ -21,7 +21,7 @@ function diagonal(B){
            try {
              full(cb(null,diagonal(B)))
            } catch (e) {
-             rej(null,cb(e))
+             rej(cb( e,null ) )
            }
          }
       )

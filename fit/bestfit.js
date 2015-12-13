@@ -88,7 +88,7 @@ module.exports = function (_arrayFit, get_y, get_x,options,cb) {
       try {
         full(cb(bestfit(_arrayFit, get_y, get_x,options)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )

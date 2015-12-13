@@ -35,7 +35,7 @@ function solve(M,R){
            try {
              full(cb(null,solve(M,R)))
            } catch (e) {
-             rej(null,cb(e))
+             rej(cb( e,null ) )
            }
          }
       )

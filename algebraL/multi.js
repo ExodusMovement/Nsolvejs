@@ -9,13 +9,14 @@ var product = require('./product');
 function multi (array){
   var  Matrix = require('./Mat');
   var l = array.length, A =array[0],B;
-  if (!(A instanceof Matrix)) {A = Matrix(A)}
+  if (!(A instanceof Matrix)) {A =new  Matrix(A)}
     for (var p = 1; p < l; p++){
       B = array[p];
-      if (!(B instanceof Matrix)) {B = Matrix(B)}
-      return product(A,B)  ;
+      if (!(B instanceof Matrix)) {B =new  Matrix(B)}
+      A= product(A,B)  ;
 
-}}
+    }
+return A }
 
 
 module.exports = function () {
@@ -27,11 +28,14 @@ module.exports = function () {
       try {
         full(cb(null,multi(arg)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )
-  } else {
+  } else if (cb === undefined){
+    arg.pop()
     return multi(arg) ;
+  }else {
+  return multi(arg) ;
   }
 };

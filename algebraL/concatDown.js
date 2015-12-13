@@ -18,7 +18,7 @@ function concat(A,B){
            try {
              full(cb(null,concat(A,B)))
            } catch (e) {
-             rej(null,cb(e))
+             rej(cb( e,null ) )
            }
          }
       )

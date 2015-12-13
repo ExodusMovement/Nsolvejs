@@ -16,11 +16,7 @@ function apply(A,B){
            kk = A.getColumn(i)
            for (k=1 ;k<=kk;k++){
              a = (typeof B._(i,k) === 'function') ? B._(i,k)() : B._(i,k) ;
-             if (typeof A._(i,k) === 'function') {
-                array[i-1][k-1]= A._(i,k)(a);
-             } else {
-                  array[i-1][k-1]= A._(i,k)*a;
-             }
+             array[i-1][k-1]= (typeof A._(i,k) === 'function') ? A._(i,k)(a) :A._(i,k)*a;
            }
          }
          return  new Matrix(array);
@@ -33,7 +29,7 @@ function apply(A,B){
            try {
              full(cb(null,apply(A,B)))
            } catch (e) {
-             rej(null,cb(e))
+            rej(cb( e,null ) )
            }
          }
       )

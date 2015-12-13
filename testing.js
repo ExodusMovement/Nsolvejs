@@ -18,13 +18,12 @@ var   growth = require('./fit/bestfit'),
       test_query = [3.4, 4.8, 8, 11] ,
       test_y     = [75,83,99,105] ,
       array1 = [[1,   0,  0,   0,   0,   0],
-                [0.8 ,0,  0.2, 0 ,  0,   0 ],
+                [0.8 ,0,  0.2, 0 ,   0 ],
                 [0 ,  0.2,0,   0.8 ,0,   0 ],
-                [0   ,0,  0.2, 0 ,  0.8, 0 ],
-                [0   ,0,  0,   0.8 ,0,   0.2 ],
-                [0   ,0,  0,   0 ,  0,   1 ]],
-              array2 = [[0.66],
-              [0.34]],
+                [ 0 ,  0.8, 0 ]],
+              array2 = [[0.66,1,0],
+              [0.34,1],
+            [1]],
      A= new nsolve.AL.matrix(array1),
      B= new nsolve.AL.matrix(array2),
      V1= new nsolve.AL.vector([1,2,3]),
@@ -113,3 +112,4 @@ console.log('Execution time: ' + time/1000);
 
 
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
+console.log('=> B.x(A).array =',nsolve.AL.matrix([[2,3],[0]],4,5)._(4,5));

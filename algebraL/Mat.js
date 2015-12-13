@@ -38,15 +38,18 @@ var apply = require('./apply')
 var matrix =  function (array,row,column){
       if(!(this instanceof matrix)){return new matrix(array)}
       if (!array) { return ;}
-      array = Array.isArray(array) ? array : [[array]]
+
+      array = Array.isArray(array) ?
+      Array.isArray(array[0]) ?  array : [array]  :
+      [[array]]
       var length = array.length ;
       var test = Boolean(length)
         if (test) {
           this._ = function (i,j) {
             if (i !== undefined && j !== undefined) {
-              return this.array[(i-1)%this._row][(j-1)%this.array[i%this.array.length].length];
+              return this.array[(i-1)%this.row%this._row][(j-1)%this.getColumn(i)%this.array[i-1].length];
             } else   if (i !== undefined && j === undefined)  {
-              return (new matrix(array[(i-1)%this.row])).trans() ;
+              return (new matrix(array[(i-1)%this._row])).trans() ;
             }else   if (i === undefined && j !== undefined)  {
               return this.trans()._(j).trans() ;
             }

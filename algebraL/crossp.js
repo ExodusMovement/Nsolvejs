@@ -27,7 +27,7 @@ module.exports = function (A,B,cb) {
       try {
         full(cb(null,crossp(A,B)))
       } catch (e) {
-        rej(null,cb(e))
+        rej(cb( e,null ) )
       }
     }
  )
