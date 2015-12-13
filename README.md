@@ -182,36 +182,40 @@ mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 mat._pow(3)
-// calculate the pow product
+// calculate the direct pow 
 //   [
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
 //  ]
-mat.concatRight(mat)
+mat2 = Matrix([
+[0,1],
+[-1,0]
+])
+mat.concatRight(mat2)
 // concat right
 //   [
-//      [ 0  ,  1.1 , 0  ,  1.1]
-//      [ 1  ,  4.6 , 1  ,  4.6]
+//      [ 0  ,  1.1 , 0  ,  1]
+//      [ 1  ,  4.6 , -1  ,  0]
 //   ]
 mat.concatLeft(mat)
 // concat Left
 //   [
-//      [ 0  ,  1.1, 0  ,  1.1  ]
-//      [ 1  ,  4.6, 1  ,  4.6  ]
+//      [ 0  ,  1, 0  ,  1.1  ]
+//      [ -1  ,  0, 1  ,  4.6  ]
 //   ]
 mat.concatDown(mat)
 // concat Down
 //   [
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
-//      [ 0  ,  1.1 ]
-//      [ 1  ,  4.6 ]
+//      [ 0  ,  1 ]
+//      [ -1  ,  0 ]
 //   ]
 mat.concatUp(mat)
 // concat Up
 //   [
-//      [ 0  ,  1.1 ]
-//      [ 1  ,  4.6 ]
+//      [ 0  ,  1 ]
+//      [ -1  ,  0 ]
 //      [ 0  ,  1.1 ]
 //      [ 1  ,  4.6 ]
 //   ]   
