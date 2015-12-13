@@ -112,4 +112,8 @@ console.log('Execution time: ' + time/1000);
 
 
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
-console.log('=> B.x(A).array =',nsolve.AL.matrix([[2,3],[0]],4,5)._(4,5));
+nsolve.AL.matrix([[2,3],[0]],4,5).
+x(A,function (err,argument) {console.log('argument=',argument);return  argument}).
+then(function (argument) {
+  console.log('arg===>>>>>>>>>>>>>',argument);
+})

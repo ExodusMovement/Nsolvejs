@@ -39,3 +39,11 @@ module.exports = function () {
   return multi(arg) ;
   }
 };
+var  Matrix = require('./Mat');
+console.log();
+var A = Matrix([4,3,5,6])
+module.exports([[2,3],[0]],4,5).
+x(A,function (err,argument) {console.log('argument=',argument);return  argument}).
+then(function (argument) {
+  console.log('arg===>>>>>>>>>>>>>',argument);
+})

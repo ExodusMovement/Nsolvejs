@@ -47,7 +47,8 @@ var matrix =  function (array,row,column){
         if (test) {
           this._ = function (i,j) {
             if (i !== undefined && j !== undefined) {
-              return this.array[(i-1)%this.row%this._row][(j-1)%this.getColumn(i)%this.array[i-1].length];
+              return this.array[(i-1)%this.row%this._row][(j-1)%this.getColumn(i)%
+                this.array[(i-1)%this.array.length].length];
             } else   if (i !== undefined && j === undefined)  {
               return (new matrix(array[(i-1)%this._row])).trans() ;
             }else   if (i === undefined && j !== undefined)  {
