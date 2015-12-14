@@ -49,6 +49,7 @@ module.exports = function (arg) {
     if (arguments.length !== this.index ){return }
     return this.data[product(this.facDimArray,undefined,undefined,arguments)%this._fac]
   }
+  this._index = 0
   if (Array.isArray(arg[arg.length-1]) ){
     this.setData = arg[arg.length-1]
     arg = arg.slice(0,arg.length-1)
@@ -58,5 +59,4 @@ module.exports = function (arg) {
   this.facDimArray = fac
   this.index = arg.length
   this.dim = arg
-  this._index = 0
 }

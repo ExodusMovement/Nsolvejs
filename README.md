@@ -1,15 +1,8 @@
 # Nsolvejs
-
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/Nsolvejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master&style=shields)](http://inch-ci.org/github/4yopping/Nsolvejs)
-[![npm version](https://badge.fury.io/js/nsolvejs.svg)](http://badge.fury.io/js/nsolvejs)
-[![Stories in Ready](https://badge.waffle.io/4yopping/Nsolvejs.svg?label=ready&title=Ready)](http://waffle.io/4yopping/Nsolvejs)
-![Dependencies](https://david-dm.org/4yopping/Nsolvejs.svg)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/4yopping/Nsolvejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://travis-ci.org/4yopping/Nsolvejs.svg?branch=master)](https://travis-ci.org/4yopping/Nsolvejs) [![Inline docs](http://inch-ci.org/github/4yopping/Nsolvejs.svg?branch=master&style=shields)](http://inch-ci.org/github/4yopping/Nsolvejs) [![npm version](https://badge.fury.io/js/nsolvejs.svg)](http://badge.fury.io/js/nsolvejs) [![Stories in Ready](https://badge.waffle.io/4yopping/Nsolvejs.svg?label=ready&title=Ready)](http://waffle.io/4yopping/Nsolvejs) ![Dependencies](https://david-dm.org/4yopping/Nsolvejs.svg)
 
 ## Introduction
-
 (Before JNsolve)Solve numerically equations and calculate best fit to a data array given, also provides a series of numeric routines usable.
-
 
 ## Installation
 
@@ -17,9 +10,7 @@
 $ npm install Nsolvejs
 ```
 
-
 ## Features
-
 - **Nsolvejs linear algebra**
 - **Nsolvejs bestfit**
 - **Nsolvejs regulafalsi**
@@ -31,19 +22,15 @@ $ npm install Nsolvejs
 - **Nsolvejs FindRoot**
 
 ## API
-
 ### `Nsolvejs`
-
 Initialize `Nsolvejs`
 
 ```js
 var Nsolvejs = require('nsolvejs');
 ```
+
 ### `Numerical analysis`
-
-
 #### `Nsolvejs.calculusN.D`
-
 Object with differents numerics methods to calculate the derivative of a function.
 
 ##### `Nsolvejs.calculusN.D.Nof(Function,Number,Array)`
@@ -59,7 +46,9 @@ Instance method what is the derivative numerical of  `Function` with a   `Number
 ```js
 Nsolvejs.D.Nof(f,1000,[2,7]).f_x(3)
 ```
+
 is a aproximation to the derivative of f (df_dx) on 3 with the 1000 divisions in the interval [2,7]. Is available another method that calculate the numerical derivative calculating the dx_i in a optimazed way, dx_i=h/sqrt(1+dfdx^2) with h=(b-a)/N.
+
 ##### `Nsolvejs.calculusN.D_opt.Nof(Function,Number,Array)`
 ##### `Nsolvejs.calculusN.D_opt.Nof.f_x`
 ##### `Nsolvejs.calculusN.D.linear_interpolation(Array)`
@@ -69,12 +58,14 @@ Is a constructor that generates the numeric linear interpolation of data given i
 array_to_interpolate = [[0,3.2],[1,4.6],[2,5.1],[4,6.9]] ;
 Nsolvejs.calculusN.D.linear_interpolation(array_to_interpolate)
 ```
+
 ##### `Nsolvejs.calculusN.D.linear_interpolation(Array).function_interpolated`
 Is a instance method what is the interpolated function of `Array` given.
 
 ```js
 Nsolvejs.D.linear_interpolation(array_to_interpolate).function_interpolated(2.5)
 ```
+
 Is a aproximation interpolated to the `Array` = [[0,3.2],[1,4.6],[2,5.1],[4,6.9]].
 
 #### `Nsolvejs.nsolveqn(Function, Array[,Number,Object])`
@@ -86,6 +77,7 @@ function f(x) {
 }
 Nsolvejs.nsolveqn(f,0.5,[0,1]) = 0.73952
 ```
+
 The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. The mothods available are RegulaFalsi, bisection,fixedpoint,Newton_Raphson_Higherorder, Newton_Raphson. The rest of routines for every method are availables:
 
 #### `Nsolvejs.calculusN.RegulaFalsi(Function,Array[,Object])`
@@ -93,7 +85,6 @@ The `Object`is default options and are { npoints_DNumeric : 1000, presicion : 0.
 #### `Nsolvejs.calculusN.fixedpoint(Function,Number[,Object])`
 #### `Nsolvejs.calculusN.Newton_Raphson(Function,Array[, Number, Object])`
 #### `Nsolvejs.calculusN.Newton_Raphson_Higherorder(Function,Array[, Number, Object])`
-
 in every case if x_0 is undefined, is taken from a random number  in interval `Array`=>[a,b]. All these methods return a object with properties Root, numSteps and method used.
 
 #### `Nsolvejs.calculusN.findroot(Function, Array[,Number,Object])`
@@ -102,15 +93,14 @@ Is a method that calculate numerically the solution of `Function`=>f(x)=0 try in
 ```js
 Nsolvejs.calculusN.findroot(f,0.5,[0,1]) = 0.73952
 ```
+
 The `Object`is default options and are { npoints_DNumeric : 1000, precision : 0.001 , nstepsmax : 1000 , method : 'Newton_Rapshon' }. Here, findroot try find the root of function by all methods availables in the module.
 
 ### `Data Fitting`
-
 #### `Nsolvejs.fit.best(Array[,Array,Array,Object,Function])`
 ![Plot Data with Best fit](./plots/plotdata.png)
 
-
-Calculate the best fit using the first `Array`= [[x_1,y_1,z_1...],[x_2,y_2,z_2...],...[x_n,y_n,z_n,...]] argument as data input (if the fit is already calculated before you can pass it instead), the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name (the fits function) to use: the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a*e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a* sqrt(x)+b) and power (ax^b), if not specified take all function availables, using (array) property specified wich column of data in Array is taken to do the fist. The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
+Calculate the best fit using the first `Array`= [[x_1,y_1,z_1...],[x_2,y_2,z_2...],...[x_n,y_n,z_n,...]] argument as data input (if the fit is already calculated before you can pass it instead), the second  `Array` = [z_1,z_2...z_m] argument are the values of x's for which is necessary calculate their y`s values respectively, the third argument are the values of "y" for which is queried the values of "x". The properties of options object are smoothing (default = True), noiseeliminate (default = True), smoothingmethod (default ='exponential' only by moment), alpha (default = 0.8) and fits_name (the fits function) to use: the availables function are inverse (a/(b+x)), linear (ax+b), exponential (a_e^(bx)), logarithmic (a+b Log(x)), polynomial (ax^2+bx+c), sqrt (a_ sqrt(x)+b) and power (ax^b), if not specified take all function availables, using (array) property specified wich column of data in Array is taken to do the fist. The noiseeliminate method eliminate data that are beyond of 3.5 standard deviation from mean[(99.95 % Reliability if data have a normal distribution)](http://onlinestatbook.com/2/calculators/normal_dist.html), does that make a loop filter until that not one data is out of this limit. Return a object with the properties: ans_ofY,ans_ofX, fitUsed, fitEquationUsed, fitParamsUsed, fitPointsUsed, fitWithError and fit. The last parameter is a callback function that receive as only parameter the fit self.
 
 ```js
 array_to_fit =[[0,4,40],[1,-2,48],[3,9,56],[4,120,70]];
@@ -143,11 +133,11 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
    { sqrt: { regression: [Object], error: 3.4369281428656664 },
      inverse: { regression: [Object], error: 2.05844894339866 },
      best: { name: 'inverse', error: 2.05844894339866, f: [Function] } } }
-
 ```
+
 ### `Linear Algebra`
-#### `Nsolvejs.AL.matrix(Array)`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], if someone row do not have the same column number returns a undefined object. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
+#### `Nsolvejs.AL.matrix(Array[,row,column])`
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], the row param is the matrix row number and column is a array with column matrix number to be build. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('Nsolvejs').matrix;
@@ -182,7 +172,7 @@ mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 mat._pow(3)
-// calculate the direct pow 
+// calculate the direct pow
 //   [
 //      [ 0^3  ,  1.1^3 ]
 //      [ 1^3  ,  4.6^3 ]
@@ -229,21 +219,21 @@ var matrix2 =[[f3, f4]];
 var mat2 = Matrix(matrix2);
 var matrix3 =[[1, 2]];
 var mat3 = Matrix(matrix2);
-mat1.apply(mat3) 
-// Left apply 
+mat1.apply(mat3)
+// Left apply
 //   [
 //      [ f1(1)  ,  f2(2) ]
-//   ] 
-mat1.apply(mat2) 
-// Left apply 
+//   ]
+mat1.apply(mat2)
+// Left apply
 //   [
 //      [ f1( f3() )  ,  f2( f4() ) ]
-//   ] 
-mat3.apply(mat1) 
-// Right apply 
+//   ]
+mat3.apply(mat1)
+// Right apply
 //   [
 //      [ 1*f1()  ,  2*f2() ]
-//   ] 
+//   ]
 Matrix.zeros(2,2) //[[0,0],[0,0]]
 Matrix.ones(2,2) //[[1,1],[1,1]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
@@ -266,11 +256,30 @@ map_create = function (i,j) { return i*j-1 ;}
 Matrix.create(2,3,map_create)
 //    [[0,1,2],
 //     [1,3,5]]
+// If you pass a number of row and column you can build a matrix different to array given
+// the elements are taken cyclically from array given  
+var C1= new  Matrix([[2,3],[0]],2,3) //
+var C2= new  Matrix([[1,-1],3],3,4)
+var C3= new  Matrix([[2,3,2],[0,0,0]])
+var C4= new  Matrix([[1,-1,1,-1],[3,3,3,3],[1,-1,1,-1]])
+// here C1 and C3 are equivalent mathematically, same to C2 and C4
+C1.x(C2) // [ [ 13, 5, 13, 5 ], [ 0, 0, 0, 0 ] ] the same to C3.x(C4)
+// you can build a matrix without array, property that is stored as [[]]
+var C5 = Matrix(3,4)
+// the row and column dimensions are 2 and 3 respectively.
+C5.array = [[4,5,6],[2]]
+// later is stored the array property and the matrix now is equivalent to:
+//  [
+//    [ 4, 5, 6, 4 ],
+//    [ 2, 2, 2, 2 ],
+//     [ 4, 5, 6, 4  ]
+ ]
+//
 ```
-
 
 #### `Nsolvejs.AL.vector(Array)`
 Constructor of a vector object with instance property array that is the array self passed as parameter, matrix (Here the vectors are matrixes of nx1) and the instance methods `dot(Vector)` that calculates the dot product, `sum(Vector[,Vector,...])`, `pscalar(Number)` and `cross(Vector)` that calculates the cross product. In another hand the constructor has the class method: `dotp(Vector,Vector)`,  `sum(Vector,Vector[,Vector...])`, `scalarp(Number,Vector)` and `crossp(Vector,Vector[,Vector,...])`. Here the vectors behave as nx1 matrix, because of has all the methods and properties of matrix in matrix property.
+
 ```js
 var Vector = require('Nsolvejs').vector;
 var vector =[0,1.1,5];
@@ -288,32 +297,27 @@ function mapp(item,n) {return n*item;}
 V.map(mapp);// [0,2.2,15] equivalent Vector.map(mapp,V)
 ```
 
-
 #### `Nsolvejs.AL.solveLE(Array,Array)`
 Solve the linear equation system:
 
 a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
+.                                              .
 
-.						                 	 .
+.                                             .
 
-
-.					                		 .
-
-
-.					                 		 .
-
+.                                              .
 
 a_n1x_1+a_n2 x_2+...a_nn x_n = b_n
 
 to do that is necessary pass the matrix [[a_11,a_12...a_1n]...,[a_n1,a_n2...a_nn]]firstly and the result array [b_1,b_2...,b_n]. Return the array solution for the system [x_1,x_2,...,x_n].
+
 ```js
 var AL = require('Nsolvejs').AL;
 var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
 var result = [5,6,0];
 solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
-
 
 #### `Nsolvejs.Stats`
 Here is exposed the statistical methods:
@@ -344,33 +348,18 @@ stats.std() // return the correlation matrix of data
 stats.covariance() //  returns the covariance matrix of data
 ```
 
-
 [![Throughput Graph](https://graphs.waffle.io/4yopping/Nsolvejs/throughput.svg)](https://waffle.io/4yopping/Nsolvejs/metrics)
 
+## Contributing
+In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail: cereceres@ciencias.unam.mx.
 
-##Contributing
-In lieu of a formal style guide, take care to maintain the existing coding style.
-Add unit tests for any new or changed functionality. Lint and test your code.  For any bugs report please contact to me via e-mail: cereceres@ciencias.unam.mx.
-
-##Licence
+## Licence
 The MIT License (MIT)
 
 Copyright (c) 2015 Jesús Edel Cereceres with Andrés González and Marco Godínez as collaborators, 4yopping and all the related trademarks.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

@@ -112,8 +112,13 @@ console.log('Execution time: ' + time/1000);
 
 
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
-nsolve.AL.matrix([[2,3],[0]],4,5).
-x(A,function (err,argument) {console.log('argument=',argument);return  argument}).
-then(function (argument) {
-  console.log('arg===>>>>>>>>>>>>>',argument);
-})
+var C1= new nsolve.AL.matrix([[2,3],[0]],2,3) //
+var C2= new nsolve.AL.matrix([[1,-1],3],3,4)
+var C3= new nsolve.AL.matrix([[2,3,2],[0,0,0]])
+var C4= new nsolve.AL.matrix([[1,-1,1,-1],[3,3,3,3],[1,-1,1,-1]])
+console.log('adfasdfds====',C1.x(C2).array);
+console.log('adfasdfds====',C3.x(C4).array);
+var C5 = nsolve.AL.matrix(2,3)
+console.log('adfasdfds====',C5);
+C5.array = [3,4]
+console.log('adfasdfds====',C5);

@@ -11,7 +11,6 @@ function stats(array) {
     this.std = std.bind(this)
     this.covariance = cov.bind(this)
     this.dataMatrix = function () {return new Matrix(array)}
-  /**Here is where the class methods have to be defined*/
 }
 
 
