@@ -4,7 +4,6 @@
  * @param {Object} Tensor {Object} Tensor.
  *@return {Object} Tensor
  */
-
 var sum = function ( A, B ) {
 	if ( !A || !B ) {
 		return;

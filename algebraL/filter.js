@@ -4,24 +4,24 @@
  * @param {Function} map {Object} matrix.
  * @return {Object} matrix
  */
-function filter( B, map ) {
+function filter( B, _map ) {
 	let test
-	if ( !map || !B ) {
+	if ( !_map || !B ) {
 		return;
 	}
 	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	map = typeof map === 'function' ? map : map = new Matrix( map )
+	let map = new Matrix( _map )
 	let ii = B.row,
 		kk,
 		i, k;
 	for ( i = 1; i <= ii; i++ ) {
 		kk = B.getColumn( i )
 		for ( k = 1; k <= kk; k++ ) {
-			test = typeof map === 'function' ? !( map.call( B, B._( i, k ), i, k ) ) : Boolean( map._( i, k ) )
-			if ( test ) {
+			test = typeof map === 'function' ? !( map._(i,k).call( B, B._( i, k ), i, k ) ) : Boolean( map._( i, k ) )
+			if ( !test ) {
 				B.array[ ( i - 1 ) % B.array.length ].splice( ( k - 1 ) % B.array[ ( i - 1 ) % B.array.length ].length, 1 )
 			}
 		}

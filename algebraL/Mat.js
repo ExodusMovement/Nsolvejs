@@ -26,6 +26,9 @@ var concatUp = require( './concatUp' )
 var apply = require( './apply' )
 var Vector = require( './vector' )
 var toArray = require( './toArray' )
+var toObject = require( './toObject' )
+
+
 
 function countColumn( array ) {
 	var res = []
@@ -111,6 +114,9 @@ var matrix = function ( array, row, column ) {
 		this.trans = function () {
 			return trans( this );
 		};
+		this.toObject = function (  ) {
+			return toObject( this.array );
+		};
 		this.concatRight = function ( A, cb ) {
 			return concatRight( this, A, cb );
 		};
@@ -160,7 +166,7 @@ var matrix = function ( array, row, column ) {
 			return map( cb, this, _cb );
 		};
 		this.filter = function ( cb, _cb ) {
-			return filter( cb, this, _cb );
+			return filter( this, cb, _cb );
 		};
 		this.truncate = function ( n, cb ) {
 			var _truncate = function ( item ) {
@@ -187,6 +193,10 @@ matrix.multiplyDirect = _x
 matrix.pow = pow;
 matrix._pow = _pow;
 matrix.map = map;
+matrix.toObject = function ( A ) {
+	if (!(A instanceof matrix)) {A = new (A)}
+	return toObject( A.array );
+};
 matrix.forEach = forEach.bind( matrix );
 matrix.create = matrix_nxm;
 matrix.ident = identM;
