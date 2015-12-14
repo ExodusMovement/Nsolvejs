@@ -171,6 +171,7 @@ mat.scalar(0) // [[0,0],[0,0]] or chained
 mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
+mat.filter // works like Array.prototype.filter
 mat._pow(3)
 // calculate the direct pow
 //   [
