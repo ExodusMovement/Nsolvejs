@@ -1,5 +1,5 @@
 'use strict';
-var
+let
 	dkronecker = require( '../utils/dkronecker' );
 /** @function
  * Builder of Unit matrix.
@@ -8,14 +8,14 @@ var
  */
 function ident( n, m ) {
 	m = m || n
-	var Matrix = require( '../algebraL/Mat' );
+	let Matrix = require( '../algebraL/Mat' );
 	if ( !n ) {
 		return;
 	}
-	var array = [];
-	for ( var i = 0; i < n; i++ ) {
+	let array = [];
+	for ( let i = 0; i < n; i++ ) {
 		array[ i ] = [];
-		for ( var j = 0; j < m; j++ ) {
+		for ( let j = 0; j < m; j++ ) {
 			array[ i ][ j ] = dkronecker( i, j );
 		}
 	}

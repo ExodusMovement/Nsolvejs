@@ -5,9 +5,9 @@
  * @return {Object} vector
  */
  function nxm(n,m,map) {
-  var Matrix= require('../algebraL/Mat');
+  let Matrix= require('../algebraL/Mat');
   if (!n || !m || !map) { return ;}
-  var array = [],i,j;
+  let array = [],i,j;
   for ( i = 1; i <=n ; i++) {
       array[i-1]=[];
       for ( j = 1; j <=m ; j++) {

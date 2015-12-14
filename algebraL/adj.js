@@ -1,5 +1,5 @@
 'use strict';
-var det = require( './det' ),
+let det = require( './det' ),
 	minor = require( './minor' ),
 	trans = require( './trans' );
 /** @function
@@ -11,12 +11,12 @@ function adj( B ) {
 	if ( !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
 	if ( B.row > 1 ) {
-		var ii = B.row,
+		let ii = B.row,
 			kk, array = [],
 			i, k;
 		for ( i = 1; i <= ii; i++ ) {

@@ -1,5 +1,5 @@
 'use strict';
-var det = require( './det' ),
+let det = require( './det' ),
 	pscalar = require( './pscalar' ),
 	adj = require( './adj' );
 
@@ -14,11 +14,11 @@ function inverse( B ) {
 	if ( !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	var dett, adjj;
+	let dett, adjj;
 	dett = det( B );
 	adjj = adj( B );
 	if ( dett !== 0 ) {

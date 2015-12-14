@@ -1,5 +1,5 @@
 'use strict';
-var Matrix = require( './Mat' );
+let Matrix = require( './Mat' );
 /** @function
  * Function iterating over elements of  matrix object with params the item and indexs.
  * @param {Function} map whose params are the item and matrix's indexs.
@@ -12,7 +12,7 @@ function foreach( map, B ) {
 		B = new Matrix( B )
 	}
 	if ( typeof map === 'function' ) {
-		var ii = B.row,
+		let ii = B.row,
 			kk, array = [],
 			i, k;
 		for ( i = 1; i <= ii; i++ ) {

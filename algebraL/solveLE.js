@@ -1,5 +1,5 @@
 'use strict' ;
-var
+let
      det = require('./det'),
      product = require('./product'),
      inv = require('./inverse');
@@ -12,19 +12,19 @@ var
  * @return {Object} matrix
  */
 function solve(M,R){
-       var Matrix= require('../algebraL/Mat');
+       let Matrix= require('../algebraL/Mat');
        if (!M || !R) { return ;}
-       var A = new Matrix(M);
+       let A = new Matrix(M);
        if (A) {
-         var dett = det(A);
+         let dett = det(A);
          if (dett !== 0) {
-           var length = R.length ,
+           let length = R.length ,
            _B=[];
-           for (var i = 0; i < length; i++) {
+           for (let i = 0; i < length; i++) {
            _B[i]= [R[i]];
            }
-           var B = new Matrix(_B) ;
-           var _R= product(inv(A),B);
+           let B = new Matrix(_B) ;
+           let _R= product(inv(A),B);
            return _R.trans().array[0] ;
          }
        }

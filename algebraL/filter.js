@@ -8,12 +8,12 @@ function filter( map, B ) {
 	if ( !map || !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
 	if ( typeof map === 'function' ) {
-		var ii = B.row,kk,
+		let ii = B.row,kk,
 			i, k;
 		for ( i = 1; i <= ii; i++ ) {
 			kk = B.getColumn( i )

@@ -5,34 +5,40 @@
  *@return {Object} matrix
  */
 
-var sum = function ( A, B ) {
+let sum = function ( A, B ) {
+	let test = false
 	if ( !A || !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
 	if ( !( A instanceof Matrix ) ) {
 		A = new Matrix( A )
 	}
-
-	var ii = A.row,
+	let ii = A.row,
 		array = [],
 		i, k, kk;
 	for ( i = 1; i <= ii; i++ ) {
 		array[ i - 1 ] = [];
 		kk = B.getColumn( i )
 		for ( k = 1; k <= kk; k++ ) {
+			console.log(' typeof A._( i, k )', typeof A._( i, k ));
+			test = test || ( typeof A._( i, k ) === 'object' )
+			if ( test ){
+				array[ i - 1 ][ k - 1 ] = sum( A._( i, k ), B._( i, k ) )
+		} else {
 			array[ i - 1 ][ k - 1 ] = A._( i, k ) + B._( i, k );
 		}
 	}
-	return new Matrix( array );
+}
+return new Matrix( array );
 
 };
 
 function addd( array ) {
-	var l = array.length,
+	let l = array.length,
 		A = array[ 0 ],
 		B, p;
 	for ( p = 1; p < l; p++ ) {
@@ -44,8 +50,8 @@ function addd( array ) {
 
 
 module.exports = function () {
-	var arg = Array.prototype.slice.call( arguments );
-	var cb = arguments[ arguments.length - 1 ];
+	let arg = Array.prototype.slice.call( arguments );
+	let cb = arguments[ arguments.length - 1 ];
 	if ( cb && typeof cb === 'function' ) {
 		arg.pop();
 		return new Promise( function ( full, rej ) {

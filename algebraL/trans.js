@@ -8,9 +8,9 @@ function trans( B ) {
 	if ( !B ) {
 		return;
 	}
-	//var Matrix = require('./Mat');
+	//let Matrix = require('./Mat');
 	//if (!(B instanceof Matrix)) {B = new Matrix(B)}
-	var ii = B.getColumn( 1 ),
+	let ii = B.getColumn( 1 ),
 		kk = B.row,
 		array = [],
 		i, k;
@@ -20,7 +20,7 @@ function trans( B ) {
 			array[ i - 1 ][ k - 1 ] = B._( k, i );
 		}
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	return new Matrix( array );
 
 }

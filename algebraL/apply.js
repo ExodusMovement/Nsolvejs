@@ -4,20 +4,19 @@
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-var a
-
 function apply( A, B ) {
+	let a 
 	if ( !A || !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( A instanceof Matrix ) ) {
 		A = new Matrix( A )
 	}
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	var ii = A.row,
+	let ii = A.row,
 		array = [],
 		i, k, kk;
 	for ( i = 1; i <= ii; i++ ) {
@@ -29,10 +28,12 @@ function apply( A, B ) {
 					A: A,
 					B: B
 				} ) : B._( i, k );
-			array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i, k ).call( {
-				A: A,
-				B: B
-			}, a ) : A._( i, k ) * a;
+			array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i, k )
+				.call( {
+					A: A,
+					B: B
+				}, a ) :
+				( typeof A._( i, k ) === 'object' ) ? apply( A._( i, k ), a ) : A._( i, k ) * a;
 		}
 	}
 	return new Matrix( array );

@@ -1,16 +1,16 @@
 'use strict' ;
-var  _ = require('lodash') ;
+let  _ = require('lodash') ;
 /** @function
  * The minor m,n of matrix.
  * @param {Number} m  {Number} n  {Object} matrix
  * @return {Object} matrix
  */
 function minor(m,n,B){
-      var Matrix = require('./Mat');
+      let Matrix = require('./Mat');
        if (!(B instanceof Matrix)) {B = Matrix(B)}
        if (!m || !m || !B) { return ;}
        if(typeof m === 'number' && typeof n === 'number'&&  0<m && 0<n ){
-         var ii=B.row,array,i ;
+         let ii=B.row,array,i ;
          array = _.clone(B.array,true);
          for (i=1 ;i<=ii;i++){
                array[i-1].splice(n-1,1);

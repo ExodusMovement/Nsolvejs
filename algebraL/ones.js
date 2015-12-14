@@ -1,5 +1,5 @@
 'use strict';
-var builder = require( './matrix_nxm' );
+let builder = require( './matrix_nxm' );
 
 /** @function
  * Builder of matrix with ones.

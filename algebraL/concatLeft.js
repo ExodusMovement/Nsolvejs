@@ -8,14 +8,14 @@ function concat( A, B ) {
 	if ( !B || !A ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
 	if ( !( A instanceof Matrix ) ) {
 		A = new Matrix( A )
 	}
-	var ii = B.row,
+	let ii = B.row,
 		array = [],
 		i;
 	for ( i = 1; i <= ii; i++ ) {

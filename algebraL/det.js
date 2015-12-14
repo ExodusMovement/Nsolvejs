@@ -1,22 +1,22 @@
 'use strict';
-var minor = require( './minor' );
+let minor = require( './minor' );
 /** @function
  * The determinat of matrix.
  * @param  {Object} matrix.
  * @return {Number} determinant.
  */
-var det = function ( B ) {
+let det = function ( B ) {
 	if ( !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' )
+	let Matrix = require( './Mat' )
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	var _det;
+	let _det;
 	if ( B.row >= 0 ) {
 		if ( B.row > 2 ) {
-			var ii = B.getColumn( 1 ),
+			let ii = B.getColumn( 1 ),
 				i, arrayminor = [];
 			_det = 0;
 			for ( i = 1; i <= ii; i++ ) {

@@ -5,24 +5,31 @@
  * @return {Object} matrix
  */
 function product( A, B ) {
+	let test = false
 	if ( !A || !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( A instanceof Matrix ) ) {
 		A = new Matrix( A )
 	}
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	var ii = A.row,
+	let ii = A.row,
 		kk, array = [],
 		i, k;
 	for ( i = 1; i <= ii; i++ ) {
 		array[ i - 1 ] = [];
 		kk = A.getColumn( i )
 		for ( k = 1; k <= kk; k++ ) {
-			array[ i - 1 ][ k - 1 ] = A._( i, k ) * B._( i, k );
+			test = test || ( typeof A._( i, k ) === 'object' )
+			if ( test ) {
+				array[ i - 1 ][ k - 1 ] = Matrix.multiplyDirect( A._( i, k ), B._( i, k ) )
+			} else {
+				array[ i - 1 ][ k - 1 ] = A._( i, k ) * B._( i, k );
+			}
+
 		}
 	}
 	return new Matrix( array );

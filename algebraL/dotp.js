@@ -10,7 +10,7 @@ function dot( A, B ) {
 	if ( !A && !B ) {
 		return;
 	}
-	var Vector = require( './vector' );
+	let Vector = require( './vector' );
 	if ( !( A instanceof Vector ) ) {
 		A = new Vector( A )
 	}

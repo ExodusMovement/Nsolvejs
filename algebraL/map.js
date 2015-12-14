@@ -8,12 +8,12 @@ function mapp( map, B ) {
 	if ( !map || !B ) {
 		return;
 	}
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
 	if ( typeof map === 'function' ) {
-		var ii = B.row,
+		let ii = B.row,
 			kk, array = [],
 			i, k;
 		for ( i = 1; i <= ii; i++ ) {

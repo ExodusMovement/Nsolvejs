@@ -1,5 +1,5 @@
 'use strict';
-var levicivita = require( '../utils/levi_civita' );
+let levicivita = require( '../utils/levi_civita' );
 /** @function
  * croos Product beetwen vectors.
  * @param {Object} vector {Object} vector.
@@ -9,14 +9,14 @@ function crossp( A, B ) {
 	if ( !A && !B ) {
 		return;
 	}
-	var Vector = require( './vector' );
+	let Vector = require( './vector' );
 	if ( !( A instanceof Vector ) && Array.isArray( A ) ) {
 		A = Vector( A )
 	}
 	if ( !( B instanceof Vector ) && Array.isArray( B ) ) {
 		B = Vector( B )
 	}
-	var i, j, k, array = [];
+	let i, j, k, array = [];
 	for ( i = 0; i < 3; i++ ) {
 		array[ i ] = 0;
 		for ( j = 0; j < 3; j++ ) {

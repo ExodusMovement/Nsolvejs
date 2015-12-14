@@ -31,14 +31,14 @@ var apply = require( './apply' )
  */
 function countColumn( array ) {
 	var res = []
-	for ( var i = 0; i < array.length; i++ ) {
+	for ( let i = 0; i < array.length; i++ ) {
 		res.push( array[ i ].length )
 	}
 	return res
 }
 var matrix = function ( array, row, column ) {
 	if ( typeof array === 'number' && !column && row ) {
-		var pivot = row
+		let pivot = row
 		row = array
 		array = [ [] ]
 		column = pivot
@@ -47,10 +47,10 @@ var matrix = function ( array, row, column ) {
 		return new matrix( array, row, column )
 	}
 	array = Array.isArray( array ) ? array : [ [ array ] ]
-	for ( var i = 0; i < array.length; i++ ) {
+	for ( let i = 0; i < array.length; i++ ) {
 		array[ i ] = Array.isArray( array[ i ] ) ? array[ i ] : [ array[ i ] ]
 	}
-	var test = Boolean( array.length )
+	let test = Boolean( array.length )
 	if ( test ) {
 		this._ = function ( i, j ) {
 			if ( i !== undefined && j !== undefined ) {
@@ -74,7 +74,7 @@ var matrix = function ( array, row, column ) {
 			},
 			set: function ( array ) {
 				array = Array.isArray( array ) ? array : [ [ array ] ]
-				for ( var i = 0; i < array.length; i++ ) {
+				for ( let i = 0; i < array.length; i++ ) {
 					array[ i ] = Array.isArray( array[ i ] ) ? array[ i ] : [ array[ i ] ]
 				}
 				this._row = array.length

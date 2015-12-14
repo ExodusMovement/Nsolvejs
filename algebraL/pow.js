@@ -1,5 +1,5 @@
 'use strict';
-var
+let
 	dkronecker = require( '../utils/dkronecker' ),
 	product = require( './product' );
 
@@ -9,7 +9,7 @@ var
  * @return {Object} matrix
  */
 function pow( A, n ) {
-	var Matrix = require( './Mat' );
+	let Matrix = require( './Mat' );
 	if ( !A ) {
 		return;
 	}
@@ -17,11 +17,11 @@ function pow( A, n ) {
 		A = new Matrix( A )
 	}
 	if ( typeof n === 'number' && Math.floor( n ) === n ) {
-		var array = [],
+		let array = [],
 			B;
-		for ( var i = 0; i < A.column; i++ ) {
+		for ( let i = 0; i < A.column; i++ ) {
 			array[ i ] = [];
-			for ( var j = 0; j < A.getColumn( i + 1 ); j++ ) {
+			for ( let j = 0; j < A.getColumn( i + 1 ); j++ ) {
 				array[ i ][ j ] = dkronecker( i, j );
 			}
 		}
