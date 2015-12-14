@@ -1,10 +1,11 @@
 'use strict';
 /** @function
- * Filterthe matrix object with a function given.
+ * Filter the matrix object with a function given.
  * @param {Function} map {Object} matrix.
  * @return {Object} matrix
  */
-function filter( map, B ) {
+function filter( B, map ) {
+	let test
 	if ( !map || !B ) {
 		return;
 	}
@@ -12,19 +13,21 @@ function filter( map, B ) {
 	if ( !( B instanceof Matrix ) ) {
 		B = new Matrix( B )
 	}
-	if ( typeof map === 'function' ) {
-		let ii = B.row,kk,
-			i, k;
-		for ( i = 1; i <= ii; i++ ) {
-			kk = B.getColumn( i )
-			for ( k = 1; k <= kk; k++ ) {
-				if ( !( map.call( B, B._( i, k ), i, k ) ) ) {
-					B.array[ ( i - 1 ) % B.array.length ].splice( ( k - 1 ) % B.array[ ( i - 1 ) % B.array.length ].length, 1 )
-				}
+	map = typeof map === 'function' ? map : map = new Matrix( map )
+	let ii = B.row,
+		kk,
+		i, k;
+	for ( i = 1; i <= ii; i++ ) {
+		kk = B.getColumn( i )
+		for ( k = 1; k <= kk; k++ ) {
+			test = typeof map === 'function' ? !( map.call( B, B._( i, k ), i, k ) ) : Boolean( map._( i, k ) )
+			if ( test ) {
+				B.array[ ( i - 1 ) % B.array.length ].splice( ( k - 1 ) % B.array[ ( i - 1 ) % B.array.length ].length, 1 )
 			}
 		}
-		return B;
 	}
+	return B;
+
 }
 module.exports = function ( map, B, cb ) {
 	if ( cb && typeof cb === 'function' ) {

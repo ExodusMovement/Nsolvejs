@@ -24,11 +24,9 @@ var concatLeft = require( './concatLeft' )
 var concatRight = require( './concatRight' )
 var concatUp = require( './concatUp' )
 var apply = require( './apply' )
+var Vector = require( './vector' )
+var toArray = require( './toArray' )
 
-/** @constructor
- * Constructor of a matrix.
- * @param {Array}
- */
 function countColumn( array ) {
 	var res = []
 	for ( let i = 0; i < array.length; i++ ) {
@@ -36,7 +34,18 @@ function countColumn( array ) {
 	}
 	return res
 }
+
+/** @constructor
+ * Constructor of a matrix.
+ * @param {Array} array to build the matrix, {Number} matrix's row , {Array} matrix's column
+ */
 var matrix = function ( array, row, column ) {
+	if ( array instanceof Vector ) {
+		return array.matrix
+	}
+	if ( array instanceof matrix ) {
+		return array
+	}
 	if ( typeof array === 'number' && !column && row ) {
 		let pivot = row
 		row = array
@@ -46,6 +55,7 @@ var matrix = function ( array, row, column ) {
 	if ( !( this instanceof matrix ) ) {
 		return new matrix( array, row, column )
 	}
+	array = ( typeof array === 'object' ) && !Array.isArray( array ) ? toArray( array ) : array
 	array = Array.isArray( array ) ? array : [ [ array ] ]
 	for ( let i = 0; i < array.length; i++ ) {
 		array[ i ] = Array.isArray( array[ i ] ) ? array[ i ] : [ array[ i ] ]
@@ -177,7 +187,7 @@ matrix.multiplyDirect = _x
 matrix.pow = pow;
 matrix._pow = _pow;
 matrix.map = map;
-matrix.forEach = forEach.bind(matrix);
+matrix.forEach = forEach.bind( matrix );
 matrix.create = matrix_nxm;
 matrix.ident = identM;
 matrix.zeros = zeros

@@ -1,28 +1,30 @@
 'use strict';
-let matrix = require( './Mat' );
+let Matrix = require( './Mat' );
 let pscalar = require( './pscalar' );
 let sum = require( './sum' );
 let crossp = require( './crossp' );
 let dotp = require( './dotp' );
+let toArray = require('./toArray')
 /** @constructor
  * Constructor of a Vector.
  * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.
  */
-let Vector = function ( array ) {
+let Vector = function ( array,dim ) {
+	array = ( typeof array === 'object' ) && !Array.isArray( array ) ? toArray( array ) : array
 	if ( !( this instanceof Vector ) ) {
 		return new Vector( array )
 	}
 	if ( !array ) {
 		return;
 	}
-	this.dim = array.length
+	this.dim =dim || array.length
 	let _array = [];
 	for ( let i = 0; i < this.dim; i++ ) {
-		_array[ i ] = [ array[ i ] ];
+		_array[ i % _array.length] = [ array[ i ] ];
 	}
 	this._array = array;
 	// Vector are behave as this.dimx1 matrix
-	this.matrix = new matrix( _array );
+	this.matrix = new Matrix( this._array,this.dim,1 );
 	this.array = this.matrix.array;
 	// Define the sum method.
 	this.sum = function ( A ) {
