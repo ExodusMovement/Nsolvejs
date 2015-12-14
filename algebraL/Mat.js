@@ -5,6 +5,7 @@ var scalar = require( './pscalar' ),
 	pow = require( './pow' ),
 	adj = require( './adj' ),
 	det = require( './det' ),
+	filter = require( './filter' ),
 	inv = require( './inverse' ),
 	minor = require( './minor' ),
 	trans = require( './trans' ),
@@ -147,6 +148,9 @@ var matrix = function ( array, row, column ) {
 		};
 		this.map = function ( cb, _cb ) {
 			return map( cb, this, _cb );
+		};
+		this.filter = function ( cb, _cb ) {
+			return filter( cb, this, _cb );
 		};
 		this.truncate = function ( n, cb ) {
 			var _truncate = function ( item ) {
