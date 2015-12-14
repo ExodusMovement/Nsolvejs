@@ -1,15 +1,15 @@
 'use strict';
-let Matrix = require( './Mat' );
-let pscalar = require( './pscalar' );
-let sum = require( './sum' );
-let crossp = require( './crossp' );
-let dotp = require( './dotp' );
-let toArray = require('./toArray')
+var pscalar = require( './pscalar' );
+var sum = require( './sum' );
+var crossp = require( './crossp' );
+var dotp = require( './dotp' );
+var toArray = require('./toArray')
 /** @constructor
  * Constructor of a Vector.
  * @param {Array} of way [x_1,x_2,..x_n] only three dimension are supported.
  */
 let Vector = function ( array,dim ) {
+	var Matrix = require( './Mat' );
 	array = ( typeof array === 'object' ) && !Array.isArray( array ) ? toArray( array ) : array
 	if ( !( this instanceof Vector ) ) {
 		return new Vector( array )
