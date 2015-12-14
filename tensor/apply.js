@@ -18,8 +18,9 @@ function apply( A, B ) {
 	var i, ii = A._fac,
 		a, array = []
 	for ( i = 1; i <= ii; i++ ) {
-		a = ( typeof B._( i ) === 'function' ) ? B._( i )() : B._( i );
-		array[ i - 1 ] = ( typeof A._( i ) === 'function' ) ? A._( i )( a ) : A._( i ) * a;
+		a = ( typeof B._( i ) === 'function' ) ? B._( i ).call({A:A,B:B}) : B._( i );
+		array[ i - 1 ] = ( typeof A._( i ) === 'function' ) ? A._( i ).call({A:A,B:B}, a ) :
+	  (typeof A._( i ) === 'object')? apply(A._( i ),a) :A._( i ) * a;
 	}
 
 	return new Tensor( array );

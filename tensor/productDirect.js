@@ -18,7 +18,10 @@ function product( A, B ) {
 	var i, ii = A._fac,
 		array = []
 	for ( i = 1; i <= ii; i++ ) {
-		array[ i - 1 ] = A._( i ) * B._( i )
+
+		array[ i - 1 ] = typeof A._( i ) === 'object' ?
+		product(A._( i ) , B._( i )):
+		A._( i ) * B._( i )
 	}
 
 	return new Tensor( array );

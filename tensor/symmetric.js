@@ -28,7 +28,9 @@ function toFlatArray( _data, res, i ) {
 }
 
 
-module.exports = function ( arg ) {
+function tensor(  ) {
+	if (!(this instanceof tensor)) {return new tensor(arguments)}
+	let arg = arguments
 	this._set = function ( _data ) {
 		var data = toFlatArray( _data )
 		var l = data.length,
@@ -52,7 +54,7 @@ module.exports = function ( arg ) {
 			return this
 		}
 	} );
-	this._ = function functionName() {
+	this._ = function () {
 		if ( arguments.length === this.index ) {
 			return this.data[ ( product( this.facDimArray, undefined, undefined, arguments ) - 1 ) % this._fac % this.data.length ]
 		} else if ( arguments.length === 1 ) {
@@ -60,6 +62,9 @@ module.exports = function ( arg ) {
 		}
 	}
 	this._index = 0
+	if ( arguments.length === 1 ) {
+		return new tensor( 1, [ arguments ] )
+	}
 	if ( Array.isArray( arg[ arg.length - 1 ] ) ) {
 		this.setData = arg[ arg.length - 1 ]
 		arg = arg.slice( 0, arg.length - 1 )
@@ -70,3 +75,6 @@ module.exports = function ( arg ) {
 	this.index = arg.length
 	this.dim = arg
 }
+
+
+module.exports = tensor
