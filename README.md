@@ -137,7 +137,7 @@ Nsolvejs.bestfit(array_to_fit,array_of_x,array_of_y );
 
 ### `Linear Algebra`
 #### `Nsolvejs.AL.matrix(Array[,row,column])`
-Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], the row param is the matrix row number and column is a array with column matrix number to be build. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
+Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], the row param is the matrix row number and column is a array (can be just a number if every row has same column) with column matrix number to be build. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor. The Det property is obvious. The instance methods are _ , x, plus, pow, adj, inv, map, truncate, trans and scalar: the first is a method with integers parameters i,j that is the i,j member of matrix object, the second is the product by another matrix, accept as parameters  matrix objects, plus method adds the object matrix to matrix parameters passed to the method, pow calculates the power of matrix and accepts as parameter the power n (integer), adj calculates the matrix adjoint, inv calculates the matrix inverse, map apply the map over matrix, truncate is a mapping that truncate the matrix's numbers to "n" parameter the digits, trans calculates the matrix transposed  and finally the last  calculates the scalar product with the number passed as parameter to method. The matrix constructor has the class methods adj, det, inv, minor, pscalar, sum, trans, multiply, map and pow that calculates: the adjoint, determinant, inverse, minor, scalar product, sum, transposed, multiplication, mapping, create and power, the parameters of each one are obviously. Every method return a matrix object such way that can be chained another methods.
 
 ```js
 var Matrix = require('Nsolvejs').matrix;
@@ -273,8 +273,18 @@ C5.array = [[4,5,6],[2]]
 //    [ 4, 5, 6, 4 ],
 //    [ 2, 2, 2, 2 ],
 //     [ 4, 5, 6, 4  ]
- ]
+// ]
 //
+// The column can be differents
+var C6= new  Matrix([[2,3],[7]],3,[3,4])
+// This generates a matrix like
+//  [
+//    [ 2, 3, 2 ],
+//    [ 7, 7, 7, 7 ],
+//    [ 2, 3, 2 ]
+// ]
+//
+
 ```
 
 #### `Nsolvejs.AL.vector(Array)`
