@@ -24,7 +24,6 @@ let sum = function ( A, B ) {
 		array[ i - 1 ] = [];
 		kk = B.getColumn( i )
 		for ( k = 1; k <= kk; k++ ) {
-			console.log(' typeof A._( i, k )', typeof A._( i, k ));
 			test = test || ( typeof A._( i, k ) === 'object' )
 			if ( test ){
 				array[ i - 1 ][ k - 1 ] = sum( A._( i, k ), B._( i, k ) )
