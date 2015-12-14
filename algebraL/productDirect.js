@@ -25,7 +25,9 @@ function product( A, B ) {
 		for ( k = 1; k <= kk; k++ ) {
 			test = test || ( typeof A._( i, k ) === 'object' )
 			if ( test ) {
-				array[ i - 1 ][ k - 1 ] = Matrix.multiplyDirect( A._( i, k ), B._( i, k ) )
+				array[ i - 1 ][ k - 1 ] = !Array.isArray( B._( i, k ) ) ?
+					Matrix.sum( array[ i - 1 ][ k - 1 ], Matrix.apply( A._( i, k ), B._( i, k ) ) ) :
+					product( A._( i, k ), B._( i, k ) )
 			} else {
 				array[ i - 1 ][ k - 1 ] = A._( i, k ) * B._( i, k );
 			}
