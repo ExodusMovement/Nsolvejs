@@ -1,43 +1,45 @@
-'use strict' ;
+'use strict';
 /** @function
- * multiply the matrix object.
- * @param {Object} matrix {Object} matrix.
- * @return {Object} matrix
+ * apply the Tensor object.
+ * @param {Object} Tensor {Object} Tensor.
+ * @return {Object} Tensor
  */
- var a
-function apply(A,B){
-       if (!A || !B) { return ;}
-       var  Matrix = require('./Mat');
-       if (!(A instanceof Matrix)) {A = new Matrix(A)}
-       if (!(B instanceof Matrix)) {B = new Matrix(B)}
-       if( A.column === B.column && A.row === B.row ){
-         var ii=A.row,kk=B.column,array = [],i,k ;
-         for (i=1 ;i<=ii;i++){
-           array[i-1]=[];
-             a = (typeof B._(i,k) === 'function') ? B._(i,k)() : B._(i,k) ;
-             if (typeof A._(i,k) === 'function') {
-                array[i-1][k-1]= A._(i,k)(a);
-             } else {
-                  array[i-1][k-1]= A._(i,k)*a;
-             }
-           }
-         }
-         return  new Matrix(array);
-       }
-     }
+function apply( A, B ) {
+	if ( !A || !B ) {
+		return;
+	}
+	var Tensor = require( './create' );
+	if ( !( A instanceof Tensor ) ) {
+		A = new Tensor( A )
+	}
+	if ( !( B instanceof Tensor ) ) {
+		B = new Tensor( B )
+	}
+	var i, ii = A._fac,
+		a, array = []
+	for ( i = 1; i <= ii; i++ ) {
+		a = ( typeof B._( i ) === 'function' ) ? B._( i )() : B._( i );
+		array[ i - 1 ] = ( typeof A._( i ) === 'function' ) ? A._( i )( a ) : A._( i ) * a;
+	}
 
-
-     module.exports = function (A,B,cb) {
-       if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(apply(A,B));
-         });
-       } else {
-         return apply(A,B);
-       }
-     };
-
-console.log(module.exports([[34]],[[function () {
-  console.log('hola');
-  return 5
-}]]));
+	return new Tensor( array );
+}
+module.exports = function ( A, B, cb ) {
+	if ( cb && typeof cb === 'function' ) {
+		return new Promise( function ( full, rej ) {
+			try {
+				full( cb.call( {
+					A: A,
+					B: B
+				}, null, apply( A, B ) ) )
+			} catch ( e ) {
+				rej( cb.call( {
+					A: A,
+					B: B
+				}, e, null ) )
+			}
+		} )
+	} else {
+		return apply( A, B );
+	}
+};

@@ -24,9 +24,9 @@ function minor(m,n,B){
        if (cb && typeof cb === 'function') {
          return new Promise(function(full,rej){
            try {
-             full(cb(null,minor(m,n,B)))
+             full(cb.call(B,null,minor(m,n,B)))
            } catch (e) {
-             rej(cb( e,null ) )
+             rej(cb.call(B, e,null ) )
            }
          }
       )

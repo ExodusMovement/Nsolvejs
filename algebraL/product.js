@@ -37,9 +37,15 @@ module.exports = function ( A, B, cb ) {
 	if ( cb && typeof cb === 'function' ) {
 		return new Promise( function ( full, rej ) {
 			try {
-				full( cb( null, product( A, B ) ) )
+				full( cb.call( {
+					A: A,
+					B: B
+				}, null, product( A, B ) ) )
 			} catch ( e ) {
-				rej( cb( e, null ) )
+				rej( cb.call( {
+					A: A,
+					B: B
+				}, e, null ) )
 			}
 		} )
 	} else {

@@ -38,9 +38,9 @@ module.exports = function ( B, cb ) {
 	if ( cb && typeof cb === 'function' ) {
 		return new Promise( function ( full, rej ) {
 			try {
-				full( cb( null, det( B ) ) )
+				full( cb.call( B, null, det( B ) ) )
 			} catch ( e ) {
-				rej( null, cb( e ) )
+				rej( null, cb.call( B, e ) )
 			}
 		} )
 	} else {

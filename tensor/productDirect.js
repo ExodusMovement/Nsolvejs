@@ -1,34 +1,44 @@
-'use strict' ;
+'use strict';
 /** @function
- * multiply the matrix object.
- * @param {Object} matrix {Object} matrix.
- * @return {Object} matrix
+ * multiply the Tensor object.
+ * @param {Object} Tensor {Object} Tensor.
+ * @return {Object} Tensor
  */
-function product(A,B){
-       if (!A || !B) { return ;}
-       var  Matrix = require('./Mat');
-       if (!(A instanceof Matrix)) {A = Matrix(A)}
-       if (!(B instanceof Matrix)) {B = Matrix(B)}
-       if( A.column === B.column && A.row === B.row ){
-         var ii=A.row,kk=B.column,array = [],i,k ;
-         for (i=1 ;i<=ii;i++){
-           array[i-1]=[];
-           for (k=1 ;k<=kk;k++){
-               array[i-1][k-1]= A._(i,k)*B._(i,k);
-           }
-         }
-         var Matrix = require('./Mat');
-         return  new Matrix(array);
-       }
-     }
+function product( A, B ) {
+	if ( !A || !B ) {
+		return;
+	}
+	var Tensor = require( './create' );
+	if ( !( A instanceof Tensor ) ) {
+		A = new Tensor( A )
+	}
+	if ( !( B instanceof Tensor ) ) {
+		B = new Tensor( B )
+	}
+	var i, ii = A._fac,
+		array = []
+	for ( i = 1; i <= ii; i++ ) {
+		array[ i - 1 ] = A._( i ) * B._( i )
+	}
 
-
-     module.exports = function (A,B,cb) {
-       if (cb && typeof cb === 'function') {
-         setImmediate(function () {
-           cb(product(A,B));
-         });
-       } else {
-         return product(A,B);
-       }
-     };
+	return new Tensor( array );
+}
+module.exports = function ( A, B, cb ) {
+	if ( cb && typeof cb === 'function' ) {
+		return new Promise( function ( full, rej ) {
+			try {
+				full( cb.call( {
+					A: A,
+					B: B
+				}, null, product( A, B ) ) )
+			} catch ( e ) {
+				rej( cb.call( {
+					A: A,
+					B: B
+				}, e, null ) )
+			}
+		} )
+	} else {
+		return product( A, B )
+	}
+};

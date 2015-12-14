@@ -155,7 +155,7 @@ var matrix = function ( array, row, column ) {
 			return map( _truncate, this, cb );
 		};
 		this.forEach = function ( map, cb ) {
-			forEach( map, this, cb );
+			forEach.call( this, map, this, cb );
 		};
 	}
 }
@@ -173,7 +173,7 @@ matrix.multiplyDirect = _x
 matrix.pow = pow;
 matrix._pow = _pow;
 matrix.map = map;
-matrix.forEach = forEach;
+matrix.forEach = forEach.bind(matrix);
 matrix.create = matrix_nxm;
 matrix.ident = identM;
 matrix.zeros = zeros
