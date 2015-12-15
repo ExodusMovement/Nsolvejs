@@ -7,7 +7,6 @@
 
 
 function toObject(array ) {
-  console.log('array==', array);
   let Matrix = require('./Mat')
   if (!Array.isArray(array)) {
     return array
