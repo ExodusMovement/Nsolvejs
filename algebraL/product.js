@@ -26,7 +26,7 @@ function product( A, B ) {
 			array[ i - 1 ][ k - 1 ] = 0;
 			jj = A.getColumn( i )
 			for ( j = 1; j <= jj; j++ ) {
-				test = test || ( typeof A._( i, j ) !== 'number' ) || ( typeof B._( j, k ) !== 'number' )
+				test = test || ( typeof A._( i, j ) === 'object' ) || ( typeof B._( j, k ) === 'number' )
 				if ( test ) {
 					array[ i - 1 ][ k - 1 ] = !Array.isArray(B._( j, k ))  ?
 						Matrix.sum( array[ i - 1 ][ k - 1 ], Matrix.apply( A._( i, j ), B._( j, k ) ) ) :

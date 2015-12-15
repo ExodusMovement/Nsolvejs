@@ -58,7 +58,7 @@ var matrix = function ( array, row, column ) {
 	if ( !( this instanceof matrix ) ) {
 		return new matrix( array, row, column )
 	}
-	array = ( typeof array === 'object' ) && !Array.isArray(array) ? toArray( array ) : array
+	array = ( typeof array === 'object' ) && !Array.isArray( array ) ? toArray( array ) : array
 	array = Array.isArray( array ) ? array : [ [ array ] ]
 	for ( let i = 0; i < array.length; i++ ) {
 		array[ i ] = Array.isArray( array[ i ] ) ? array[ i ] : [ array[ i ] ]
@@ -114,7 +114,7 @@ var matrix = function ( array, row, column ) {
 		this.trans = function () {
 			return trans( this );
 		};
-		this.toObject = function (  ) {
+		this.toObject = function () {
 			return toObject( this.array );
 		};
 		this.concatRight = function ( A, cb ) {
@@ -194,9 +194,10 @@ matrix.pow = pow;
 matrix._pow = _pow;
 matrix.map = map;
 matrix.toObject = function ( A ) {
-	if (A instanceof matrix){
-		if (A.getColumn(1)===1) {
-			return A.trans().array[0]
+	if ( A instanceof matrix ) {
+		if ( A.getColumn( 1 ) === 1 ) {
+			return A.trans()
+				.array[ 0 ]
 		}
 		return toObject( A.array )
 	}
