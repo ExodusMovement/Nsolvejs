@@ -5,7 +5,7 @@
  * @return {Object} matrix
  */
 function apply( A, B ) {
-	let a 
+	let a
 	if ( !A || !B ) {
 		return;
 	}
@@ -33,7 +33,8 @@ function apply( A, B ) {
 					A: A,
 					B: B
 				}, a ) :
-				( typeof A._( i, k ) === 'object' ) ? apply( A._( i, k ), a ) : A._( i, k ) * a;
+				( typeof A._( i, k ) === 'object' )  ?
+				apply( A._( i, k ), a ) : A._( i, k ) * a
 		}
 	}
 	return new Matrix( array );

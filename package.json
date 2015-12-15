@@ -1,6 +1,6 @@
 {
   "name": "nsolvejs",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
   "main": "index.js",
   "scripts": {
@@ -38,12 +38,9 @@
   },
   "homepage": "https://github.com/4yopping/nsolvejs#readme",
   "dependencies": {
-    "async": "^1.4.2",
     "lodash": "^3.10.1",
     "numbers": "^0.6.0",
-    "regression": "^1.2.1",
-    "simple-asyncify": "^1.0.0",
-    "underscore": "^1.8.3"
+    "regression": "^1.2.1"
   },
   "devDependencies": {
     "async": "^1.4.2",

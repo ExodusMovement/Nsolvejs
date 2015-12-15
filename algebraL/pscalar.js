@@ -32,6 +32,7 @@ function pscalar( alpha, B ) {
 			} else {
 				array[ i - 1 ][ k - 1 ] = alpha * B._( i, k );
 			}
+			test = false
 		}
 	}
 	return new Matrix( array );

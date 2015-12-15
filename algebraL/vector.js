@@ -17,14 +17,15 @@ let Vector = function ( array,dim ) {
 	if ( !array ) {
 		return;
 	}
+this._array = array;
 	this.dim =dim || array.length
 	let _array = [];
 	for ( let i = 0; i < this.dim; i++ ) {
-		_array[ i % _array.length] = [ array[ i ] ];
+		_array[ i ] = [ array[ i%array.length ] ];
 	}
-	this._array = array;
+
 	// Vector are behave as this.dimx1 matrix
-	this.matrix = new Matrix( this._array,this.dim,1 );
+	this.matrix = new Matrix( _array,this.dim,1 );
 	this.array = this.matrix.array;
 	// Define the sum method.
 	this.sum = function ( A ) {

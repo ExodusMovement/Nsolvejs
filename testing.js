@@ -1,6 +1,5 @@
 'use strict';
 var   growth = require('./fit/bestfit'),
-      regression = require('regression'),
       nsolve = require('./index'),
       gnuplot= require('gnuplot'),
       function_plot= require('./fit/fitFunction_to_gnuplot'),
@@ -116,3 +115,9 @@ console.log('Execution time: ' + time/1000);
 console.log(
   nsolve.AL.matrix({a:21,b:'hola',c:{a:2,c:[2,3,4]}}).toObject()
 );
+
+
+let a = 'hola'
+for (var i = 0; i < a.length; i++) {
+console.log(a[i])
+}

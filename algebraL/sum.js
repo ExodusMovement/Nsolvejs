@@ -24,13 +24,15 @@ let sum = function ( A, B ) {
 		array[ i - 1 ] = [];
 		kk = B.getColumn( i )
 		for ( k = 1; k <= kk; k++ ) {
-			test = test || ( typeof A._( i, k ) === 'object' )
+			test = test || ( typeof A._( i, k ) === 'object' ) || ( typeof B._( i, k ) === 'object' )
 			if ( test ){
 				array[ i - 1 ][ k - 1 ] = sum( A._( i, k ), B._( i, k ) )
 		} else {
 			array[ i - 1 ][ k - 1 ] = A._( i, k ) + B._( i, k );
 		}
+		test = false
 	}
+
 }
 return new Matrix( array );
 
