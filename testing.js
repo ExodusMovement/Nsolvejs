@@ -20,9 +20,10 @@ var   growth = require('./fit/bestfit'),
                 [0.8 ,0,  0.2, 0 ,   0 ],
                 [0 ,  0.2,0,   0.8 ,0,   0 ],
                 [ 0 ,  0.8, 0 ]],
-              array2 = [[0.66,1,0],
-              [0.34,1],
-            [1]],
+              array2 = [
+                [ 1, 4 ],
+                [ 1, 3 ]
+              ],
      A= new nsolve.AL.matrix(array1),
      B= new nsolve.AL.matrix(array2),
      V1= new nsolve.AL.vector([1,2,3]),
@@ -79,17 +80,6 @@ var   growth = require('./fit/bestfit'),
 //console.log('=> Newton_Raphson_Higherorder =', nsolve.calculusN.Newton_Raphson_Higherorder(f,interval));
 //console.log('=> fit =', fit.fit_finv );
 //console.log('=> adj =',nsolve.AL.matrix.adj(A).array );
-var start = new Date().getTime() ;
-nsolve.AL.matrix.pow(A,20000,function () {
-    });
-var start = new Date().getTime() ;
-
-nsolve.AL.matrix.pow(A,2,function () {
-    });
-var end = new Date().getTime() ;
-var time = end - start;
-console.log('Execution time: ' + time/1000);
-
 
 //console.log('=> multiply =',nsolve.AL.matrix.multiply(A,A).array );
 
@@ -112,12 +102,4 @@ console.log('Execution time: ' + time/1000);
 
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
 // console.log(nsolve.AL.tensor(2,3,2,[2,4])._(1,2,1));
-console.log(
-  nsolve.AL.matrix({a:21,b:'hola',c:{a:2,c:[2,3,4]}}).toObject()
-);
-
-
-let a = 'hola'
-for (var i = 0; i < a.length; i++) {
-console.log(a[i])
-}
+console.log(B.pow(2).array);

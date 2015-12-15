@@ -10,10 +10,10 @@ function toVectorWithColumn( A ) {
 	if ( !( A instanceof Matrix ) ) {
 		A = new Matrix( A )
 	}
-	let array = []
+	var array = [],_array
 	for ( var i = 1; i <= A.row; i++ ) {
-		array = array.concat( A._( i )
-			.array[ 0 ] )
+		_array = A._( i ).array[ 0 ]
+		array = array.concat(_array )
 	}
 	return new Vector( array )
 }

@@ -19,7 +19,7 @@ function pow( A, n ) {
 	if ( typeof n === 'number' && Math.floor( n ) === n ) {
 		let array = [],
 			B;
-		for ( let i = 0; i < A.column; i++ ) {
+		for ( let i = 0; i < A.row; i++ ) {
 			array[ i ] = [];
 			for ( let j = 0; j < A.getColumn( i + 1 ); j++ ) {
 				array[ i ][ j ] = dkronecker( i, j );
@@ -33,7 +33,7 @@ function pow( A, n ) {
 			return product( A, A );
 		} else {
 			B = product( A, A );
-			for ( i = 3; i <= n; i++ ) {
+			for ( let i = 3; i <= n; i++ ) {
 				B = product( B, A );
 			}
 		}

@@ -22,8 +22,9 @@ function product( A, B ) {
 	for ( i = 1; i <= ii; i++ ) {
 		array[ i - 1 ] = [];
 		kk = A.getColumn( i )
+		test = false
 		for ( k = 1; k <= kk; k++ ) {
-			test = test || ( typeof A._( i, k ) === 'object' )
+			test = test || ( typeof A._( i, k ) === 'object' ) || ( typeof B._( i, k ) === 'object' )
 			if ( test ) {
 				array[ i - 1 ][ k - 1 ] = !Array.isArray( B._( i, k ) ) ?
 					Matrix.apply( A._( i, k ), B._( i, k ) )  :
@@ -31,8 +32,6 @@ function product( A, B ) {
 			} else {
 				array[ i - 1 ][ k - 1 ] = A._( i, k ) * B._( i, k );
 			}
-			test = false
-
 		}
 	}
 	return new Matrix( array );

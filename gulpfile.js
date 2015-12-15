@@ -11,7 +11,7 @@ var gulp  = require('gulp'),
     .pipe(jshint.reporter(stylish));
     });
     // Default
-    gulp.task('default', ['test','lint'], function () {
+    gulp.task('default', ['lint','test'], function () {
     gulp.watch(['**/*.js', '!./node_modules/**'], ['test']);
     });
 // Test
