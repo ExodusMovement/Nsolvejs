@@ -4,13 +4,20 @@
  * @param {Object} obj.
  * @return {Array}
  */
-
-module.exports = function (obj) {
+function toArray(obj) {
+  let Matrix = require('./Mat')
   let array = []
   for (var variable in obj) {
     if (obj.hasOwnProperty(variable)) {
-      array.push([variable, obj[variable]])
+      array.push([variable,
+        (typeof obj[variable] === 'object') && !Array.isArray(obj[variable]) ?
+        new toArray(obj[variable]) :
+        Array.isArray(obj[variable]) ?
+        new Matrix(obj[variable]) :
+        obj[variable]
+      ])
     }
   }
   return array
 }
+module.exports = toArray

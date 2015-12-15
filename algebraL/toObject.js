@@ -1,21 +1,37 @@
 'use strict';
 /** @function
- * Generates a array from a object with the pattern [[key,value]]
+ * Generates a object from a matrix with the pattern [[key,value]]
  * @param {Object} obj.
  * @return {Array}
  */
 
-module.exports = function (array) {
-  let obj = {}
-  for (var i = 0; i < array.length; i++) {
-    if (Array.isArray(array[i]) && array[i].length) {
-      obj[array[i][0]] = array[i].length > 2 ?
-        array[i].slice[1] :
-        array[i].length === 1 ? array[i][0] : array[i][1]
-    } else if(array[i].length) {
-      obj[i] = array[i]
-    }
 
+function toObject(array ) {
+  console.log('array==', array);
+  let Matrix = require('./Mat')
+  if (!Array.isArray(array)) {
+    return array
+  }
+  let obj =  {}
+  for (var i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i]) ) {
+      if (array[i].length > 2) {
+        obj[array[i][0]] = Matrix.toObject(array[i].slice(1))
+      } else if (array[i].length === 2) {
+        obj[array[i][0]] = Matrix.toObject(array[i][1])
+      } else if (array[i].length === 1) {
+        Object.assign(obj, Matrix.toObjected(array[i][0]))
+      }
+    } else if ((i + 1) < array.length) {
+      Object.assign(obj,
+        Matrix.toObject([
+          [array[i], array[i].slice(i + 1).length > 1 ?
+            array[i].slice(i + 1) : array[i + 1]
+          ]
+        ]))
+      break
+    }
   }
   return obj
 }
+module.exports = toObject

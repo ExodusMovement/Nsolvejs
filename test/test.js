@@ -147,6 +147,9 @@ describe( 'JNsolve Module numeric values function test.', function () {
 		assert.equal( A._pow( 7 )
 			._( 2, 2 ), Math.pow( 3, 7 ) ); // should returns true
 	} );
+	it( 'When the object {a:21,b:"hola"} is filtered with the array = [0,1] and the method toObject is applied return {b:"hola"}', function () {
+		assert.equal( JNsolve.AL.matrix({a:21,b:'hola'}).filter([0,1]).toObject().b,'hola'); // should returns true
+	} );
 
 	it( 'The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {
 		assert.equal( JNsolve.AL.matrix.pow( A, 2 )

@@ -29,10 +29,13 @@ function toFlatArray( _data, res, i ) {
 
 
 function tensor(  ) {
+	console.log('arguments==',arguments);
 	if (!(this instanceof tensor)) {return new tensor(arguments)}
-	let arg = arguments
+	let arg = Array.prototype.slice.call(arguments)
 	this._set = function ( _data ) {
+			console.log('_data==',_data);
 		var data = toFlatArray( _data )
+		console.log('data==',data);
 		var l = data.length,
 			i
 		for ( i = 0; i < l; i++ ) {
@@ -50,6 +53,7 @@ function tensor(  ) {
 			return this.data
 		},
 		set: function ( data ) {
+			console.log('data en setdata =',data);
 			this._set( data );
 			return this
 		}
@@ -63,11 +67,12 @@ function tensor(  ) {
 	}
 	this._index = 0
 	if ( arguments.length === 1 ) {
-		return new tensor( 1, [ arguments ] )
+		return new tensor( 1, [ arguments[0] ] )
 	}
-	if ( Array.isArray( arg[ arg.length - 1 ] ) ) {
-		this.setData = arg[ arg.length - 1 ]
-		arg = arg.slice( 0, arg.length - 1 )
+	if ( Array.isArray( arguments[ arguments.length - 1 ] ) ) {
+		console.log('arg[ arg.length - 1 ]',arguments[ arguments.length - 1 ]);
+		this.setData = arguments[ arguments.length - 1 ]
+		arg = arg.slice( 0, arguments.length - 1 )
 	}
 	this._fac = product( arg )
 	this.data = new Array( this._fac )

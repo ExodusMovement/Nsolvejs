@@ -275,8 +275,7 @@ C5.array = [[4,5,6],[2]]
 //    [ 2, 2, 2, 2 ],
 //     [ 4, 5, 6, 4  ]
 // ]
-//
-// The column can be differents
+// The column can be different
 var C6= new  Matrix([[2,3],[7]],3,[3,4])
 // This generates a matrix like
 //  [
@@ -284,8 +283,21 @@ var C6= new  Matrix([[2,3],[7]],3,[3,4])
 //    [ 7, 7, 7, 7 ],
 //    [ 2, 3, 2 ]
 // ]
-//
-
+// the arrays are converted to column vectors or nx1 matrix
+var Matrix([2,3,4,5]) // is equivalent matrix with array
+// [
+//  [2],
+//  [3],
+//  [4],
+//  [5],
+// ]
+// If you try make operations with not matrix objects
+// they are tried to convert to  matrix.
+mat.x(5) // this is equivalent mat.x(Matrix([[5]]))
+Matrix({a:21,b:'hola'}).filter([0,1]).toObject() // return {b:'hola'}
+// if the param to filter is not a function, is tried to convert to array to generate a matrix Object
+// their elements are used like Boolean to make the filter.
+// toObject try to convert the matrix to array
 ```
 
 #### `Nsolvejs.AL.vector(Array)`

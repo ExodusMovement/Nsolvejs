@@ -112,4 +112,7 @@ console.log('Execution time: ' + time/1000);
 
 
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
-console.log(nsolve.AL.matrix({a:21,b:'hola'}).filter([0,1]).toObject());
+// console.log(nsolve.AL.tensor(2,3,2,[2,4])._(1,2,1));
+console.log(
+  nsolve.AL.matrix({a:21,b:'hola',c:{a:2,c:[2,3,4]}}).toObject()
+);

@@ -61,6 +61,10 @@ let Vector = function ( array,dim ) {
 		return dotp( A, this );
 
 	};
+	// Define the filter method
+	this.filter= function ( map ) {
+		return this.matrix.filter(map);
+	};
 	// Define the cross product method
 	this.cross = function ( A ) {
 		if ( A.dim === 3 ) {
