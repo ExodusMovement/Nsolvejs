@@ -19,7 +19,7 @@ function toObject( array ) {
 			} else if ( array[ i ].length === 2 ) {
 				obj[ array[ i ][ 0 ] ] = Matrix.toObject( array[ i ][ 1 ] )
 			} else if ( array[ i ].length === 1 ) {
-				Object.assign( obj, Matrix.toObjected( array[ i ][ 0 ] ) )
+				Object.assign( obj, Matrix.toObject( array[ i ][ 0 ] ) )
 			}
 		} else if ( ( i + 1 ) < array.length ) {
 			Object.assign( obj,
