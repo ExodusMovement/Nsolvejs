@@ -143,7 +143,7 @@ Is a constructor of a object matrix, the form of Array param have to be like  `A
 var Matrix = require('Nsolvejs').matrix;
 var matrix =[[0,1.1],[1,4.6]];
 var mat = Matrix(matrix);
-Matrix(3,5,6); // return a matrix of 5x6 fulfilled with 3 
+Matrix(3,5,6); // return a matrix of 5x6 fulfilled with 3
 mat.row == 2; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]
@@ -256,6 +256,8 @@ Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
 mat.map(Math.sqrt) //  return a matrix with the Square root over every element
 mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the element and indexes.  
 //How create a matrix of nxm.
+mat.forEachColumn // Like forEach but receive the Columns as argument like matrix
+mat.forEachRow// Like forEach but receive the Rows as argument like matrix
 map_create = function (i,j) { return i*j-1 ;}
 Matrix.create(2,3,map_create)
 //    [[0,1,2],
