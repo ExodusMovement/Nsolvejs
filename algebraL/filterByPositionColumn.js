@@ -5,41 +5,33 @@
  * @return {Object} matrix
  */
 
-function filter( B, _map ) {
+function filter( _B, _map ) {
 	let test
-	if ( !_map || !B ) {
+	if ( !_map || !_B ) {
 		return;
 	}
 	let Matrix = require( './Mat' );
-	if ( !( B instanceof Matrix ) ) {
-		B = new Matrix( B )
+	if ( !( _B instanceof Matrix ) ) {
+		_B = new Matrix( _B )
 	}
+	let B = _B.trans()
 	let map = new Matrix( _map )
-	let i, k,j=1,l=1,array;
+	let i, k,array,kk;
 	array = []
-	for ( i = 1; i <= B.row; i++) {
-		array [j-1] =[]
-		for ( k = 1; k <= B.getColumn(i); k++ ) {
+	for ( i = 1; i <= map.row; i++) {
+		array [i-1] =[]
+		kk=B.getColumn( map._( i, 1))
+		for ( k = 1; k <= kk; k++ ) {
 			if ( B._( i, k ) instanceof Matrix ) {
-				B.array[ i - 1 ][ k - 1 ] = filter( B._( i, k ), map._( i, k) )
+				B.array[ i - 1 ][ k - 1 ] = filter( B._( i, k ), map._( i, 1) )
 			} else {
 				test = typeof map === 'function' ? ( map._( i, k )
-					.call( B, B._( i, k ), i, k ) ) : Boolean( map._( i, k ) )
-				if ( test ) {
-					array[j-1][l-1] = B._(i,k)
-					l++
-				}
+					.call( B, B._( i, k ), i, k ) ) : map._( i, k )
+				array[i-1][k-1] = B._(test,k)
 			}
 		}
-		l=1
-		if ( array[ j - 1 ].length ) {
-			j++;
-		}else {
-			array.splice(j-1,1)
-		}
-
 	}
-	return  new Matrix(array,B.row,B._column, B.opt);
+	return   Matrix(array,B.row,B._column, B.opt).trans();
 
 }
 module.exports = function ( map, B, cb ) {

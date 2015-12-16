@@ -17,7 +17,7 @@ function toObject( array ) {
 			if ( array[ i ].length > 2 ) {
 				obj[ array[ i ][ 0 ] ] = Matrix.toObject( array[ i ].slice( 1 ) )
 			} else if ( array[ i ].length === 2 ) {
-				obj[ array[ i ][ 0 ] ] = Matrix.toObject( array[ i ][ 1 ] )
+				obj[ array[ i ][ 0 ] ] =  array[ i ][ 1 ]
 			} else if ( array[ i ].length === 1 ) {
 				Object.assign( obj, Matrix.toObject( array[ i ][ 0 ] ) )
 			}

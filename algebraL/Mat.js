@@ -7,6 +7,8 @@ var scalar = require('./pscalar'),
   adj = require('./adj'),
   det = require('./det'),
   filter = require('./filter'),
+  filterByPositionRow = require('./filterByPositionRow'),
+  filterByPositionColumn = require('./filterByPositionColumn'),
   inv = require('./inverse'),
   minor = require('./minor'),
   trans = require('./trans'),
@@ -83,7 +85,7 @@ var matrix = function (array, row, column, opt) {
   }
   let test = Boolean(array.length)
   if (test) {
-    this._ = function (i, j) {
+    this._ = (function (i, j) {
       if (i !== undefined && j !== undefined) {
         return this.array[(i - 1) % this.row % this._row][(j - 1) % this.getColumn(i) %
           this.array[(i - 1) % this.array.length].length
@@ -93,10 +95,10 @@ var matrix = function (array, row, column, opt) {
       } else if (i === undefined && j !== undefined) {
         return this.trans()._(j).trans()
       }
-    };
-    this.getColumn = function (i) {
+    }).bind(this);
+    this.getColumn = (function (i) {
       return this._column[(i - 1) % this._column.length]
-    }
+    }).bind(this)
     Object.defineProperty(this, 'array', {
       get: function () {
         return this._array
@@ -118,109 +120,115 @@ var matrix = function (array, row, column, opt) {
     this.row = row || array.length;
     this.column = column || countColumn(this.array);
     this._column = Array.isArray(this.column) ? this.column : [this.column]
-    this.adj = function () {
+    this.adj = (function () {
       return adj(this);
-    };
-    this.diagonal = function (cb) {
+    }).bind(this);
+    this.diagonal =( function (cb) {
       return diagonal(this, cb);
-    };
-    this.inv = function (cb) {
+    }).bind(this);
+    this.inv = (function (cb) {
       return inv(this, cb);
-    };
-    this.det = function (cb) {
+    }).bind(this);
+    this.det = (function (cb) {
       return det(this, cb);
-    };
-    this.trans = function (cb, opt) {
+    }).bind(this);
+    this.trans = (function (cb, opt) {
       return trans(this, cb, opt);
-    };
-    this.toObject = function () {
+    }).bind(this);
+    this.toObject =( function () {
       return toObject(this.array);
-    };
-    this.concatRight = function (A, cb) {
+    }).bind(this);
+    this.concatRight =( function (A, cb) {
       return concatRight(this, A, cb);
-    };
-    this.concatLeft = function (A, cb) {
+    }).bind(this);
+    this.concatLeft = (function (A, cb) {
       return concatLeft(this, A, cb);
-    };
-    this.concatDown = function (A, cb) {
+    }).bind(this);
+    this.concatDown =( function (A, cb) {
       return concatDown(this, A, cb);
-    };
-    this.concatUp = function (A, cb) {
+    }).bind(this);
+    this.concatUp =( function (A, cb) {
       return concatUp(this, A, cb);
-    };
-    this.x = function (A, cb) {
+    }).bind(this);
+    this.x = (function (A, cb) {
       if (typeof A === 'number') {
         return this.scalar(A, cb)
       }
       return x(this, A, cb);
-    };
-    this._x = function (A, cb) {
+    }).bind(this);
+    this._x = (function (A, cb) {
       return _x(this, A, cb);
-    };
-    this.plus = function (A, cb) {
+    }).bind(this);
+    this.plus = (function (A, cb) {
       return plus(this, A, cb);
-    };
-    this.scalar = function (alpha, cb) {
+    }).bind(this);
+    this.scalar = (function (alpha, cb) {
       return scalar(alpha, this, cb);
-    };
-    this.pow = function (n, cb) {
+    }).bind(this);
+    this.pow = (function (n, cb) {
       return pow(this, n, cb);
-    };
-    this.apply = function (A, cb) {
+    }).bind(this);
+    this.apply = (function (A, cb) {
       return apply(this, A, cb);
-    };
-    this._pow = function (n, cb) {
+    }).bind(this);
+    this._pow = (function (n, cb) {
       return _pow(this, n, cb);
-    };
-    this.minor = function (i, j, cb) {
+    }).bind(this);
+    this.minor = (function (i, j, cb) {
       return minor(i, j, this, cb);
-    };
-    this.map = function (cb, _cb) {
+    }).bind(this);
+    this.map = (function (cb, _cb) {
       return map(cb, this, _cb);
-    };
-    this.filter = function (cb, _cb) {
+    }).bind(this);
+    this.filter = (function (cb, _cb) {
       return filter(this, cb, _cb);
-    };
-    this.truncate = function (n, cb) {
+    }).bind(this);
+    this.filterByPositionRow = (function (cb, _cb) {
+      return filterByPositionRow(this, cb, _cb);
+    }).bind(this);
+    this.filterByPositionColumn = (function (cb, _cb) {
+      return filterByPositionColumn(this, cb, _cb);
+    }).bind(this);
+    this.truncate = (function (n, cb) {
       var _truncate = function (item) {
         return truncate(item, n);
       };
       return map(_truncate, this, cb);
-    };
-    this.forEach = function (map, cb) {
+    }).bind(this);
+    this.forEach = (function (map, cb) {
       forEach.call(this, map, this, cb);
-    };
-    this.forEachColumn = function (map, cb) {
+    }).bind(this);
+    this.forEachColumn = (function (map, cb) {
       forEachColumn.call(this, map, this, cb);
-    };
-    this.forEachRow = function (map, cb) {
+    }).bind(this);
+    this.forEachRow = (function (map, cb) {
       forEachRow.call(this, map, this, cb);
-    };
-    this.toVectorWithRow = function (opt) {
+    }).bind(this);
+    this.toVectorWithRow =( function (opt) {
       return toVectorWithRow(this, opt);
-    };
-    this.toVectorWithColumn = function () {
+    }).bind(this);
+    this.toVectorWithColumn = (function () {
       return toVectorWithColumn(this);
-    };
+    }).bind(this);
   }
 }
-matrix.toVectorWithRow = toVectorWithRow
-matrix.toVectorWithColumn = toVectorWithColumn
-matrix.diagonal = diagonal
-matrix.adj = adj
-matrix.apply = apply
-matrix.det = det;
-matrix.inv = inv;
-matrix.minor = minor;
-matrix.pscalar = scalar;
-matrix.sum = plus;
-matrix.trans = trans;
-matrix.multiply = x;
-matrix.multiplyDirect = _x
-matrix.pow = pow;
-matrix._pow = _pow;
-matrix.map = map;
-matrix.toObject = function (A) {
+matrix.toVectorWithRow = (toVectorWithRow).bind(matrix)
+matrix.toVectorWithColumn = toVectorWithColumn.bind(matrix)
+matrix.diagonal = diagonal.bind(matrix)
+matrix.adj = adj.bind(matrix)
+matrix.apply = apply.bind(matrix)
+matrix.det = det.bind(matrix);
+matrix.inv = inv.bind(matrix);
+matrix.minor = minor.bind(matrix);
+matrix.pscalar = scalar.bind(matrix);
+matrix.sum = plus.bind(matrix);
+matrix.trans = trans.bind(matrix);
+matrix.multiply = x.bind(matrix);
+matrix.multiplyDirect = _x.bind(matrix)
+matrix.pow = pow.bind(matrix);
+matrix._pow = _pow.bind(matrix);
+matrix.map = map.bind(matrix);
+matrix.toObject = (function (A) {
   if (A instanceof matrix) {
     if (A.getColumn(1) === 1) {
       return A.trans()
@@ -229,15 +237,18 @@ matrix.toObject = function (A) {
     return toObject(A.array)
   }
   return toObject(A);
-};
+}).bind(matrix);
 matrix.forEach = forEach.bind(matrix);
-matrix.create = matrix_nxm;
-matrix.ident = identM;
-matrix.zeros = zeros
-matrix.ones = ones
-matrix.concatDown = concatDown
-matrix.concatLeft = concatLeft
-matrix.concatRight = concatRight
-matrix.concatUp = concatUp
+matrix.create = matrix_nxm.bind(matrix);
+matrix.ident = identM.bind(matrix);
+matrix.filter = filter.bind(matrix);
+matrix.filterByPositionRow = filterByPositionRow.bind(matrix);
+matrix.filterByPositionColumn = filterByPositionColumn.bind(matrix);
+matrix.zeros = zeros.bind(matrix)
+matrix.ones = ones.bind(matrix)
+matrix.concatDown = concatDown.bind(matrix)
+matrix.concatLeft = concatLeft.bind(matrix)
+matrix.concatRight = concatRight.bind(matrix)
+matrix.concatUp = concatUp.bind(matrix)
 
 module.exports = matrix;
