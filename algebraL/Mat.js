@@ -47,24 +47,32 @@ function countColumn(array) {
  * Constructor of a matrix.
  * @param {Array} array to build the matrix, {Number} matrix's row , {Array} matrix's column
  */
+
+ function Validate(array, row, column, opt) {
+   if (typeof row === 'object') {
+      opt = row
+      row = undefined
+      column = undefined
+   }else if (typeof array === 'number') {
+     let pivot = row
+     row = array
+     array = [
+       []
+     ]
+     opt = _.clone(column,true)
+     column = _.clone(pivot,true)
+   }
+ return {opt:opt, row:row, column:column , array :array}
+ }
 var matrix = function (array, row, column, opt) {
+  let validate = Validate(array, row, column, opt)
+  opt = validate.opt  ;array = validate.array ; row = validate.row ;column = validate.column
   if (array instanceof Vector) {
     return array.matrix
-  }
-  if (array instanceof matrix) {
+  } else if (array instanceof matrix) {
     return array
-  }
-  if (typeof array === 'number' && !column && row) {
-    let pivot = row
-    row = array
-    array = [
-      []
-    ]
-    opt = _.clone(column,true)
-    column = _.clone(pivot,true)
-  }
-  if (!(this instanceof matrix)) {
-    return new matrix(array, row, column)
+  }else if (!(this instanceof matrix)) {
+    return new matrix(array, row, column,opt)
   }
   array = (typeof array === 'object') && !Array.isArray(array) ? toArray(array, opt) : array
   array = Array.isArray(array) ? array : [
@@ -81,7 +89,7 @@ var matrix = function (array, row, column, opt) {
           this.array[(i - 1) % this.array.length].length
         ];
       } else if (i !== undefined && j === undefined) {
-        return matrix([this.array[(i - 1) % this._row]])
+        return matrix([this.array[(i - 1) % this._row]],opt)
       } else if (i === undefined && j !== undefined) {
         return this.trans()._(j).trans()
       }
@@ -104,6 +112,7 @@ var matrix = function (array, row, column, opt) {
         this._array = array;
       }
     });
+    this.opt = opt
     this._array = array
     this._row = array.length
     this.row = row || array.length;
@@ -143,18 +152,12 @@ var matrix = function (array, row, column, opt) {
       if (typeof A === 'number') {
         return this.scalar(A, cb)
       }
-      if (!(A instanceof matrix)) {
-        A = matrix(A)
-      }
       return x(this, A, cb);
     };
     this._x = function (A, cb) {
       return _x(this, A, cb);
     };
     this.plus = function (A, cb) {
-      if (!(A instanceof matrix)) {
-        A = matrix(A)
-      }
       return plus(this, A, cb);
     };
     this.scalar = function (alpha, cb) {

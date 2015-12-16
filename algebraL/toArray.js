@@ -14,8 +14,8 @@ function toArray(obj, opt) {
   for (var variable in obj) {
     if (obj.hasOwnProperty(variable)) {
       array.push([variable, (typeof obj[variable] === 'object') && !Array.isArray(obj[variable]) ?
-        opt.deep ? toArray(obj[variable]) : obj[variable] :
-        Array.isArray(obj[variable]) ?
+        opt.deep ? toArray(obj[variable], opt) : obj[variable] :
+        Array.isArray(obj[variable]) && opt.deep ?
         new Matrix(obj[variable]) :
         obj[variable]
       ])

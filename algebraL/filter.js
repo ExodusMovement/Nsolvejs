@@ -39,8 +39,7 @@ function filter( B, _map ) {
 		}
 
 	}
-	B.array = array
-	return B;
+	return  Matrix(array,B.row,B._column, B.opt);
 
 }
 module.exports = function ( map, B, cb ) {
