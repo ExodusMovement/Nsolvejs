@@ -1,5 +1,6 @@
 'use strict';
-var x = require('./multi');
+var _ = require('lodash'),
+x = require('./multi');
 var plus = require('./sum');
 var scalar = require('./pscalar'),
   pow = require('./pow'),
@@ -13,6 +14,8 @@ var scalar = require('./pscalar'),
   map = require('./map'),
   truncate = require('../utils/truncate'),
   forEach = require('./foreach'),
+  forEachColumn = require('./foreachColumn'),
+  forEachRow = require('./foreachRow'),
   identM = require('./identM'),
   zeros = require('./zeros'),
   ones = require('./ones'),
@@ -57,7 +60,8 @@ var matrix = function (array, row, column, opt) {
     array = [
       []
     ]
-    column = pivot
+    opt = _.clone(column,true)
+    column = _.clone(pivot,true)
   }
   if (!(this instanceof matrix)) {
     return new matrix(array, row, column)
@@ -182,6 +186,12 @@ var matrix = function (array, row, column, opt) {
     };
     this.forEach = function (map, cb) {
       forEach.call(this, map, this, cb);
+    };
+    this.forEachColumn = function (map, cb) {
+      forEachColumn.call(this, map, this, cb);
+    };
+    this.forEachRow = function (map, cb) {
+      forEachRow.call(this, map, this, cb);
     };
     this.toVectorWithRow = function (opt) {
       return toVectorWithRow(this, opt);

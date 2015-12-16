@@ -143,6 +143,7 @@ Is a constructor of a object matrix, the form of Array param have to be like  `A
 var Matrix = require('Nsolvejs').matrix;
 var matrix =[[0,1.1],[1,4.6]];
 var mat = Matrix(matrix);
+Matrix(3,5,6); // return a matrix of 5x6 fulfilled with 3 
 mat.row == 2; // True
 mat.column == 2 // True
 mat.array ; // [[0,1.1],[1,4.6]]

@@ -1,16 +1,13 @@
 'use strict';
-let builder = require( './matrix_nxm' );
-
 /** @function
  * Builder of matrix with zeros.
  * @param {Number} the length of matrix.
  * @return {Object} matrix
  */
 function zeros( n, m ) {
+	var builder = require( './Mat' );
 	m = m || n
-	return builder( n, m, function () {
-		return 0;
-	} )
+	return builder(0 ,n, m)
 }
 
 module.exports = function ( n, m, cb ) {

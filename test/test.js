@@ -1,5 +1,6 @@
 'use strict';
 var assert = require('assert'),
+sinon = require('sinon'),
   JNsolve = require('../index'),
   data,
   stats,
@@ -151,7 +152,26 @@ describe('JNsolve Module numeric values function test.', function () {
     assert.equal(A._pow(7)
       ._(2, 2), Math.pow(3, 7)); // should returns true
   });
-
+  it('calls the function when the foreach methods is called', function () {
+      var callback = sinon.spy();
+      A.forEach(callback)
+      assert(callback.called);
+  });
+  it('calls the function when the forEachColumn methods is called', function () {
+      var callback = sinon.spy();
+      A.forEachColumn(callback)
+      assert(callback.called);
+  });
+  it('calls the function when the forEachRow methods is called', function () {
+      var callback = sinon.spy();
+      A.forEachRow(callback)
+      assert(callback.called);
+  });
+  it('calls the function when the map methods is called', function () {
+      var callback = sinon.spy();
+      A.map(callback)
+      assert(callback.called);
+  });
   it('The toVectorWithColumn return  a vector [1,1,4,3]', function () {
     assert.equal(A.toVectorWithColumn().dim, 4);
     // should returns true

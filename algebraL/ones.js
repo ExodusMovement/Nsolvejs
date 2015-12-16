@@ -1,16 +1,13 @@
 'use strict';
-let builder = require( './matrix_nxm' );
-
 /** @function
  * Builder of matrix with ones.
  * @param {Number} the length of matrix.
  * @return {Object} matrix
  */
 function ones( n, m ) {
+	let builder = require( './Mat' );
 	m = m || n
-	return builder( n, m, function () {
-		return 1;
-	} )
+	return builder(1, n, m );
 }
 module.exports = function ( n, m, cb ) {
 	if ( cb && typeof cb === 'function' ) {
