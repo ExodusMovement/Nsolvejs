@@ -53,7 +53,7 @@ function countColumn(array) {
       opt = row
       row = undefined
       column = undefined
-   }else if (typeof array === 'number') {
+   }else if (typeof array === 'number' && !opt && row &&(column ? typeof column === 'object' : true)) {
      let pivot = row
      row = array
      array = [
