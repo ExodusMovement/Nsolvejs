@@ -1,5 +1,5 @@
 'use strict';
-var _ = require('underscore'),
+var _ = require('lodash'),
   fn = require('./fitf(x)'),
   betterfit = require('./betterfit');
 /** @function
