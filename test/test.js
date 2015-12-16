@@ -167,6 +167,12 @@ describe('JNsolve Module numeric values function test.', function () {
       A.forEachRow(callback)
       assert(callback.called);
   });
+  it('calls the function when the map methods is called with A._(1,1)', function () {
+      var callback = sinon.spy();
+      var test = A._(1,1)
+      A.map(callback)
+      assert(callback.calledWith( test)  )
+  });
   it('calls the function when the map methods is called', function () {
       var callback = sinon.spy();
       A.map(callback)
@@ -190,6 +196,39 @@ describe('JNsolve Module numeric values function test.', function () {
       d: 'eitt',
       key: 'value'
     }).filter([0, 1, true, false]).toObject().b, 'hola'); // should returns true
+  });
+  it('When the object {a:21,b:"hola"} is filtered with the array = [0,1] and the method toObject is applied return {b:"hola"}', function () {
+    let matrix = JNsolve.AL.matrix
+    let filter = [
+    	[  1 , 2],
+    		[  3 , 4],
+    ]
+
+    let obj = {
+    	a:1,
+    	b:'hola',
+    	c: [3,2,5],
+    	d: {key:'value'}
+    }
+    let trans = function () {
+    	return {e:3}
+    }
+    let _filter = matrix(filter,{deep:false})
+    trans = matrix(trans,_filter.row,_filter._column,{deep:false})
+  	let objMat = matrix(obj,{deep:false})
+  	filter = objMat.filterByPositionRow
+  	let filterMat = matrix(filter,_filter.row,_filter._column,{deep:false})
+  	let objFiltered=filterMat.apply(_filter)
+  	let objTrans = trans.apply(objFiltered)
+  	var array = []
+   	objTrans.forEachColumn(function (column) {
+  		var obj =  {}
+  		column.forEach(function (item) {
+  			Object.assign(obj,item)
+  		})
+  		array.push(obj)
+  	})
+    assert.equal(array[0].e,3); // should returns true
   });
 
   it('The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {
