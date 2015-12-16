@@ -25,13 +25,15 @@ function filter( _B, _map ) {
 			if ( B._( i, k ) instanceof Matrix ) {
 				B.array[ i - 1 ][ k - 1 ] = filter( B._( i, k ), map._( i, 1) )
 			} else {
-				test = typeof map === 'function' ? ( map._( i, k )
-					.call( B, B._( i, k ), i, k ) ) : map._( i, k )
+				test = typeof map._( i, 1 ) === 'function' ? ( map._( i, 1 )
+					.call( B, B._( i, k ), i ) ) : map._( i, 1 )
+
 				array[i-1][k-1] = B._(test,k)
 			}
 		}
 	}
-	return   Matrix(array,B.row,B._column, B.opt).trans();
+
+	return   Matrix(array,map.row,B._column, B.opt).trans();
 
 }
 module.exports = function ( map, B, cb ) {

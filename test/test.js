@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('assert'),
-sinon = require('sinon'),
+  sinon = require('sinon'),
   JNsolve = require('../index'),
   data,
   stats,
@@ -153,32 +153,32 @@ describe('JNsolve Module numeric values function test.', function () {
       ._(2, 2), Math.pow(3, 7)); // should returns true
   });
   it('calls the function when the foreach methods is called', function () {
-      var callback = sinon.spy();
-      A.forEach(callback)
-      assert(callback.called);
+    var callback = sinon.spy();
+    A.forEach(callback)
+    assert(callback.called);
   });
   it('calls the function when the forEachColumn methods is called', function () {
-      var callback = sinon.spy();
-      A.forEachColumn(callback)
-      assert(callback.called);
+    var callback = sinon.spy();
+    A.forEachColumn(callback)
+    assert(callback.called);
   });
   it('calls the function when the forEachRow methods is called', function () {
-      var callback = sinon.spy();
-      A.forEachRow(callback)
-      assert(callback.called);
+    var callback = sinon.spy();
+    A.forEachRow(callback)
+    assert(callback.called);
   });
   it('calls the function when the map methods is called with A._(1,1)', function () {
-      var callback = sinon.spy();
-      var test = A._(1,1)
-      A.map(callback)
-      assert(callback.calledWith( test)  )
+    var callback = sinon.spy();
+    var test = A._(1, 1)
+    A.map(callback)
+    assert(callback.calledWith(test))
   });
   it('calls the function when the map methods is called', function () {
-      var callback = sinon.spy();
-      A.map(callback)
-      assert(callback.called);
+    var callback = sinon.spy();
+    A.map(callback)
+    assert(callback.called);
   });
-  it('The toVectorWithColumn return  a vector [1,1,4,3]', function () {
+  it('The toVectorWithColumn return  a vector [1,4,1,3]', function () {
     assert.equal(A.toVectorWithColumn().dim, 4);
     // should returns true
     assert.equal(A.toVectorWithColumn().matrix._(4, 1), 3); // should returns true
@@ -197,39 +197,100 @@ describe('JNsolve Module numeric values function test.', function () {
       key: 'value'
     }).filter([0, 1, true, false]).toObject().b, 'hola'); // should returns true
   });
-  it('When the object {a:21,b:"hola"} is filtered with the array = [0,1] and the method toObject is applied return {b:"hola"}', function () {
+  it('When the filterByPositionRow is applied the correct result is obtained', function () {
     let matrix = JNsolve.AL.matrix
     let filter = [
-    	[  1 , 2],
-    		[  3 , 4],
+      [1, 2],
+      [3, 4],
     ]
 
     let obj = {
-    	a:1,
-    	b:'hola',
-    	c: [3,2,5],
-    	d: {key:'value'}
+      a: 1,
+      b: 'hola',
+      c: [3, 2, 5],
+      d: {
+        key: 'value'
+      }
     }
     let trans = function () {
-    	return {e:3}
+      return {
+        e: 3
+      }
     }
-    let _filter = matrix(filter,{deep:false})
-    trans = matrix(trans,_filter.row,_filter._column,{deep:false})
-  	let objMat = matrix(obj,{deep:false})
-  	filter = objMat.filterByPositionRow
-  	let filterMat = matrix(filter,_filter.row,_filter._column,{deep:false})
-  	let objFiltered=filterMat.apply(_filter)
-  	let objTrans = trans.apply(objFiltered)
-  	var array = []
-   	objTrans.forEachColumn(function (column) {
-  		var obj =  {}
-  		column.forEach(function (item) {
-  			Object.assign(obj,item)
-  		})
-  		array.push(obj)
-  	})
-    assert.equal(array[0].e,3); // should returns true
+    let _filter = matrix(filter, {
+      deep: false
+    })
+    trans = matrix(trans, _filter.row, _filter._column, {
+      deep: false
+    })
+    let objMat = matrix(obj, {
+      deep: false
+    })
+    filter = objMat.filterByPositionRow
+    let filterMat = matrix(filter, _filter.row, _filter._column, {
+      deep: false
+    })
+    assert.equal(typeof filterMat._(_filter.row,1), 'function'); //
+    let objFiltered = filterMat.apply(_filter)
+    assert.equal(objFiltered._(1,2)._(1,1), 'b');
+    assert.equal(objFiltered._(1,2)._(1,2), 'hola');
+    let objTrans = trans.apply(objFiltered)
+    assert.equal(objTrans._(1,1).e,3);
+    var array = []
+    objTrans.forEachColumn(function (column) {
+      var obj = {}
+      column.forEach(function (item) {
+        Object.assign(obj, item)
+      })
+      array.push(obj)
+    })
+    assert.equal(array[0].e, 3);
+    assert.equal(array[1].e, 3);// should returns true
   });
+  it('When the filterByPositionColumn is applied the correct result is obtained', function () {
+    let matrix = JNsolve.AL.matrix
+    let filter = [
+      [1, 2],
+      [3, 4],
+    ]
+
+    let obj = [
+      [2,3,4,5],
+      [1,3,1,5],
+      [0,0,1,-1],
+    ]
+    let trans = function () {
+      return {
+        key: 'value'
+      }
+    }
+    let _filter = matrix(filter, {
+      deep: false
+    })
+    trans = matrix(trans, _filter.row, _filter._column, {
+      deep: false
+    })
+    let objMat = matrix(obj, {
+      deep: false
+    })
+    filter = objMat.filterByPositionColumn
+    let filterMat = matrix(filter, _filter.row, _filter._column, {
+      deep: false
+    })
+    let objFiltered = filterMat.apply(_filter)
+    assert.equal(objFiltered._(1,2)._(3,1), 0);
+    let objTrans = trans.apply(objFiltered)
+    var array = []
+    objTrans.forEachColumn(function (column) {
+      var obj = {}
+      column.forEach(function (item) {
+        Object.assign(obj, item)
+      })
+      array.push(obj)
+    })
+    assert.equal(array[0].key, 'value'); // should returns true
+  });
+
 
   it('The cuadratic power of  matrix should be a matrix with (2,2) component equal to 13 ', function () {
 

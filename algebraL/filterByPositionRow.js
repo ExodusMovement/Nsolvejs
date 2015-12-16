@@ -24,7 +24,7 @@ function filter( B, _map ) {
 			if ( B._( i, k ) instanceof Matrix ) {
 				B.array[ i - 1 ][ k - 1 ] = filter( B._( i, k ), map._( i, 1) )
 			} else {
-				test = typeof map === 'function' ? ( map._( i, k )
+				test = typeof map._( i, k ) === 'function' ? ( map._( i, k )
 					.call( B, B._( i, k ), i, k ) ) : map._( i, k )
 				array[i-1][k-1] = B._(test,k)
 			}
