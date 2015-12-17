@@ -2,21 +2,21 @@
   /**@module
    * nsolvejs module, with all the properties defined into the proyect.
    */
-  var methodN = require('./lib/methodN'),
-      bestfit = require('./fit/bestfit'),
-      matrix = require('./algebraL/Mat'),
-      solveLE = require('./algebraL/solveLE'),
-      vector = require('./algebraL/vector'),
-      stats = require('./stats/stats'),
-      tensor = require('./tensor/create')
+  var methodN = require( './lib/methodN' ),
+      bestfit = require( './fit/bestfit' ),
+      matrix = require( './algebraL/Mat' ),
+      solveLE = require( './algebraL/solveLE' ),
+      vector = require( './algebraL/vector' ),
+      stats = require( './stats/stats' ),
+      tensor = require( './tensor/create' )
       /**@function
        * The function that solve the equation g(x)=0 beginning in initialpoint into a interval using the options given.
        * @param {Function} g {array} interval {number} initialpoint
        * {Object} options
        * @return {object} with the solution found.
        */
-  var nsolveqn = function (g, interval, initialpoint, options) {
-      if (!g) {
+  var nsolveqn = function ( g, interval, initialpoint, options ) {
+      if ( !g ) {
           return;
       }
       options = options || {
@@ -31,7 +31,7 @@
       options.method = options.method || 'Newton_Raphson';
       //  var presicion = options.presicion ;
       var method = options.method;
-      return methodN[method](g, interval, initialpoint, options);
+      return methodN[ method ]( g, interval, initialpoint, options );
   };
   nsolveqn.fit = {
       best: bestfit
@@ -42,9 +42,9 @@
       fixedpoint: methodN.fixedpoint,
       regulafalsi: methodN.regulafalsi,
       Newton_Raphson_Higherorder: methodN.Newton_Raphson_Higherorder,
-      findroot: require('./lib/findroot'),
-      D: require('./lib/derivativeN'),
-      D_opt: require('./lib/derivativeNopt'),
+      findroot: require( './lib/findroot' ),
+      D: require( './lib/derivativeN' ),
+      D_opt: require( './lib/derivativeNopt' ),
   };
   nsolveqn.AL = {
       matrix: matrix,
@@ -53,5 +53,5 @@
       tensor: tensor
   };
   nsolveqn.Stats = stats
-  nsolveqn.utils = require('./utils/utils');
+  nsolveqn.utils = require( './utils/utils' );
   module.exports = nsolveqn
