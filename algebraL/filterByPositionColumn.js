@@ -6,7 +6,7 @@
  */
 function filter(_B, _map) {
     let test
-    if (!_map || !_B) {
+    if (_map === undefined || !_B) {
         return;
     }
     let Matrix = require('./Mat');

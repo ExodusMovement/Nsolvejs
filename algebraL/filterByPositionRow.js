@@ -6,7 +6,7 @@
  */
 function filter(B, _map) {
     let test
-    if (!_map || !B) {
+    if (_map === undefined || !B) {
         return;
     }
     let Matrix = require('./Mat');
@@ -28,7 +28,7 @@ function filter(B, _map) {
             }
         }
     }
-    return new Matrix(array, B.row, B._column, B.opt);
+    return new Matrix(array, map.row, B._column, B.opt);
 }
 module.exports = function (map, B, cb) {
     if (cb && typeof cb === 'function') {
