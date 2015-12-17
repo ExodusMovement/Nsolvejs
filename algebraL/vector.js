@@ -67,10 +67,10 @@ let Vector = function(array, dim) {
     return this.matrix.filter(map);
   };
   // Define the cross product method
-  this.cross = function(A) {
-    if (A.dim === 3) {
-      return crossp(this, A);
-    }
+  this.cross = function() {
+      var arg = Array.prototype.slice.call(arguments)
+        arg.unshift(this)
+      return crossp(arg);
   };
 };
 // Define the class method dotp.

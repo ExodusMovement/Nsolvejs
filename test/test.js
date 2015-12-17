@@ -116,28 +116,28 @@ describe('JNsolve Module numeric values function test.', function () {
     it('The pow direct of A to seven power has 2,2 component equal 0 ', function () {
         assert.equal(A._pow(7)._(2, 2), Math.pow(3, 7)); // should returns true
     });
-    it('calls the function when the foreach methods is called', function () {
+    it('Calls the function when the foreach methods is called', function () {
         var callback = sinon.spy();
         A.forEach(callback)
         assert(callback.called);
     });
-    it('calls the function when the forEachColumn methods is called', function () {
+    it('Calls the function when the forEachColumn methods is called', function () {
         var callback = sinon.spy();
         A.forEachColumn(callback)
         assert(callback.called);
     });
-    it('calls the function when the forEachRow methods is called', function () {
+    it('Calls the function when the forEachRow methods is called', function () {
         var callback = sinon.spy();
         A.forEachRow(callback)
         assert(callback.called);
     });
-    it('calls the function when the map methods is called with A._(1,1)', function () {
+    it('Calls the function when the map methods is called with A._(1,1)', function () {
         var callback = sinon.spy();
         var test = A._(1, 1)
         A.map(callback)
         assert(callback.calledWith(test))
     });
-    it('calls the function when the map methods is called', function () {
+    it('Calls the function when the map methods is called', function () {
         var callback = sinon.spy();
         A.map(callback)
         assert(callback.called);
@@ -288,17 +288,20 @@ describe('JNsolve Module numeric values function test.', function () {
     it('The sum of vector_1 =[3,2,1] and  vector_2 =[0,-1,1] is [3,1,2] ', function () {
         assert.equal(vector1.sum(vector2).array[0][0], 3);
     });
-    it('The right concat of matrix  has 4 column', function () {
-        assert.equal(A.concatRight(A).column[0], 4);
+    var C= JNsolve.AL.matrix([[2,0],[8,9]])
+    it('The rightconcat of matrix  has 4 column', function () {
+        assert.equal(A.concatRight(C).column[0], 4);
+        assert.equal(A.concatRight(C)._(2,4), 9);
+        assert.equal(A.concatRight(C)._(1,1), 1);
     });
-    it('The Left concat of matrix  has 4 column', function () {
-        assert.equal(A.concatLeft(A)._(2, 4), 3);
+    it('The Leftconcat of matrix  has 4 column', function () {
+        assert.equal(A.concatLeft(C)._(2, 1), 8);
     });
-    it('The Up concat of matrix  has 4 column', function () {
-        assert.equal(A.concatUp(A).row, 4);
+    it('The Upconcat of matrix  has 4 column', function () {
+        assert.equal(A.concatUp(C)._(1,2), 0);
     });
-    it('The right concat of matrix  has 4 column', function () {
-        assert.equal(A.concatDown(A)._(4, 1), 1);
+    it('The downconcat of matrix  has 4 column', function () {
+        assert.equal(A.concatDown(C,C)._(5, 1), 2);
     });
     it('The solution of system 2x+2y = 1  2x+y = 4  is y = -3 and x = 3.5', function () {
         var sol = JNsolve.AL.solveLE([

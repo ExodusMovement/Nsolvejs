@@ -18,22 +18,33 @@ function concat(A, B) {
     let array = A.array.concat(B.array)
     return new Matrix(array);
 }
-module.exports = function (A, B, cb) {
+
+function addd(array) {
+    let l = array.length,
+        A = array[0],
+        B, p;
+    for (p = 1; p < l; p++) {
+        B = array[p];
+        A = concat(A, B);
+    }
+    return A;
+}
+module.exports = function (arg) {
+    if (arg === undefined) {return  }
+  if (arguments.length >1) {
+    arg =  Array.prototype.slice.call(arguments)
+  }
+    let cb = arg[arg.length - 1];
     if (cb && typeof cb === 'function') {
+        arg.pop();
         return new Promise(function (full, rej) {
             try {
-                full(cb.call({
-                    A: A,
-                    B: B
-                }, null, concat(A, B)))
+                full(cb.call(null, null,addd(arg)))
             } catch (e) {
-                rej(cb.call({
-                    A: A,
-                    B: B
-                }, e, null))
+                rej(cb.call(null,e, null))
             }
         })
     } else {
-        return concat(A, B);
+        return addd(arg);
     }
 };

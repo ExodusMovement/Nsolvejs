@@ -11,10 +11,10 @@ function crossp(A, B) {
     }
     let Vector = require('./vector');
     if (!(A instanceof Vector) && Array.isArray(A)) {
-        A = Vector(A)
+        A = new Vector(A)
     }
     if (!(B instanceof Vector) && Array.isArray(B)) {
-        B = Vector(B)
+        B = new Vector(B)
     }
     let i, j, k, array = [];
     for (i = 0; i < 3; i++) {
@@ -27,22 +27,34 @@ function crossp(A, B) {
     }
     return new Vector(array);
 }
-module.exports = function (A, B, cb) {
+
+function addd(array) {
+    let l = array.length,
+        A = array[0],
+        B, p;
+    for (p = 1; p < l; p++) {
+        B = array[p];
+        A = crossp(A, B);
+    }
+    return A;
+}
+
+module.exports = function (arg) {
+    if (arg === undefined) {return  }
+  if (arguments.length >1) {
+    arg =  Array.prototype.slice.call(arguments)
+  }
+    let cb = arg[arg.length - 1];
+
     if (cb && typeof cb === 'function') {
         return new Promise(function (full, rej) {
             try {
-                full(cb.call({
-                    A: A,
-                    B: B
-                }, null, crossp(A, B)))
+                full(cb.call(this, null, addd(arg)))
             } catch (e) {
-                rej(cb.call({
-                    A: A,
-                    B: B
-                }, e, null))
+                rej(cb.call(this, e, null))
             }
         })
     } else {
-        return crossp(A, B);
+        return addd(arg);
     }
 };

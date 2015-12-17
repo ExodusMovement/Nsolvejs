@@ -30,16 +30,33 @@ function filter(B, _map) {
     }
     return new Matrix(array, map.row, B._column, B.opt);
 }
-module.exports = function (map, B, cb) {
+function addd(array) {
+    let l = array.length,
+        A = array[0],
+        B, p;
+    for (p = 1; p < l; p++) {
+        B = array[p];
+        A = filter(A, B);
+    }
+    return A;
+}
+
+module.exports = function (arg) {
+      if (arg === undefined) {return  }
+  if (arguments.length >1) {
+    arg =  Array.prototype.slice.call(arguments)
+  }
+    let cb = arg[arg.length - 1];
+
     if (cb && typeof cb === 'function') {
         return new Promise(function (full, rej) {
             try {
-                full(cb.call(B, null, filter(map, B)))
+                full(cb.call(this, null, addd(arg)))
             } catch (e) {
-                rej(cb.call(B, e, null))
+                rej(cb.call(this, e, null))
             }
         })
     } else {
-        return filter(map, B);
+        return addd(arg);
     }
 };

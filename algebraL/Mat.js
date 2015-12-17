@@ -1,5 +1,6 @@
 'use strict';
 var _ = require('lodash'),
+    slice = Array.prototype.slice,
     x = require('./multi');
 var plus = require('./sum');
 var scalar = require('./pscalar'),
@@ -90,6 +91,15 @@ var matrix = function (array, row, column, opt) {
     let test = Boolean(array.length)
     if (test) {
         this._ = (function (i, j) {
+          var arg
+          if (Array.isArray(i) && j === undefined) {
+            j = i[1]
+            arg = _.clone(i,true)
+            i = arg[0]
+          }else {
+            arg = slice.call(arguments)
+          }
+          if (arguments.length < 3) {
             if (i !== undefined && j !== undefined) {
                 return this.array[(i - 1) % this.row % this._row][(j - 1) % this.getColumn(i) % this.array[(i - 1) % this.array.length].length];
             } else if (i !== undefined && j === undefined) {
@@ -97,6 +107,15 @@ var matrix = function (array, row, column, opt) {
             } else if (i === undefined && j !== undefined) {
                 return this.trans()._(j).trans()
             }
+
+          } else
+          if (  this.array[(i - 1) % this.row % this._row][(j - 1) % this.getColumn(i) % this.array[(i - 1) % this.array.length].length] instanceof matrix) {
+              return this.array[(i - 1) % this.row % this._row][(j - 1) %
+                 this.getColumn(i) % this.array[(i - 1) %
+                 this.array.length].length]._(arg.slice(2))
+
+          }
+
         }).bind(this);
         this.getColumn = (function (i) {
             return this._column[(i - 1) % this._column.length]
@@ -140,29 +159,43 @@ var matrix = function (array, row, column, opt) {
         this.toObject = (function () {
             return toObject(this.array);
         }).bind(this);
-        this.concatRight = (function (A, cb) {
-            return concatRight(this, A, cb);
+        this.concatRight = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return concatRight(arg);
         }).bind(this);
-        this.concatLeft = (function (A, cb) {
-            return concatLeft(this, A, cb);
+        this.concatLeft = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return concatLeft(arg);
         }).bind(this);
-        this.concatDown = (function (A, cb) {
-            return concatDown(this, A, cb);
+        this.concatDown = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return concatDown(arg);
         }).bind(this);
-        this.concatUp = (function (A, cb) {
-            return concatUp(this, A, cb);
+        this.concatUp = (function () {
+          var arg =slice.call(arguments)
+            arg.unshift(this)
+            return concatUp(arg);
         }).bind(this);
         this.x = (function (A, cb) {
             if (typeof A === 'number') {
                 return this.scalar(A, cb)
             }
-            return x(this, A, cb);
+            var arg = slice.call(arguments)
+              arg.unshift(this)
+            return x(arg);
         }).bind(this);
-        this._x = (function (A, cb) {
-            return _x(this, A, cb);
+        this._x = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return _x(arg);
         }).bind(this);
-        this.plus = (function (A, cb) {
-            return plus(this, A, cb);
+        this.plus = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return plus(arg);
         }).bind(this);
         this.scalar = (function (alpha, cb) {
             return scalar(alpha, this, cb);
@@ -170,8 +203,10 @@ var matrix = function (array, row, column, opt) {
         this.pow = (function (n, cb) {
             return pow(this, n, cb);
         }).bind(this);
-        this.apply = (function (A, cb) {
-            return apply(this, A, cb);
+        this.apply = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return apply(arg);
         }).bind(this);
         this._pow = (function (n, cb) {
             return _pow(this, n, cb);
@@ -182,14 +217,20 @@ var matrix = function (array, row, column, opt) {
         this.map = (function (cb, _cb) {
             return map(cb, this, _cb);
         }).bind(this);
-        this.filter = (function (cb, _cb) {
-            return filter(this, cb, _cb);
+        this.filter = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+          return filter(arg);
         }).bind(this);
-        this.filterByPositionRow = (function (cb, _cb) {
-            return filterByPositionRow(this, cb, _cb);
+        this.filterByPositionRow = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return filterByPositionRow(arg);
         }).bind(this);
-        this.filterByPositionColumn = (function (cb, _cb) {
-            return filterByPositionColumn(this, cb, _cb);
+        this.filterByPositionColumn = (function () {
+          var arg = slice.call(arguments)
+            arg.unshift(this)
+            return filterByPositionColumn(arg);
         }).bind(this);
         this.truncate = (function (n, cb) {
             var _truncate = function (item) {

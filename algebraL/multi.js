@@ -22,9 +22,12 @@ function multi(array) {
     }
     return A
 }
-module.exports = function () {
-    let arg = Array.prototype.slice.call(arguments);
-    let cb = arguments[arguments.length - 1];
+module.exports = function (arg) {
+    if (arg === undefined) {return  }
+  if (arguments.length >1) {
+    arg =  Array.prototype.slice.call(arguments)
+  }
+    let cb = arg[arg.length - 1];
     if (typeof cb === 'function') {
         arg.pop();
         return new Promise(function (full, rej) {

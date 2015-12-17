@@ -164,9 +164,9 @@ mat.diagonal()
 //      [ 4.6]
 //    ]
 mat.x(mat,mat);// [[5,24.5],[22.3,107.5]] or chained
+mat.x(mat).x(mat) // etc
 mat.toVectorWithRow() // return a vector formed with the row (up-down)  [0,1.1,1,4.6]   
 mat.toVectorWithColumn() // return a vector formed with the columns (right-left)  [0,1,1.1,4.6]  
-mat.x(mat).x(mat) // etc
 mat.plus(mat,mat,mat) // [[0,4.4],[4,18.4]] or chained
 mat.plus(mat).plus(mat).plus(mat) // etc
 mat.truncate(0); //[[0,1],[1,4]]

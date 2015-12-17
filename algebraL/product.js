@@ -29,7 +29,7 @@ function product(A, B) {
             for (j = 1; j < jj; j++) {
                 test = test || (typeof A._(i, j) === 'object') || (typeof B._(j, k) === 'object')
                 if (test) {
-                    array[i - 1][k - 1] = !Array.isArray(B._(j, k)) ? Matrix.sum(array[i - 1][k - 1], Matrix.apply(A._(i, j), B._(j, k))) : Matrix.sum(array[i - 1][k - 1], product(A._(i, j), B._(j, k)))
+                    array[i - 1][k - 1] = product(A._(i, j), B._(j, k))
                 } else {
                     array[i - 1][k - 1] += A._(i, j) * B._(j, k);
                 }

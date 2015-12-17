@@ -44,16 +44,19 @@ function addd(array) {
     }
     return A;
 }
-module.exports = function () {
-    let arg = Array.prototype.slice.call(arguments);
-    let cb = arguments[arguments.length - 1];
+module.exports = function (arg) {
+    if (arg === undefined) {return  }
+  if (arguments.length >1) {
+    arg =  Array.prototype.slice.call(arguments)
+  }
+    let cb = arg[arg.length - 1];
     if (cb && typeof cb === 'function') {
         arg.pop();
         return new Promise(function (full, rej) {
             try {
-                full(cb.call(null, addd(arg)))
+                full(cb.call(null,null, addd(arg)))
             } catch (e) {
-                rej(cb.call(e, null))
+                rej(cb.call(null,e, null))
             }
         })
     } else {
