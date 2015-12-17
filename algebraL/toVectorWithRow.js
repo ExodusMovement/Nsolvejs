@@ -17,7 +17,7 @@ function toVectorWithRow(A, opt) {
   let array = []
   let l = A.getColumn(opt.column)
   for (var i = 1; i <= l; i++) {
-    array = array.concat(A._(undefined,i).trans().array[0])
+    array = array.concat(A._(undefined, i).trans().array[0])
   }
   return new Vector(array)
 }

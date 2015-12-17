@@ -29,9 +29,9 @@ function trans(B, opt) {
   return new Matrix(array);
 
 }
-module.exports = function (B, cb, opt) {
+module.exports = function(B, cb, opt) {
   if (cb && typeof cb === 'function') {
-    return new Promise(function (full, rej) {
+    return new Promise(function(full, rej) {
       try {
         full(cb.call(B, null, trans(B, opt)))
       } catch (e) {
