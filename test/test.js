@@ -335,10 +335,14 @@ describe('derivative numeric.', function () {
         assert.equal(typeof JNsolve.calculusN.D.linearinterapolation, 'function'); // should returns true
     });
     it('JNsolve.D.linearinterapolation is a constructor that define the function_interpolated', function () {
-        assert.equal(typeof new JNsolve.calculusN.D.linearinterapolation([3, 2], [6, 8], [2, 9]).function_interpolated, 'function'); // should returns true
+        assert.equal(typeof new JNsolve.calculusN.D.linearinterapolation([3,
+            2
+        ], [6, 8], [2, 9]).function_interpolated, 'function'); // should returns true
     });
     it('JNsolve.D.linearinterapolation is a constructor that define the function_interpolated', function () {
-        assert.equal(typeof new JNsolve.calculusN.D.linearinterapolation([3, 2], [6, 8], [2, 9]).function_interpolated, 'function'); // should returns true
+        assert.equal(typeof new JNsolve.calculusN.D.linearinterapolation([3,
+            2
+        ], [6, 8], [2, 9]).function_interpolated, 'function'); // should returns true
     });
 });
 describe('Negative cases.', function () {
