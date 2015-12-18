@@ -5,17 +5,17 @@ var assert = require( 'assert' ),
     data,
     stats,
     test_array = [
-        [ 0, 40 ],
-        [ 1, 48 ],
-        [ 3, 56 ],
-        [ 4, 70 ]
-    ],
+    [ 0, 40 ],
+    [ 1, 48 ],
+    [ 3, 56 ],
+    [ 4, 70 ]
+  ],
     test_query = [ 3.4, 4.8, 8, 11 ],
     test_y = [ 75, 83, 99, 105 ],
     array1 = [
-        [ 1, 4 ],
-        [ 1, 3 ]
-    ],
+    [ 1, 4 ],
+    [ 1, 3 ]
+  ],
     A = new JNsolve.AL.matrix( array1 ),
     vector1 = new JNsolve.AL.vector( [ 3, 2, 1 ] ),
     vector2 = new JNsolve.AL.vector( [ 0, -1, 1 ] ),
@@ -130,9 +130,9 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     } );
     it( 'The apply method with matrix [[cos,sin],[tan,sqrt]] return a matrix with the correct array', function ( ) {
         var matFunc = JNsolve.AL.matrix( [
-            [ Math.cos, Math.sin ],
-            [ Math.tan, Math.sqrt ]
-        ] )
+        [ Math.cos, Math.sin ],
+        [ Math.tan, Math.sqrt ]
+      ] )
         var matApply = matFunc.apply( A )
         assert.equal( matApply._( 1, 1 ), Math.cos( A._( 1, 1 ) ) ); // should returns true
         assert.equal( matApply._( 1, 2 ), Math.sin( A._( 1, 2 ) ) ); // should returns true
@@ -190,9 +190,9 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     it( 'When the filterByPositionRow is applied the correct result is obtained', function ( ) {
         let matrix = JNsolve.AL.matrix
         let filter = [
-            [ 1, 2 ],
-            [ 3, 4 ],
-        ]
+        [ 1, 2 ],
+        [ 3, 4 ],
+      ]
         let obj = {
             a: 1,
             b: 'hola',
@@ -239,14 +239,14 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     it( 'When the filterByPositionColumn is applied the correct result is obtained', function ( ) {
         let matrix = JNsolve.AL.matrix
         let filter = [
-            [ 1, 2 ],
-            [ 3, 4 ],
-        ]
+        [ 1, 2 ],
+        [ 3, 4 ],
+      ]
         let obj = [
-            [ 2, 3, 4, 5 ],
-            [ 1, 3, 1, 5 ],
-            [ 0, 0, 1, -1 ],
-        ]
+        [ 2, 3, 4, 5 ],
+        [ 1, 3, 1, 5 ],
+        [ 0, 0, 1, -1 ],
+      ]
         let trans = function ( ) {
             return {
                 key: 'value'
@@ -314,26 +314,35 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     it( 'The sum of vector_1 =[3,2,1] and  vector_2 =[0,-1,1] is [3,1,2] ', function ( ) {
         assert.equal( vector1.sum( vector2 ).array[ 0 ][ 0 ], 3 );
     } );
-    var C = JNsolve.AL.matrix( [ [ 2, 0 ], [ 8, 9 ] ] )
+    var C = JNsolve.AL.matrix( [
+    [ 2, 0 ],
+    [ 8, 9 ]
+  ] )
     it( 'The rightconcat of matrix  has 4 column', function ( ) {
         assert.equal( A.concatRight( C ).column[ 0 ], 4 );
         assert.equal( A.concatRight( C )._( 2, 4 ), 9 );
         assert.equal( A.concatRight( C )._( 1, 1 ), 1 );
+        assert.equal( A.concatRight( C, A )._( 2, 6 ), 3 );
+        assert.equal( A.concatRight( C, A )._column[ 0 ], 6 );
+        assert.equal( A.concatRight( C, A, C )._column[ 0 ], 8 );
     } );
     it( 'The Leftconcat of matrix  has 4 column', function ( ) {
         assert.equal( A.concatLeft( C )._( 2, 1 ), 8 );
+        assert.equal( A.concatLeft( C, C, A, A )._column[ 0 ], 10 );
     } );
     it( 'The Upconcat of matrix  has 4 column', function ( ) {
         assert.equal( A.concatUp( C )._( 1, 2 ), 0 );
+        assert.equal( A.concatUp( C, C, A, A ).row, 10 );
     } );
     it( 'The downconcat of matrix  has 4 column', function ( ) {
         assert.equal( A.concatDown( C, C )._( 5, 1 ), 2 );
+        assert.equal( A.concatDown( C, C, C, C, C ).row, 12 );
     } );
     it( 'The solution of system 2x+2y = 1  2x+y = 4  is y = -3 and x = 3.5', function ( ) {
         var sol = JNsolve.AL.solveLE( [
-            [ 2, 2 ],
-            [ 2, 1 ]
-        ], [ 1, 4 ] )
+        [ 2, 2 ],
+        [ 2, 1 ]
+      ], [ 1, 4 ] )
         assert.equal( sol[ 0 ], 3.5 );
         assert.equal( sol[ 1 ], -3 );
     } );
@@ -365,13 +374,13 @@ describe( 'derivative numeric.', function ( ) {
     } );
     it( 'JNsolve.D.linearinterapolation is a constructor that define the function_interpolated', function ( ) {
         assert.equal( typeof new JNsolve.calculusN.D.linearinterapolation( [ 3,
-            2
-        ], [ 6, 8 ], [ 2, 9 ] ).function_interpolated, 'function' ); // should returns true
+        2
+      ], [ 6, 8 ], [ 2, 9 ] ).function_interpolated, 'function' ); // should returns true
     } );
     it( 'JNsolve.D.linearinterapolation is a constructor that define the function_interpolated', function ( ) {
         assert.equal( typeof new JNsolve.calculusN.D.linearinterapolation( [ 3,
-            2
-        ], [ 6, 8 ], [ 2, 9 ] ).function_interpolated, 'function' ); // should returns true
+        2
+      ], [ 6, 8 ], [ 2, 9 ] ).function_interpolated, 'function' ); // should returns true
     } );
 } );
 describe( 'Negative cases.', function ( ) {
@@ -400,14 +409,14 @@ describe( 'Stats module test', function ( ) {
     before( function ( ) {
         // create a instance of stats object
         data = [
-            [ 3, 4, 5, 2, 1, 5, 6 ],
-            [ 1, 4, 0, 4, 1, 5, 6 ],
-            [ 6, 4, 5, 2, 1, 5, 1 ],
-            [ 3, 4, 5, 5, 0, 5, 4 ],
-            [ 4, 4, 5, 2, 1, 5, 12 ],
-            [ 0, 4, 0, 9, 1, 5, 3 ],
-            [ 6, 4, 3, 2, 0, 5, 6 ]
-        ]
+      [ 3, 4, 5, 2, 1, 5, 6 ],
+      [ 1, 4, 0, 4, 1, 5, 6 ],
+      [ 6, 4, 5, 2, 1, 5, 1 ],
+      [ 3, 4, 5, 5, 0, 5, 4 ],
+      [ 4, 4, 5, 2, 1, 5, 12 ],
+      [ 0, 4, 0, 9, 1, 5, 3 ],
+      [ 6, 4, 3, 2, 0, 5, 6 ]
+    ]
         stats = new JNsolve.Stats( data )
     } );
     it( 'the data property is the array passed to class Stats ', function ( ) {
