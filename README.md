@@ -68,6 +68,7 @@ mat.scalar(0).scalar(4)  // etc
 mat.pow(2); // [[1.1,5.1],[4.6,22.3]] or chained
 mat.pow(2).scalar(2) //[[2.2,10.2],[9.2,44.6]]
 mat.filter // works like Array.prototype.filter
+          // with the variants filterByPositionRow and filterByPositionColumn
 mat._pow(3)
 // calculate the direct pow
 //   [
@@ -148,10 +149,11 @@ mapping = function(item,i,j){return item/(j-i+1)} ;
 Matrix.map(mapping,mat) //  equivalent mat.map(mapping)
 mat.map(Math.sqrt) //  return a matrix with the Square root over every element
 mat.forEach(mapping) // iterate over every matrix's element. The mapping has to receive as params the element and indexes.  
-//How create a matrix of nxm.
-mat.forEachColumn // Like forEach but receive the Columns as argument like matrix
-mat.forEachRow// Like forEach but receive the Rows as argument like matrix
+
+mat.forEachColumn // Like forEach but receive the Columns as argument like nx1 matrix
+mat.forEachRow// Like forEach but receive the Rows as argument like 1xn matrix
 map_create = function (i,j) { return i*j-1 ;}
+//How create a matrix of nxm.
 Matrix.create(2,3,map_create)
 //    [[0,1,2],
 //     [1,3,5]]
@@ -196,6 +198,15 @@ Matrix({a:21,b:'hola'}).filter([0,1]).toObject() // return {b:'hola'}
 // if the param to filter is not a function, is tried to convert to array to generate a matrix Object
 // their elements are used like Boolean to make the filter.
 // toObject try to convert the matrix to array
+
+var AA = Matrix( [  // You can built a matrix of matrix
+[ A, A.scalar( 2.5 ) ],
+[ A.x( A ), A.pow( 2 ) ]
+] )
+assert.equal( AA._( 1, 1, 1, 1 ), A._( 1, 1 ) ) // And obtain the elements of matrix elements with the tensor notation
+assert.equal( AA._( 1, 2, 1, 2 ), A.scalar( 2.5 )._( 1, 2 ) )  // true
+assert.equal( AA._( 2, 1, 2, 1 ), A.x( A )._( 2, 1 ) )// true
+assert.equal( AA._( 2, 2, 2, 2 ), A.pow( 2 )._( 2, 2 ) )// true
 ```
 
 #### `Nsolvejs.AL.vector(Array)`
@@ -241,7 +252,7 @@ solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
 
 #### `Nsolvejs.Stats`
-Here is exposed the statistical methods:
+Here is exposed the statistical methods, this a application of Linear Algebra methods.
 
 ```js
 var data = [

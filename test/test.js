@@ -102,6 +102,32 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     it( 'The product direct of A with itself has 1,2 component equal 1 ', function ( ) {
         assert.equal( A._x( A )._( 1, 2 ), 16 ); // should returns true
     } );
+    it( 'The sum a matrix with itself and multiply for two is the same result ', function ( ) {
+        assert.equal( A._x( 2 )._( 1, 2 ), A.plus( A )._( 1, 2 ) ); // should returns true
+        assert.equal( A._x( 3 )._( 2, 2 ), A.plus( A, A )._( 2, 2 ) ); // should returns true
+        assert.equal( A._x( 5 )._( 1, 2 ), A.plus( A, A, A, A )._( 1, 2 ) ); // should returns true
+        assert.equal( A.scalar( 2 )._( 1, 2 ), A.plus( A )._( 1, 2 ) ); // should returns true
+        assert.equal( A.scalar( 3 )._( 1, 2 ), A.plus( A, A )._( 1, 2 ) ); // should returns true
+        assert.equal( A.scalar( 4 )._( 2, 1 ), A.plus( A, A, A )._( 2, 1 ) ); // should returns true
+    } );
+    it( 'The product a matrix with itself and power for two is the same result ', function ( ) {
+        assert.equal( A.x( A )._( 1, 2 ), A.pow( 2 )._( 1, 2 ) ); // should returns true
+        assert.equal( A.x( A, A )._( 2, 2 ), A.pow( 3 )._( 2, 2 ) ); // should returns true
+        assert.equal( A.x( A, A, A, A )._( 1, 2 ), A.pow( 5 )._( 1, 2 ) ); // should returns true
+        assert.equal( A._x( A )._( 1, 2 ), A._pow( 2 )._( 1, 2 ) ); // should returns true
+        assert.equal( A._x( A, A )._( 2, 2 ), A._pow( 3 )._( 2, 2 ) ); // should returns true
+        assert.equal( A._x( A, A, A, A )._( 1, 2 ), A._pow( 5 )._( 1, 2 ) ); // should returns true
+    } );
+    it( 'Build a matrix of matrix and the subindex methods return the deep matrix elements', function ( ) {
+        var AA = JNsolve.AL.matrix( [
+        [ A, A.scalar( 2.5 ) ],
+        [ A.x( A ), A.pow( 2 ) ]
+      ] )
+        assert.equal( AA._( 1, 1, 1, 1 ), A._( 1, 1 ) )
+        assert.equal( AA._( 1, 2, 1, 2 ), A.scalar( 2.5 )._( 1, 2 ) )
+        assert.equal( AA._( 2, 1, 2, 1 ), A.x( A )._( 2, 1 ) )
+        assert.equal( AA._( 2, 2, 2, 2 ), A.pow( 2 )._( 2, 2 ) )
+    } );
     it( 'The apply method with matrix [[cos,sin],[tan,sqrt]] return a matrix with the correct array', function ( ) {
         var matFunc = JNsolve.AL.matrix( [
             [ Math.cos, Math.sin ],

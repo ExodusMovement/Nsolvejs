@@ -108,15 +108,11 @@ var matrix = function ( array, row, column, opt ) {
                 } else if ( i === undefined && j !== undefined ) {
                     return this.trans( )._( j ).trans( )
                 }
-
             } else
             if ( this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) % this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ].length ] instanceof matrix ) {
                 return this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) %
-                 this.getColumn( i ) % this.array[ ( i - 1 ) %
-                        this.array.length ].length ]._( arg.slice( 2 ) )
-
+                 this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ].length ]._( arg.slice( 2 ) )
             }
-
         } ).bind( this );
         this.getColumn = ( function ( i ) {
             return this._column[ ( i - 1 ) % this._column.length ]
