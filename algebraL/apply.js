@@ -46,7 +46,6 @@ function addd( array ) {
     }
     return A;
 }
-
 module.exports = function ( arg ) {
     if ( arg === undefined ) {
         return
@@ -55,7 +54,6 @@ module.exports = function ( arg ) {
         arg = Array.prototype.slice.call( arguments )
     }
     let cb = arg[ arg.length - 1 ];
-
     if ( cb && typeof cb === 'function' ) {
         return new Promise( function ( full, rej ) {
             try {
