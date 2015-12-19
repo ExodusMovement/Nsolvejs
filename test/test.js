@@ -90,6 +90,8 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
     it( 'The bestfit object define a function of the fit.', function ( ) {
         assert.equal( typeof fitted.fit.best.f, 'function' ); // should returns true
     } );
+} );
+describe( 'Linear Algebra', function ( ) {
     it( 'The adjunted matrix should be a matrix with (2,1) component equal to -1', function ( ) {
         assert.equal( JNsolve.AL.matrix.adj( A )._( 2, 1 ), -1 ); // should returns true
     } );
@@ -346,7 +348,7 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
         assert.equal( sol[ 0 ], 3.5 );
         assert.equal( sol[ 1 ], -3 );
     } );
-} );
+} )
 describe( 'derivative numeric.', function ( ) {
     it( 'JNsolve.D should be a object', function ( ) {
         assert.equal( typeof JNsolve.calculusN.D, 'object' ); // should returns true
