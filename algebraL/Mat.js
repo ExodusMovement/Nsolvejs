@@ -30,6 +30,8 @@ var scalar = require( './pscalar' ),
     concatRight = require( './concatRight' ),
     concatUp = require( './concatUp' ),
     apply = require( './apply' ),
+    applyByRow = require( './applyByRow' ),
+    applyByColumn = require( './applyByColumn' ),
     Vector = require( './vector' ),
     toArray = require( './toArray' ),
     toObject = require( './toObject' ),
@@ -52,7 +54,8 @@ function Validate( array, row, column, opt ) {
         opt = row
         row = undefined
         column = undefined
-    } else if ( typeof array === 'number' && !opt && row && ( column ? typeof column === 'object' : true ) ) {
+    } else if ( typeof array === 'number' && !opt && row && ( column ? typeof column ===
+            'object' : true ) ) {
         let pivot = row
         row = array
         array = [
@@ -81,7 +84,8 @@ var matrix = function ( array, row, column, opt ) {
     } else if ( !( this instanceof matrix ) ) {
         return new matrix( array, row, column, opt )
     }
-    array = ( typeof array === 'object' ) && !Array.isArray( array ) ? toArray( array, opt ) : array
+    array = ( typeof array === 'object' ) && !Array.isArray( array ) ?
+        toArray( array, opt ) : array
     array = Array.isArray( array ) ? array : [
         [ array ]
     ]
@@ -101,17 +105,24 @@ var matrix = function ( array, row, column, opt ) {
             }
             if ( arguments.length < 3 ) {
                 if ( i !== undefined && j !== undefined ) {
-                    return this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) %
-                       this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ].length ];
+                    return this.array[ ( i - 1 ) % this.row % this._row ]
+                        [ ( j - 1 ) %
+                       this.getColumn( i ) % this.array[ ( i - 1 ) % this.array
+                                .length ].length ];
                 } else if ( i !== undefined && j === undefined ) {
-                    return matrix( [ this.array[ ( i - 1 ) % this._row ] ], opt )
+                    return matrix( [ this.array[ ( i - 1 ) % this._row ] ],
+                        opt )
                 } else if ( i === undefined && j !== undefined ) {
                     return this.trans( )._( j ).trans( )
                 }
             } else
-            if ( this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) % this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ].length ] instanceof matrix ) {
-                return this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) %
-                 this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ].length ]._( arg.slice( 2 ) )
+            if ( this.array[ ( i - 1 ) % this.row % this._row ][ (
+                    j - 1 ) % this.getColumn( i ) % this.array[
+                    ( i - 1 ) % this.array.length ].length ] instanceof matrix ) {
+                return this.array[ ( i - 1 ) % this.row % this._row ]
+                    [ ( j - 1 ) %
+                 this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ]
+                        .length ]._( arg.slice( 2 ) )
             }
         } ).bind( this );
         this.getColumn = ( function ( i ) {
@@ -126,7 +137,8 @@ var matrix = function ( array, row, column, opt ) {
                     [ array ]
                 ]
                 for ( let i = 0; i < array.length; i++ ) {
-                    array[ i ] = Array.isArray( array[ i ] ) ? array[ i ] : [ array[ i ] ]
+                    array[ i ] = Array.isArray( array[ i ] ) ?
+                        array[ i ] : [ array[ i ] ]
                 }
                 this._row = array.length
                 this._array = array;
@@ -205,6 +217,16 @@ var matrix = function ( array, row, column, opt ) {
             arg.unshift( this )
             return apply( arg );
         } ).bind( this );
+        this.applyByRow = ( function ( ) {
+            var arg = slice.call( arguments )
+            arg.unshift( this )
+            return applyByRow( arg );
+        } ).bind( this );
+        this.applyByColumn = ( function ( ) {
+            var arg = slice.call( arguments )
+            arg.unshift( this )
+            return applyByColumn( arg );
+        } ).bind( this );
         this._pow = ( function ( n, cb ) {
             return _pow( this, n, cb );
         } ).bind( this );
@@ -256,6 +278,8 @@ matrix.toVectorWithRow = ( toVectorWithRow ).bind( matrix )
 matrix.toVectorWithColumn = toVectorWithColumn.bind( matrix )
 matrix.diagonal = diagonal.bind( matrix )
 matrix.adj = adj.bind( matrix )
+matrix.applyByRow = applyByRow.bind( matrix )
+matrix.applyByColumn = applyByColumn.bind( matrix )
 matrix.apply = apply.bind( matrix )
 matrix.det = det.bind( matrix );
 matrix.inv = inv.bind( matrix );
