@@ -17,21 +17,21 @@ let Vector = function ( array, dim ) {
     if ( !array ) {
         return;
     }
+    this._ = function ( i ) {
+        return this.matrix._( i, 1 )
+    }
     this._array = array;
     this.dim = dim || array.length
     let _array = [ ];
     for ( let i = 0; i < this.dim; i++ ) {
         _array[ i ] = [ array[ i % array.length ] ];
     }
-
     // Vector are behave as this.dimx1 matrix
     this.matrix = new Matrix( _array, this.dim, 1 );
     this.array = this.matrix.array;
     // Define the sum method.
     this.sum = function ( A ) {
-        let __array =
-            sum( this.matrix, A.matrix )
-            .array;
+        let __array = sum( this.matrix, A.matrix ).array;
         let _array = [ ];
         for ( let i = 0; i < this.dim; i++ ) {
             _array[ i ] = __array[ i ][ 0 ];
@@ -40,8 +40,7 @@ let Vector = function ( array, dim ) {
     };
     // Define the product by a scalar method.
     this.pscalar = function ( a ) {
-        let __array = pscalar( a, this.matrix )
-            .array;
+        let __array = pscalar( a, this.matrix ).array;
         let _array = [ ];
         for ( let i = 0; i < this.dim; i++ ) {
             _array[ i ] = __array[ i ][ 0 ];
@@ -60,7 +59,6 @@ let Vector = function ( array, dim ) {
     // Define the dot product method.
     this.dot = function ( A ) {
         return dotp( A, this );
-
     };
     // Define the filter method
     this.filter = function ( map ) {
@@ -77,8 +75,7 @@ let Vector = function ( array, dim ) {
 Vector.dotp = dotp;
 // DEfine the class method sum.
 Vector.sum = function ( A, B ) {
-    let __array = sum( B.matrix, A.matrix )
-        .array;
+    let __array = sum( B.matrix, A.matrix ).array;
     let _array = [ ];
     for ( let i = 0; i < this.dim; i++ ) {
         _array[ i ] = __array[ i ][ 0 ];
@@ -87,8 +84,7 @@ Vector.sum = function ( A, B ) {
 };
 // Define the product by a scalar class method.
 Vector.pscalar = function ( a, B ) {
-    let __array = pscalar( a, B.matrix )
-        .array;
+    let __array = pscalar( a, B.matrix ).array;
     let _array = [ ];
     for ( let i = 0; i < this.dim; i++ ) {
         _array[ i ] = __array[ i ][ 0 ];
@@ -104,7 +100,6 @@ Vector.create_n = function ( n, map ) {
     }
     return new Vector( array );
 };
-
 //Define the mapping class method.
 Vector.map = function ( cb, B ) {
     let __array = B.matrix.array;
