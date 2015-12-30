@@ -5,7 +5,6 @@
  * @return {Object} matrix
  */
 function apply( A, B ) {
-    let a
     if ( !A || !B ) {
         return;
     }

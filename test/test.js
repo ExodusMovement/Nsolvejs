@@ -141,6 +141,28 @@ describe( 'Linear Algebra', function ( ) {
         assert.equal( matApply._( 2, 1 ), Math.tan( A._( 2, 1 ) ) ); // should returns true
         assert.equal( matApply._( 2, 2 ), Math.sqrt( A._( 2, 2 ) ) ); // should returns true
     } );
+    it( 'The apply method with matrix [[cos,sin],[tan,sqrt]] return a matrix with the correct array', function ( ) {
+        var matFunc = JNsolve.AL.matrix( [
+        [ Math.cos, Math.sin ],
+        [ Math.tan, Math.sqrt ]
+      ] )
+        var matApply = matFunc.apply( A )
+        assert.equal( matApply._( 1, 1 ), Math.cos( A._( 1, 1 ) ) ); // should returns true
+        assert.equal( matApply._( 1, 2 ), Math.sin( A._( 1, 2 ) ) ); // should returns true
+        assert.equal( matApply._( 2, 1 ), Math.tan( A._( 2, 1 ) ) ); // should returns true
+        assert.equal( matApply._( 2, 2 ), Math.sqrt( A._( 2, 2 ) ) ); // should returns true
+    } );
+    it( 'The apply method with matrix [[cos,sin],[tan,sqrt]] return a matrix with the correct array', function ( ) {
+        var matFunc = JNsolve.AL.matrix( [
+        [ Math.cos, Math.sin ],
+        [ Math.tan, Math.sqrt ]
+      ] )
+        var matApply = matFunc.apply( A )
+        assert.equal( matApply._( 1, 1 ), Math.cos( A._( 1, 1 ) ) ); // should returns true
+        assert.equal( matApply._( 1, 2 ), Math.sin( A._( 1, 2 ) ) ); // should returns true
+        assert.equal( matApply._( 2, 1 ), Math.tan( A._( 2, 1 ) ) ); // should returns true
+        assert.equal( matApply._( 2, 2 ), Math.sqrt( A._( 2, 2 ) ) ); // should returns true
+    } );
     it( 'The pow direct of A to seven power has 2,2 component equal 0 ', function ( ) {
         assert.equal( A._pow( 7 )._( 2, 2 ), Math.pow( 3, 7 ) ); // should returns true
     } );
