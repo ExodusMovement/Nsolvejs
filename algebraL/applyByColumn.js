@@ -23,16 +23,13 @@ function apply( A, B ) {
     array[ i - 1 ] = [ ];
     kk = A.getColumn( i )
     for ( k = 1; k <= kk; k++ ) {
-      a = ( typeof B._( i, k ) === 'function' ) ? B._( i, k ).call( {
+      array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i,
+        k ).call( {
         A: A,
         B: B
-      } ) : B._( i, k );
-      array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i,
-          k ).call( {
-          A: A,
-          B: B
-        }, a ) : ( typeof A._( i, k ) === 'object' ) ? apply( A._( i, k ), a ) :
-        A._( i, k ) * a
+      }, B._( undefined, k ) ) : ( typeof A._( i, k ) === 'object' ) ? apply(
+        A._( i, k ), B._( undefined, k ) ) : Matrix.multiply( A._( i, k ), B._(
+        undefined, k ) )
     }
   }
   return new Matrix( array );

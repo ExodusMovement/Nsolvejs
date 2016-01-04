@@ -28,11 +28,11 @@ function apply( A, B ) {
         B: B
       } ) : B._( i, k );
       array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i,
-          k ).call( {
-          A: A,
-          B: B
-        }, a ) : ( typeof A._( i, k ) === 'object' ) ? apply( A._( i, k ), a ) :
-        A._( i, k ) * a
+        k ).call( {
+        A: A,
+        B: B
+      }, a ) : ( typeof A._( i, k ) === 'object' ) ? Matrix.multiply( A._( i,
+        k ), a ) : A._( i, k ) * a
     }
   }
   return new Matrix( array );
