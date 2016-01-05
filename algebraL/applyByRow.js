@@ -23,7 +23,6 @@ function apply( A, B ) {
     array[ i - 1 ] = [ ];
     kk = A.getColumn( i )
     for ( k = 1; k <= kk; k++ ) {
-      console.log( 'B._( i ) =', B._( i ) );
       array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i,
         k ).call( {
         A: A,
