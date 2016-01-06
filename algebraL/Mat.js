@@ -80,7 +80,7 @@ var matrix = function ( array, row, column, opt ) {
     if ( array instanceof Vector ) {
         return array.matrix
     } else if ( array instanceof matrix ) {
-        return array
+        return new matrix( array.array, row, column, opt )
     } else if ( !( this instanceof matrix ) ) {
         return new matrix( array, row, column, opt )
     }
