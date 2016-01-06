@@ -91,8 +91,8 @@ var matrix = function ( array, row, column, opt ) {
     deep: true,
     force: true
   }
-  opt.deep = opt.deep || true
-  opt.force = opt.force || true
+  opt.deep = opt.deep !== undefined ? opt.deep : true
+  opt.force = opt.force !== undefined ? opt.deep : true
   if ( array instanceof Vector ) {
     return array.matrix
   } else if ( array instanceof matrix ) {
