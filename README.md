@@ -132,6 +132,8 @@ mat3.apply(mat1)
 //   [
 //      [ 1*f1()  ,  2*f2() ]
 //   ]
+// There are a important and usable variant applyByRow and applyByColumn
+// that work on similarly way. 
 Matrix.zeros(2,2) //[[0,0],[0,0]]
 Matrix.ones(2,2) //[[1,1],[1,1]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
@@ -236,7 +238,7 @@ a_11x_1+a_12 x_2+...a_1n x_n = b_1
 
 .                                              .
 
-.                                             .
+.                                              .
 
 .                                              .
 
