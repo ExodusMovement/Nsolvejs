@@ -261,7 +261,7 @@ var matrix = function ( array, row, column, opt ) {
       return apply( arg );
     } ).bind( this );
     // applyLeft a matrix over other matrix
-    this.apply = ( function ( ) {
+    this.applyLeft = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return applyLeft( arg );
