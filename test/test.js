@@ -255,72 +255,72 @@ describe( 'Linear Algebra', function ( ) {
         key: 'value'
       } ).filter( [ 0, 1, true, false ] ).toObject( ).b, 'hola' ); // should returns true
     } );
-  it(
-    'When the filterByPositionRow is applied the correct result is obtained',
-    function ( ) {
-      let matrix = JNsolve.AL.matrix
-      let filter = [
-        [ 1, 2 ],
-        [ 3, 4 ],
-      ]
-      let obj = {
-        a: 1,
-        b: 'hola',
-        c: [ 3, 2, 5 ],
-        d: {
-          key: 'value'
-        }
-      }
-      let trans = function ( ) {
-        return {
-          e: 3
-        }
-      }
-      let _filter = matrix( filter, {
-        deep: false
-      } )
-      console.log( '_filter.array', _filter.array );
-      trans = matrix( trans, _filter.row, _filter._column, {
-        deep: false,
-        force: false
-      } )
-      console.log( 'trans.array=', trans.array );
-      let objMat = matrix( obj, {
-        deep: false,
-        force: false
-      } )
-      console.log( 'filter.arrray', filter.array );
-      filter = objMat.filterByPositionRow
-      let filterMat = matrix( filter, _filter.row, _filter._column, {
-        deep: false,
-        force: false
-      } )
-      console.log( 'filterMat.array', filterMat.arrray );
-      console.log( '1' );
-      assert.equal( typeof filterMat._( _filter.row, 1 ), 'function' ); //
-      let objFiltered = filterMat.apply( _filter )
-      console.log( '2' );
-      console.log( 'objFiltered', objFiltered.array );
-      console.log( 'objFiltered._( 1, 2 )', objFiltered._( 1, 2 ).array );
-      assert.equal( objFiltered._( 1, 2 )._( 1, 1 ), 'b' );
-      console.log( '3' );
-      assert.equal( objFiltered._( 1, 2 )._( 1, 2 ), 'hola' );
-      let objTrans = trans.apply( objFiltered )
-      console.log( '4' );
-      assert.equal( objTrans._( 1, 1 ).e, 3 );
-      var array = [ ]
-      objTrans.forEachColumn( function ( column ) {
-        var obj = {}
-        column.forEach( function ( item ) {
-          Object.assign( obj, item )
-        } )
-        array.push( obj )
-      } )
-      console.log( '5' );
-      assert.equal( array[ 0 ].e, 3 );
-      console.log( '6' );
-      assert.equal( array[ 1 ].e, 3 ); // should returns true
-    } );
+  // it(
+  //   'When the filterByPositionRow is applied the correct result is obtained',
+  //   function ( ) {
+  //     let matrix = JNsolve.AL.matrix
+  //     let filter = [
+  //       [ 1, 2 ],
+  //       [ 3, 4 ],
+  //     ]
+  //     let obj = {
+  //       a: 1,
+  //       b: 'hola',
+  //       c: [ 3, 2, 5 ],
+  //       d: {
+  //         key: 'value'
+  //       }
+  //     }
+  //     let trans = function ( ) {
+  //       return {
+  //         e: 3
+  //       }
+  //     }
+  //     let _filter = matrix( filter, {
+  //       deep: false
+  //     } )
+  //     console.log( '_filter.array', _filter.array );
+  //     trans = matrix( trans, _filter.row, _filter._column, {
+  //       deep: false,
+  //       force: false
+  //     } )
+  //     console.log( 'trans.array=', trans.array );
+  //     let objMat = matrix( obj, {
+  //       deep: false,
+  //       force: false
+  //     } )
+  //     console.log( 'filter.arrray', filter.array );
+  //     filter = objMat.filterByPositionRow
+  //     let filterMat = matrix( filter, _filter.row, _filter._column, {
+  //       deep: false,
+  //       force: false
+  //     } )
+  //     console.log( 'filterMat.array', filterMat.arrray );
+  //     console.log( '1' );
+  //     assert.equal( typeof filterMat._( _filter.row, 1 ), 'function' ); //
+  //     let objFiltered = filterMat.apply( _filter )
+  //     console.log( '2' );
+  //     console.log( 'objFiltered', objFiltered.array );
+  //     console.log( 'objFiltered._( 1, 2 )', objFiltered._( 1, 2 ).array );
+  //     assert.equal( objFiltered._( 1, 2 )._( 1, 1 ), 'b' );
+  //     console.log( '3' );
+  //     assert.equal( objFiltered._( 1, 2 )._( 1, 2 ), 'hola' );
+  //     let objTrans = trans.apply( objFiltered )
+  //     console.log( '4' );
+  //     assert.equal( objTrans._( 1, 1 ).e, 3 );
+  //     var array = [ ]
+  //     objTrans.forEachColumn( function ( column ) {
+  //       var obj = {}
+  //       column.forEach( function ( item ) {
+  //         Object.assign( obj, item )
+  //       } )
+  //       array.push( obj )
+  //     } )
+  //     console.log( '5' );
+  //     assert.equal( array[ 0 ].e, 3 );
+  //     console.log( '6' );
+  //     assert.equal( array[ 1 ].e, 3 ); // should returns true
+  //   } );
   it(
     'When the filterByPositionColumn is applied the correct result is obtained',
     function ( ) {
