@@ -37,6 +37,8 @@ var scalar = require( './pscalar' ),
   toObject = require( './toObject' ),
   toVectorWithRow = require( './toVectorWithRow' ),
   toVectorWithColumn = require( './toVectorWithColumn' )
+require( '../utils/objectEquals' )( )
+require( '../utils/arraySimilarly' )( )
 
 function countColumn( array ) {
   var res = [ ]
@@ -110,6 +112,7 @@ var matrix = function ( array, row, column, opt ) {
   }
   let test = Boolean( array.length )
   if ( test ) {
+    // get elements of matrix
     this._ = ( function ( i, j ) {
       let arg
       if ( Array.isArray( i ) && j === undefined ) {
@@ -137,9 +140,11 @@ var matrix = function ( array, row, column, opt ) {
             this.array.length ].length ]._( arg.slice( 2 ) )
       }
     } ).bind( this );
+    // get column of matrix
     this.getColumn = ( function ( i ) {
-      return this._column[ ( i - 1 ) % this._column.length ]
-    } ).bind( this )
+        return this._column[ ( i - 1 ) % this._column.length ]
+      } ).bind( this )
+      // Define de array property
     Object.defineProperty( this, 'array', {
       get: function ( ) {
         return this._array
@@ -163,44 +168,63 @@ var matrix = function ( array, row, column, opt ) {
     this.row = row || array.length;
     this.column = column || countColumn( this.array );
     this._column = Array.isArray( this.column ) ? this.column : [ this.column ]
+      // Adjunt of  matrix
     this.adj = ( function ( ) {
       return adj( this );
     } ).bind( this );
+    // Diagonal of matrix
     this.diagonal = ( function ( cb ) {
       return diagonal( this, cb );
     } ).bind( this );
+    // Inverse of matrix
     this.inv = ( function ( cb ) {
       return inv( this, cb );
     } ).bind( this );
+    // The comparation function
+    this.isEqual = ( function ( A ) {
+      return this.array.equals( A.array );
+    } ).bind( this );
+    // similarly function to matrix
+    this.isSimilarly = ( function ( A ) {
+      return this.array.similarly( A.array );
+    } ).bind( this );
+    // Determinant of matrix
     this.det = ( function ( cb ) {
       return det( this, cb );
     } ).bind( this );
+    // transpose of matrix
     this.trans = ( function ( cb, opt ) {
       return trans( this, cb, opt );
     } ).bind( this );
+    // Transform a matrix to a object
     this.toObject = ( function ( ) {
       return toObject( this.array );
     } ).bind( this );
+    // concatRight of matrix
     this.concatRight = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return concatRight( arg );
     } ).bind( this );
+    // concatLeft of matrix
     this.concatLeft = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return concatLeft( arg );
     } ).bind( this );
+    // concatDown of matrix
     this.concatDown = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return concatDown( arg );
     } ).bind( this );
+    // concatUp of matrix
     this.concatUp = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return concatUp( arg );
     } ).bind( this );
+    // multiply of matrix
     this.x = ( function ( A, cb ) {
       if ( typeof A === 'number' ) {
         return this.scalar( A, cb )
@@ -209,37 +233,45 @@ var matrix = function ( array, row, column, opt ) {
       arg.unshift( this )
       return x( arg );
     } ).bind( this );
+    // Direct multiply of matrix
     this._x = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return _x( arg );
     } ).bind( this );
+    // sum of matrix
     this.plus = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return plus( arg );
     } ).bind( this );
+    // Scalar product of matrix
     this.scalar = ( function ( alpha, cb ) {
       return scalar( alpha, this, cb );
     } ).bind( this );
+    // Power a matrix
     this.pow = ( function ( n, cb ) {
       return pow( this, n, cb );
     } ).bind( this );
+    // apply a matrix over other matrix
     this.apply = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return apply( arg );
     } ).bind( this );
+    // apply by row
     this.applyByRow = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return applyByRow( arg );
     } ).bind( this );
+    // apply by column
     this.applyByColumn = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return applyByColumn( arg );
     } ).bind( this );
+    // the power direct  product
     this._pow = ( function ( n, cb ) {
       return _pow( this, n, cb );
     } ).bind( this );

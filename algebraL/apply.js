@@ -4,7 +4,13 @@
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-function apply( A, B ) {
+var thisArg
+
+function apply( A, B, thisArg ) {
+  thisArg = thisArg || {
+    A: A,
+    B: B
+  }
   let a
   if ( !A || !B ) {
     return;
@@ -23,16 +29,11 @@ function apply( A, B ) {
     array[ i - 1 ] = [ ];
     kk = A.getColumn( i )
     for ( k = 1; k <= kk; k++ ) {
-      a = ( typeof B._( i, k ) === 'function' ) ? B._( i, k ).call( {
-        A: A,
-        B: B
-      } ) : B._( i, k );
+      a = ( typeof B._( i, k ) === 'function' ) ? B._( i, k ).call( thisArg ) :
+        B._( i, k );
       array[ i - 1 ][ k - 1 ] = ( typeof A._( i, k ) === 'function' ) ? A._( i,
-          k ).call( {
-          A: A,
-          B: B
-        }, a ) : ( typeof A._( i, k ) === 'object' ) ? apply( A._( i, k ), a ) :
-        A._( i, k ) * a
+        k ).call( thisArg, a ) : ( typeof A._( i, k ) === 'object' ) ? apply(
+        A._( i, k ), a ) : A._( i, k ) * a
     }
   }
   return new Matrix( array );
