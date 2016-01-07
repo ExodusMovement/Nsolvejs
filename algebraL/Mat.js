@@ -30,6 +30,7 @@ var scalar = require( './pscalar' ),
   concatRight = require( './concatRight' ),
   concatUp = require( './concatUp' ),
   apply = require( './apply' ),
+  applyLeft = require( './applyLeft' ),
   applyByRow = require( './applyByRow' ),
   applyByColumn = require( './applyByColumn' ),
   Vector = require( './vector' ),
@@ -259,6 +260,12 @@ var matrix = function ( array, row, column, opt ) {
       arg.unshift( this )
       return apply( arg );
     } ).bind( this );
+    // applyLeft a matrix over other matrix
+    this.apply = ( function ( ) {
+      var arg = slice.call( arguments )
+      arg.unshift( this )
+      return applyLeft( arg );
+    } ).bind( this );
     // apply by row
     this.applyByRow = ( function ( ) {
       var arg = slice.call( arguments )
@@ -326,6 +333,7 @@ matrix.adj = adj.bind( matrix )
 matrix.applyByRow = applyByRow.bind( matrix )
 matrix.applyByColumn = applyByColumn.bind( matrix )
 matrix.apply = apply.bind( matrix )
+matrix.applyLeft = applyLeft.bind( matrix )
 matrix.det = det.bind( matrix );
 matrix.inv = inv.bind( matrix );
 matrix.minor = minor.bind( matrix );
