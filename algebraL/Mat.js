@@ -276,7 +276,7 @@ var matrix = function ( array, row, column, opt ) {
     this.applyByColumn = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
-      return applyByColumncall.call( this, arg );
+      return applyByColumn.call( this, arg );
     } ).bind( this );
     // the power direct  product
     this._pow = ( function ( n, cb ) {

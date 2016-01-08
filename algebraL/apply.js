@@ -5,7 +5,7 @@
  * @return {Object} matrix
  */
 function apply( A, B ) {
-  let thisArg = thisArg || {
+  let thisArg = {
     A: A,
     B: B
   }
