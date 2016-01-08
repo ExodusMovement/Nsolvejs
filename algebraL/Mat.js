@@ -258,25 +258,25 @@ var matrix = function ( array, row, column, opt ) {
     this.apply = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
-      return apply( arg );
+      return apply.call( this, arg );
     } ).bind( this );
     // applyLeft a matrix over other matrix
     this.applyLeft = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
-      return applyLeft( arg );
+      return applyLeft.call( this, arg );
     } ).bind( this );
     // apply by row
     this.applyByRow = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
-      return applyByRow( arg );
+      return applyByRow.call( this, arg );
     } ).bind( this );
     // apply by column
     this.applyByColumn = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
-      return applyByColumn( arg );
+      return applyByColumncall.call( this, arg );
     } ).bind( this );
     // the power direct  product
     this._pow = ( function ( n, cb ) {

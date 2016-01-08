@@ -4,10 +4,8 @@
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-var thisArg
-
-function apply( A, B, thisArg ) {
-  thisArg = thisArg || {
+function apply( A, B ) {
+  let thisArg = thisArg || {
     A: A,
     B: B
   }
@@ -17,10 +15,10 @@ function apply( A, B, thisArg ) {
   }
   let Matrix = require( './Mat' );
   if ( !( A instanceof Matrix ) ) {
-    A = new Matrix( A )
+    A = new Matrix( A, this.opt )
   }
   if ( !( B instanceof Matrix ) ) {
-    B = new Matrix( B )
+    B = new Matrix( B, this.opt )
   }
   let ii = A.row,
     array = [ ],
@@ -45,7 +43,7 @@ function addd( array ) {
     B, p;
   for ( p = 1; p < l; p++ ) {
     B = array[ p ];
-    A = apply( A, B );
+    A = apply.call( this, A, B );
   }
   return A;
 }
@@ -60,12 +58,12 @@ module.exports = function ( arg ) {
   if ( cb && typeof cb === 'function' ) {
     return new Promise( function ( full, rej ) {
       try {
-        full( cb.call( this, null, addd( arg ) ) )
+        full( cb.call( this, null, addd.call( this, arg ) ) )
       } catch ( e ) {
         rej( cb.call( this, e, null ) )
       }
     } )
   } else {
-    return addd( arg );
+    return addd.call( this, arg );
   }
 };
