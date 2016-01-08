@@ -1,6 +1,6 @@
 {
   "name": "nsolvejs",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   },
   "keywords": [
     "Solve",
+    "regression",
+    "data",
+    "fit",
+    "fitting",
     "equation",
     "method",
     "numeric",

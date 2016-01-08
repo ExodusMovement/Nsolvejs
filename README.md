@@ -285,7 +285,7 @@ regression('linear',data) // return a object with properties equation and points
 //  polynomial with y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 .... a_n x^n
 //  returned  into equation as [a_0,a_1...,a_n] this regression accept a third
 // parameter that is the degree of  polynomial used:
- regression('polynomial',data,3)  //  return
+ regression('polynomial',data,2)  //  return
  // { equation: [ 64.19999999999999, -26.933333333333326, 2.7333333333333347 ],
  //  points: [ [ 3, 14 ], [ 1, 40 ], [ 6, 1 ], [ 3, 2 ] ] }
 
