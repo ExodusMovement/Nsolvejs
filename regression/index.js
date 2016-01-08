@@ -54,9 +54,15 @@ var method = {
   }
 }
 module.exports = function ( name, array, degree ) {
-  let fit = method[ name ]( array, degree ).trans( ).array[ 0 ]
+  let fit = method[ name ]( array, degree )
+  if ( !fit ) {
+    return {
+      equation: fit,
+      points: array
+    }
+  }
   return {
-    equation: fit,
+    equation: fit.trans( ).array[ 0 ],
     points: array
   }
 }

@@ -99,3 +99,12 @@ let C = new nsolve.AL.matrix( [
   [ 1, 4 ]
 ] )
 console.log( B.isSimilarlyByColumn( C ) );
+var data = [
+  [ 3, 14 ],
+  [ 1, 40 ],
+  [ 6, 1 ],
+  [ 3, 2 ]
+]
+var regression = nsolve.regression;
+var res = regression( 'polynomial', data, 2 ) // return
+console.log( 'res =', res );

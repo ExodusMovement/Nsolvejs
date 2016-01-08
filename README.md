@@ -12,6 +12,8 @@ $ npm install Nsolvejs
 
 ## Features
 - **Nsolvejs linear algebra**
+- **Nsolvejs statistical**
+- **Nsolvejs regression**
 - **Nsolvejs bestfit**
 - **Nsolvejs regulafalsi**
 - **Nsolvejs fixedpoint**
@@ -133,7 +135,7 @@ mat3.apply(mat1)
 //      [ 1*f1()  ,  2*f2() ]
 //   ]
 // There are a important and usable variant applyByRow and applyByColumn
-// that work on similarly way. 
+// that work on similarly way.
 Matrix.zeros(2,2) //[[0,0],[0,0]]
 Matrix.ones(2,2) //[[1,1],[1,1]]
 Matrix.pow(mat,2) //[[1.1,5.1],[4.6,22.3]]
@@ -252,6 +254,43 @@ var mat = [[0,1.1,6],[1,4.6,-5],[0.1,0,-0.9]] ;
 var result = [5,6,0];
 solveLE(mat,result) ; //[6.36,0.68,0.7,]
 ```
+
+#### `Nsolvejs.regression`
+Here is exposed the regression methods using the Least squares criterion,
+this a application of Linear Algebra methods.
+
+```js
+var data = [
+  [3,14],
+  [1,40],
+  [6,1],
+  [3,2]
+]
+var regression = JNsolve.regression ;
+regression('linear',data) // return a object with properties equation and points
+// res = { equation: [ 37.50980392156862, -7.156862745098039 ],
+//  points: [
+// [ 3, 14 ],
+// [ 1, 40 ],
+// [ 6, 1 ],
+// [ 3, 2 ]
+// ]
+//        }
+// linear does a regression like y = a+bx and the values are returned into equation
+// property as [a,b]
+// other regression availables are:
+//  exponential with y = a*e^(bx) returned  into equation as [a,b]
+//  logarithmic with y = a+b*log(x) returned  into equation as [a,b]
+//  power with y = a*x^b returned  into equation as [a,b]
+//  polynomial with y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 .... a_n x^n
+//  returned  into equation as [a_0,a_1...,a_n] this regression accept a third
+// parameter that is the degree of  polynomial used:
+ regression('polynomial',data,3)  //  return
+ // { equation: [ 64.19999999999999, -26.933333333333326, 2.7333333333333347 ],
+ //  points: [ [ 3, 14 ], [ 1, 40 ], [ 6, 1 ], [ 3, 2 ] ] }
+
+```
+
 
 #### `Nsolvejs.Stats`
 Here is exposed the statistical methods, this a application of Linear Algebra methods.
