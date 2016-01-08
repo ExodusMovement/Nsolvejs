@@ -84,7 +84,7 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
         .method, 'Newton_Raphson_Higherorder' ); // should returns true
     } );
   it( 'The best fit should be the exponential.', function ( ) {
-    assert.equal( fitted.fit.best.name, 'inverse' ); // should returns true
+    assert.equal( fitted.fit.best.name, 'exponential' ); // should returns true
   } );
   it( 'The best fit error should be.', function ( ) {
     assert.equal( fitted.fit.best.error.truncate( 2 ), 2.31 ); // should returns true
@@ -95,17 +95,17 @@ describe( 'JNsolve Module numeric values function test.', function ( ) {
   it( 'The ans_ofX should be a array.', function ( ) {
     assert.equal( Array.isArray( fitted.ans_ofX ), true ); // should returns true
   } );
-  it( 'The first result of ans_ofX should be 8.71 .', function ( ) {
-    assert.equal( fitted.ans_ofX[ 0 ][ 0 ].truncate( 2 ), 4.42 ); // should returns true
+  it( 'The first result of ans_ofX should be 4.81 .', function ( ) {
+    assert.equal( fitted.ans_ofX[ 0 ][ 0 ].truncate( 2 ), 4.81 ); // should returns true
   } );
   it( 'The ans_ofY should be a array.', function ( ) {
     assert.equal( Array.isArray( fitted.ans_ofY ), true ); // should returns true
   } );
-  it( 'The first result of ans_ofY should be 61.03 .', function ( ) {
-    assert.equal( fitted.ans_ofY[ 0 ][ 1 ].truncate( 2 ), 62.72 ); // should returns true
+  it( 'The first result of ans_ofY should be 62.59 .', function ( ) {
+    assert.equal( fitted.ans_ofY[ 0 ][ 1 ].truncate( 2 ), 62.59 ); // should returns true
   } );
   it( 'The best fit used should be the exponential', function ( ) {
-    assert.equal( fitted.fitUsed, 'inverse' ); // should returns true
+    assert.equal( fitted.fitUsed, 'exponential' ); // should returns true
   } );
   it( 'The bestfit object define a function of the fit.', function ( ) {
     assert.equal( typeof fitted.fit.best.f, 'function' ); // should returns true
