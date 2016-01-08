@@ -98,4 +98,4 @@ let C = new nsolve.AL.matrix( [
   [ 1, 3 ],
   [ 1, 4 ]
 ] )
-console.log( B.isSimilarly( C ) );
+console.log( B.isSimilarlyByColumn( C ) );

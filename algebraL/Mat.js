@@ -52,7 +52,7 @@ function countColumn( array ) {
  * Constructor of a matrix.
  * @param {Array} array to build the matrix, {Number} matrix's row , {Array} matrix's column
  */
-function Validate( array, row, column, opt ) {
+function _validate( array, row, column, opt ) {
   if ( typeof row === 'object' ) {
     opt = row
     row = undefined
@@ -78,14 +78,14 @@ function Validate( array, row, column, opt ) {
   }
 }
 
-function toReturnElement( self, i, j, opt ) {
+function toReturnElement( self, i, j ) {
   return self.array[ ( i - 1 ) % self.row % self._row ]
     [ ( j - 1 ) % self.getColumn( i ) % self.array[ ( i - 1 ) % self.array.length ]
       .length
     ]
 }
 var matrix = function ( array, row, column, opt ) {
-  let validate = Validate( array, row, column, opt )
+  let validate = _validate( array, row, column, opt )
   opt = validate.opt;
   array = validate.array;
   row = validate.row;
@@ -185,9 +185,15 @@ var matrix = function ( array, row, column, opt ) {
     this.isEqual = ( function ( A ) {
       return this.array.equals( A.array );
     } ).bind( this );
-    // similarly function to matrix
-    this.isSimilarly = ( function ( A ) {
+    // similarly function to matrix, the elements compared
+    // by rows
+    this.isSimilarlyByRow = ( function ( A ) {
       return this.array.similarly( A.array );
+    } ).bind( this );
+    // similarly function to matrix, the elements compared
+    // by columns
+    this.isSimilarlyByColumn = ( function ( A ) {
+      return this.trans( ).array.similarly( A.array );
     } ).bind( this );
     // Determinant of matrix
     this.det = ( function ( cb ) {
@@ -282,45 +288,58 @@ var matrix = function ( array, row, column, opt ) {
     this._pow = ( function ( n, cb ) {
       return _pow( this, n, cb );
     } ).bind( this );
+    // calculate the minor of a matrix
     this.minor = ( function ( i, j, cb ) {
       return minor( i, j, this, cb );
     } ).bind( this );
+    // applicate the map to a matrix
     this.map = ( function ( cb, _cb ) {
       return map( cb, this, _cb );
     } ).bind( this );
+    // filter the matrix
     this.filter = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return filter( arg );
     } ).bind( this );
+    // filterBypositionRow a matrix
     this.filterByPositionRow = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return filterByPositionRow( arg );
     } ).bind( this );
+    // filterByPositionColumn a matrix
     this.filterByPositionColumn = ( function ( ) {
       var arg = slice.call( arguments )
       arg.unshift( this )
       return filterByPositionColumn( arg );
     } ).bind( this );
+    // truncate the values of a matrix
     this.truncate = ( function ( n, cb ) {
       var _truncate = function ( item ) {
         return truncate( item, n );
       };
       return map( _truncate, this, cb );
     } ).bind( this );
+    // apply a function to every element of a matrix
     this.forEach = ( function ( map, cb ) {
       forEach.call( this, map, this, cb );
     } ).bind( this );
+    // apply a function given to every column
     this.forEachColumn = ( function ( map, cb ) {
       forEachColumn.call( this, map, this, cb );
     } ).bind( this );
+    // apply a function given to every row
     this.forEachRow = ( function ( map, cb ) {
       forEachRow.call( this, map, this, cb );
     } ).bind( this );
+    // convert a matrix to a vector using the row
+    // up-down taken
     this.toVectorWithRow = ( function ( opt ) {
       return toVectorWithRow( this, opt );
     } ).bind( this );
+    // convert a matrix to a vector using the column
+    // left-rigth taken
     this.toVectorWithColumn = ( function ( ) {
       return toVectorWithColumn( this );
     } ).bind( this );
