@@ -15,10 +15,10 @@ function apply( A, B ) {
   }
   let Matrix = require( './Mat' );
   if ( !( A instanceof Matrix ) ) {
-    A = new Matrix( A, this.opt )
+    A = new Matrix( A )
   }
   if ( !( B instanceof Matrix ) ) {
-    B = new Matrix( B, this.opt )
+    B = new Matrix( B )
   }
   let ii = A.row,
     array = [ ],
