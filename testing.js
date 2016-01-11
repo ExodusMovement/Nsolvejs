@@ -94,17 +94,20 @@ gnuplot( ).set( 'term png' ).set( 'output ' + fileplot ).set(
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
 // console.log(nsolve.AL.tensor(2,3,2,[2,4])._(1,2,1));
-let C = new nsolve.AL.matrix( [
-  [ 1, 3 ],
-  [ 1, 4 ]
-] )
-console.log( B.isSimilarlyByColumn( C ) );
-var data = [
-  [ 3, 14 ],
-  [ 1, 40 ],
-  [ 6, 1 ],
+let c = nsolve.AL.matrix( [
+  [ 0, 1 ],
   [ 3, 2 ]
-]
-var regression = nsolve.regression;
-var res = regression( 'polynomial', data, 2 ) // return
-console.log( 'res =', res );
+] )
+console.log( 'log====', c.array );
+console.time( '100-elements' );
+console.log( 'ghfhjg', c.x( c ).array );
+console.timeEnd( '100-elements' );
+var linearAlgebra = require( 'linear-algebra' )( ), // initialise it
+  Matrix = linearAlgebra.Matrix;
+let m = new Matrix( [
+  [ 0, 1 ],
+  [ 3, 2 ]
+] );
+console.time( '100-elements' );
+console.log( '999999==', m.dot( m ).data );
+console.timeEnd( '100-elements' );
