@@ -1,7 +1,8 @@
 'use strict';
 var regression = require( '../regression/index.js' ),
-  _ = require( 'lodash' ),
-  f = require( './fitFunction' ),
+  _ = {}
+_.clone = require( '../utils/clone' )
+var f = require( './fitFunction' ),
   i, j, fit = {},
   x, array_Cloned, length,
   error = 0,

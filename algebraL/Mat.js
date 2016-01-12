@@ -1,9 +1,10 @@
 'use strict';
-var _ = require( 'lodash' ),
-  slice = Array.prototype.slice,
-  x = require( './multi' );
-var plus = require( './sum' );
-var scalar = require( './pscalar' ),
+let _ = {}
+_.clone = require( '../utils/clone' )
+var slice = Array.prototype.slice,
+  x = require( './multi' ),
+  plus = require( './sum' ),
+  scalar = require( './pscalar' ),
   pow = require( './pow' ),
   adj = require( './adj' ),
   det = require( './det' ),
