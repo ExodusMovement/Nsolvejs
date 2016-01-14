@@ -4,8 +4,8 @@
  * @param {Object} matrix {Object} matrix.
  * @return {Object} matrix
  */
-function apply( A, B, thisArg ) {
-  thisArg = thisArg || {
+function apply( A, B ) {
+  let thisArg = {
     A: A,
     B: B
   }
@@ -55,7 +55,7 @@ module.exports = function ( arg ) {
     arg = Array.prototype.slice.call( arguments )
   }
   let cb = arg[ arg.length - 1 ];
-  if ( cb && typeof cb === 'function' ) {
+  if ( cb && typeof cb === 'function' && arg.length > 2 ) {
     return new Promise( function ( full, rej ) {
       try {
         full( cb.call( this, null, addd( arg ) ) )
