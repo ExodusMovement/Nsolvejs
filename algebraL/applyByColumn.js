@@ -53,7 +53,8 @@ module.exports = function ( arg ) {
     arg = Array.prototype.slice.call( arguments )
   }
   let cb = arg[ arg.length - 1 ];
-  if ( cb && typeof cb === 'function' ) {
+  if ( cb && typeof cb === 'function' && arg.length > 2 ) {
+    arg.pop( );
     return new Promise( function ( full, rej ) {
       try {
         full( cb.call( this, null, addd( arg ) ) )
