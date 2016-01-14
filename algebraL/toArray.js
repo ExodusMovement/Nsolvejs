@@ -15,7 +15,7 @@ function toArray( obj, opt ) {
   for ( var variable in obj ) {
     if ( obj.hasOwnProperty( variable ) ) {
       value = ( typeof obj[ variable ] === 'object' && opt.deep ) ? new Matrix(
-        obj[ variable ] ) : obj[ variable ]
+        obj[ variable ], opt ) : obj[ variable ]
       array.push( [ variable, value ] )
     }
   }
