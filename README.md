@@ -35,9 +35,11 @@ var Nsolvejs = require('nsolvejs');
 Is a constructor of a object matrix, the form of Array param have to be like  `Array`= [[x_11,...x_1n],[x_21,...y_2n],...[x_m1,...x_mn]], the row param is the matrix row number and column is a array (can be just a number if every row has same column) with column matrix number to be build. The instance properties are row, column,array and det which are the number of row and column, the array is the array self passed to constructor.
 #### `Options Object`
 The options object accept are:
+
 ##### `force:`
- Boolean with default values true, this options force a object if passed to be a array.  
- ##### `deep:`
+ Boolean with default values true, this options force a object if passed to be a array.
+
+##### `deep:`
   Boolean with default values true, this options force when  a object if passed and it is forced to be a array with recursive steps deeply.  
 
 
