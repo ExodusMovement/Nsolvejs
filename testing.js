@@ -94,13 +94,3 @@ gnuplot( ).set( 'term png' ).set( 'output ' + fileplot ).set(
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
 // console.log(nsolve.AL.tensor(2,3,2,[2,4])._(1,2,1));
-let c = nsolve.AL.matrix.create( 100, 2, function ( i ) {
-  return Math.random( ) * i
-} )
-console.time( '100-elements' )
-console.log( 'log====', nsolve.regression( 'polynomial', c.array, 4 ).equation );
-console.timeEnd( '100-elements' );
-var regression = require( 'regression' )
-console.time( '100-elements' );
-console.log( '999999==', regression( 'polynomial', c.array, 4 ).equation );
-console.timeEnd( '100-elements' );

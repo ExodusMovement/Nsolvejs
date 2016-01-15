@@ -79,9 +79,9 @@ function _validate( array, row, column, opt ) {
   }
 }
 
-function toReturnElement( self, i, j ) {
-  return self.array[ ( i - 1 ) % self.row % self._row ]
-    [ ( j - 1 ) % self.getColumn( i ) % self.array[ ( i - 1 ) % self.array.length ]
+function toReturnElement( i, j ) {
+  return this.array[ ( i - 1 ) % this.row % this._row ]
+    [ ( j - 1 ) % this.getColumn( i ) % this.array[ ( i - 1 ) % this.array.length ]
       .length
     ]
 }
@@ -116,30 +116,23 @@ var matrix = function ( array, row, column, opt ) {
   if ( test ) {
     // get elements of matrix
     this._ = ( function ( i, j ) {
-      let arg
-      if ( Array.isArray( i ) && j === undefined ) {
-        j = i[ 1 ]
-        arg = _.clone( i, true )
-        i = arg[ 0 ]
-      } else {
-        arg = slice.call( arguments )
-      }
       if ( arguments.length < 3 ) {
         if ( i !== undefined && j !== undefined ) {
-          return toReturnElement( this, i, j, opt );
+          let _i = ( i - 1 ) % this.row % this._row
+          let _j = ( j - 1 ) % this.getColumn( i ) % this._array[ _i ].length
+          return this._array[ _i ][ _j ]
         } else if ( i !== undefined && j === undefined ) {
-          return matrix( [ this.array[ ( i - 1 ) % this._row ] ], opt )
+          return matrix( [ this.array[ ( i - 1 ) % this._row ] ], this.opt )
         } else if ( i === undefined && j !== undefined ) {
           return this.trans( )._( j ).trans( )
         }
-      } else
-      if ( this.array[ ( i - 1 ) % this.row % this._row ][ ( j - 1 ) %
-          this.getColumn( i ) % this.array[
-            ( i - 1 ) % this.array.length ].length
-        ] instanceof matrix ) {
-        return this.array[ ( i - 1 ) % this.row % this._row ]
-          [ ( j - 1 ) % this.getColumn( i ) % this.array[ ( i - 1 ) %
-            this.array.length ].length ]._( arg.slice( 2 ) )
+      } else {
+        let _i = ( i - 1 ) % this.row % this._row
+        let _j = _i !== undefined ? ( j - 1 ) % this.getColumn( i ) %
+          this._array[ _i ].length : j - 1
+        let toReturn = this._array[ _i ][ _j ]
+        return toReturn._ ? toReturn._.apply( toReturn, slice.call(
+          arguments, 2 ) ) : toReturn
       }
     } ).bind( this );
     // get column of matrix
@@ -169,7 +162,9 @@ var matrix = function ( array, row, column, opt ) {
     this._row = array.length
     this.row = row || array.length;
     this.column = column || countColumn( this.array );
-    this._column = Array.isArray( this.column ) ? this.column : [ this.column ]
+    this._column = Array.isArray( this.column ) ? this.column : [
+        this.column
+      ]
       // Adjunt of  matrix
     this.adj = ( function ( ) {
       return adj( this );
