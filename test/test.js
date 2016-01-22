@@ -184,9 +184,7 @@ describe( 'Linear Algebra', function ( ) {
           }
         ],
       ] )
-      console.log( 'matFunc', matFunc.array );
       var matApply = matFunc.applyByColumn( A )
-      console.log( 'matApply', matApply.array );
       assert.equal( matApply._( 1, 1 )[ 0 ][ 0 ], 1 ); // should returns true
       assert.equal( matApply._( 1, 2 )[ 0 ][ 0 ], 4 ); // should returns true
     } );
