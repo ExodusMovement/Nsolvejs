@@ -7,9 +7,7 @@
     matrix = require( './algebraL/Mat' ),
     solveLE = require( './algebraL/solveLE' ),
     vector = require( './algebraL/vector' ),
-    stats = require( './stats/stats' ),
-    tensor = require( './tensor/create' ),
-    regression = require( './regression/index' )
+    stats = require( './stats/stats' )
     /**@function
      * The function that solve the equation g(x)=0 beginning in initialpoint into a interval using the options given.
      * @param {Function} g {array} interval {number} initialpoint
@@ -51,9 +49,7 @@
     matrix: matrix,
     solveLE: solveLE,
     vector: vector,
-    tensor: tensor
   };
   nsolveqn.Stats = stats
-  nsolveqn.regression = regression
   nsolveqn.utils = require( './utils/utils' );
   module.exports = nsolveqn

@@ -1,6 +1,6 @@
 {
   "name": "nsolvejs",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
   "main": "index.js",
   "scripts": {
@@ -41,7 +41,9 @@
     "url": "https://github.com/4yopping/nsolvejs/issues"
   },
   "homepage": "https://github.com/4yopping/nsolvejs#readme",
-  "dependencies": {},
+  "dependencies": {
+    "regression": "^1.2.1"
+  },
   "devDependencies": {
     "async": "^1.4.2",
     "commander": "^2.8.1",

@@ -1,5 +1,5 @@
 'use strict';
-var regression = require( '../regression/index.js' ),
+var regression = require( 'regression' ),
   _ = {}
 _.clone = require( '../utils/clone' )
 var f = require( './fitFunction' ),
