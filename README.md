@@ -98,13 +98,13 @@ mat.concatRight(mat2)
 //      [ 0  ,  1.1 , 0  ,  1]
 //      [ 1  ,  4.6 , -1  ,  0]
 //   ]
-mat.concatLeft(mat)
+mat.concatLeft(mat2)
 // concat Left
 //   [
 //      [ 0  ,  1, 0  ,  1.1  ]
 //      [ -1  ,  0, 1  ,  4.6  ]
 //   ]
-mat.concatDown(mat)
+mat.concatDown(mat2)
 // concat Down
 //   [
 //      [ 0  ,  1.1 ]
@@ -112,7 +112,7 @@ mat.concatDown(mat)
 //      [ 0  ,  1 ]
 //      [ -1  ,  0 ]
 //   ]
-mat.concatUp(mat)
+mat.concatUp(mat2)
 // concat Up
 //   [
 //      [ 0  ,  1 ]
