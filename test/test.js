@@ -173,6 +173,17 @@ describe( 'Linear Algebra', function ( ) {
       assert.equal( matApply._( 2, 1 ), Math.tan( A._( 2, 1 ) ) ); // should returns true
       assert.equal( matApply._( 2, 2 ), Math.sqrt( A._( 2, 2 ) ) ); // should returns true
     } );
+  it( 'The join methos return the correct result', function ( ) {
+    var _B = JNsolve.AL.matrix( [
+      [ 0, 0 ],
+      [ 0, -1 ]
+    ] ).join( [
+      [ 1, 0 ],
+      [ 3, 2 ]
+    ], 3, 3 )
+    console.log( '_b', _B.array );
+    assert.equal( _B._( 4, 4 ), 2 ); // should returns true
+  } );
   it( 'The applyByColumn method return a matrix with the correct array',
     function ( ) {
       var matFunc = JNsolve.AL.matrix( [

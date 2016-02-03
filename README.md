@@ -221,6 +221,22 @@ assert.equal( AA._( 1, 1, 1, 1 ), A._( 1, 1 ) ) // And obtain the elements of ma
 assert.equal( AA._( 1, 2, 1, 2 ), A.scalar( 2.5 )._( 1, 2 ) )  // true
 assert.equal( AA._( 2, 1, 2, 1 ), A.x( A )._( 2, 1 ) )// true
 assert.equal( AA._( 2, 2, 2, 2 ), A.pow( 2 )._( 2, 2 ) )// true
+
+
+var _B = Matrix( [  // We can join two matrix
+  [ 0, 0 ],
+  [ 0, -1 ]
+] ).join( [  // the result of join tow matrix the undefined items are let
+  [ 1, 0 ],
+  [ 3, 2 ]
+], 3, 3 ) //  =>
+//  [
+//      [ 0 ,  0  ],
+//      [ 0 , -1  ],
+//      [   ,   , 1, 0 ],
+//      [   ,   , 3, 2 ]
+//   ]             
+assert.equal( _B._( 4, 4 ), 2 ); // should returns true
 ```
 
 #### `Nsolvejs.AL.vector(Array)`

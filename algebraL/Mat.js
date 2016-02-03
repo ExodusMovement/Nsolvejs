@@ -4,6 +4,7 @@ _.clone = require( '../utils/clone' )
 var slice = Array.prototype.slice,
   x = require( './multi' ),
   plus = require( './sum' ),
+  join = require( './join' ),
   scalar = require( './pscalar' ),
   pow = require( './pow' ),
   adj = require( './adj' ),
@@ -194,6 +195,10 @@ var matrix = function ( array, row, column, opt ) {
     // Determinant of matrix
     this.det = ( function ( cb ) {
       return det( this, cb );
+    } ).bind( this );
+    // The join method of matrix
+    this.join = ( function ( A, i, j, cb ) {
+      return join( this, A, i, j, cb );
     } ).bind( this );
     // transpose of matrix
     this.trans = ( function ( cb, opt ) {
