@@ -94,3 +94,4 @@ gnuplot( ).set( 'term png' ).set( 'output ' + fileplot ).set(
 //console.log('=> nsolveqn =', nsolve.nsolveqn(f,interval,initialpoint));
 //console.log('=> findroot =', findroot(f,interval,initialpoint));
 // console.log(nsolve.AL.tensor(2,3,2,[2,4])._(1,2,1));
+hola

@@ -52,4 +52,7 @@
   };
   nsolveqn.Stats = stats
   nsolveqn.utils = require( './utils/utils' );
+  process.on( 'uncaughtException', function ( error ) {
+    console.log( 'A error was not catched:' );
+  } )
   module.exports = nsolveqn
