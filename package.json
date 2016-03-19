@@ -1,7 +1,7 @@
 {
   "name": "nsolvejs",
-  "version": "0.1.12",
-  "description": "Solve equations using numerical methods, linear álgebra  and solver  of linear equation system ",
+  "version": "0.1.14",
+  "description": "Solve equations using numerical methods ",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/test.js",
