@@ -1,6 +1,6 @@
 {
   "name": "nsolvejs",
-  "version": "0.1.15",
+  "version": "1.0.0",
   "description": "Solve equations using numerical methods ",
   "main": "index.js",
   "scripts": {
