@@ -1,37 +1,28 @@
-  'use strict';
-  /**@module
-   * nsolvejs module, with all the properties defined into the proyect.
-   */
-  var methodN = require('./lib/methodN'),
-    bestfit = require('./fit/bestfit')
-    /**@function
-     * The function that solve the equation g(x)=0 beginning in initialpoint into a interval using the options given.
-     * @param {Function} g {array} interval {number} initialpoint
-     * {Object} options
-     * @return {object} with the solution found.
-     */
-  var nsolveqn = function(g, interval, initialpoint, options) {
-    if (!g) {
-      return;
-    }
-    options = options || {
-      npoints_DNumeric: 1000,
-      presicion: 0.001,
-      nstepsmax: 1000,
-      method: 'Newton_Raphson'
-    };
+const utils = require('./utils/utils');
+const bestfit = require('./fit/bestfit');
+const methodN = require('./lib/methodN');
+const defaultOptions = {
+    npointsDNumeric: 1000,
+    presicion: 0.001,
+    nstepsmax: 1000,
+    method: 'Newton_Raphson'
+};
+const nsolveqn = function(g, interval, initialpoint, options = defaultOptions) {
+    if (!g) return;
+
     options.presicion = options.presicion || 0.001;
-    options.npoints_DNumeric = options.npoints_DNumeric || 1000;
+    options.npointsDNumeric = options.npointsDNumeric || 1000;
     options.nstepsmax = options.nstepsmax || 1000;
     options.method = options.method || 'Newton_Raphson';
-    //  var presicion = options.presicion ;
-    var method = options.method;
+    const method = options.method;
     return methodN[method](g, interval, initialpoint, options);
-  };
-  nsolveqn.fit = {
+};
+
+nsolveqn.fit = {
     best: bestfit
-  };
-  nsolveqn.calculusN = {
+};
+
+nsolveqn.calculusN = {
     Newton_Raphson: methodN.Newton_Raphson,
     bisection: methodN.bisection,
     fixedpoint: methodN.fixedpoint,
@@ -40,6 +31,6 @@
     findroot: require('./lib/findroot'),
     D: require('./lib/derivativeN'),
     D_opt: require('./lib/derivativeNopt'),
-  };
-  nsolveqn.utils = require('./utils/utils');
-  module.exports = nsolveqn
+};
+nsolveqn.utils = utils;
+module.exports = nsolveqn;

@@ -1,5 +1,4 @@
-'use strict';
-module.exports = function (get_y, get_x, options) {
+module.exports = function(get_y, get_x, options) {
     if (get_x && get_x.length === undefined) {
         options = get_x;
         get_x = undefined;
@@ -10,12 +9,12 @@ module.exports = function (get_y, get_x, options) {
     }
     if (!options) {
         options = {
-            using: [0, 1],
+            using: [ 0, 1 ],
             smoothing: false,
             noiseeliminate: false,
             smoothingmethod: 'exponential',
             alpha: 0.9,
-            fits_name: ['linear', 'exponential', 'logarithmic', 'power', 'polynomial', 'inverse', 'sqrt']
+            fits_name: [ 'linear', 'exponential', 'logarithmic', 'power', 'polynomial', 'inverse', 'sqrt' ]
         };
     }
     if (options.smoothing === undefined) {
@@ -26,8 +25,8 @@ module.exports = function (get_y, get_x, options) {
     }
     options.smoothingmethod = options.smoothingmethod || 'exponential';
     options.alpha = options.alpha || 0.9;
-    options.using = options.using || [0, 1];
-    options.fits_name = options.fits_name || ['linear', 'exponential', 'logarithmic', 'power', 'polynomial', 'inverse', 'sqrt'];
+    options.using = options.using || [ 0, 1 ];
+    options.fits_name = options.fits_name || [ 'linear', 'exponential', 'logarithmic', 'power', 'polynomial', 'inverse', 'sqrt' ];
     if (!get_x) {
         get_x = [];
     }
@@ -35,8 +34,8 @@ module.exports = function (get_y, get_x, options) {
         get_y = [];
     }
     return {
-        get_x: get_x,
-        get_y: get_y,
-        options: options
+        get_x,
+        get_y,
+        options
     };
 };
