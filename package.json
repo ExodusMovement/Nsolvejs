@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/4yopping/nsolvejs.git"
+    "url": "git+https://github.com/cereceres/nsolvejs.git"
   },
   "keywords": [
     "Solve",
@@ -38,9 +38,9 @@
   "author": "Jesús Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/4yopping/nsolvejs/issues"
+    "url": "https://github.com/cereceres/nsolvejs/issues"
   },
-  "homepage": "https://github.com/4yopping/nsolvejs#readme",
+  "homepage": "https://github.com/cereceres/nsolvejs#readme",
   "dependencies": {
     "regression": "^1.2.1"
   },
