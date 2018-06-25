@@ -42,25 +42,25 @@
   },
   "homepage": "https://github.com/cereceres/nsolvejs#readme",
   "dependencies": {
-    "regression": "^1.2.1"
+    "regression": "^2.0.1"
   },
   "devDependencies": {
-    "async": "^1.4.2",
+    "async": "^2.6.0",
     "commander": "^2.8.1",
-    "events": "^1.0.2",
-    "gnuplot": "^0.2.0",
-    "gulp": "^3.9.0",
-    "gulp-jshint": "^1.11.2",
-    "gulp-mocha": "^2.1.3",
+    "events": "^2.0.0",
+    "gnuplot": "^0.3.1",
+    "gulp": "^4.0.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-mocha": "^5.0.0",
     "gulp-plato": "^1.0.2",
     "jshint-stylish": "^2.0.1",
     "linear-algebra": "^3.1.1",
-    "mocha": "^2.2.5",
+    "mocha": "^5.1.1",
     "mocha-fivemat-reporter": "*",
-    "mocha-lcov-reporter": "0.0.2",
+    "mocha-lcov-reporter": "1.3.0",
     "mocha-unfunk-reporter": "^0.4.0",
-    "prompt": "^0.2.14",
-    "sinon": "^1.17.2",
-    "yargs": "^3.21.0"
+    "prompt": "^1.0.0",
+    "sinon": "^5.0.7",
+    "yargs": "^11.0.0"
   }
 }

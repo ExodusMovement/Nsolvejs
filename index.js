@@ -30,7 +30,7 @@ nsolveqn.calculusN = {
     Newton_Raphson_Higherorder: methodN.Newton_Raphson_Higherorder,
     findroot: require('./lib/findroot'),
     D: require('./lib/derivativeN'),
-    D_opt: require('./lib/derivativeNopt'),
+    D_opt: require('./lib/derivativeNopt')
 };
 nsolveqn.utils = utils;
 module.exports = nsolveqn;

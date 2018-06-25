@@ -15,7 +15,7 @@ module.exports = function(nameF, equationFit) {
         polynomial(x) {
             return (-equationFit[1] + Math.sqrt(equationFit[1] *
         equationFit[1] - 4 * (equationFit[0] - x) * equationFit[
-                    2])) / (2 * equationFit[2]);
+                2])) / (2 * equationFit[2]);
         },
         inverse(x) {
             return equationFit[1] / x + equationFit[0];
