@@ -11,8 +11,13 @@ let f = require('./fitFunction'),
     length_namefit;
 
 function better(array_tofit, fits_name) {
-    fits_name = fits_name || [ 'linear', 'exponential', 'logarithmic', 'power',
-        'polynomial', 'inverse', 'sqrt'
+    fits_name = fits_name || [ 'linear',
+     'exponential',
+      'logarithmic', 
+      'power',
+        'polynomial',
+         'inverse', 
+         'sqrt'
     ];
     length_namefit = fits_name.length;
     array_Cloned = _.clone(array_tofit, true);
@@ -31,7 +36,7 @@ function better(array_tofit, fits_name) {
                 array_inverse[m][1] = pivot;
             }
             fit[fits_name[i]] = {
-                regression: regression('linear', array_inverse)
+                regression: regression.linear( array_inverse)
             };
         } else if (fits_name[i] === 'sqrt') {
             l = array_tofit.length;
@@ -40,11 +45,11 @@ function better(array_tofit, fits_name) {
                 array_sqrt[m][0] = Math.sqrt(array_sqrt[m][0]);
             }
             fit[fits_name[i]] = {
-                regression: regression('linear', array_sqrt)
+                regression: regression.linear( array_sqrt)
             };
-        } else {
+        } else if(regression[fits_name[i]]) {
             fit[fits_name[i]] = {
-                regression: regression(fits_name[i], array_Cloned)
+                regression: regression[fits_name[i]]( array_Cloned)
             };
         }
         error = 0;

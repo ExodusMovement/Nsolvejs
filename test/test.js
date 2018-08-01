@@ -76,7 +76,7 @@ describe('JNsolve Module numeric values function test.', () => {
         assert.equal(fitted.fit.best.name, 'exponential'); // should returns true
     });
     it('The best fit error should be.', () => {
-        assert.equal(fitted.fit.best.error.truncate(2), 2.39); // should returns true
+        assert.equal(fitted.fit.best.error.truncate(2), 2.5); // should returns true
     });
     it('The best fit should define the function fitted', () => {
         assert.equal(typeof fitted.fit.best.f, 'function'); // should returns true
@@ -85,13 +85,13 @@ describe('JNsolve Module numeric values function test.', () => {
         assert.equal(Array.isArray(fitted.ans_ofX), true); // should returns true
     });
     it('The first result of ans_ofX should be 4.81 .', () => {
-        assert.equal(fitted.ans_ofX[0][0].truncate(2), 4.77); // should returns true
+        assert.equal(fitted.ans_ofX[0][0].truncate(2), 4.73); // should returns true
     });
     it('The ans_ofY should be a array.', () => {
         assert.equal(Array.isArray(fitted.ans_ofY), true); // should returns true
     });
     it('The first result of ans_ofY should be 62.59 .', () => {
-        assert.equal(fitted.ans_ofY[0][1].truncate(2), 62.81); // should returns true
+        assert.equal(fitted.ans_ofY[0][1].truncate(2), 63.08); // should returns true
     });
     it('The best fit used should be the exponential', () => {
         assert.equal(fitted.fitUsed, 'exponential'); // should returns true
