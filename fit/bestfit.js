@@ -19,9 +19,8 @@ let getx = require('./getx'),
 
 
 function bestfit(_arrayFit, get_y, get_x, options) {
-    if (!_arrayFit) {
-        return;
-    }
+    if (!_arrayFit) return;
+
     _setparams = setparams(get_y, get_x, options);
     get_x = _setparams.get_x;
     get_y = _setparams.get_y;
@@ -94,15 +93,4 @@ function bestfit(_arrayFit, get_y, get_x, options) {
     return fit_;
 }
 
-module.exports = function(_arrayFit, get_y, get_x, options, cb) {
-    if (cb && typeof cb === 'function') {
-        return new Promise((full, rej) => {
-            try {
-                full(cb(bestfit(_arrayFit, get_y, get_x, options)));
-            } catch (e) {
-                rej(cb(e, null));
-            }
-        });
-    }
-    return bestfit(_arrayFit, get_y, get_x, options);
-};
+module.exports = bestfit;

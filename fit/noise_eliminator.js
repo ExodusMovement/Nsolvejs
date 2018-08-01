@@ -10,9 +10,7 @@ const flatted = function(arraynoisy, _fit) {
         f = eval(fn(fit.best.name, fit[fit.best.name].regression.equation));
     let i, limit, arrayflattened, error, x, n = 1;
     arrayflattened = _.clone(arraynoisy, true);
-    // Dispersion limit
     limit = 3.5 * sigma;
-    // Loop to filter noisy data.
     while (n !== 0) {
         i = 0;
         while (arrayflattened[i]) {

@@ -12,12 +12,12 @@ let f = require('./fitFunction'),
 
 function better(array_tofit, fits_name) {
     fits_name = fits_name || [ 'linear',
-     'exponential',
-      'logarithmic', 
-      'power',
+        'exponential',
+        'logarithmic',
+        'power',
         'polynomial',
-         'inverse', 
-         'sqrt'
+        'inverse',
+        'sqrt'
     ];
     length_namefit = fits_name.length;
     array_Cloned = _.clone(array_tofit, true);
@@ -36,7 +36,7 @@ function better(array_tofit, fits_name) {
                 array_inverse[m][1] = pivot;
             }
             fit[fits_name[i]] = {
-                regression: regression.linear( array_inverse)
+                regression: regression.linear(array_inverse)
             };
         } else if (fits_name[i] === 'sqrt') {
             l = array_tofit.length;
@@ -45,11 +45,11 @@ function better(array_tofit, fits_name) {
                 array_sqrt[m][0] = Math.sqrt(array_sqrt[m][0]);
             }
             fit[fits_name[i]] = {
-                regression: regression.linear( array_sqrt)
+                regression: regression.linear(array_sqrt)
             };
         } else if(regression[fits_name[i]]) {
             fit[fits_name[i]] = {
-                regression: regression[fits_name[i]]( array_Cloned)
+                regression: regression[fits_name[i]](array_Cloned)
             };
         }
         error = 0;
@@ -79,15 +79,4 @@ function better(array_tofit, fits_name) {
     return fit;
 }
 
-module.exports = function(array_tofit, fits_name, cb) {
-    if (cb && typeof cb === 'function') {
-        return new Promise((full, rej) => {
-            try {
-                full(cb(better(array_tofit, fits_name)));
-            } catch (e) {
-                rej(cb(e, null));
-            }
-        });
-    }
-    return better(array_tofit, fits_name);
-};
+module.exports = better;
