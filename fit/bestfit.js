@@ -18,7 +18,7 @@ let getx = require('./getx'),
     _setparams;
 
 
-function bestfit(_arrayFit, get_y, get_x, options) {
+const bestfit = function(_arrayFit, get_y, get_x, options) {
     if (!_arrayFit) return;
 
     _setparams = setparams(get_y, get_x, options);
@@ -41,24 +41,24 @@ function bestfit(_arrayFit, get_y, get_x, options) {
     } else {
         let l = _arrayFit.length,
             j;
-        for (j = 0; j < l; j++) {
+        for (j = 0; j < l; j++)
             arrayFit[j] = [ _arrayFit[j][using[0]], _arrayFit[j][using[1]] ];
-        }
-        if (l === 1) {
+
+        if (l === 1)
             arrayFit.unshift([ 0, 0 ]);
-        }
+
         a = arrayFit[0][0];
         b = arrayFit[l - 1][0];
-        if (noiseeliminate) {
+        if (noiseeliminate)
             arrayFit = noiseeliminatedata(arrayFit);
-        }
 
-        if (smoothing) {
+
+        if (smoothing)
             arrayFit = smoothingdata(arrayFit, {
                 method: smoothingmethod,
                 alpha
             });
-        }
+
 
         fit = betterfit(arrayFit, fits_name);
     }
@@ -69,9 +69,9 @@ function bestfit(_arrayFit, get_y, get_x, options) {
 
     array_y = gety(h, get_y);
 
-    function hinv(x) {
+    const hinv = function(x) {
         return finv(fit.best.name, fit[fit.best.name].regression.equation)(x);
-    }
+    };
 
     array_x = getx(hinv, get_x);
 
@@ -91,6 +91,6 @@ function bestfit(_arrayFit, get_y, get_x, options) {
 
     const fit_ = new Fit(_fit);
     return fit_;
-}
+};
 
 module.exports = bestfit;

@@ -29,9 +29,8 @@ const flatted = function(arraynoisy, _fit) {
         sigma = fit.best.error;
         limit = 3.5 * sigma;
     }
-    if (l !== arrayflattened.length) {
-        arrayflattened = _.clone(flatted(arrayflattened, fit), true);
-    }
+    if (l !== arrayflattened.length) arrayflattened = _.clone(flatted(arrayflattened, fit), true);
+
     return arrayflattened;
 };
 module.exports = flatted;

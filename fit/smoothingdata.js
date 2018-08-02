@@ -15,9 +15,9 @@ module.exports = function(arraytosmoothing, options) {
         alpha = options.alpha,
         beta = 1 - alpha,
         length = _array.length;
-    if (alpha > 1) {
+    if (alpha > 1)
         alpha = Math.pow(10, Math.floor(log10(alpha) + 1));
-    }
+
     arraysmoothed[0] = [ _array[0][0], _array[0][1] ];
     s_t_1 = _array[0][1];
     for (i = 1; i < length; i++) {

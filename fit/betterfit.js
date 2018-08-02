@@ -10,7 +10,7 @@ let f = require('./fitFunction'),
     best_fit_error,
     length_namefit;
 
-function better(array_tofit, fits_name) {
+const better = function(array_tofit, fits_name) {
     fits_name = fits_name || [ 'linear',
         'exponential',
         'logarithmic',
@@ -41,17 +41,17 @@ function better(array_tofit, fits_name) {
         } else if (fits_name[i] === 'sqrt') {
             l = array_tofit.length;
             const array_sqrt = _.clone(array_tofit, true);
-            for (m = 0; m < l; m++) {
+            for (m = 0; m < l; m++)
                 array_sqrt[m][0] = Math.sqrt(array_sqrt[m][0]);
-            }
+
             fit[fits_name[i]] = {
                 regression: regression.linear(array_sqrt)
             };
-        } else if(regression[fits_name[i]]) {
+        } else if(regression[fits_name[i]])
             fit[fits_name[i]] = {
                 regression: regression[fits_name[i]](array_Cloned)
             };
-        }
+
         error = 0;
 
         for (j = 0; j < length; j++) {
@@ -62,9 +62,9 @@ function better(array_tofit, fits_name) {
         }
         error = Math.sqrt(error / length);
         fit[fits_name[i]].error = error;
-        if (best_fit_error === 0) {
+        if (best_fit_error === 0)
             best_fit_error = error;
-        }
+
         if (error < best_fit_error) {
             best_fit = fits_name[i];
             best_fit_error = error;
@@ -77,6 +77,6 @@ function better(array_tofit, fits_name) {
         f: f(best_fit, fit[best_fit].regression.equation)
     };
     return fit;
-}
+};
 
 module.exports = better;
