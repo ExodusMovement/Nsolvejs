@@ -4,6 +4,5 @@ module.exports = {
     log10: require('./stepfunction'),
     stepfunction: require('./stepfunction'),
     summation: require('./summation'),
-    truncate: require('./truncate'),
-    writedata: require('./writedata')
+    truncate: require('./truncate')
 };
