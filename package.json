@@ -1,15 +1,18 @@
 {
-  "name": "nsolvejs",
+  "name": "@exodus/nsolvejs",
   "version": "1.0.4",
   "description": "Solve equations using numerical methods ",
   "main": "index.js",
+  "publishConfig": {
+    "access": "restricted"
+  },
   "scripts": {
     "test": "mocha test/test.js",
     "gulp": "gulp test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cereceres/nsolvejs.git"
+    "url": "git+https://github.com/ExodusMovement/nsolvejs.git"
   },
   "keywords": [
     "Solve",
@@ -38,9 +41,9 @@
   "author": "Jesús Cereceres <cereceres@ciencias.unam.mx>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cereceres/nsolvejs/issues"
+    "url": "https://github.com/ExodusMovement/nsolvejs/issues"
   },
-  "homepage": "https://github.com/cereceres/nsolvejs#readme",
+  "homepage": "https://github.com/ExodusMovement/nsolvejs#readme",
   "dependencies": {
     "regression": "^2.0.1"
   },

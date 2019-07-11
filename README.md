@@ -9,7 +9,7 @@
 ## Installation
 
 ```bash
-$ npm install Nsolvejs
+$ npm install @exodus/nsolvejs
 ```
 
 ## Features
