@@ -14,6 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/ExodusMovement/nsolvejs.git"
   },
+  "files": [
+    "index.js",
+    "lib",
+    "utils"
+  ],
   "keywords": [
     "Solve",
     "regression",
